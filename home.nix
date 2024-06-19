@@ -8,8 +8,15 @@
   home.packages = with pkgs; [
     wget
     curl
-    git
+    qemu-utils
+    jetbrains-mono
+    noto-fonts
+    noto-fonts-emoji
   ];
+
+  fonts = {
+    fontconfig.enable = true;
+  };
 
   home.homeDirectory = "/home/dash";
   home.stateVersion = "23.05";

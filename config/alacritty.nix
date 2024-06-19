@@ -11,6 +11,7 @@
         };
       };
       font = {
+        normal.family = "JetBrainsMono";
         size = 10.0;
       };
       window = {
