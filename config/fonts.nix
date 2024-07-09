@@ -1,10 +1,6 @@
 { config, pkgs, ... }:
 
 {
-  programs.neovim = {
-    enable = true;
-  };
-
   fonts = {
     enable = true;
     fontconfig.enable = true;

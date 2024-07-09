@@ -1,9 +1,16 @@
 { config, pkgs, lib, ... }:
 
 {
-  imports = [ ./config/vim.nix ./config/alacritty.nix ./config/touchpad.nix ];
+  programs.home-manager.enable = true;
+
+  imports = [ 
+    ./config/vim.nix 
+    ./config/touchpad.nix
+  ];
 
   home.username = "dash";
+  home.homeDirectory = "/home/dash";
+  home.stateVersion = "24.05";
 
   home.packages = with pkgs; [
     wget
@@ -12,12 +19,15 @@
     jetbrains-mono
     noto-fonts
     noto-fonts-emoji
+    direnv
+    kitty
+    neofetch
+    p7zip
   ];
 
-  fonts = {
-    fontconfig.enable = true;
+  programs = {
+    alacritty = (import ./config/alacritty.nix { inherit pkgs; });
+    ranger = (import ./config/ranger.nix { inherit pkgs; });
+    kitty = (import ./config/kitty.nix { inherit pkgs; });
   };
-
-  home.homeDirectory = "/home/dash";
-  home.stateVersion = "23.05";
 }
