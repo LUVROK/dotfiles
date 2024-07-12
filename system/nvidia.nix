@@ -7,19 +7,19 @@
       efi.canTouchEfiVariables = true;
     };
     
-    extraModulePackages = with config.boot.kernelPackages; [ acpi_call ];
+    # extraModulePackages = with config.boot.kernelPackages; [ acpi_call ];
 
-    kernelModules = [ "kvm-intel" "acpi_call" ];
+    kernelModules = [ "kvm-intel" ];
     kernelPackages = pkgs.linuxPackages_latest;
-    blacklistedKernelModules = [ "nouveau" ];
+    # blacklistedKernelModules = [ "nouveau" ];
 
     initrd.availableKernelModules = [ "xhci_pci" "thunderbolt" "nvme" "usb_storage" "sd_mod" ];
-    initrd.kernelModules = [ "i915" ];
+    # initrd.kernelModules = [ "i915" ];
 
     kernelParams = [ 
       # "nvidia-drm.modeset=1" 
-      "modprobe.blacklist=nouveau" 
-      "i915.force_probe=9a49"
+      # "modprobe.blacklist=nouveau" 
+      # "i915.force_probe=9a49"
     ];
   };
 
@@ -27,7 +27,7 @@
     enable = true;
     desktopManager.gnome.enable = true;
     videoDrivers = [ 
-      # "intel"
+      "intel"
       "modesetting" 
       "nvidia"
     ];
@@ -56,39 +56,6 @@
         # ];
       # };
     };
-
-    config = lib.mkAfter ''
-      Section "Device"
-        Identifier "Intel Graphics"
-        Driver "intel"
-        BusID "PCI:0:2:0"
-        Option          "TearFree" "true"
-      EndSection
-
-      Section "Monitor"
-        Identifier "eDP-1-1"
-        Option          "Enable" "true"
-      EndSection
-
-      Section "Screen"
-        Identifier "Screen0"
-        Device "Intel Graphics"
-        Monitor "eDP-1-1"
-      EndSection
-
-      Section "ServerLayout"
-        Identifier "Layout0"
-        Screen 0 "Screen0" 0 0
-        Option "Primary" "Screen0"
-      EndSection
-
-      Section "OutputClass"
-        Identifier "Intel"
-        MatchDriver "i915"
-        Driver "modesetting"
-        Option "PrimaryGPU" "true"
-      EndSection
-    '';
   };
 
   environment.systemPackages = with pkgs; [
@@ -97,10 +64,10 @@
     slock  # простой экранный блокировщик
   ];
 
-  services.xserver.displayManager.sessionCommands = lib.mkAfter ''
-    xrandr --setprovideroutputsource modesetting NVIDIA-G0
-    xrandr --auto
-  '';
+  # services.xserver.displayManager.sessionCommands = lib.mkAfter ''
+    # xrandr --setprovideroutputsource modesetting modesetting
+    # xrandr --output eDP-1-1 --auto
+  # '';
 
   hardware.graphics = {
     enable = true;
@@ -119,7 +86,7 @@
     
     open = false;
     nvidiaSettings = true;
-    package = config.boot.kernelPackages.nvidiaPackages.production;
+    # package = config.boot.kernelPackages.nvidiaPackages.production;
     
     # nvidiaPersistenced = true;
     # forceFullCompositionPipeline = true;
@@ -143,10 +110,12 @@
     # nvidiaBusId = "PCI:1:0:0";
   # };
 
-  # environment.variables = {
+  environment.variables = {
     # LIBVA_DRIVER_NAME = "intel";
     # __GLX_VENDOR_LIBRARY_NAME = "modesetting";
-  # };
+
+    # __GLX_VENDOR_LIBRARY_NAME="mesa";
+  };
 
   programs.git = { enable = true; };
   time.hardwareClockInLocalTime = true;
