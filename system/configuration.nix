@@ -1,17 +1,12 @@
 { config, lib, pkgs, ... }:
 
 {
-  imports =
-  [
-      ./hardware-configuration.nix
-      <home-manager/nixos>
-      ./nvidia.nix
-      ./touchpad.nix
-      # <nixos-hardware/common/cpu/intel/tiger-lake>
-      # <nixos-hardware/common/pc/laptop>
-      # <nixos-hardware/common/gpu/nvidia>
-      # ./desktop-packages.nix
-      # ./desktops/i3.nix
+  imports = [
+    ./hardware-configuration.nix
+    <home-manager/nixos>
+    ./nvidia.nix
+    ./touchpad.nix
+    ../config/syncthing.nix
   ];
 
   # Overlays
@@ -64,13 +59,6 @@
     };
     
     xserver = {
-      enable = true;
-
-      desktopManager.gnome.enable = true;
-      displayManager.gdm.enable = true;
-      # displayManager.lightdm.enable = true;
-      # displayManager.gdm.wayland = false;
-
       xkb = {
         variant = "";
         options = "";
@@ -150,19 +138,11 @@
   };
 
   environment.systemPackages = with pkgs; [
-    # Hyprland
-    
-    # DWM
-    # picom
-    # dmenu
-
     # icons
     pkgs.gnome3.adwaita-icon-theme
     pkgs.gtk-engine-murrine
     pkgs.gtk3
 
-    # chromium video
-    
     # Basic utilities
     coreutils
     wget
@@ -200,7 +180,9 @@
     lshw
     mlocate
     electron
-    pkgs.xorg.xrandr
+    xorg.xrandr
+    xorg.xinit
+    xorg.xsetroot
     mesa-demos
 
     # Multimedia
@@ -215,8 +197,6 @@
     zsh-autosuggestions
     syncthing
     pass
-    vim
-    neovim
     gpa
     tor
     vopono
@@ -258,6 +238,9 @@
 
     php
 
+    # GPU tools
+    libva-utils
+    intel-gpu-tools
     nvtopPackages.full
   ];
 

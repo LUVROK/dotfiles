@@ -12,16 +12,4 @@
       disableWhileTyping = true;
     };
   };
-
-  # services.xserver.inputClassSections = [
-    # ''
-    # Section "InputClass"
-      # Identifier "touchpad"
-      # MatchIsTouchpad "on"
-      # Driver "libinput"
-          # Option "ClickMethod" "clickfinger"
-      # Option "MiddleEmulation" "off"
-    # EndSection
-    # ''
-  # ];
 }

@@ -23,6 +23,12 @@
     kitty
     neofetch
     p7zip
+  
+    neovim
+    tree-sitter
+    xclip
+    
+    sqlite
   ];
 
   programs = {
