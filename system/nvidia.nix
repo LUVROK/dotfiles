@@ -6,68 +6,67 @@
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;
     };
-    
-    # extraModulePackages = with config.boot.kernelPackages; [ acpi_call ];
 
+    kernelParams = [ "nvidia-drm.modeset=1" "i915.force_probe=9a49" ];
     kernelModules = [ "kvm-intel" ];
     kernelPackages = pkgs.linuxPackages_latest;
-    # blacklistedKernelModules = [ "nouveau" ];
+    blacklistedKernelModules = [ "nouveau" ];
 
     initrd.availableKernelModules = [ "xhci_pci" "thunderbolt" "nvme" "usb_storage" "sd_mod" ];
-    # initrd.kernelModules = [ "i915" ];
-
-    kernelParams = [ 
-      # "nvidia-drm.modeset=1" 
-      # "modprobe.blacklist=nouveau" 
-      # "i915.force_probe=9a49"
-    ];
   };
 
   services.xserver = {
     enable = true;
     desktopManager.gnome.enable = true;
     videoDrivers = [ 
-      "intel"
       "modesetting" 
       "nvidia"
     ];
     
     dpi = 192;
     
-    displayManager.gdm = {
-      enable = true;
-      wayland = true;
-    };
+    config = ''
+      Section "ServerLayout"
+        Identifier "layout"
+        Screen 0 "intel"
+        Inactive "nvidia"
+      EndSection
+    '';
 
-    windowManager.dwm = {
-      enable = true;
-    
-      package = pkgs.dwm.overrideAttrs {
-         src = ./dwm;
-      };
-
-      # package = pkgs.dwm.override {
-        # patches = [
-          # ./path/to/local.patch
-          # (pkgs.fetchpatch {
-          #   url = "https://dwm.suckless.org/patches/path/to/patch.diff";
-          #   hash = "";
-          # })
-        # ];
-      # };
-    };
+    xrandrHeads = [
+      {
+        output = "eDP-1-1";
+        primary = true;
+        monitorConfig = ''
+          Option "PreferredMode" "3456x2160"
+          Option "Position" "0 0"
+        '';
+      }
+      {
+        output = "HDMI-1";
+        monitorConfig = ''
+          Option "PreferredMode" "1920x1080"
+          Option "Position" "3456 0"
+        '';
+      }
+    ];
   };
 
   environment.systemPackages = with pkgs; [
-    dmenu
-    st  # простой терминал от suckless
-    slock  # простой экранный блокировщик
-  ];
+    libva-utils
+    intel-gpu-tools
+    nvtopPackages.full
+    vulkan-tools
+    
+    mesa
+    mesa.drivers
+    driversi686Linux.mesa
+    vulkan-helper
 
-  # services.xserver.displayManager.sessionCommands = lib.mkAfter ''
-    # xrandr --setprovideroutputsource modesetting modesetting
-    # xrandr --output eDP-1-1 --auto
-  # '';
+    xorg.xorgserver
+    xorg.xf86inputlibinput
+    xorg.xf86videointel
+  ];
 
   hardware.graphics = {
     enable = true;
@@ -76,7 +75,12 @@
       intel-media-driver
       vaapiVdpau
       libvdpau-va-gl
+      vaapiIntel
     ]; 
+  };
+
+  nixpkgs.config.packageOverrides = pkgs: {
+    intel-vaapi-driver = pkgs.intel-vaapi-driver.override { enableHybridCodec = true; };
   };
 
   hardware.nvidia={
@@ -86,35 +90,23 @@
     
     open = false;
     nvidiaSettings = true;
-    # package = config.boot.kernelPackages.nvidiaPackages.production;
-    
-    # nvidiaPersistenced = true;
-    # forceFullCompositionPipeline = true;
+    package = config.boot.kernelPackages.nvidiaPackages.production;
   };
 
-  # -- bumblebee --
-  # nixpkgs.config.allowBroken = true;
-  # hardware.bumblebee = {
-    # enable = true;
-    # driver = "nvidia";
-    # pmMethod = "bbswitch";
-  # };
+  hardware.nvidia.prime = {
+    offload = { 
+      enable = true;
+      enableOffloadCmd=true;
+    };
 
-  # hardware.nvidia.prime = {
-    # offload = { 
-      # enable = true;
-      # enableOffloadCmd=true;
-    # };
     # sync.enable = true;
-    # intelBusId = "PCI:0:2:0";
-    # nvidiaBusId = "PCI:1:0:0";
-  # };
+    intelBusId = "PCI:0:2:0";
+    nvidiaBusId = "PCI:1:0:0";
+  };
+
 
   environment.variables = {
-    # LIBVA_DRIVER_NAME = "intel";
-    # __GLX_VENDOR_LIBRARY_NAME = "modesetting";
-
-    # __GLX_VENDOR_LIBRARY_NAME="mesa";
+    __GLX_VENDOR_LIBRARY_NAME="mesa";
   };
 
   programs.git = { enable = true; };

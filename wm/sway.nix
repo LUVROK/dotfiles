@@ -1,66 +1,36 @@
 { config, pkgs, ... }:
-{
-  environment.systemPackages = with pkgs; [
-    sway
-    waybar
-    wofi
-    dmenu
-    shotman
-    clipcat
-    mako
-  ];
 
-  services.xserver.windowManager.sway = {
+let
+  mod = "Mod4";
+  alt = "Mod1";
+in {
+  wayland.windowManager.sway = {
     enable = true;
-    package = pkgs.sway;
-    wrapperFeatures.gtk = true;
-    xwayland.enable = true;
-
-    config = rec {
-      modifier = "Mod4";
-      output = {
-        "HDMI-0" = {
-          mode = "1920x1080@60Hz";
-          pos = "3456 0";
-        };
-        "eDP-1-1" = {
-          mode = "3456x2160@60Hz";
-          pos = "0 0";
+    config = {
+      input = {
+        "*" = {
+          xkb_layout = "hu";
+          natural_scroll = "disabled";
         };
       };
-    };
-    extraConfig = ''
-      bindsym Print               exec shotman -c output
-      bindsym Print+Shift         exec shotman -c region
-      bindsym Print+Shift+Control exec shotman -c window
-    '';
-  };
-
-  programs.waybar = {
-    enable = true;
-    package = pkgs.waybar;
-  };
-
-  # programs.rofi.enable = true;
-
-  # services.swaylock.enable = true;
-  # services.swayidle.enable = true;
-
-  services.greetd = {
-    enable = true;
-    settings = {
-      default_session.command = ''
-        ${pkgs.greetd.tuigreet}/bin/tuigreet \
-          --time \
-          --asterisks \
-          --user-menu \
-          --cmd sway
-      '';
+      bars = [];
+      keybindings = {
+        "${mod}+Return" = "exec xterm";
+        "${mod}+w" = "exec firefox";
+        "${alt}+q" = "kill";
+        "${mod}+f" = "floating toggle";
+      };
+      floating = {
+        modifier = mod;
+      };
+      focus = {
+        followMouse = true;
+      };
     };
   };
 
-  # environment.etc."greetd/environments".text = ''
-    # sway
-  # '';
+  home.sessionVariables = {
+    XDG_SESSION_TYPE = "wayland";
+  };
 }
 

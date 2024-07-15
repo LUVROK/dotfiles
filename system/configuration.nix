@@ -5,8 +5,11 @@
     ./hardware-configuration.nix
     <home-manager/nixos>
     ./nvidia.nix
+    # ./nouveau.nix
     ./touchpad.nix
     ../config/syncthing.nix
+    # ../wm/hypr.nix
+    ./wayland.nix
   ];
 
   # Overlays
@@ -65,23 +68,14 @@
         layout = "us,ru";
       };
 
-      xrandrHeads = [
-        {
-          output = "eDP-1-1";
-          primary = true;
-          monitorConfig = ''
-            Option "PreferredMode" "3456x2160"
-            Option "Position" "0 0"
-          '';
-        }
-        {
-          output = "HDMI-1";
-          monitorConfig = ''
-            Option "PreferredMode" "1920x1080"
-            Option "Position" "3456 0"
-          '';
-        }
-      ];
+      displayManager.gdm.enable = true;
+      windowManager.dwm = { 
+        enable = true;
+  
+        package = pkgs.dwm.overrideAttrs {
+           src = ./dwm;
+        };
+      };
     };
   };
 
@@ -90,11 +84,6 @@
   programs.steam = {
     enable = true;
     dedicatedServer.openFirewall = true;
-  };
-
-  programs.hyprland = {
-    enable = true;
-    xwayland.enable = true;
   };
 
   sound.enable = true;
@@ -139,7 +128,7 @@
 
   environment.systemPackages = with pkgs; [
     # icons
-    pkgs.gnome3.adwaita-icon-theme
+    pkgs.adwaita-icon-theme
     pkgs.gtk-engine-murrine
     pkgs.gtk3
 
@@ -209,6 +198,7 @@
     wasabiwallet
     vscodium
     element-desktop
+    firefox
     chromium    
     mpv
     discord
@@ -224,7 +214,7 @@
     figma-linux
     unetbootin
     psi-plus
-    firefox
+    # firefox
     prismlauncher
     brave
 
@@ -238,10 +228,10 @@
 
     php
 
-    # GPU tools
-    libva-utils
-    intel-gpu-tools
-    nvtopPackages.full
+    picom
+
+    haskellPackages.xmobar
+    haskellPackages.pandoc
   ];
 
   # VIRTUALBOX

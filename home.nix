@@ -6,6 +6,8 @@
   imports = [ 
     ./config/vim.nix 
     ./config/touchpad.nix
+    # ./wm/sway.nix
+    # ./wm/hypr.nix
   ];
 
   home.username = "dash";
