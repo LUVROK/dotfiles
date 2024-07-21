@@ -8,6 +8,7 @@
       noto-fonts
       noto-fonts-emoji
       firacode
+      jetbrains-mono
     ];
   };
 }

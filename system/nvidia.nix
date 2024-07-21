@@ -24,7 +24,8 @@
     ];
     
     dpi = 192;
-    
+    upscaleDefaultCursor = true;    
+
     config = ''
       Section "ServerLayout"
         Identifier "layout"
@@ -66,7 +67,20 @@
     xorg.xorgserver
     xorg.xf86inputlibinput
     xorg.xf86videointel
+
+    picom
   ];
+
+  services.picom = {
+    enable = true;
+    backend = "glx";
+    vSync = true;
+    fade = true;
+    fadeSteps = [
+      0.1
+      0.1
+    ];
+  };
 
   hardware.graphics = {
     enable = true;
@@ -90,7 +104,7 @@
     
     open = false;
     nvidiaSettings = true;
-    package = config.boot.kernelPackages.nvidiaPackages.production;
+    package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
 
   hardware.nvidia.prime = {
@@ -106,7 +120,16 @@
 
 
   environment.variables = {
-    __GLX_VENDOR_LIBRARY_NAME="mesa";
+    GDK_SCALE = "1.5";
+    # GDK_DPI_SCALE = "0.4";
+    _JAVA_OPTIONS = "-Dsun.java2d.uiScale=2.2";
+    # QT_AUTO_SCREEN_SCALE_FACTOR = "1";
+    XCURSOR_SIZE = "64";
+    EDITOR="VIM";
+    QT_SCALE_FACTOR="1.5";
+    # XCURSOR_SIZE="128";
+    # GDK_SCALE="2";
+    # __GLX_VENDOR_LIBRARY_NAME="mesa";
   };
 
   programs.git = { enable = true; };

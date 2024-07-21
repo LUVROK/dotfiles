@@ -5,18 +5,16 @@
     ./hardware-configuration.nix
     <home-manager/nixos>
     ./nvidia.nix
-    # ./nouveau.nix
     ./touchpad.nix
     ../config/syncthing.nix
-    # ../wm/hypr.nix
-    ./wayland.nix
+    ./dwm.nix
   ];
 
   # Overlays
   nixpkgs.overlays = [
     (import /home/dash/Documents/dotfiles/overlays/appimage-obsidian-overlay.nix)
   ];
-
+  
   programs.xwayland.enable = true;
   
   environment.variables = {
@@ -69,13 +67,6 @@
       };
 
       displayManager.gdm.enable = true;
-      windowManager.dwm = { 
-        enable = true;
-  
-        package = pkgs.dwm.overrideAttrs {
-           src = ./dwm;
-        };
-      };
     };
   };
 
@@ -107,10 +98,25 @@
     };
   };
 
+  users.groups.libvirt = {};
+  users.groups.vboxsf = {};
+  users.groups.plugdev = {};
+  users.groups.storage = {};
+
   users.users.dash = {
     isNormalUser = true;
-    description = "DaSH";
-    extraGroups = [ "networkmanager" "wheel" "kvm" "libvirt" "vboxusers" "video" ];
+    extraGroups = [ 
+      "networkmanager" 
+      "wheel" 
+      "kvm" 
+      "libvirt" 
+      "vboxusers" 
+      "vboxsf" 
+      "video"  
+      "audio"
+      "plugdev"
+      "storage"
+    ];
     shell = pkgs.zsh;
   };
 
@@ -126,11 +132,19 @@
     extraOpts = {};
   };
 
+  security.polkit.enable = true;
+  services.udisks2.enable = true;
+  programs.udevil.enable = true;  
+
   environment.systemPackages = with pkgs; [
     # icons
-    pkgs.adwaita-icon-theme
-    pkgs.gtk-engine-murrine
-    pkgs.gtk3
+    adwaita-icon-theme
+    gtk-engine-murrine
+    gtk3
+
+    # dependebs
+    glibc
+    glib
 
     # Basic utilities
     coreutils
@@ -148,6 +162,7 @@
     openvpn
     killall
     pulseaudio
+    alsaUtils
     pavucontrol
     pamixer
     pulseaudio-ctl
@@ -155,6 +170,9 @@
     dig  
     nmap  
     inetutils
+    brightnessctl
+    usbutils
+    udevil
 
     # Development tools
     nodejs
@@ -172,6 +190,7 @@
     xorg.xrandr
     xorg.xinit
     xorg.xsetroot
+    xsettingsd
     mesa-demos
 
     # Multimedia
@@ -237,7 +256,8 @@
   # VIRTUALBOX
   programs.virt-manager.enable = true;
   virtualisation.libvirtd.enable = true;
-  # virtualisation.virtualbox.host.enable = true;
+  virtualisation.virtualbox.host.enable = true;
+  
   # virtualisation.virtualbox.host.enableExtensionPack = true;
   # virtualisation.virtualbox.guest.enable = true;
 
