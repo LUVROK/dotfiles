@@ -4,10 +4,10 @@
   programs.home-manager.enable = true;
 
   imports = [ 
-    ./config/vim.nix 
-    ./config/touchpad.nix
-    # ./wm/sway.nix
-    # ./wm/hypr.nix
+    ./config/vim.nix
+    ./system/cursor.nix
+    ./config/rofi/rofi.nix
+    ./config/dunst.nix
   ];
 
   home.username = "dash";
@@ -15,22 +15,13 @@
   home.stateVersion = "24.05";
 
   home.packages = with pkgs; [
-    wget
-    curl
-    qemu-utils
-    jetbrains-mono
-    noto-fonts
-    noto-fonts-emoji
     direnv
     kitty
     neofetch
     p7zip
-  
     neovim
     tree-sitter
-    xclip
-    
-    sqlite
+    dunst
   ];
 
   programs = {

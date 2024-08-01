@@ -5,8 +5,11 @@
     ./hardware-configuration.nix
     <home-manager/nixos>
     ./nvidia.nix
+    ./env.nix
     ./touchpad.nix
     ../config/syncthing.nix
+    ../config/fonts.nix
+    # ../config/dunst.nix
     ./dwm.nix
   ];
 
@@ -16,10 +19,6 @@
   ];
   
   programs.xwayland.enable = true;
-  
-  environment.variables = {
-    EDITOR = "VIM";
-  };
 
   networking = {
     hostName = "nixos";
@@ -116,6 +115,7 @@
       "audio"
       "plugdev"
       "storage"
+      "input"
     ];
     shell = pkgs.zsh;
   };
@@ -126,6 +126,9 @@
 
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.nvidia.acceptLicense = true;
+  nix.extraOptions = ''
+    experimental-features = nix-command flakes
+  '';
 
   programs.chromium = {
     enable = true;
@@ -173,6 +176,8 @@
     brightnessctl
     usbutils
     udevil
+    bc
+    sqlite
 
     # Development tools
     nodejs
@@ -187,11 +192,25 @@
     lshw
     mlocate
     electron
+    mesa-demos
+    libnotify
+
+    # X11
     xorg.xrandr
     xorg.xinit
     xorg.xsetroot
+    xorg.xcursorthemes
     xsettingsd
-    mesa-demos
+    xclip
+    xorg.xev
+    xorg.xorgserver
+    xorg.xf86inputlibinput
+    xorg.xf86videointel
+    xorg.xwininfo
+    xorg.libX11
+    xorg.libX11.dev
+    buildPackages.gnumake
+    xkb-switch
 
     # Multimedia
     ffmpeg
@@ -233,12 +252,13 @@
     figma-linux
     unetbootin
     psi-plus
-    # firefox
+    bisq-desktop
     prismlauncher
     brave
 
     # virtualization and nvidia
     qemu_kvm
+    qemu-utils
     qpwgraph
     
     pciutils
@@ -247,10 +267,10 @@
 
     php
 
-    picom
-
     haskellPackages.xmobar
     haskellPackages.pandoc
+    
+    qt5.qtbase
   ];
 
   # VIRTUALBOX

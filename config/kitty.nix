@@ -11,5 +11,7 @@
 
     window_padding_width = 10;
     window_padding_height = 5;
+
+    confirm_os_window_close = 0;
   };
 }
