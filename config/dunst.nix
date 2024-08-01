@@ -18,7 +18,7 @@
         separator_height = "4";
         padding = "12";
         horizontal_padding = "20";
-        frame_width = "0";
+        frame_width = "1";
         sort = "no";
         idle_threshold = "120";
         font = "JetBrainsMonoNL NFP 12";
@@ -40,6 +40,7 @@
         always_run_script = "true";
         title = "Dunst";
         class = "Dunst";
+        highlight = "#ebdbb2";
       };
 
       shortcuts = {
@@ -51,38 +52,34 @@
 
       urgency_low = {
         timeout = "4";
-        foreground = "#ebdbb2";   # соответствие normfgcolor
-        background = "#282828";   # соответствие normbgcolor
-        frame_color = "#3c3836";  # соответствие normbordercolor
+        foreground = "#ebdbb2";
+        background = "#282828";
+        frame_color = "#d65d0e";
         highlight_color = "#292929";
-        separator_color = "#292929";
+        separator_color = "#000";
         indicator_color = "#fbf1c7";
         progress_color = "#00ff00";
       };
 
       urgency_normal = {
-        timeout = "8";
-        foreground = "#fbf1c7";   # соответствие selfgcolor
-        background = "#282828";   # соответствие selbgcolor
-        frame_color = "#d65d0e";  # соответствие selbordercolor
+        timeout = "4";
+        foreground = "#fbf1c7";
+        background = "#282828";
+        frame_color = "#d65d0e";
         highlight_color = "#292929";
-        separator_color = "#292929";
+        separator_color = "#000";
         indicator_color = "#fbf1c7";
         progress_color = "#00ff00";
       };
 
       urgency_critical = {
-        timeout = "10";
-        foreground = "#fbf1c7";   # соответствие urgfgcolor
-        background = "#282828";   # соответствие urgbgcolor
-        frame_color = "#ff0000";  # соответствие urgbordercolor
+        timeout = "4";
+        foreground = "#fbf1c7";
+        background = "#282828";
+        frame_color = "#d65d0e";
         highlight_color = "#292929";
-        separator_color = "#292929";
+        separator_color = "#000";
         indicator_color = "#fbf1c7";
-        progress_color = "#00ff00";
-      };
-
-      volume = {
         progress_color = "#00ff00";
       };
     };

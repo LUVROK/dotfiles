@@ -26,6 +26,7 @@ function _mountvc() { sudo -v && veracrypt --mount "$1" "$2" --password "$3" > /
 function _mountvc-ps() { sudo -v && veracrypt --mount ~/HOME/wizzard/pass-store ~/HOME/wizzard/pass-store-mount > /dev/null 2>&1 & }
 function _dismountvc() { sudo -v && veracrypt --dismount $1 & }
 function _xrandr-hdmi-1-0() { xrandr --output HDMI-1-0 --mode 1920x1080 --rate 60.00 --right-of eDP-1 & }
+function _xrandr-hdmi-1-0-output() { xrandr --output HDMI-1-0 --off & }
 
 # Алиасы для удобства
 alias ll='ls -lah'
@@ -35,6 +36,7 @@ alias grep='grep --color=auto'
 alias system-s='~/HOME/dotfiles/apply_system.sh'
 alias user-s='~/HOME/dotfiles/apply_users.sh'
 alias xrandr-hdmi-1-0='_xrandr-hdmi-1-0'
+alias xrandr-hdmi-1-0-output='_xrandr-hdmi-1-0-output'
 alias vpn-app='_vpn_app'
 
 # Алиасы для крипто контейнеров
