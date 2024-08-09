@@ -23,8 +23,10 @@ export LANG=en_US.UTF-8 # Установка локали
 # Функции
 function _vpn_app() { sudo -v && vopono exec --provider mullvad --server "$1" --protocol wireguard "$2" > /dev/null 2>&1 & }
 function _mountvc() { sudo -v && veracrypt --mount "$1" "$2" --password "$3" > /dev/null 2>&1 & }
-function _mountvc-ps() { sudo -v && veracrypt --mount ~/HOME/wizzard/pass-store ~/HOME/wizzard/pass-store-mount > /dev/null 2>&1 & }
 function _dismountvc() { sudo -v && veracrypt --dismount $1 & }
+function _mountvc-pn() { sudo -v && veracrypt --mount ~/HOME/private_containers/private_notes /media/veracrypt1 > /dev/null 2>&1 & }
+function _mountvc-ps() { sudo -v && veracrypt --mount ~/HOME/wizzard/pass-store ~/HOME/.pass-store-mount > /dev/null 2>&1 & }
+function _dismountvc-ps() { sudo -v && veracrypt --dismount ~/HOME/.pass-store-mount & }
 function _xrandr-hdmi-1-0() { xrandr --output HDMI-1-0 --mode 1920x1080 --rate 60.00 --right-of eDP-1 & }
 function _xrandr-hdmi-1-0-output() { xrandr --output HDMI-1-0 --off & }
 
@@ -42,7 +44,9 @@ alias vpn-app='_vpn_app'
 # Алиасы для крипто контейнеров
 alias mountvc='_mountvc'
 alias dismountvc='_dismountvc'
+alias mountvc-pn='_mountvc-pn'
 alias mountvc-ps='_mountvc-ps'
+alias dismountvc-ps='_dismountvc-ps'
 
 # Проверка и поддержка interactivity
 if [ -n "$PS1" ]; then

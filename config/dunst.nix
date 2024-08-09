@@ -9,13 +9,14 @@
       };
 
       global = {
+        width = 300;
         origin = "bottom-center";
         monitor = "0";
         follow = "mouse";
         geometry = "350x100-15+45";
         indicate_hidden = "yes";
         shrink = "yes";
-        separator_height = "4";
+        separator_height = "1";
         padding = "12";
         horizontal_padding = "20";
         frame_width = "1";
@@ -29,7 +30,7 @@
         show_age_threshold = "3000";
         word_wrap = "yes";
         ignore_newline = "no";
-        transparency = "0%";
+        transparency = "10%";
         stack_duplicates = "false";
         hide_duplicate_count = "yes";
         show_indicators = "no";

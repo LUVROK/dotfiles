@@ -22,7 +22,18 @@
     neovim
     tree-sitter
     dunst
+    gnupg
   ];
+
+  home.file.".gnupg/gpg-agent.conf" = {
+    text = ''
+      pinentry-program ${pkgs.pinentry}/bin/pinentry
+    '';
+    onChange = ''
+      echo "Reloading gpg-agent"
+      echo RELOADAGENT | gpg-connect-agent
+    '';
+  };
 
   programs = {
     alacritty = (import ./config/alacritty.nix { inherit pkgs; });

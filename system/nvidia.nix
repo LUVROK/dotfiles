@@ -45,7 +45,7 @@
 
     xrandrHeads = [
       {
-        output = "eDP-1-1";
+        output = "eDP-1";
         primary = true;
         monitorConfig = ''
           Option "PreferredMode" "3456x2160"
@@ -54,7 +54,7 @@
         '';
       }
       {
-        output = "HDMI-1";
+        output = "HDMI-1-0";
         monitorConfig = ''
           Option "PreferredMode" "1920x1080"
           Option "Position" "3456 0"

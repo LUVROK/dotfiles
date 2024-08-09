@@ -9,7 +9,8 @@
     ./touchpad.nix
     ../config/syncthing.nix
     ../config/fonts.nix
-    # ../config/dunst.nix
+    ../config/mysql.nix
+    ./virt-manager.nix
     ./dwm.nix
   ];
 
@@ -136,7 +137,6 @@
   };
 
   security.polkit.enable = true;
-  services.udisks2.enable = true;
   programs.udevil.enable = true;  
 
   environment.systemPackages = with pkgs; [
@@ -178,6 +178,11 @@
     udevil
     bc
     sqlite
+    powertop
+
+    # pass
+    pass
+    pinentry
 
     # Development tools
     nodejs
@@ -194,6 +199,8 @@
     electron
     mesa-demos
     libnotify
+    wirelesstools
+    jq
 
     # X11
     xorg.xrandr
@@ -211,6 +218,8 @@
     xorg.libX11.dev
     buildPackages.gnumake
     xkb-switch
+    xwinwrap
+    xdotool
 
     # Multimedia
     ffmpeg
@@ -223,7 +232,6 @@
     zsh-syntax-highlighting
     zsh-autosuggestions
     syncthing
-    pass
     gpa
     tor
     vopono
@@ -255,10 +263,6 @@
     bisq-desktop
     prismlauncher
     brave
-
-    # virtualization and nvidia
-    qemu_kvm
-    qemu-utils
     qpwgraph
     
     pciutils
@@ -274,10 +278,7 @@
   ];
 
   # VIRTUALBOX
-  programs.virt-manager.enable = true;
-  virtualisation.libvirtd.enable = true;
   virtualisation.virtualbox.host.enable = true;
-  
   # virtualisation.virtualbox.host.enableExtensionPack = true;
   # virtualisation.virtualbox.guest.enable = true;
 

@@ -5,7 +5,8 @@
     user = "dash";
     openDefaultPorts = true;
 
-    dataDir = "/home/dash/HOME/wizzard";
+    dataDir = "/home/dash/.config/syncthing";
+    configDir = "/home/dash/.config/syncthing";
   };
 
   networking.firewall.allowedTCPPorts = [ 8384 22000 ];

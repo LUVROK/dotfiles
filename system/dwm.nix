@@ -6,24 +6,27 @@
       enable = true;
       
       package = pkgs.dwm.overrideAttrs (oldAttrs: rec {
-        src = ./dwm-gruvbox/dwm;
+        # src = ./dwm-gruvbox/dwm;
+        src = ./dwm-flexipatch;
 
-        patches = oldAttrs.patches or [] ++ [ ];
+        patches = oldAttrs.patches or [] ++ [
+          # "./patches/dwm-systray-6.3.diff"
+          # "./patches/dwm-steam.diff"
+        ];
       });
     };
 
     displayManager.sessionCommands = ''
-      WALLPAPER=/home/dash/Documents/wallpapers-gruvbox/minimalistic/
+      WALLPAPER=/home/dash/HOME/wizzard/wallpaper/antiquity
       
       feh --randomize --bg-fill "$WALLPAPER"*
       setxkbmap us,ru -option grp:win_space_toggle
       
-      export PATH=/home/dash/HOME/dotfiles/system/dwm-gruvbox/dwmblocks:$PATH
+      export PATH=/home/dash/HOME/dotfiles/system/dwm-flexipatch/dwmblocks:$PATH
       dwmblocks &
       devmon &
     '';
   };
-
 
   services.picom = {
     enable = true;
@@ -35,8 +38,13 @@
   environment.systemPackages = with pkgs; [
     dwmblocks
     dmenu
+    dmenu-rs
     nitrogen
     feh
     flameshot
+
+    pa_applet
+    networkmanager_dmenu
+    dzen2
   ];
 }

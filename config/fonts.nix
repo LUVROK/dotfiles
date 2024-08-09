@@ -9,6 +9,7 @@
       fira-code-symbols
       jetbrains-mono
       font-awesome_6
+      nerdfonts
     ];
   };
 }
