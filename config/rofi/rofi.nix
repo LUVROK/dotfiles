@@ -1,53 +1,84 @@
-{ pkgs, ... }:
-
 {
-  programs.rofi = {
-    enable = true;
-    package = pkgs.rofi.override {
-      plugins = [
-        pkgs.rofi-emoji
-        pkgs.rofi-calc
-        pkgs.rofi-file-browser
-      ];
+  config,
+  lib,
+  pkgs,
+  inputs,
+  ...
+}:
+with lib; let
+  rofi-wifi-menu = pkgs.writeScriptBin "rofi-wifi-menu" (builtins.readFile ./bin-rofi/rofi-wifi-menu.sh);
+in {
+  home.packages = with pkgs; [
+    rofi-wifi-menu
+    rofi-wayland
+    rofi-power-menu
+    rofi-bluetooth
+  ];
+
+  xdg.configFile = {
+    rofi-colors = {
+      source = ./config/colors.rasi;
+      target = "rofi/config/colors.rasi";
     };
-    font = "JetBrainsMonoNL NFP 18";
-  };
-  home = {
-    file = {
-      ".config/rofi/colors.rasi".text = ''
-        * {
-            selected-normal-foreground:  rgba ( 32, 37, 49, 100 % ); /*( 173, 241, 33, 80% );*/
-            foreground:                  rgba ( 196, 203, 212, 100 % );
-            normal-foreground:           @foreground;
-            alternate-normal-background: rgba ( 45, 48, 59, 1 % );
-            red:                         rgba ( 220, 50, 47, 100 % );
-            selected-urgent-foreground:  rgba ( 249, 249, 249, 100 % );
-            blue:                        rgba ( 38, 139, 210, 100 % );
-            urgent-foreground:           rgba ( 204, 102, 102, 100 % );
-            alternate-urgent-background: rgba ( 75, 81, 96, 90 % );
-            active-foreground:           rgba ( 101, 172, 255, 100 % );
-            lightbg:                     rgba ( 238, 232, 213, 100 % );
-            selected-active-foreground:  rgba ( 249, 249, 249, 100 % );
-            alternate-active-background: rgba ( 45, 48, 59, 88 % );
-            background:                  rgba ( 12, 12, 12, 90 % ); /*rgba ( 32, 37, 49, 88% );*/    
-            alternate-normal-foreground: @foreground;
-            normal-background:           rgba ( 45, 48, 59, 0 % );
-            lightfg:                     rgba ( 88, 104, 117, 100 % );
-            selected-normal-background:  rgba ( 187, 197, 255, 100% );  /* rgba ( 24, 26, 32, 100 % );*/
-            border-color:                rgba ( 124, 131, 137, 100 % );
-            spacing:                     2;
-            separatorcolor:              rgba ( 45, 48, 59, 1 % );
-            urgent-background:           rgba ( 45, 48, 59, 15 % );
-            selected-urgent-background:  rgba ( 165, 66, 66, 100 % );
-            alternate-urgent-foreground: @urgent-foreground;
-            background-color:            rgba ( 0, 0, 0, 0 % );
-            alternate-active-foreground: @active-foreground;
-            active-background:           rgba ( 29, 31, 33, 17 % );
-            selected-active-background:  rgba ( 26, 28, 35, 100 % );
-        }
-      '';
-      ".config/rofi/grid.rasi".source = ./grid.rasi;
-      ".config/rofi/launcher.rasi".source = ./launcher.rasi;
+    font-rasi = {
+      source = ./config/font.rasi;
+      target = "rofi/config/font.rasi";
+    };
+    launcher-bin = {
+      source = ./bin-rofi/launcher.sh;
+      target = "rofi/bin-rofi/launcher.sh";
+    };
+    launcher-rasi = {
+      source = ./config/launcher.rasi;
+      target = "rofi/config/launcher.rasi";
+    };
+    powermenu-bin = {
+      source = ./bin-rofi/power-menu.sh;
+      target = "rofi/bin-rofi/power-menu.sh";
+    };
+    powermenu-rasi = {
+      source = ./config/power-menu.rasi;
+      target = "rofi/config/power-menu.rasi";
+    };
+    confirm-rasi = {
+      source = ./config/confirm.rasi;
+      target = "rofi/config/confirm.rasi";
+    };
+    askpass-rasi = {
+      source = ./config/ask-pass.rasi;
+      target = "rofi/config/ask-pass.rasi";
+    };
+    runner-bin = {
+      source = ./bin-rofi/runner.sh;
+      target = "rofi/bin-rofi/runner.sh";
+    };
+    runner-rasi = {
+      source = ./config/runner.rasi;
+      target = "rofi/config/runner.rasi";
+    };
+    bluetooth-rasi = {
+      source = ./config/bluetooth.rasi;
+      target = "rofi/config/bluetooth.rasi";
+    };
+    network-rasi = {
+      source = ./config/network.rasi;
+      target = "rofi/config/network.rasi";
+    };
+    networkmenu-rasi = {
+      source = ./config/network-menu.rasi;
+      target = "rofi/config/network-menu.rasi";
+    };
+    mpd-rasi = {
+      source = ./config/mpd.rasi;
+      target = "rofi/config/mpd.rasi";
+    };
+    screenshot-bin = {
+      source = ./bin-rofi/screenshot.sh;
+      target = "rofi/bin-rofi/screenshot.sh";
+    };
+    screenshot-rasi = {
+      source = ./config/screenshot.rasi;
+      target = "rofi/config/screenshot.rasi";
     };
   };
 }

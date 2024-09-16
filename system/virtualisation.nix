@@ -3,13 +3,13 @@
 {
   programs.virt-manager.enable = true;
   virtualisation.libvirtd.enable = true;
-  services.spice-vdagentd.enable = true;
+  virtualisation.virtualbox.host.enable = false;
 
   environment.systemPackages = with pkgs; [
     qemu_kvm
     qemu-utils
-    bridge-utils
-    spice
-    spice-vdagent
+    virt-viewer
+    libvirt
+    virt-manager
   ];
 }

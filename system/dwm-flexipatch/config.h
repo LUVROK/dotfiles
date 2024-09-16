@@ -934,6 +934,9 @@ static const Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_Return,          spawn,                  {.v = termcmd } },
 	{ MODKEY,                            XK_space,          spawn,          SHCMD("pkill -RTMIN+1 dwmblocks") },
 
+	{ MODKEY|ShiftMask,                       XK_l,          spawn,                  SHCMD("/home/dash/HOME/dotfiles/system/dwm-flexipatch/scripts/bin-rofi/launcher.sh") },
+	{ MODKEY|ShiftMask,                       XK_w,          spawn,                  SHCMD("/home/dash/HOME/dotfiles/system/dwm-flexipatch/scripts/bin-rofi/power-menu.sh") },
+
 	/* XF86Keys */
     {0, XF86XK_AudioMute, spawn, {.v = mutevol}},
     {0, XF86XK_AudioLowerVolume, spawn, {.v = downvol}},
@@ -1139,7 +1142,7 @@ static const Key keys[] = {
 	{ MODKEY|ControlMask,           XK_Return,     mirrorlayout,           {0} },          /* flextile, flip master and stack areas */
 	#endif // FLEXTILE_DELUXE_LAYOUT
 	// { MODKEY,                       XK_space,      setlayout,              {0} },
-	// { MODKEY|ShiftMask,             XK_space,      togglefloating,         {0} },
+	{ MODKEY|ShiftMask,             XK_space,      togglefloating,         {0} },
 	#if MAXIMIZE_PATCH
 	{ MODKEY|ControlMask|ShiftMask, XK_h,          togglehorizontalmax,    {0} },
 	{ MODKEY|ControlMask|ShiftMask, XK_l,          togglehorizontalmax,    {0} },

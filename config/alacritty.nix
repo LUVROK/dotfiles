@@ -5,7 +5,7 @@
   settings = {
     colors = {
       primary = {
-        background = "#171717";
+        background = "#292929";
         foreground = "#c5c8c6";
       };
     };

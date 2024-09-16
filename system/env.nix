@@ -6,66 +6,29 @@
     TERMINAL = "kitty";
     BROWSER = "firefox";
 
-    # XCURSOR_THEME = lib.mkForce "Adwaita";
-    # XCURSOR_PATH = lib.mkForce [ "${pkgs.simp1e-cursors}/share/icons" ];
-    
     XCURSOR_PATH = lib.mkForce "/home/dash/.icons";
     PASSWORD_STORE_DIR=/home/dash/HOME/.pass-store-mount;
+    UDEVIL_CONF_PATH=/etc/udevil/udevil.conf;
 
     QT_AUTO_SCREEN_SCALE_FACTOR = "1";
     QT_SCALE_FACTOR = "1";
     QT_SCREEN_SCALE_FACTORS = "2;2";
   };
 
-  # environment.etc."X11/Xresources".text = ''
-  #   Xcursor.theme: Adwaita
-  #   Xcursor.size: 24
-  # '';
-
-  environment.etc."X11/xorg.conf.d/60-monitor.conf".text = ''
-    Section "Monitor"
-        Identifier "eDP-1"
-        Option "PreferredMode" "3456x2160"
-        Option "Position" "0 0"
-        Option "DPI" "192"
-    EndSection
-
-    Section "Monitor"
-        Identifier "HDMI-1-0"
-        Option "PreferredMode" "1920x1080"
-        Option "Position" "3456 0"
-        Option "DPI" "96"
-    EndSection
-
-    Section "Screen"
-        Identifier "Screen0"
-        Monitor "eDP-1"
-        SubSection "Display"
-            Virtual 5376 2160
-        EndSubSection
-    EndSection
-
-    Section "Screen"
-        Identifier "Screen1"
-        Monitor "HDMI-1-0"
-        SubSection "Display"
-            Virtual 5376 2160
-        EndSubSection
-    EndSection
+  environment.etc."lightdm/lightdm-gtk-greeter.conf".text = ''
+    [greeter]
+    xft-dpi=192
   '';
 
   environment.etc."udevil/udevil.conf".text = ''
-    default_options = uid=1000,gid=1000,umask=0022
-    device /dev/sdb1 {
-        mount_point = /media/SATA-01
-        options = noexec,nodev,noatime
-    }
-  '';
+    allowed_users = *
+    default_options = uid=dash,gid=dash
+    
+    allowed_devices = /dev/disk/by-uuid/f71e913d-c82e-4e0b-979d-9e7666aaa73b
+    allowed_devices = /dev/disk/by-uuid/72840b24-be22-42b5-b27b-9d36bcbba346
 
-  environment.etc."X11/xorg.conf.d/90-cursor.conf".text = ''
-    Section "Extensions"
-      Option "CoreXInput" "true"
-    EndSection
+    allowed_mount_point = /media/sda
+    allowed_mount_point = /media/sdb1
   '';
 
   environment.etc."X11/xorg.conf.d/10-nvidia.conf".text = ''
@@ -106,6 +69,33 @@
       MatchIsTouchpad "on"
       Option "Tapping" "on"
       Option "AccelSpeed" "0.7"
+    EndSection
+  '';
+
+  environment.etc."X11/xorg.conf.d/60-monitor.conf".text = ''
+    Section "Monitor"
+      Identifier "eDP-1"
+      Option "PreferredMode" "3456x2160"
+      Option "Position" "0 0"
+      Option "DPI" "192 x 192"
+      Option "Primary" "true"
+    EndSection
+
+    Section "Monitor"
+      Identifier "HDMI-1-0"
+      Option "PreferredMode" "1920x1080"
+      Option "Position" "3456 0"
+      Option "DPI" "96 x 96"
+    EndSection
+
+    Section "Screen"
+      Identifier "Screen1"
+      Monitor "HDMI-1-0"
+      SubSection "Display"
+        Depth 24
+        Modes "1920x1080"
+        Virtual 5376 2160
+      EndSubSection
     EndSection
   '';
 }

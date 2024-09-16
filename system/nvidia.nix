@@ -7,28 +7,18 @@
       efi.canTouchEfiVariables = true;
     };
 
-    kernelParams = [ 
-      # "quiet"
-      # "splash"
+    kernelParams = [
       "nvidia-drm.modeset=1" 
-      "i915.force_probe=9a49" 
-      # "intel_iommu=on" 
-      # "iommu=pt" 
-      # "vfio-pci.ids=10de:25a0,10de:2291"
-      # "vfio-pci.disable_idle_d3=1"
-      # "vfio-pci.ids=8086:9a49" -- intel
+      "i915.force_probe=9a49"
     ];
     kernelModules = [ 
-      "kvm-intel" 
-      # "vhost_net" 
-      # "vfio_iommu_type1" 
-      # "vfio_pci" 
+      "kvm-intel"
     ];
 
     kernelPackages = pkgs.linuxPackages_latest;
     blacklistedKernelModules = [ "nouveau" ];
 
-    initrd.availableKernelModules = [ "xhci_pci" "thunderbolt" "nvme" "usb_storage" "sd_mod" ];
+    initrd.availableKernelModules = [ "xhci_pci" "thunderbolt" "nvme" "usb_storage" "sd_mod" "usbhid" ];
   };
 
   services.xserver = {
@@ -41,27 +31,7 @@
     ];
     
     dpi = 192;
-    upscaleDefaultCursor = true;    
-
-    xrandrHeads = [
-      {
-        output = "eDP-1";
-        primary = true;
-        monitorConfig = ''
-          Option "PreferredMode" "3456x2160"
-          Option "Position" "0 0"
-          Option "DPI" "192"
-        '';
-      }
-      {
-        output = "HDMI-1-0";
-        monitorConfig = ''
-          Option "PreferredMode" "1920x1080"
-          Option "Position" "3456 0"
-          Option "DPI" "96"
-        '';
-      }
-    ];
+    upscaleDefaultCursor = true;
   };
 
   environment.systemPackages = with pkgs; [
@@ -105,11 +75,6 @@
       package = config.boot.kernelPackages.nvidiaPackages.production;
 
       prime = {
-        # offload = { 
-        #   enable = true;
-        #   enableOffloadCmd=true;
-        # };
-
         sync.enable = true;
         intelBusId = "PCI:0:2:0";
         nvidiaBusId = "PCI:1:0:0";

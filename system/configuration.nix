@@ -10,13 +10,12 @@
     ../config/syncthing.nix
     ../config/fonts.nix
     ../config/mysql.nix
-    ./virt-manager.nix
+    ../config/pipewire.nix
+    ../config/tor.nix
+    ../config/python.nix
+    ../config/qmk.nix
+    ./virtualisation.nix
     ./dwm.nix
-  ];
-
-  # Overlays
-  nixpkgs.overlays = [
-    (import /home/dash/Documents/dotfiles/overlays/appimage-obsidian-overlay.nix)
   ];
   
   programs.xwayland.enable = true;
@@ -51,14 +50,8 @@
     mullvad-vpn.enable = true;
     printing.enable = true;
     dbus.enable = true;
+    displayManager.defaultSession = "none+dwm";
 
-    pipewire = {
-      enable = true;
-      alsa.enable = true;
-      alsa.support32Bit = true;
-      pulse.enable = true;
-    };
-    
     xserver = {
       xkb = {
         variant = "";
@@ -66,11 +59,33 @@
         layout = "us,ru";
       };
 
-      displayManager.gdm.enable = true;
+      displayManager.gdm.enable = false;
+      displayManager.lightdm = {
+        enable = true;
+        background = ./Cole_Thomas_The_Course_of_Empire_Destruction_1836.jpg;
+
+        greeters.slick = {
+          enable = true;
+          theme = {
+            name = "vimix-dark-ruby";
+            package = pkgs.vimix-gtk-themes.override {
+              themeVariants = ["ruby"];
+              colorVariants = ["dark"];
+              tweaks = ["flat" "grey"];
+            };
+          };
+          iconTheme = {
+            name = "Adwaita";
+            package = pkgs.adwaita-icon-theme;
+          };
+          extraConfig = ''
+            show-a11y=false
+            clock-format=%H:%M:%S
+          '';
+        };
+      };
     };
   };
-
-  hardware.pulseaudio.enable = false;
 
   programs.steam = {
     enable = true;
@@ -79,7 +94,6 @@
 
   sound.enable = true;
 
-  security.rtkit.enable = true;
   programs.zsh = {
     enable = true;
     autosuggestions.enable = true;
@@ -110,6 +124,7 @@
       "wheel" 
       "kvm" 
       "libvirt" 
+      "libvirtd"
       "vboxusers" 
       "vboxsf" 
       "video"  
@@ -139,11 +154,18 @@
   security.polkit.enable = true;
   programs.udevil.enable = true;  
 
+  programs.thunar.enable = true;
+
   environment.systemPackages = with pkgs; [
     # icons
     adwaita-icon-theme
     gtk-engine-murrine
     gtk3
+    vimix-gtk-themes
+
+    # proxy
+    tor 
+    torsocks
 
     # dependebs
     glibc
@@ -157,6 +179,8 @@
     gh
     man
     unzip
+    unrar
+    p7zip
     fzf
     ripgrep
     fd
@@ -179,6 +203,7 @@
     bc
     sqlite
     powertop
+    vnstat
 
     # pass
     pass
@@ -186,6 +211,8 @@
 
     # Development tools
     nodejs
+    nodePackages.bower
+    nodePackages.gulp
     yarn    
 
     # Networking
@@ -201,6 +228,8 @@
     libnotify
     wirelesstools
     jq
+    zip
+    st
 
     # X11
     xorg.xrandr
@@ -220,6 +249,8 @@
     xkb-switch
     xwinwrap
     xdotool
+    xcolor
+    xorg.xmodmap
 
     # Multimedia
     ffmpeg
@@ -264,7 +295,7 @@
     prismlauncher
     brave
     qpwgraph
-    
+
     pciutils
     ncdu
     wireguard-tools
@@ -275,12 +306,15 @@
     haskellPackages.pandoc
     
     qt5.qtbase
-  ];
 
-  # VIRTUALBOX
-  virtualisation.virtualbox.host.enable = true;
-  # virtualisation.virtualbox.host.enableExtensionPack = true;
-  # virtualisation.virtualbox.guest.enable = true;
+    lightdm-gtk-greeter
+    blueman
+
+    go
+    cmake
+
+    evtest
+  ];
 
   services.resolved.enable = true;
   system.stateVersion = "24.05";
