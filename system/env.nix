@@ -7,18 +7,17 @@
     BROWSER = "firefox";
 
     XCURSOR_PATH = lib.mkForce "/home/dash/.icons";
-    PASSWORD_STORE_DIR=/home/dash/HOME/.pass-store-mount;
     UDEVIL_CONF_PATH=/etc/udevil/udevil.conf;
 
     QT_AUTO_SCREEN_SCALE_FACTOR = "1";
     QT_SCALE_FACTOR = "1";
     QT_SCREEN_SCALE_FACTORS = "2;2";
+
+    PASSWORD_STORE_DIR="$HOME/HOME/wizzard/hogsmeade";
+    GNUPGHOME="$HOME/.gnupg";
   };
 
-  environment.etc."lightdm/lightdm-gtk-greeter.conf".text = ''
-    [greeter]
-    xft-dpi=192
-  '';
+  # environment.etc."lightdm-background.jpg".source = /путь/к/файлу/your-background.jpg;
 
   environment.etc."udevil/udevil.conf".text = ''
     allowed_users = *
@@ -29,6 +28,15 @@
 
     allowed_mount_point = /media/sda
     allowed_mount_point = /media/sdb1
+  '';
+
+  environment.etc."X11/xorg.conf.d/00-keyboard.conf".text = ''
+    Section "InputClass"
+      Identifier "system-keyboard"
+      MatchIsKeyboard "on"
+      Option "XkbLayout" "us,ru"
+      Option "XkbOptions" "grp:win_space_toggle"
+    EndSection
   '';
 
   environment.etc."X11/xorg.conf.d/10-nvidia.conf".text = ''

@@ -14,11 +14,12 @@
       });
     };
 
+    /* setxkbmap us,ru -option grp:win_space_toggle */
+
     displayManager.sessionCommands = ''
       WALLPAPER=/home/dash/HOME/wizzard/wallpaper/antiquity
       
       feh --geometry 3456x2160+0+0 --auto-zoom --randomize --bg-fill "$WALLPAPER"*
-      setxkbmap us,ru -option grp:win_space_toggle
       
       export PATH=/home/dash/HOME/dotfiles/system/dwm-flexipatch/dwmblocks:$PATH
       xset -dpms &
@@ -33,7 +34,6 @@
     dmenu-rs
     nitrogen
     feh
-    flameshot
 
     pa_applet
     networkmanager_dmenu

@@ -5,9 +5,12 @@
 
   imports = [ 
     ./config/vim.nix
-    ./system/cursor.nix
+    ./config/cursor.nix
     ./config/rofi/rofi.nix
     ./config/dunst.nix
+    ./config/flameshot.nix
+    # ./config/ranger.nix
+    # ./config/displaymanager.nix
   ];
 
   home.username = "dash";
@@ -22,10 +25,19 @@
     neovim
     tree-sitter
     dunst
-    gnupg
     rnnoise-plugin
     helvum
+    ly
+
+    # pass
+    pinentry
+    gnupg
+    pass
   ];
+
+  home.sessionVariables = {
+    PASSWORD_STORE_DIR = "$HOME/HOME/wizzard/hogsmeade";
+  };
 
   home.file.".gnupg/gpg-agent.conf" = {
     text = ''
@@ -83,6 +95,5 @@
     alacritty = (import ./config/alacritty.nix { inherit pkgs; });
     ranger = (import ./config/ranger.nix { inherit pkgs; });
     kitty = (import ./config/kitty.nix { inherit pkgs; });
-    terminator = (import ./config/terminator.nix { inherit pkgs; });
   };
 }

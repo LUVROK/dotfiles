@@ -2,11 +2,12 @@
 
 {
   imports = [
-    ./hardware-configuration.nix
     <home-manager/nixos>
-    ./nvidia.nix
     ./env.nix
-    ./touchpad.nix
+    ./dwm.nix
+    ./nvidia.nix
+    ./hardware-configuration.nix
+    ../config/touchpad.nix
     ../config/syncthing.nix
     ../config/fonts.nix
     ../config/mysql.nix
@@ -14,15 +15,23 @@
     ../config/tor.nix
     ../config/python.nix
     ../config/qmk.nix
-    ./virtualisation.nix
-    ./dwm.nix
+    ../config/st/st.nix
+    ../config/virtualisation.nix
+    ../config/wireless.nix
+    ../config/unstoppableSwap.nix
+    # ../config/wasabiwallet.nix
+    # ../config/display-managers/mini-lightdm.nix
+    ../config/display-managers/displaymanager.nix
   ];
+
+  hardware.enableAllFirmware = true;
   
   programs.xwayland.enable = true;
 
   networking = {
     hostName = "nixos";
     networkmanager.enable = true;
+    networkmanager.wifi.backend = "iwd";
   };
 
   services.thermald.enable = lib.mkDefault true;
@@ -51,6 +60,7 @@
     printing.enable = true;
     dbus.enable = true;
     displayManager.defaultSession = "none+dwm";
+    displayManager.ly.enable = false;
 
     xserver = {
       xkb = {
@@ -60,30 +70,6 @@
       };
 
       displayManager.gdm.enable = false;
-      displayManager.lightdm = {
-        enable = true;
-        background = ./Cole_Thomas_The_Course_of_Empire_Destruction_1836.jpg;
-
-        greeters.slick = {
-          enable = true;
-          theme = {
-            name = "vimix-dark-ruby";
-            package = pkgs.vimix-gtk-themes.override {
-              themeVariants = ["ruby"];
-              colorVariants = ["dark"];
-              tweaks = ["flat" "grey"];
-            };
-          };
-          iconTheme = {
-            name = "Adwaita";
-            package = pkgs.adwaita-icon-theme;
-          };
-          extraConfig = ''
-            show-a11y=false
-            clock-format=%H:%M:%S
-          '';
-        };
-      };
     };
   };
 
@@ -91,8 +77,6 @@
     enable = true;
     dedicatedServer.openFirewall = true;
   };
-
-  sound.enable = true;
 
   programs.zsh = {
     enable = true;
@@ -121,6 +105,7 @@
     isNormalUser = true;
     extraGroups = [ 
       "networkmanager" 
+      "network" 
       "wheel" 
       "kvm" 
       "libvirt" 
@@ -205,10 +190,6 @@
     powertop
     vnstat
 
-    # pass
-    pass
-    pinentry
-
     # Development tools
     nodejs
     nodePackages.bower
@@ -217,6 +198,8 @@
 
     # Networking
     openssl
+    # iw
+    iwd
 
     # System tools
     gparted
@@ -229,7 +212,6 @@
     wirelesstools
     jq
     zip
-    st
 
     # X11
     xorg.xrandr
@@ -286,7 +268,14 @@
     mullvad-vpn
     veracrypt
     sublime
+
+    # appimage
     appimagekit
+    appimage-run
+    # cacert
+    # libxcrypt-legacy
+    # writeShellScriptBin
+
     profanity
     figma-linux
     unetbootin
@@ -295,6 +284,9 @@
     prismlauncher
     brave
     qpwgraph
+    spotify
+    pidgin
+    pidginPackages.pidgin-otr
 
     pciutils
     ncdu
@@ -307,13 +299,14 @@
     
     qt5.qtbase
 
-    lightdm-gtk-greeter
     blueman
 
     go
     cmake
 
     evtest
+
+    hakuneko
   ];
 
   services.resolved.enable = true;

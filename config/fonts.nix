@@ -10,6 +10,7 @@
       jetbrains-mono
       font-awesome_6
       nerdfonts
+      dejavu_fonts
     ];
   };
 }
