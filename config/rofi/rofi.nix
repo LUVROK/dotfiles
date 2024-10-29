@@ -13,7 +13,24 @@ in {
     rofi-wayland
     rofi-power-menu
     rofi-bluetooth
+    rofi-calc
+    rofi-file-browser
   ];
+
+  systemd.user.services.greenclip = {
+    Unit = {
+      Description = "Greenclip clipboard management daemon";
+      After = [ "graphical-session.target" ];
+    };
+
+    Service = {
+      ExecStart = "${pkgs.haskellPackages.greenclip}/bin/greenclip daemon";
+    };
+
+    Install = {
+      WantedBy = [ "graphical-session.target" ];
+    };
+  };
 
   xdg.configFile = {
     rofi-colors = {
@@ -79,6 +96,18 @@ in {
     screenshot-rasi = {
       source = ./config/screenshot.rasi;
       target = "rofi/config/screenshot.rasi";
+    };
+    greenclip-rasi = {
+      source = ./clipmenu/greenclip.rasi;
+      target = "rofi/config/greenclip.rasi";
+    };
+    greenclip-bin = {
+      source = ./clipmenu/greenclip.sh;
+      target = "rofi/bin-rofi/greenclip.sh";
+    };
+    greenclip-toml = {
+      source = ./clipmenu/greenclip.toml;
+      target = "greenclip.toml";
     };
   };
 }

@@ -19,8 +19,6 @@
     ../config/virtualisation.nix
     ../config/wireless.nix
     ../config/unstoppableSwap.nix
-    # ../config/wasabiwallet.nix
-    # ../config/display-managers/mini-lightdm.nix
     ../config/display-managers/displaymanager.nix
   ];
 
@@ -189,6 +187,7 @@
     sqlite
     powertop
     vnstat
+    exfat
 
     # Development tools
     nodejs
@@ -212,6 +211,8 @@
     wirelesstools
     jq
     zip
+    # clipmenu
+    # haskellPackages.greenclip
 
     # X11
     xorg.xrandr

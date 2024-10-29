@@ -899,6 +899,7 @@ static const char *dmenucmd[] = {
 
 static const char *termcmd[]  = { "kitty", NULL };
 static const char *screenshotcmd[] = { "/home/dash/HOME/dotfiles/system/dwm-flexipatch/scripts/flameshot.sh", NULL };
+static const char *greenclipcmd[] = { "/home/dash/HOME/dotfiles/system/dwm-flexipatch/scripts/greenclip.sh", NULL };
 static const char *roficmd[] = { "rofi", "-show", "drun", "-display-drun", "", NULL };
 
 #if BAR_STATUSCMD_PATCH
@@ -931,6 +932,7 @@ static const Key keys[] = {
 	/* modifier key            function                argument */
 	{ MODKEY,                       XK_d,          spawn,                  {.v = roficmd } },
 	{ MODKEY,                       XK_p,          spawn,                  {.v = dmenucmd } },
+	{ MODKEY,                       XK_c,          spawn,                  {.v = greenclipcmd } },
 	{ MODKEY|ShiftMask,             XK_Return,          spawn,                  {.v = termcmd } },
 	{ MODKEY,                            XK_space,          spawn,          SHCMD("pkill -RTMIN+1 dwmblocks") },
 

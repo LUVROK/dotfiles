@@ -33,6 +33,9 @@
     pinentry
     gnupg
     pass
+
+    # utils
+    haskellPackages.greenclip
   ];
 
   home.sessionVariables = {
