@@ -10,15 +10,14 @@
     ../config/touchpad.nix
     ../config/syncthing.nix
     ../config/fonts.nix
-    ../config/mysql.nix
     ../config/pipewire.nix
     ../config/tor.nix
-    ../config/python.nix
     ../config/qmk.nix
     ../config/st/st.nix
     ../config/virtualisation.nix
     ../config/wireless.nix
-    ../config/unstoppableSwap.nix
+    # ../config/unstoppableSwap.nix
+    # ./config/stylix.nix
     ../config/display-managers/displaymanager.nix
   ];
 
@@ -83,7 +82,7 @@
     syntaxHighlighting.enable = true;
     ohMyZsh = {
       enable = true;
-      theme = "robbyrussell";
+      # theme = "robbyrussell";
       plugins = [
         "git"
         "npm"
@@ -135,6 +134,9 @@
   };
 
   security.polkit.enable = true;
+  # services.gvfs.enable = true;
+  # services.devmon.enable = true;
+  # services.udisks2.enable = true;
   programs.udevil.enable = true;  
 
   programs.thunar.enable = true;
@@ -159,15 +161,12 @@
     wget
     curl
     gitAndTools.gitFull
-    gh
+    gh # github cli
     man
     unzip
     unrar
-    p7zip
-    fzf
-    ripgrep
-    fd
-    btop
+    p7zip # 7z
+    (btop.override {cudaSupport = true;})
     libinput
     openvpn
     killall
@@ -184,7 +183,6 @@
     usbutils
     udevil
     bc
-    sqlite
     powertop
     vnstat
     exfat
@@ -197,7 +195,6 @@
 
     # Networking
     openssl
-    # iw
     iwd
 
     # System tools
@@ -211,16 +208,12 @@
     wirelesstools
     jq
     zip
-    # clipmenu
-    # haskellPackages.greenclip
 
     # X11
     xorg.xrandr
     xorg.xinit
     xorg.xsetroot
     xorg.xcursorthemes
-    xsettingsd
-    xclip
     xorg.xev
     xorg.xorgserver
     xorg.xf86inputlibinput
@@ -228,12 +221,14 @@
     xorg.xwininfo
     xorg.libX11
     xorg.libX11.dev
+    xorg.xmodmap
+    xsettingsd
+    xclip
     buildPackages.gnumake
     xkb-switch
     xwinwrap
     xdotool
     xcolor
-    xorg.xmodmap
 
     # Multimedia
     ffmpeg
@@ -245,7 +240,6 @@
     zsh-autocomplete
     zsh-syntax-highlighting
     zsh-autosuggestions
-    syncthing
     gpa
     tor
     vopono
@@ -255,7 +249,6 @@
 
     # apps
     monero-gui
-    wasabiwallet
     vscodium
     element-desktop
     firefox
@@ -269,16 +262,14 @@
     mullvad-vpn
     veracrypt
     sublime
+    wasabiwallet
+    syncthing
 
     # appimage
     appimagekit
     appimage-run
-    # cacert
-    # libxcrypt-legacy
-    # writeShellScriptBin
 
     profanity
-    figma-linux
     unetbootin
     psi-plus
     bisq-desktop
@@ -286,14 +277,10 @@
     brave
     qpwgraph
     spotify
-    pidgin
-    pidginPackages.pidgin-otr
 
     pciutils
     ncdu
     wireguard-tools
-
-    php
 
     haskellPackages.xmobar
     haskellPackages.pandoc
@@ -306,8 +293,6 @@
     cmake
 
     evtest
-
-    hakuneko
   ];
 
   services.resolved.enable = true;

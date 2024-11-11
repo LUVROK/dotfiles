@@ -4,13 +4,12 @@
   programs.home-manager.enable = true;
 
   imports = [ 
-    ./config/vim.nix
+    ./config/vim/vim.nix
     ./config/cursor.nix
     ./config/rofi/rofi.nix
     ./config/dunst.nix
     ./config/flameshot.nix
-    # ./config/ranger.nix
-    # ./config/displaymanager.nix
+    ./config/neofetch.nix
   ];
 
   home.username = "dash";
@@ -37,10 +36,6 @@
     # utils
     haskellPackages.greenclip
   ];
-
-  home.sessionVariables = {
-    PASSWORD_STORE_DIR = "$HOME/HOME/wizzard/hogsmeade";
-  };
 
   home.file.".gnupg/gpg-agent.conf" = {
     text = ''
@@ -95,8 +90,10 @@
   '';
 
   programs = {
-    alacritty = (import ./config/alacritty.nix { inherit pkgs; });
     ranger = (import ./config/ranger.nix { inherit pkgs; });
     kitty = (import ./config/kitty.nix { inherit pkgs; });
+
+    bottom.enable = true;
+    bottom.settings.styles.theme = "gruvbox";
   };
 }

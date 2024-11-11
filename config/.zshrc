@@ -1,5 +1,5 @@
 # Установите тему Zsh на powerlevel10k
-ZSH_THEME="powerlevel10k/powerlevel10k"
+ZSH_THEME="robbyrussell"
 
 # Список плагинов, которые будут загружены
 plugins=(git zsh-syntax-highlighting zsh-autosuggestions zsh-autocomplete)

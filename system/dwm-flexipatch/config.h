@@ -898,6 +898,9 @@ static const char *dmenucmd[] = {
 };
 
 static const char *termcmd[]  = { "kitty", NULL };
+static const char *firefoxcmd[]  = { "firefox", NULL };
+static const char *codiumcmd[]  = { "codium", NULL };
+static const char *obsidiancmd[]  = { "obsidian", NULL };
 static const char *screenshotcmd[] = { "/home/dash/HOME/dotfiles/system/dwm-flexipatch/scripts/flameshot.sh", NULL };
 static const char *greenclipcmd[] = { "/home/dash/HOME/dotfiles/system/dwm-flexipatch/scripts/greenclip.sh", NULL };
 static const char *roficmd[] = { "rofi", "-show", "drun", "-display-drun", "", NULL };
@@ -933,7 +936,10 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_d,          spawn,                  {.v = roficmd } },
 	{ MODKEY,                       XK_p,          spawn,                  {.v = dmenucmd } },
 	{ MODKEY,                       XK_c,          spawn,                  {.v = greenclipcmd } },
-	{ MODKEY|ShiftMask,             XK_Return,          spawn,                  {.v = termcmd } },
+	{ MODKEY|ShiftMask,				XK_t,          spawn,               {.v = termcmd } },
+	{ MODKEY|ShiftMask,				XK_f,          spawn,               {.v = firefoxcmd } },
+	{ MODKEY|ShiftMask,				XK_k,          spawn,               {.v = codiumcmd } },
+	{ MODKEY|ShiftMask,				XK_o,          spawn,               {.v = obsidiancmd } },
 	{ MODKEY,                            XK_space,          spawn,          SHCMD("pkill -RTMIN+1 dwmblocks") },
 
 	{ MODKEY|ShiftMask,                       XK_l,          spawn,                  SHCMD("/home/dash/HOME/dotfiles/system/dwm-flexipatch/scripts/bin-rofi/launcher.sh") },

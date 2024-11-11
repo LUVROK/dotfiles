@@ -14,8 +14,6 @@
       });
     };
 
-    /* setxkbmap us,ru -option grp:win_space_toggle */
-
     displayManager.sessionCommands = ''
       WALLPAPER=/home/dash/HOME/wizzard/wallpaper/antiquity
       

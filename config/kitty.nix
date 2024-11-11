@@ -14,4 +14,10 @@
 
     confirm_os_window_close = 0;
   };
+
+  keybindings = {
+    "ctrl+c" = "copy_or_interrupt";
+    "ctrl+shift+c" = "copy_to_clipboard";
+    "ctrl+v" = "paste_from_clipboard";
+  };
 }

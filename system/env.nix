@@ -17,17 +17,9 @@
     GNUPGHOME="$HOME/.gnupg";
   };
 
-  # environment.etc."lightdm-background.jpg".source = /путь/к/файлу/your-background.jpg;
-
   environment.etc."udevil/udevil.conf".text = ''
     allowed_users = *
-    default_options = uid=dash,gid=dash
-    
-    allowed_devices = /dev/disk/by-uuid/f71e913d-c82e-4e0b-979d-9e7666aaa73b
-    allowed_devices = /dev/disk/by-uuid/72840b24-be22-42b5-b27b-9d36bcbba346
-
-    allowed_mount_point = /media/sda
-    allowed_mount_point = /media/sdb1
+    default_options = uid=dash,gid=dash,umask=0077
   '';
 
   environment.etc."X11/xorg.conf.d/00-keyboard.conf".text = ''
