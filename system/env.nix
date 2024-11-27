@@ -15,6 +15,8 @@
 
     PASSWORD_STORE_DIR="$HOME/HOME/wizzard/hogsmeade";
     GNUPGHOME="$HOME/.gnupg";
+
+    TERM="xterm-256color";
   };
 
   environment.etc."udevil/udevil.conf".text = ''

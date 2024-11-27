@@ -10,6 +10,7 @@
     ./config/dunst.nix
     ./config/flameshot.nix
     ./config/neofetch.nix
+    ./config/redshift.nix
   ];
 
   home.username = "dash";
@@ -21,7 +22,6 @@
     kitty
     neofetch
     p7zip
-    neovim
     tree-sitter
     dunst
     rnnoise-plugin
@@ -92,8 +92,5 @@
   programs = {
     ranger = (import ./config/ranger.nix { inherit pkgs; });
     kitty = (import ./config/kitty.nix { inherit pkgs; });
-
-    bottom.enable = true;
-    bottom.settings.styles.theme = "gruvbox";
   };
 }

@@ -13,6 +13,7 @@
     ../config/pipewire.nix
     ../config/tor.nix
     ../config/qmk.nix
+    # ../config/lutris_and_wine.nix
     ../config/st/st.nix
     ../config/virtualisation.nix
     ../config/wireless.nix
@@ -114,6 +115,7 @@
       "plugdev"
       "storage"
       "input"
+      "dialout" # for microcontrollers
     ];
     shell = pkgs.zsh;
   };
@@ -161,6 +163,7 @@
     wget
     curl
     gitAndTools.gitFull
+    nix-prefetch-git
     gh # github cli
     man
     unzip
@@ -186,6 +189,7 @@
     powertop
     vnstat
     exfat
+    testdisk
 
     # Development tools
     nodejs
@@ -208,6 +212,7 @@
     wirelesstools
     jq
     zip
+    arduino
 
     # X11
     xorg.xrandr
@@ -222,13 +227,17 @@
     xorg.libX11
     xorg.libX11.dev
     xorg.xmodmap
+    xorg.xdpyinfo
+    xdg-desktop-portal
     xsettingsd
     xclip
     buildPackages.gnumake
     xkb-switch
     xwinwrap
+    wmctrl
     xdotool
     xcolor
+    tmux
 
     # Multimedia
     ffmpeg

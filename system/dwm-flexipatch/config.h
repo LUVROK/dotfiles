@@ -903,6 +903,7 @@ static const char *codiumcmd[]  = { "codium", NULL };
 static const char *obsidiancmd[]  = { "obsidian", NULL };
 static const char *screenshotcmd[] = { "/home/dash/HOME/dotfiles/system/dwm-flexipatch/scripts/flameshot.sh", NULL };
 static const char *greenclipcmd[] = { "/home/dash/HOME/dotfiles/system/dwm-flexipatch/scripts/greenclip.sh", NULL };
+// static const char *powermenu[] = { SHCMD("/home/dash/HOME/dotfiles/system/dwm-flexipatch/scripts/bin-rofi/power-menu.sh"), NULL };
 static const char *roficmd[] = { "rofi", "-show", "drun", "-display-drun", "", NULL };
 
 #if BAR_STATUSCMD_PATCH
@@ -942,8 +943,7 @@ static const Key keys[] = {
 	{ MODKEY|ShiftMask,				XK_o,          spawn,               {.v = obsidiancmd } },
 	{ MODKEY,                            XK_space,          spawn,          SHCMD("pkill -RTMIN+1 dwmblocks") },
 
-	{ MODKEY|ShiftMask,                       XK_l,          spawn,                  SHCMD("/home/dash/HOME/dotfiles/system/dwm-flexipatch/scripts/bin-rofi/launcher.sh") },
-	{ MODKEY|ShiftMask,                       XK_w,          spawn,                  SHCMD("/home/dash/HOME/dotfiles/system/dwm-flexipatch/scripts/bin-rofi/power-menu.sh") },
+	{ MODKEY,                       XK_w,          spawn,                  SHCMD("/home/dash/HOME/dotfiles/system/dwm-flexipatch/scripts/bin-rofi/power-menu.sh") },
 
 	/* XF86Keys */
     {0, XF86XK_AudioMute, spawn, {.v = mutevol}},
