@@ -1,4 +1,4 @@
-/* See LICENSE file for copyright and license details. */
+#include "./themes/gruvbox.h"
 
 /* Helper macros for spawning commands */
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
@@ -11,6 +11,9 @@ static const char *downbrt[] = {"/home/dash/HOME/dotfiles/system/dwm-flexipatch/
 static const char *upvol[] = {"/home/dash/HOME/dotfiles/system/dwm-flexipatch/scripts/volume.sh", "up", NULL};
 static const char *downvol[] = {"/home/dash/HOME/dotfiles/system/dwm-flexipatch/scripts/volume.sh", "down", NULL};
 static const char *mutevol[] = {"/home/dash/HOME/dotfiles/system/dwm-flexipatch/scripts/volume.sh", "mute", NULL};
+
+#define TERMINAL  "kitty"
+#define BROWSER  "firefox"
 
 /* MINE VARIBLES */
 static unsigned int lineheight = 64; 
@@ -182,49 +185,6 @@ static const char *fonts[]               = {
   "Font Awesome 6 Free Solid:size=12"
 };
 #endif // BAR_PANGO_PATCH
-static const char dmenufont[]            = "JetBrainsMonoNL NFP:size=11";
-
-static char c000000[]                    = "#000000"; // placeholder value
-
-static char normfgcolor[]                = "#ebdbb2";
-static char normbgcolor[]                = "#282828";
-static char normbordercolor[]            = "#3c3836";
-static char normfloatcolor[]             = "#db8fd9";
-
-static char selfgcolor[]                 = "#fbf1c7";
-static char selbgcolor[]                 = "#d65d0e";
-static char selbordercolor[]             = "#d65d0e";
-static char selfloatcolor[]              = "#d65d0e";
-
-static char titlenormfgcolor[]           = "#ebdbb2";
-static char titlenormbgcolor[]           = "#282828";
-static char titlenormbordercolor[]       = "#3c3836";
-static char titlenormfloatcolor[]        = "#3c3836";
-
-static char titleselfgcolor[]            = "#fbf1c7";
-static char titleselbgcolor[]            = "#d65d0e";
-static char titleselbordercolor[]        = "#d65d0e";
-static char titleselfloatcolor[]         = "#d65d0e";
-
-static char tagsnormfgcolor[]            = "#ebdbb2";
-static char tagsnormbgcolor[]            = "#282828";
-static char tagsnormbordercolor[]        = "#3c3836";
-static char tagsnormfloatcolor[]         = "#3c3836";
-
-static char tagsselfgcolor[]             = "#fbf1c7";
-static char tagsselbgcolor[]             = "#d65d0e";
-static char tagsselbordercolor[]         = "#d65d0e";
-static char tagsselfloatcolor[]          = "#d65d0e";
-
-static char hidnormfgcolor[]             = "#005577";
-static char hidselfgcolor[]              = "#227799";
-static char hidnormbgcolor[]             = "#222222";
-static char hidselbgcolor[]              = "#222222";
-
-static char urgfgcolor[]                 = "#bbbbbb";
-static char urgbgcolor[]                 = "#222222";
-static char urgbordercolor[]             = "#ff0000";
-static char urgfloatcolor[]              = "#db8fd9";
 
 #if RENAMED_SCRATCHPADS_PATCH
 static char scratchselfgcolor[]          = "#FFF7D4";
@@ -434,10 +394,14 @@ static const char *const autostart[] = {
 #if RENAMED_SCRATCHPADS_PATCH
 static const char *scratchpadcmd[] = {"s", "st", "-n", "spterm", NULL};
 #elif SCRATCHPADS_PATCH
+const char *poscmd[] = {"wmctrl", "-r", "spterm", "-e", "0,100,200,-1,-1", NULL };
+
 const char *spcmd1[] = {"st", "-n", "spterm", "-g", "120x34", NULL };
+const char *spcmd2[] = {"st", "-n", "alsamixer", "-g", "48x24", "-e", "alsamixer", "-c", "1", NULL };
 static Sp scratchpads[] = {
    /* name          cmd  */
-   {"spterm",      spcmd1},
+	{"spterm",      spcmd1},
+	{"alsamixer",    spcmd2},
 };
 #endif // SCRATCHPADS_PATCH
 
@@ -457,7 +421,7 @@ static Sp scratchpads[] = {
  *     }
  *
  * The first example would result in the tags on the first monitor to be 1 through 9, while the
- * tags for the second monitor would be named A through I. A third monitor would start again at
+ * tags for the second monitor would be named A through I. A third monritor would start again at
  * 1 through 9 while the tags on a fourth monitor would also be named A through I. Note the tags
  * count of NUMTAGS*2 in the array initialiser which defines how many tag text / icon exists in
  * the array. This can be changed to *3 to add separate icons for a third monitor.
@@ -518,16 +482,24 @@ static const Rule rules[] = {
 	 *	WM_WINDOW_ROLE(STRING) = role
 	 *	_NET_WM_WINDOW_TYPE(ATOM) = wintype
 	 */
+
+	// class      instance  title  wintype  tags mask  isfloating  monitor
+	// { "kitty",     NULL,  "alsamixer",  NULL,    0,    1,          -1 },
+	// { TERMINAL  ,NULL    , NULL,           0,         0,          1,          0,         -1},
+	// { BROWSER   ,NULL    , NULL,           1 << 1 ,   0,          1,          0,         -1},
+
 	RULE(.wintype = WTYPE "DIALOG", .isfloating = 1)
 	RULE(.wintype = WTYPE "UTILITY", .isfloating = 1)
 	RULE(.wintype = WTYPE "TOOLBAR", .isfloating = 1)
 	RULE(.wintype = WTYPE "SPLASH", .isfloating = 1)
 	RULE(.class = "feh", .isfloating = 1)
 	RULE(.class = "mpv", .isfloating = 1)
+	// RULE(.class = "kitty", .isfloating = 1)
 	#if RENAMED_SCRATCHPADS_PATCH
 	RULE(.instance = "spterm", .scratchkey = 's', .isfloating = 1)
 	#elif SCRATCHPADS_PATCH
 	RULE(.instance = "spterm", .tags = SPTAG(0), .isfloating = 1)
+	RULE(.instance = "alsamixer", .tags = SPTAG(1), .isfloating = 1)
 	#endif // SCRATCHPADS_PATCH
 };
 
@@ -897,6 +869,7 @@ static const char *dmenucmd[] = {
 	NULL
 };
 
+
 static const char *termcmd[]  = { "kitty", NULL };
 static const char *firefoxcmd[]  = { "firefox", NULL };
 static const char *codiumcmd[]  = { "codium", NULL };
@@ -941,9 +914,11 @@ static const Key keys[] = {
 	{ MODKEY|ShiftMask,				XK_f,          spawn,               {.v = firefoxcmd } },
 	{ MODKEY|ShiftMask,				XK_k,          spawn,               {.v = codiumcmd } },
 	{ MODKEY|ShiftMask,				XK_o,          spawn,               {.v = obsidiancmd } },
-	{ MODKEY,                            XK_space,          spawn,          SHCMD("pkill -RTMIN+1 dwmblocks") },
+	{ MODKEY,                       XK_space,      spawn,          		SHCMD("pkill -RTMIN+1 dwmblocks") },
 
 	{ MODKEY,                       XK_w,          spawn,                  SHCMD("/home/dash/HOME/dotfiles/system/dwm-flexipatch/scripts/bin-rofi/power-menu.sh") },
+
+	{ MODKEY, 						XK_a, togglescratch, {.ui = 1 } },
 
 	/* XF86Keys */
     {0, XF86XK_AudioMute, spawn, {.v = mutevol}},
@@ -1408,9 +1383,12 @@ static const Button buttons[] = {
 	#endif // BAR_WINTITLEACTIONS_PATCH
 	{ ClkWinTitle,          0,                   Button2,        zoom,           {0} },
 	#if BAR_STATUSCMD_PATCH && BAR_DWMBLOCKS_PATCH
-	{ ClkStatusText,        0,                   Button1,        sigstatusbar,   {.i = 1 } },
-	{ ClkStatusText,        0,                   Button2,        sigstatusbar,   {.i = 2 } },
-	{ ClkStatusText,        0,                   Button3,        sigstatusbar,   {.i = 3 } },
+	// { ClkStatusText,        0,              Button1,        sigdwmblocks,   {.i = 1 } },
+
+	{ ClkStatusText,        0,              Button1,        sigstatusbar,   {.i = 1 } },
+	{ ClkStatusText, 		0, 				Button2, 		sigstatusbar, 	{.i = 2 } },
+	{ ClkStatusText, 		0, 				Button3, 		sigstatusbar, 	{.i = 3 } },
+
 	#elif BAR_STATUSCMD_PATCH
 	{ ClkStatusText,        0,                   Button1,        spawn,          {.v = statuscmd } },
 	{ ClkStatusText,        0,                   Button2,        spawn,          {.v = statuscmd } },

@@ -70,7 +70,6 @@ element-text selected {
     background-color:               @gruvbox-border;
     text-color:                     @gruvbox-text;
     foreground:                     @gruvbox-text;
-    border:  1px;
 }
 
 element-text {

@@ -23,8 +23,16 @@
     preview_files  = true;
     open_all_images  = true;
     draw_borders  = false;
-    hidden_filter  = ''^lost\+found$|^\.Trash.*$|\.parts$'';
+    hidden_filter  = ''^lost\+found$|\.parts$'';
     nested_ranger_warning  = true;
     colorscheme  = "solarized";
   };
+
+  extraConfig = ''
+    map . set show_hidden!
+    map dd console delete
+    map <C-p> paste
+    map <C-c> copy
+    map <C-x> cut
+  '';
 }

@@ -1,10 +1,6 @@
 { config, pkgs, ... }:
 
 {
-  # services.displayManager.ly = {
-  #   enable = true;
-  # };
-
   services.xserver = {
     displayManager.lightdm = {
       enable = true;

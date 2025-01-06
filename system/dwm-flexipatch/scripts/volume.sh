@@ -46,6 +46,8 @@ case $1 in
             # Увеличиваем громкость (+2%)
             pactl set-sink-volume @DEFAULT_SINK@ +2%
             send_notification1
+
+            pkill -RTMIN+4 dwmblocks
         fi
         ;;
     down)
@@ -54,6 +56,8 @@ case $1 in
         # Уменьшаем громкость (-2%)
         pactl set-sink-volume @DEFAULT_SINK@ -2%
         send_notification
+
+        pkill -RTMIN+4 dwmblocks
         ;;
     mute)
         # Переключаем режим mute
@@ -61,8 +65,11 @@ case $1 in
         if is_mute ; then
             notify-send "Volume: Mute" \
                 --urgency=low
+
+            pkill -RTMIN+4 dwmblocks
         else
             send_notification
+            pkill -RTMIN+4 dwmblocks    
         fi
         ;;
 esac

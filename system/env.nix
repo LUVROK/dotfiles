@@ -19,6 +19,16 @@
     TERM="xterm-256color";
   };
 
+  xdg.mime = {
+    defaultApplications = {
+      "inode/directory" = [ "thunar.desktop" ];
+    };
+  };
+
+  environment.etc."nixos/home/images/neofetch.png" = {
+    source = "/home/dash/HOME/dotfiles/config/media/neofetch.png";
+  };
+
   environment.etc."udevil/udevil.conf".text = ''
     allowed_users = *
     default_options = uid=dash,gid=dash,umask=0077
@@ -87,7 +97,7 @@
       Identifier "HDMI-1-0"
       Option "PreferredMode" "1920x1080"
       Option "Position" "3456 0"
-      Option "DPI" "96 x 96"
+      Option "Scale" "2x2"
     EndSection
 
     Section "Screen"

@@ -13,17 +13,15 @@
     ../config/pipewire.nix
     ../config/tor.nix
     ../config/qmk.nix
-    # ../config/lutris_and_wine.nix
     ../config/st/st.nix
     ../config/virtualisation.nix
     ../config/wireless.nix
-    # ../config/unstoppableSwap.nix
-    # ./config/stylix.nix
-    ../config/display-managers/displaymanager.nix
+    # ../config/iphone.nix
+    # ../config/display-managers/displaymanager.nix
+    ../config/display-managers/ly.nix
   ];
 
   hardware.enableAllFirmware = true;
-  
   programs.xwayland.enable = true;
 
   networking = {
@@ -35,7 +33,7 @@
   services.thermald.enable = lib.mkDefault true;
 
   # Set your time zone.
-  time.timeZone = "Asia/Yakutsk";
+  time.timeZone = "Asia/Almaty";
 
   # Select internationalisation properties.
   i18n = {
@@ -58,7 +56,7 @@
     printing.enable = true;
     dbus.enable = true;
     displayManager.defaultSession = "none+dwm";
-    displayManager.ly.enable = false;
+    # displayManager.ly.enable = false;
 
     xserver = {
       xkb = {
@@ -116,6 +114,7 @@
       "storage"
       "input"
       "dialout" # for microcontrollers
+      "openrazer"
     ];
     shell = pkgs.zsh;
   };
@@ -136,9 +135,6 @@
   };
 
   security.polkit.enable = true;
-  # services.gvfs.enable = true;
-  # services.devmon.enable = true;
-  # services.udisks2.enable = true;
   programs.udevil.enable = true;  
 
   programs.thunar.enable = true;
@@ -153,12 +149,23 @@
     # proxy
     tor 
     torsocks
+    vopono
+    openvpn
+    wireguard-tools
 
     # dependebs
     glibc
     glib
+    gcc
+    go
+    cmake
+    qt5.qtbase
+    haskellPackages.xmobar
+    haskellPackages.pandoc
 
     # Basic utilities
+    bash
+    sshfs
     coreutils
     wget
     curl
@@ -171,13 +178,7 @@
     p7zip # 7z
     (btop.override {cudaSupport = true;})
     libinput
-    openvpn
     killall
-    pulseaudio
-    alsaUtils
-    pavucontrol
-    pamixer
-    pulseaudio-ctl
     libreoffice
     dig  
     nmap  
@@ -190,6 +191,13 @@
     vnstat
     exfat
     testdisk
+    feh
+    pciutils
+    qpwgraph
+    e2fsprogs
+    acpi
+    util-linux
+    calcurse
 
     # Development tools
     nodejs
@@ -213,6 +221,7 @@
     jq
     zip
     arduino
+    blueman
 
     # X11
     xorg.xrandr
@@ -222,12 +231,13 @@
     xorg.xev
     xorg.xorgserver
     xorg.xf86inputlibinput
-    xorg.xf86videointel
+    # xorg.xf86videointel # not support anymore
     xorg.xwininfo
     xorg.libX11
     xorg.libX11.dev
     xorg.xmodmap
     xorg.xdpyinfo
+    xorg.libXinerama
     xdg-desktop-portal
     xsettingsd
     xclip
@@ -238,6 +248,7 @@
     xdotool
     xcolor
     tmux
+    evtest
 
     # Multimedia
     ffmpeg
@@ -250,11 +261,11 @@
     zsh-syntax-highlighting
     zsh-autosuggestions
     gpa
-    tor
-    vopono
     htop
     trash-cli
-    gcc
+    profanity
+    unetbootin
+    ncdu
 
     # apps
     monero-gui
@@ -273,35 +284,18 @@
     sublime
     wasabiwallet
     syncthing
-
-    # appimage
-    appimagekit
-    appimage-run
-
-    profanity
-    unetbootin
+    spotify
     psi-plus
-    bisq-desktop
+    # bisq-desktop # not support anymore
     prismlauncher
     brave
-    qpwgraph
-    spotify
+    caffeine-ng
+    razergenie
+    irssi
 
-    pciutils
-    ncdu
-    wireguard-tools
-
-    haskellPackages.xmobar
-    haskellPackages.pandoc
-    
-    qt5.qtbase
-
-    blueman
-
-    go
-    cmake
-
-    evtest
+    # appimage
+    # appimagekit
+    # appimage-run
   ];
 
   services.resolved.enable = true;

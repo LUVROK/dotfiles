@@ -3,8 +3,8 @@
 {
   home.file.".config/neofetch/config.conf".text = ''
     image_backend="kitty"
-    image_source="${config.home.homeDirectory}/HOME/dotfiles/config/media/neofetch.png"
-    image_size="750px"
+    image_source="/etc/nixos/home/images/neofetch.png"
+    image_size="350px"
     image_loop="on"
 
     # Colors for custom colorblocks

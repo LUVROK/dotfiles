@@ -18,7 +18,7 @@
     kernelPackages = pkgs.linuxPackages_latest;
     blacklistedKernelModules = [ "nouveau" ];
 
-    initrd.availableKernelModules = [ "xhci_pci" "thunderbolt" "nvme" "usb_storage" "sd_mod" "usbhid" ];
+    initrd.availableKernelModules = [ "xhci_pci" "thunderbolt" "nvme" "usb_storage" "xhci_hcd" "ehci_hcd" "sd_mod" "usbhid" ];
   };
 
   services.xserver = {
@@ -54,6 +54,7 @@
   };
 
   hardware = {
+    openrazer.enable = true;
     graphics = {
       enable = true;
       enable32Bit = true;

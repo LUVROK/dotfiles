@@ -30,11 +30,13 @@ sigstatusbar(const Arg *arg)
 {
 	union sigval sv;
 
-	if (!statussig)
+	if (!statussig) {
 		return;
-	if ((statuspid = getstatusbarpid()) <= 0)
+	}
+	if ((statuspid = getstatusbarpid()) <= 0) {
 		return;
-
+	}	
+	
 	#if BAR_DWMBLOCKS_SIGUSR1_PATCH
 	sv.sival_int = (statussig << 8) | arg->i;
 	if (sigqueue(statuspid, SIGUSR1, sv) == -1) {
@@ -48,4 +50,3 @@ sigstatusbar(const Arg *arg)
 	sigqueue(statuspid, SIGRTMIN+statussig, sv);
 	#endif // BAR_DWMBLOCKS_SIGUSR1_PATCH
 }
-

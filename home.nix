@@ -37,6 +37,12 @@
     haskellPackages.greenclip
   ];
 
+  # Внутри секции home или config
+  home.file.".local/bin".source = ./system/dwm-flexipatch/dwmblocks-async/dwmblocks/scripts;
+
+  # Убедитесь, что ~/.local/bin находится в $PATH
+  home.sessionVariables.PATH = "${config.home.homeDirectory}/.local/bin";
+
   home.file.".gnupg/gpg-agent.conf" = {
     text = ''
       pinentry-program ${pkgs.pinentry}/bin/pinentry
@@ -50,6 +56,11 @@
   home.file.".Xmodmap".text = ''
     keycode  37 = Control_L NoSymbol Control_L
     keycode  50 = Shift_L NoSymbol Shift_L
+  '';
+
+  home.file.".config/.asoundrc".text = ''
+    defaults.pcm.card 1
+    defaults.ctl.card 1
   '';
 
   home.file.".config/pipewire/pipewire.conf.d/99-input-denoising.conf".text = ''
@@ -89,8 +100,34 @@
     ]
   '';
 
+  systemd.user.services.dwmblocks = {
+    Unit = {
+      Description = "Status feed generator for dwm";
+      After = [
+        "default.target"
+        "pipewire.service"
+        "wireplumber.service"
+      ];
+      Wants = [
+        "pipewire.service"
+        "wireplumber.service"
+      ];
+    };
+
+    Install = {
+      WantedBy = [ "default.target" ];
+    };
+
+    Service = {
+      ExecStart = "/home/dash/HOME/dotfiles/system/dwm-flexipatch/dwmblocks-async/result/bin/dwmblocks";
+      Restart = "always";
+      RestartSec = 3;
+      # Environment = "PATH=/home/dash/.local/bin"; # Укажите свой $PATH
+    };
+  };
+
   programs = {
     ranger = (import ./config/ranger.nix { inherit pkgs; });
-    kitty = (import ./config/kitty.nix { inherit pkgs; });
+    kitty = (import ./config/kitty/kitty.nix { inherit pkgs; });
   };
 }

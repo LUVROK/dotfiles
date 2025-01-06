@@ -27,7 +27,7 @@ function _dismountvc() { sudo -v && veracrypt --dismount $1 & }
 function _mountvc-pn() { sudo -v && veracrypt --mount ~/HOME/private_containers/private_notes /media/veracrypt1 > /dev/null 2>&1 & }
 function _mountvc-ps() { sudo -v && veracrypt --mount ~/HOME/private_containers/pass-store ~/HOME/.pass-store-mount > /dev/null 2>&1 & }
 function _dismountvc-ps() { sudo -v && veracrypt --dismount ~/HOME/.pass-store-mount & }
-function _xrandr-hdmi-1-0() { xrandr --output HDMI-1-0 --mode 1920x1080 --rate 60.00 --right-of eDP-1 && feh --geometry 3456x2160+0+0 --auto-zoom --randomize --bg-fill /home/dash/HOME/wizzard/wallpaper/winter* > /dev/null 2>&1 & }
+function _xrandr-hdmi-1-0() { xrandr --output HDMI-1-0 --scale 1x1 --mode 1920x1080 --rate 60.00 --right-of eDP-1 && feh --geometry 3456x2160+0+0 --auto-zoom --randomize --bg-fill /home/dash/HOME/wizzard/wallpaper/winter* > /dev/null 2>&1 & }
 function _xrandr-hdmi-1-0-output() { xrandr --output HDMI-1-0 --off & }
 function _ps_aux_grep() { command ps aux | grep --color=auto "$1" }
 

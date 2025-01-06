@@ -1,5 +1,7 @@
 #!/bin/sh
 
+notify-send '1'
+
 case $BLOCK_BUTTON in
 	1) notify-send "🧠 Memory hogs" "$(ps axch -o cmd:15,%mem --sort=-%mem | head)" ;;
 	2) setsid -f "$TERMINAL" -e htop ;;
@@ -9,4 +11,4 @@ case $BLOCK_BUTTON in
 	6) "$TERMINAL" -e "$EDITOR $0" ;;
 esac
 
-free --mebi | sed -n '2{p;q}' | awk '{printf ("🧠 %2.2fGiB/%2.2fGiB\n", ( $3 / 1024), ($2 / 1024))}'
+echo free -h | awk '/^Mem/ { print $3\"/\"$2 }' | sed 's/i//g' | sed 's/,/./g'

@@ -4009,8 +4009,11 @@ showhide(Client *c)
 		}
 		#elif SCRATCHPADS_PATCH
 		if ((c->tags & SPTAGMASK) && c->isfloating) {
-			c->x = c->mon->wx + (c->mon->ww / 2 - WIDTH(c) / 2);
-			c->y = c->mon->wy + (c->mon->wh / 2 - HEIGHT(c) / 2);
+			// c->x = c->mon->wx + (c->mon->ww / 2 - WIDTH(c) / 2);
+			// c->y = c->mon->wy + (c->mon->wh / 2 - HEIGHT(c) / 2);
+
+			c->x = (c->mon->wx + (c->mon->ww / 2 - WIDTH(c) / 2)) + (c->mon->wx + (c->mon->ww / 2 - WIDTH(c) / 2)) - 20; // Задайте нужную координату X
+			c->y = 60; // Задайте нужную координату Y
 		}
 		#endif // SCRATCHPADS_KEEP_POSITION_AND_SIZE_PATCH | SCRATCHPADS_PATCH
 		#endif // RENAMED_SCRATCHPADS_PATCH
@@ -5373,4 +5376,3 @@ main(int argc, char *argv[])
 	#endif // RESTARTSIG_PATCH
 	return EXIT_SUCCESS;
 }
-

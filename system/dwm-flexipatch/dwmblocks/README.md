@@ -20,3 +20,8 @@ Here are some patches to dwmblocks that add features that I either don't want to
 I do not maintain these but I will take pull requests to update them.
 <br>
 <a href=https://gist.github.com/IGeraGera/e4a5583b91b3eec2e81fdceb44dea717>dwmblocks-statuscmd-b6b0be4.diff</a>
+
+# ps.
+
+command for build on nixos
+cc -o dwmblocks dwmblocks.c -pedantic -Wall -Wno-deprecated-declarations -Os -lX11

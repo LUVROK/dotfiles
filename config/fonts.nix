@@ -9,9 +9,9 @@
       fira-code-symbols
       jetbrains-mono
       font-awesome_6
-      nerdfonts
-      dejavu_fonts
+      nerd-fonts.fira-code
+      nerd-fonts.jetbrains-mono
+      nerd-fonts.dejavu-sans-mono
     ];
   };
 }
-

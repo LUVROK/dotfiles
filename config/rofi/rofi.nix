@@ -14,7 +14,7 @@ in {
     rofi-power-menu
     rofi-bluetooth
     rofi-calc
-    rofi-file-browser
+    # rofi-file-browser
   ];
 
   systemd.user.services.greenclip = {

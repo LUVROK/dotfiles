@@ -1,38 +1,90 @@
-#!/bin/sh
-# stolen from: https://github.com/ericmurphyxyz/rofi-wifi-menu/blob/master/rofi-wifi-menu.sh
-dunstify "Getting list of available Wi-Fi networks..."
-# Get a list of available wifi connections and morph it into a nice-looking list
-wifi_list=$(nmcli --fields "SECURITY,SSID" device wifi list | sed 1d | sed 's/  */ /g' | sed -E "s/WPA*.?\S/ /g" | sed "s/^--/ /g" | sed "s/  //g" | sed "/--/d")
+#!/usr/bin/env bash
 
-connected=$(nmcli -fields WIFI g)
-if [[ "$connected" =~ "enabled" ]]; then
-	toggle="󰖪  Disable Wi-Fi"
-elif [[ "$connected" =~ "disabled" ]]; then
-	toggle="󰖩  Enable Wi-Fi"
+## This script is based on Zach Baylin's Rofi WiFi Menu.
+## https://github.com/zbaylin/rofi-wifi-menu
+## I have modified it to utilize iwd instead of NetworkManager.
+## @author Tim Clancy
+## @date 8.18.2020
+
+## Configuration defaults.
+DEVICE=${1:-wlan0}
+POSITION=${2:-0}
+Y_OFF=${3:-0}
+X_OFF=${4:-0}
+
+## Scan for available and broadcasting SSIDs.
+iwctl station $DEVICE scan
+
+## Get the networks that are available to the WiFi adapter and format them.
+## Make sure the current network is always at the top of the list.
+CURR_SSID=$(iwctl station $DEVICE show | sed -n 's/^\s*Connected\snetwork\s*\(\S*\)\s*$/\1/p')
+IW_NETWORKS+=$(iwctl station $DEVICE get-networks | sed '/^--/d')
+IW_NETWORKS=$(echo "$IW_NETWORKS" | sed 1,4d)
+IW_NETWORKS=$(echo "$IW_NETWORKS" | sed -r "s/\x1B\[([0-9]{1,3}(;[0-9]{1,2})?)?[mGK]//g")
+IFS=$'\n'
+PREFIX=$'SSID                              SECURITY  \n'
+NETWORK_LIST=""
+while IFS= read -r line; do
+	line=${line:4}
+	SSID_NAME=$(echo "$line" | sed 's/\(\s*psk.*\)//')
+	printf -v pad %34s
+	line=$SSID_NAME$pad
+	line=${line:0:34}
+	line+=$'PSK'
+	printf -v pad %45s
+	line=$line$pad
+	line=${line:0:45}
+	line+=$'\n'
+	if [ "$SSID_NAME" = "$CURR_SSID" ]; then
+		PREFIX+=$line
+	else
+		NETWORK_LIST+=$line
+	fi
+done <<< "$IW_NETWORKS"
+IW_NETWORKS=$(echo "$PREFIX$NETWORK_LIST" | sed '$d')
+
+## Get the currently-active WiFi connection if one exists and highlight it.
+if [[ ! -z $CURR_SSID ]]; then
+	HIGHLINE=$(echo "$(echo "$IW_NETWORKS" | awk -F "[  ]{2,}" '{print $1}' | grep -Fxn -m 1 "$CURR_SSID" | awk -F ":" '{print $1}') + 1" | bc)
 fi
 
-# Use rofi to select wifi network
-chosen_network=$(echo -e "$toggle\n$wifi_list" | uniq -u | rofi -dmenu -i -selected-row 1 -p "Wi-Fi SSID: " )
-# Get name of connection
-read -r chosen_id <<< "${chosen_network:3}"
+## Determine whether or not there exists a WiFi connection for display purposes.
+CON_STATE=$(iwctl station $DEVICE show)
+if [[ "$CON_STATE" =~ " connected" ]]; then
+	MENU="disconnect from ${CURR_SSID}\nmanually connect to a network\n$IW_NETWORKS"
+elif [[ "$CON_STATE" =~ "disconnected" ]]; then
+	MENU="manually connect to a network\n$IW_NETWORKS"
+fi
 
-if [ "$chosen_network" = "" ]; then
-	exit
-elif [ "$chosen_network" = "󰖩  Enable Wi-Fi" ]; then
-	nmcli radio wifi on
-elif [ "$chosen_network" = "󰖪  Disable Wi-Fi" ]; then
-	nmcli radio wifi off
-else
-	# Message to show when connection is activated successfully
-  	success_message="You are now connected to the Wi-Fi network \"$chosen_id\"."
-	# Get saved connections
-	saved_connections=$(nmcli -g NAME connection)
-	if [[ $(echo "$saved_connections" | grep -w "$chosen_id") = "$chosen_id" ]]; then
-		nmcli connection up id "$chosen_id" | grep "successfully" && dunstify "Connection Established" "$success_message"
-	else
-		if [[ "$chosen_network" =~ "" ]]; then
-			wifi_password=$(rofi -dmenu -p "Password: " )
-		fi
-		nmcli device wifi connect "$chosen_id" password "$wifi_password" | grep "successfully" && notify-send "Connection Established" "$success_message"
-    fi
+## Dynamically change the size of the Rofi menu, with a cap on network count.
+## Rofi seems to require some text padding dependent on our font size.
+# R_WIDTH=$(($(echo "$IW_NETWORKS" | head -n 1 | awk '{print length($0); }')+5))
+R_WIDTH=$(($(echo "$IW_NETWORKS" | head -n 1 | awk '{print length($0); }') - 100))
+LINE_COUNT=$(echo "$IW_NETWORKS" | wc -l)
+if [[ "$CON_STATE" =~ " connected" ]]; then
+	LINE_COUNT=12
+elif [ "$LINE_COUNT" -gt 8 ] || [[ "$CON_STATE" =~ "disconnected" ]]; then
+	LINE_COUNT=12
+fi
+
+## Grab the user's chosen SSID entry.
+CHENTRY=$(echo -e "$MENU" | uniq -u | rofi -dmenu -p "WiFi SSID" -lines "$LINE_COUNT" -a "$HIGHLINE" -location "$POSITION" -yoffset "$Y_OFF" -xoffset "$X_OFF" -width -"$R_WIDTH" -theme "$HOME"/.config/rofi/config/network-menu.rasi)
+CHSSID=$(echo "$CHENTRY" | sed  's/\s\{2,\}/\|/g' | awk -F "|" '{print $1}')
+
+## Support manual SSID entry.
+if [ "$CHENTRY" = "manually connect to a network" ] ; then
+	MSSID=$(echo "Enter your network's SSID." | rofi -dmenu -p "SSID" -lines 1 -theme "$HOME"/.config/rofi/config/network-menu.rasi)
+	WIFI_PASS=$(echo "Enter the network password." | rofi -dmenu -password -p "Password" -lines 1 -location "$POSITION" -yoffset "$Y_OFF" -xoffset "$X_OFF" -width -"$R_WIDTH" -theme "$HOME"/.config/rofi/config/network-menu.rasi)
+	iwctl station $DEVICE disconnect
+	iwctl --passphrase $WIFI_PASS station $DEVICE connect $MSSID
+
+## Support WiFi toggling.
+elif [[ "$CHENTRY" =~ "disconnect from " ]]; then
+	iwctl station $DEVICE disconnect
+
+## Support connecting to the chosen network.
+elif [ "$CHSSID" != "" ]; then
+	WIFI_PASS=$(echo "Enter the network password." | rofi -dmenu -password -p "Password" -lines 1 -location "$POSITION" -yoffset "$Y_OFF" -xoffset "$X_OFF" -width -"$R_WIDTH" -theme "$HOME"/.config/rofi/config/network-menu.rasi)
+	iwctl station $DEVICE disconnect
+	iwctl --passphrase $WIFI_PASS station $DEVICE connect $CHSSID
 fi
