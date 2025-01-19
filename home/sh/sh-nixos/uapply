@@ -1,0 +1,4 @@
+#!/bin/sh
+pushd ~/HOME/dotfiles
+home-manager switch -f $HOME/HOME/dotfiles/home/home.nix
+popd

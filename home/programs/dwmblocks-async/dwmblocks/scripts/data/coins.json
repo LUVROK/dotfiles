@@ -1,0 +1,38 @@
+{
+  "bitcoin": {
+    "symbol": "BTC",
+    "price": 0
+  },
+  "litecoin": {
+    "symbol": "LTC",
+    "price": 0
+  },
+  "monero": {
+    "symbol": "XMR",
+    "price": 0
+  },
+  "ethereum-classic": {
+    "symbol": "ETC",
+    "price": 0
+  },
+  "zcash": {
+    "symbol": "ZEC",
+    "price": 0
+  },
+  "ethereum": {
+    "symbol": "ETH",
+    "price": 0
+  },
+  "bitcoin-cash": {
+    "symbol": "BCH",
+    "price": 0
+  },
+  "XRP-Healthcare": {
+    "symbol": "XRPH",
+    "price": 0
+  },
+  "1inch-Network": {
+    "symbol": "1INCH",
+    "price": 0
+  }
+}

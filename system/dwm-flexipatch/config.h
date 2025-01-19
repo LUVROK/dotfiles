@@ -5,12 +5,12 @@
 #define CMD(...)   { .v = (const char*[]){ __VA_ARGS__, NULL } }
 
 /* MINE FUNC */
-static const char *upbrt[] = {"/home/dash/HOME/dotfiles/system/dwm-flexipatch/scripts/brightness.sh", "up", NULL};
-static const char *downbrt[] = {"/home/dash/HOME/dotfiles/system/dwm-flexipatch/scripts/brightness.sh", "down", NULL};
+static const char *upbrt[] = {"dwm-brightness", "up", NULL};
+static const char *downbrt[] = {"dwm-brightness", "down", NULL};
 
-static const char *upvol[] = {"/home/dash/HOME/dotfiles/system/dwm-flexipatch/scripts/volume.sh", "up", NULL};
-static const char *downvol[] = {"/home/dash/HOME/dotfiles/system/dwm-flexipatch/scripts/volume.sh", "down", NULL};
-static const char *mutevol[] = {"/home/dash/HOME/dotfiles/system/dwm-flexipatch/scripts/volume.sh", "mute", NULL};
+static const char *upvol[] = {"dwm-volume", "up", NULL};
+static const char *downvol[] = {"dwm-volume", "down", NULL};
+static const char *mutevol[] = {"dwm-volume", "mute", NULL};
 
 #define TERMINAL  "kitty"
 #define BROWSER  "firefox"
@@ -57,7 +57,7 @@ static const char localshare[]           = ".local/share";
 #if BAR_ANYBAR_PATCH
 static const int usealtbar               = 1;        /* 1 means use non-dwm status bar */
 static const char *altbarclass           = "Polybar"; /* Alternate bar class name */
-static const char *altbarcmd             = "$HOME/bar.sh"; /* Alternate bar launch command */
+static const char *altbarcmd             = "/home/dash/bar.sh"; /* Alternate bar launch command */
 #endif // BAR_ANYBAR_PATCH
 #if BAR_HOLDBAR_PATCH
 static const int showbar                 = 0;   /* 0 means no bar */
@@ -874,9 +874,8 @@ static const char *termcmd[]  = { "kitty", NULL };
 static const char *firefoxcmd[]  = { "firefox", NULL };
 static const char *codiumcmd[]  = { "codium", NULL };
 static const char *obsidiancmd[]  = { "obsidian", NULL };
-static const char *screenshotcmd[] = { "/home/dash/HOME/dotfiles/system/dwm-flexipatch/scripts/flameshot.sh", NULL };
-static const char *greenclipcmd[] = { "/home/dash/HOME/dotfiles/system/dwm-flexipatch/scripts/greenclip.sh", NULL };
-// static const char *powermenu[] = { SHCMD("/home/dash/HOME/dotfiles/system/dwm-flexipatch/scripts/bin-rofi/power-menu.sh"), NULL };
+static const char *screenshotcmd[] = { "dwm-flameshot", NULL };
+static const char *greenclipcmd[] = { "dwm-greenclip", NULL };
 static const char *roficmd[] = { "rofi", "-show", "drun", "-display-drun", "", NULL };
 
 #if BAR_STATUSCMD_PATCH
@@ -916,7 +915,7 @@ static const Key keys[] = {
 	{ MODKEY|ShiftMask,				XK_o,          spawn,               {.v = obsidiancmd } },
 	{ MODKEY,                       XK_space,      spawn,          		SHCMD("pkill -RTMIN+1 dwmblocks") },
 
-	{ MODKEY,                       XK_w,          spawn,                  SHCMD("/home/dash/HOME/dotfiles/system/dwm-flexipatch/scripts/bin-rofi/power-menu.sh") },
+	{ MODKEY,                       XK_w,          spawn,                  SHCMD("dwm-power_menu") },
 
 	{ MODKEY, 						XK_a, togglescratch, {.ui = 1 } },
 

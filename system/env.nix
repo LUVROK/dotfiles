@@ -17,16 +17,13 @@
     GNUPGHOME="$HOME/.gnupg";
 
     TERM="xterm-256color";
+    TOR_SOCKS_PORT = "9050";
   };
 
   xdg.mime = {
     defaultApplications = {
       "inode/directory" = [ "thunar.desktop" ];
     };
-  };
-
-  environment.etc."nixos/home/images/neofetch.png" = {
-    source = "/home/dash/HOME/dotfiles/config/media/neofetch.png";
   };
 
   environment.etc."udevil/udevil.conf".text = ''

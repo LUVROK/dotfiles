@@ -1,0 +1,107 @@
+#!/usr/bin/env bash
+
+DIR="$(dirname "$0")"
+TARGET_FILE="/tmp/coins.json"
+STATE_FILE="/tmp/last_coin.txt"
+SOURCE_FILE="$DIR/data/coins.json"
+
+check_file_coinst_exist() { 
+    if [ ! -f "$TARGET_FILE" ]; then
+        if [ -f "$SOURCE_FILE" ]; then
+            CONTENT=$(cat "$SOURCE_FILE")
+            echo $CONTENT > $TARGET_FILE
+        else
+            exit 1
+        fi
+    fi
+}
+
+get_coin_price() {
+    coins=($(jq -r 'keys_unsorted[]' "$SOURCE_FILE"))
+
+    if [[ ! -f "$STATE_FILE" ]]; then
+        echo "${coins[0]}" > "$STATE_FILE"
+    fi
+
+    last_coin=$(cat "$STATE_FILE")
+
+    index=-1
+    for i in "${!coins[@]}"; do
+    if [[ "${coins[$i]}" == "$last_coin" ]]; then
+        index=$i
+        break
+    fi
+    done
+
+    if [[ $index -ge 0 ]]; then
+        next_index=$(( (index + 1) % ${#coins[@]} ))
+    else
+        next_index=0
+    fi
+    current_coin="${coins[$next_index]}"
+
+    if [[ "$1" != "true" ]]; then
+        echo "$current_coin" > "$STATE_FILE"
+    else
+        current_coin=$(cat "$STATE_FILE")
+    fi
+
+    symbol=$(jq -r ".[\"$current_coin\"]" "$SOURCE_FILE" | jq -r '.symbol')
+
+    local tmpTARGET_FILE=$(cat $TARGET_FILE)
+    for key in $(jq -r 'keys[]' "$TARGET_FILE"); do
+        current_symbol=$(jq -r ".\"$key\".symbol" "$TARGET_FILE")
+        if [ "$current_symbol" == "$symbol" ]; then
+            price=$(jq -r ".\"$key\".price" "$TARGET_FILE")
+            formatted=$(echo "$price" | sed -E ':a;s/^([0-9]+)([0-9]{3})/\1,\2/;ta' )
+            echo "$symbol:" $"$formatted"
+            break
+        fi
+    done
+}
+
+update_price() {
+    symbol='XMR'
+    current_coin='monero'
+
+    symbols=$(cat "$TARGET_FILE" | jq -r '.[].symbol' | paste -sd ',' -)
+    API_KEY="$DIR/data/API_KEY-cryptocompare.txt"
+    URL="https://min-api.cryptocompare.com/data/pricemulti?fsyms=${symbols}&tsyms=USD&api_key=${API_KEY}"
+    response=$(curl -s "$URL")
+
+    if [ -z "$response" ] || [ "$(echo "$response" | jq 'length')" -eq 0 ]; then
+        get_coin_price  
+        exit 0
+    fi
+
+    UPDATED_JSON=$(cat "$TARGET_FILE")
+
+    for key in $(echo $(cat "$TARGET_FILE" | jq -r 'keys[]')); do
+        SYMBOL=$(echo $(cat "$TARGET_FILE" | jq -r ".\"$key\".symbol"))
+        PRICE=$(echo "$response" | jq -r ".\"$SYMBOL\".USD")
+        if [ "$PRICE" != "null" ]; then
+            UPDATED_JSON=$(echo "$UPDATED_JSON" | jq ".\"$key\".price = $PRICE")
+        fi
+    done
+
+    echo "$UPDATED_JSON" > "$TARGET_FILE"
+}
+
+check_file_coinst_exist
+
+if [ -n "$BLOCK_BUTTON" ]; then
+    case "$BLOCK_BUTTON" in
+        1) get_coin_price false;;
+        2) 
+            update_price
+            get_coin_price true
+            ;;
+        3)
+            update_price
+            get_coin_price true
+            ;;
+    esac
+else
+update_price
+get_coin_price true
+fi

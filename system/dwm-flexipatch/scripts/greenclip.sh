@@ -1,1 +1,0 @@
-../../../config/rofi/clipmenu/greenclip.sh

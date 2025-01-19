@@ -83,6 +83,6 @@
     };
   };
 
-  time.hardwareClockInLocalTime = true;
+  time.hardwareClockInLocalTime = false;
 }
 
