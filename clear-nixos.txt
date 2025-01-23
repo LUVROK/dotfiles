@@ -1,0 +1,5 @@
+home-manager remove-generations
+sudo nix-collect-garbage -d
+nix profile wipe-history
+nix store gc
+nix store optimise

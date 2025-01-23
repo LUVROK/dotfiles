@@ -102,7 +102,7 @@
       "storage"
       "input"
       "dialout" # for microcontrollers
-      "openrazer"
+      # "openrazer"
     ];
     shell = pkgs.zsh;
   };
@@ -203,6 +203,7 @@
 
     # Networking
     openssl
+    iptables
     iwd
 
     # System tools
@@ -277,17 +278,13 @@
     steam
     mullvad-vpn
     veracrypt
-    sublime
     wasabiwallet
     syncthing
     spotify
     psi-plus
-    pidgin
     # bisq-desktop # not support anymore
     prismlauncher
-    brave
     caffeine-ng
-    razergenie
     irssi
     myxer
 

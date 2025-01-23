@@ -23,7 +23,7 @@
 
   services.xserver = {
     enable = true;
-    desktopManager.gnome.enable = true;
+    desktopManager.gnome.enable = false;
 
     videoDrivers = [ 
       "modesetting" 
@@ -54,7 +54,7 @@
   };
 
   hardware = {
-    openrazer.enable = true;
+    # openrazer.enable = true;
     graphics = {
       enable = true;
       enable32Bit = true;

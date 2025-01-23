@@ -178,11 +178,11 @@ static void (*bartabmonfns[])(Monitor *) = { NULL /* , customlayoutfn */ };
 #endif // MONOCLE_LAYOUT
 #endif // BAR_TABGROUPS_PATCH
 #if BAR_PANGO_PATCH
-static const char font[]                 = "JetBrainsMonoNL NFP 11";
+static const char font[]                 = "JetBrainsMonoNL NFP 10";
 #else
 static const char *fonts[]               = { 
-  "JetBrainsMonoNL NFP:size=11", 
-  "Font Awesome 6 Free Solid:size=12"
+  "JetBrainsMonoNL NFP:size=10", 
+  "Font Awesome 6 Free Solid:size=11"
 };
 #endif // BAR_PANGO_PATCH
 
@@ -853,6 +853,8 @@ static const char *xkb_layouts[]  = {
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 #endif // NODMENU_PATCH
 static const char *dmenucmd[] = {
+    // "xkb-switch -s us"
+	// "pkill -RTMIN+1 dwmblocks"
 	"dmenu_run",
 	#if !NODMENU_PATCH
 	"-m", dmenumon,
@@ -869,6 +871,10 @@ static const char *dmenucmd[] = {
 	NULL
 };
 
+void spawn_with_lang_switch(const Arg *arg) {
+    system("xkb-switch -s us && pkill -RTMIN+1 dwmblocks");  // Меняем язык на английский
+    spawn(arg);                  // Запускаем команду (dmenu_run)
+}
 
 static const char *termcmd[]  = { "kitty", NULL };
 static const char *firefoxcmd[]  = { "firefox", NULL };
@@ -907,7 +913,7 @@ static const Key keys[] = {
 	
 	/* modifier key            function                argument */
 	{ MODKEY,                       XK_d,          spawn,                  {.v = roficmd } },
-	{ MODKEY,                       XK_p,          spawn,                  {.v = dmenucmd } },
+	{ MODKEY, 						XK_p, 		   spawn_with_lang_switch, {.v = dmenucmd } },
 	{ MODKEY,                       XK_c,          spawn,                  {.v = greenclipcmd } },
 	{ MODKEY|ShiftMask,				XK_t,          spawn,               {.v = termcmd } },
 	{ MODKEY|ShiftMask,				XK_f,          spawn,               {.v = firefoxcmd } },
