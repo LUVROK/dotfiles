@@ -3,7 +3,7 @@
 {
   imports = [
     # ./security
-    # ./privacy
+    ./privacy
     # ./fast-tcp.nix
     # ./systemd.nix
     # ./openssh.nix

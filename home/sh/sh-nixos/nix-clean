@@ -1,0 +1,13 @@
+#! /bin/sh
+
+nix_clean() {(
+    home-manager expire-generations 0
+    sudo nix-collect-garbage -d
+    nix profile wipe-history
+    nix store gc
+    nix store optimise
+)}
+
+nix_clean &&
+notify-send "nix-channel update completed successfully" && 
+paplay $HOME/HOME/wizzard/media/soundeffect/minecraft-sheep2.mp3

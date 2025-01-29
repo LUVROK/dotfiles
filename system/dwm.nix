@@ -20,12 +20,13 @@
       
       export PATH=/home/dash/.local/bin/sh-dwmblocks:/home/dash/.local/bin/sh-others:/home/dash/.local/bin/sh-rofi:/home/dash/.local/bin/sh-nixos:$PATH
       xset -dpms &
-      # dwm-dwmblocks &
       devmon &
     '';
   };
 
   environment.systemPackages = with pkgs; [
     dmenu
+    # dmenu-rs
+    j4-dmenu-desktop
   ];
 }

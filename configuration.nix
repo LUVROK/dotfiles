@@ -135,8 +135,6 @@
     vimix-gtk-themes
 
     # proxy
-    tor
-    torsocks
     orjail
     vopono
     proxychains

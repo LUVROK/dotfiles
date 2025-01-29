@@ -492,9 +492,16 @@ static const Rule rules[] = {
 	RULE(.wintype = WTYPE "UTILITY", .isfloating = 1)
 	RULE(.wintype = WTYPE "TOOLBAR", .isfloating = 1)
 	RULE(.wintype = WTYPE "SPLASH", .isfloating = 1)
-	RULE(.class = "feh", .isfloating = 1)
-	RULE(.class = "mpv", .isfloating = 1)
-	// RULE(.class = "kitty", .isfloating = 1)
+	RULE(.class = "feh", .isfloating = 1, .iscentered = 1)
+	RULE(.class = "Mullvad VPN", .tags = 2, .isfloating = 1, .floatpos = "-1S  0Z 100%   0%")
+	RULE(.class = "firefox", .isfloating = 0)
+	RULE(.class = "obsidian", .isfloating = 0)
+	RULE(.class = "kitty", .isfloating = 0)
+	RULE(.class = "Spotify", .isfloating = 1, .floatpos = "50% 50% 95% 95%")
+	RULE(.class = "Psi+", .tags = 2, .isfloating = 1, .floatpos = "50% 50% 45% 65%")
+	RULE(.class = "qBittorrent", .tags = 1 << 8, .isfloating = 1, .floatpos = "50% 50% 90% 85%")
+	RULE(.class = "Element", .tags = 1 << 3)
+	RULE(.class = "TelegramDesktop", .tags = 1 << 3)
 	#if RENAMED_SCRATCHPADS_PATCH
 	RULE(.instance = "spterm", .scratchkey = 's', .isfloating = 1)
 	#elif SCRATCHPADS_PATCH
@@ -853,21 +860,38 @@ static const char *xkb_layouts[]  = {
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 #endif // NODMENU_PATCH
 static const char *dmenucmd[] = {
-    // "xkb-switch -s us"
-	// "pkill -RTMIN+1 dwmblocks"
-	"dmenu_run",
-	#if !NODMENU_PATCH
-	"-m", dmenumon,
-	#endif // NODMENU_PATCH
-	// "-h", "24",
-	"-fn", dmenufont,
-	"-nb", normbgcolor,
-	"-nf", normfgcolor,
-	"-sb", selbgcolor,
-	"-sf", selfgcolor,
-	#if BAR_DMENUMATCHTOP_PATCH
-	topbar ? NULL : "-b",
-	#endif // BAR_DMENUMATCHTOP_PATCH
+    // // "xkb-switch -s us"
+	// // "pkill -RTMIN+1 dwmblocks"
+	// "dmenu_run",
+	// #if !NODMENU_PATCH
+	// "-m", dmenumon,
+	// #endif // NODMENU_PATCH
+	// // "-h", "24",
+	// "-fn", dmenufont,
+	// "-nb", normbgcolor,
+	// "-nf", normfgcolor,
+	// "-sb", selbgcolor,
+	// "-sf", selfgcolor,
+	// #if BAR_DMENUMATCHTOP_PATCH
+	// topbar ? NULL : "-b",
+	// #endif // BAR_DMENUMATCHTOP_PATCH
+
+	"j4-dmenu-desktop",
+	"--no-generic",
+	"--term", "kitty",
+	// "-i",
+    // "--dmenu",
+    // "dmenu -sb #d65d0e -sf #fbf1c7 -nb #282828 -nf #ebdbb2 -fn 'JetBrainsMonoNL NFP:size=10'",
+   
+	// "'dmenu", 
+	// "-sb", 
+	// "\"#d65d0e\"'",
+	// "dmenu", "-i",
+    
+    // "-sf", "\"#fbf1c7\"",
+    // "-nb", "\"#282828\"",
+    // "-nf", "\"#ebdbb2\"",
+    // "-fn", "\"JetBrainsMonoNL NFP:size=10\"'",
 	NULL
 };
 
@@ -913,7 +937,7 @@ static const Key keys[] = {
 	
 	/* modifier key            function                argument */
 	{ MODKEY,                       XK_d,          spawn,                  {.v = roficmd } },
-	{ MODKEY, 						XK_p, 		   spawn_with_lang_switch, {.v = dmenucmd } },
+	{ MODKEY, 						XK_p, 		   spawn_with_lang_switch, SHCMD("dwm-dmenu") },
 	{ MODKEY,                       XK_c,          spawn,                  {.v = greenclipcmd } },
 	{ MODKEY|ShiftMask,				XK_t,          spawn,               {.v = termcmd } },
 	{ MODKEY|ShiftMask,				XK_f,          spawn,               {.v = firefoxcmd } },
@@ -932,6 +956,8 @@ static const Key keys[] = {
     {0, XF86XK_MonBrightnessUp, spawn, {.v = upbrt}},
     {0, XF86XK_MonBrightnessDown, spawn, {.v = downbrt}},
 	{0, XK_Print, spawn, {.v = screenshotcmd } },
+
+	{ MODKEY|Mod1Mask, XK_f, togglefloating, {0} },
 	
 	#if KEYMODES_PATCH
 	{ MODKEY,                       XK_Escape,     setkeymode,             {.ui = COMMANDMODE} },
