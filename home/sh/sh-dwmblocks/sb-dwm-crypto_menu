@@ -1,0 +1,29 @@
+#!/bin/sh
+
+DIR="$(dirname "$0")"
+TARGET_FILE="/tmp/coins.json"
+STATE_FILE="/tmp/last_coin.txt"
+SOURCE_FILE="$DIR/data/coins.json"
+
+rofi_command="rofi -theme /home/dash/HOME/dotfiles/home/programs/rofi/config/crypto-menu.rasi"
+uptime=$(uptime | sed -e 's/up.*//g')
+
+XMR="XMR"
+LTC="LTC"
+BTC="BTC"
+ETC="ETC"
+ZEC="ZEC"
+ETH="ETH"
+BCH="BCH"
+XRPH="XRPH"
+INCH="1INCH"
+
+ddir="$HOME/.config/rofi/config"
+
+options="XMR\nLTC\nBTC\nETC\nZEC\nETH\nBCH\nXRPH\n1INCH"
+chosen="$(echo -e "$options" | $rofi_command -dmenu -selected-row 9)"
+
+if [ -n "$chosen" ]; then
+    echo "$chosen" > "$STATE_FILE"
+    pkill -RTMIN+2 dwmblocks
+fi

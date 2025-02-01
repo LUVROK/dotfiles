@@ -493,7 +493,7 @@ static const Rule rules[] = {
 	RULE(.wintype = WTYPE "TOOLBAR", .isfloating = 1)
 	RULE(.wintype = WTYPE "SPLASH", .isfloating = 1)
 	RULE(.class = "feh", .isfloating = 1, .iscentered = 1)
-	RULE(.class = "Mullvad VPN", .tags = 2, .isfloating = 1, .floatpos = "-1S  0Z 100%   0%")
+	RULE(.class = "Mullvad VPN", .tags = 2, .isfloating = 1, .floatpos = "86% 6% 10% 10%")
 	RULE(.class = "firefox", .isfloating = 0)
 	RULE(.class = "obsidian", .isfloating = 0)
 	RULE(.class = "kitty", .isfloating = 0)
@@ -958,6 +958,7 @@ static const Key keys[] = {
 	{0, XK_Print, spawn, {.v = screenshotcmd } },
 
 	{ MODKEY|Mod1Mask, XK_f, togglefloating, {0} },
+	{ MODKEY|Mod1Mask, XK_Left, spawn, SHCMD("sb-dwm-crypto_menu") },
 	
 	#if KEYMODES_PATCH
 	{ MODKEY,                       XK_Escape,     setkeymode,             {.ui = COMMANDMODE} },

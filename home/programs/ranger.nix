@@ -26,13 +26,15 @@
     hidden_filter  = ''^lost\+found$|\.parts$'';
     nested_ranger_warning  = true;
     colorscheme  = "solarized";
+    autoupdate_cumulative_size = true;
   };
 
   extraConfig = ''
     map . set show_hidden!
     map dd console delete
-    map <C-p> paste
-    map <C-c> copy
-    map <C-x> cut
+    map dt cut mode=toggle
+    map pp paste
+    map cw console rename%space
+    map r    reload_cwd
   '';
 }

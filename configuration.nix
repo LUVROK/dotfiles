@@ -14,7 +14,7 @@
   programs.xwayland.enable = true;
 
   services.thermald.enable = lib.mkDefault true;
-  time.timeZone = "Europe/Ulyanovsk";
+  time.timeZone = "Europe/Moscow";
 
   i18n = {
     defaultLocale = "en_US.UTF-8";
@@ -33,7 +33,6 @@
 
   services = {
     mullvad-vpn.enable = true;
-    printing.enable = true;
     dbus.enable = true;
     displayManager.defaultSession = "none+dwm";
 
@@ -46,11 +45,6 @@
 
       displayManager.gdm.enable = false;
     };
-  };
-
-  programs.steam = {
-    enable = true;
-    dedicatedServer.openFirewall = true;
   };
 
   programs.zsh = {
@@ -101,6 +95,7 @@
       "plugdev"
       "storage"
       "input"
+      # "lp" # printer
       "dialout" # for microcontrollers
       # "openrazer"
     ];
@@ -112,7 +107,6 @@
   };
 
   nixpkgs.config.allowUnfree = true;
-  nixpkgs.config.nvidia.acceptLicense = true;
   nix.extraOptions = ''
     experimental-features = nix-command flakes
   '';
@@ -217,6 +211,9 @@
     zip
     arduino
     blueman
+    gnome-disk-utility
+    mediawriter
+    gparted
 
     # X11
     xorg.xrandr
@@ -273,7 +270,6 @@
     qbittorrent
     telegram-desktop
     obsidian
-    steam
     mullvad-vpn
     veracrypt
     wasabiwallet

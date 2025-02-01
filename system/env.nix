@@ -18,6 +18,13 @@
 
     TERM="xterm-256color";
     TOR_SOCKS_PORT = "9050";
+
+    LIBVA_DRIVER_NAME = "nvidia";
+    MOZ_X11_EGL="1";
+    MOZ_DISABLE_RDD_SANDBOX = "1";
+    # __GLX_VENDOR_LIBRARY_NAME = "nvidia";
+    # WLR_NO_HARDWARE_CURSORS = "1";
+    # NVD_BACKEND = "direct";
   };
 
   xdg.mime = {
@@ -40,6 +47,15 @@
     EndSection
   '';
 
+  environment.etc."glvnd/egl_vendor.d/10_nvidia.json".text = ''
+    {
+      "file_format_version" : "1.0.0",
+      "ICD" : {
+        "library_path" : "/run/opengl-driver/lib/libEGL_nvidia.so"
+      }
+    }
+  '';
+
   environment.etc."X11/xorg.conf.d/10-nvidia.conf".text = ''
     Section "ServerLayout"
       Identifier "layout"
@@ -51,6 +67,7 @@
       Identifier "nvidia"
       Driver "nvidia"
       BusID "PCI:1:0:0"
+      Option "PrimaryGPU" "true"
     EndSection
 
     Section "Screen"

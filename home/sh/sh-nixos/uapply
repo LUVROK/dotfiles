@@ -1,4 +1,6 @@
 #!/bin/sh
-pushd ~/HOME/dotfiles
+# pushd ~/HOME/dotfiles
 home-manager switch -f $HOME/HOME/dotfiles/home/home.nix
-popd
+notify-send "home-manager switch completed successfully" && 
+paplay $HOME/.local/media/soundeffect/minecraft-sheep2.mp3
+# popd

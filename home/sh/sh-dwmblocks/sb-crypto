@@ -20,17 +20,23 @@ get_coin_price() {
     coins=($(jq -r 'keys_unsorted[]' "$SOURCE_FILE"))
 
     if [[ ! -f "$STATE_FILE" ]]; then
-        echo "${coins[0]}" > "$STATE_FILE"
+        local active_coin="${coins[0]}"
+        local symbol12=$(jq -r ".[\"$active_coin\"]" "$SOURCE_FILE" | jq -r '.symbol')
+
+        echo $symbol12 > "$STATE_FILE"
     fi
 
     last_coin=$(cat "$STATE_FILE")
 
     index=-1
     for i in "${!coins[@]}"; do
-    if [[ "${coins[$i]}" == "$last_coin" ]]; then
-        index=$i
-        break
-    fi
+        local active_coin="${coins[$i]}"  
+        local symbol12=$(jq -r ".[\"$active_coin\"]" "$SOURCE_FILE" | jq -r '.symbol') 
+        
+        if [[ $symbol12 == "$last_coin" ]]; then
+            index=$i
+            break
+        fi
     done
 
     if [[ $index -ge 0 ]]; then
@@ -40,13 +46,14 @@ get_coin_price() {
     fi
     current_coin="${coins[$next_index]}"
 
+    symbol=$(jq -r ".[\"$current_coin\"]" "$SOURCE_FILE" | jq -r '.symbol')
+
     if [[ "$1" != "true" ]]; then
-        echo "$current_coin" > "$STATE_FILE"
+        echo "$symbol" > "$STATE_FILE"
     else
         current_coin=$(cat "$STATE_FILE")
+        symbol=$current_coin
     fi
-
-    symbol=$(jq -r ".[\"$current_coin\"]" "$SOURCE_FILE" | jq -r '.symbol')
 
     local tmpTARGET_FILE=$(cat $TARGET_FILE)
     for key in $(jq -r 'keys[]' "$TARGET_FILE"); do
@@ -61,9 +68,6 @@ get_coin_price() {
 }
 
 update_price() {
-    symbol='XMR'
-    current_coin='monero'
-
     symbols=$(cat "$TARGET_FILE" | jq -r '.[].symbol' | paste -sd ',' -)
     API_KEY="$DIR/data/API_KEY-cryptocompare.txt"
     URL="https://min-api.cryptocompare.com/data/pricemulti?fsyms=${symbols}&tsyms=USD&api_key=${API_KEY}"

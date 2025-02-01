@@ -1,4 +1,4 @@
 #!/bin/sh
 sudo nix-channel --update &&
-notify-send "nix-channel update completed successfully" && 
-paplay $HOME/HOME/wizzard/media/soundeffect/minecraft-sheep2.mp3
+notify-send "nix-channel (system) update completed successfully" && 
+paplay $HOME/.local/media/soundeffect/minecraft-sheep2.mp3

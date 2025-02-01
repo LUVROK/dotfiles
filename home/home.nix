@@ -27,7 +27,10 @@
     mv $out/sh-dwmblocks/dwmblocks $out/sh-dwmblocks/dwm-dwmblocks
   '';
 
-  home.file."/etc/nixos/home/media".source = ./media;
+  home.file.".local/media".source = pkgs.runCommand "merge-folders" {} ''
+    mkdir -p $out/media
+    cp -r ${./media}/* $out
+  '';
   
   home.file.".gnupg/gpg-agent.conf" = {
     text = ''
@@ -73,10 +76,16 @@
           }
           capture.props = {
             node.name =  "capture.rnnoise_source"
-            node.passive = truesource
+            node.passive = true
             audio.rate = 48000
           }
-          playback.props = {source
+          playback.props = {
+            node.name =  "rnnoise_source"
+            media.class = Audio/Source
+            audio.rate = 48000
+          }
+        }
+      }
     ]
   '';
 }

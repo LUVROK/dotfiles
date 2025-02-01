@@ -11,6 +11,7 @@
       "nvidia-drm.modeset=1" 
       "i915.force_probe=9a49"
     ];
+
     kernelModules = [ 
       "kvm-intel"
     ];
@@ -26,8 +27,8 @@
     desktopManager.gnome.enable = false;
 
     videoDrivers = [ 
-      "modesetting" 
       "nvidia"
+      "modesetting" 
     ];
     
     dpi = 192;
@@ -47,6 +48,8 @@
 
     picom
     libinput-gestures
+
+    nvidia-vaapi-driver
   ];
 
   nixpkgs.config.packageOverrides = pkgs: {
@@ -59,6 +62,7 @@
       enable = true;
       enable32Bit = true;
       extraPackages = with pkgs;[ 
+        intel-compute-runtime
         intel-media-driver
         vaapiVdpau
         libvdpau-va-gl
@@ -68,8 +72,10 @@
 
     nvidia={
       modesetting.enable = true;
-      powerManagement.enable = false;
-      powerManagement.finegrained = false;
+      powerManagement = {
+        enable = false;
+        finegrained = false;
+      };
       
       open = false;
       nvidiaSettings = true;
@@ -83,6 +89,7 @@
     };
   };
 
+  nixpkgs.config.nvidia.acceptLicense = true;
   time.hardwareClockInLocalTime = false;
 }
 

@@ -3,7 +3,7 @@
 {
   home.file.".config/neofetch/config.conf".text = ''
     image_backend="kitty"
-    image_source="/etc/nixos/home/media/neofetch.png"
+    image_source="$HOME/.local/media/neofetch.png"
     image_size="350px"
     image_loop="on"
 

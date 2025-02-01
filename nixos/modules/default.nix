@@ -8,5 +8,6 @@
     ./qmk.nix
     ./touchpad.nix
     ./virtualisation.nix
+    # ./printer.nix
   ];
 }

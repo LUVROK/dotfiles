@@ -35,6 +35,10 @@
       source = ./config/power-menu.rasi;
       target = "rofi/config/power-menu.rasi";
     };
+    crypto-rasi = {
+      source = ./config/crypto-menu.rasi;
+      target = "rofi/config/crypto-menu.rasi";
+    };
     confirm-rasi = {
       source = ./config/confirm.rasi;
       target = "rofi/config/confirm.rasi";
