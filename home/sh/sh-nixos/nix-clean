@@ -9,5 +9,11 @@ nix_clean() {(
 )}
 
 nix_clean &&
-notify-send "nix cleaned successfully" && 
-paplay $HOME/.local/media/soundeffect/minecraft-sheep2.mp3
+
+if [ $? -eq 0 ]; then
+    notify-send "nix cleaned successfully"
+    paplay "$HOME/.local/media/soundeffect/minecraft-sheep2.mp3" &
+else
+    notify-send "nix cleaned failed"
+    paplay "$HOME/.local/media/soundeffect/minecraft-cave.mp3" &
+fi

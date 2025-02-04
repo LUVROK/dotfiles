@@ -186,6 +186,7 @@
     lock
     comma
     nix-index
+    woeusb
 
     # Development tools
     nodejs

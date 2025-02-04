@@ -1,6 +1,13 @@
 #!/bin/sh
 pushd ~/HOME/dotfiles
 sudo nixos-rebuild switch -I nixos-config=$HOME/HOME/dotfiles/configuration.nix &&
-notify-send "nixos-rebuild switch completed successfully" && 
-paplay $HOME/.local/media/soundeffect/minecraft-sheep2.mp3
+
+if [ $? -eq 0 ]; then
+    notify-send "nixos-rebuild switch completed successfully"
+    paplay "$HOME/.local/media/soundeffect/minecraft-sheep2.mp3" &
+else
+    notify-send "nixos-rebuild switch failed"
+    paplay "$HOME/.local/media/soundeffect/minecraft-cave.mp3" &
+fi
+
 popd

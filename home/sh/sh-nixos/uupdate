@@ -1,4 +1,10 @@
 #!/bin/sh
-nix-channel --update  &&
-notify-send "nix-channel update completed successfully" && 
-paplay $HOME/.local/media/soundeffect/minecraft-sheep2.mp3
+nix-channel --update &&
+
+if [ $? -eq 0 ]; then
+    notify-send "nix-channel update completed successfully"
+    paplay "$HOME/.local/media/soundeffect/minecraft-sheep2.mp3" &
+else
+    notify-send "nix-channel update failed"
+    paplay "$HOME/.local/media/soundeffect/minecraft-cave.mp3" &
+fi

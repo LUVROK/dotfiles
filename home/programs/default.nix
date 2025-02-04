@@ -3,14 +3,16 @@
 {
   imports = [
     ./neofetch.nix
+    ./ranger
+    # ./nnn
     ./vim/vim.nix
+    ./neovim
     ./rofi/rofi.nix
   ];
 
   home.file.".config/mpv".source = ./mpv;
 
   programs = {
-    ranger = (import ./ranger.nix { inherit pkgs; });
     kitty = (import ./kitty/kitty.nix { inherit pkgs; });
   };
 }
