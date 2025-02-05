@@ -4,6 +4,7 @@
   home.packages = with pkgs; [
     direnv
     kitty
+    fish
     neofetch
     p7zip
     tree-sitter

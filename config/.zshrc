@@ -17,7 +17,7 @@ zstyle ':autocomplete:*' max-errors 2 numeric
 export PROMPT='%~ > '
 
 # Дополнительные переменные окружения
-export EDITOR='vim' # Установка nano как стандартного редактора
+export EDITOR='nvim' # Установка nano как стандартного редактора
 export LANG=en_US.UTF-8 # Установка локали
 
 # Функции

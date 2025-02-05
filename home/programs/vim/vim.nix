@@ -1,7 +1,7 @@
 { pkgs, ... }:
 
 {
-  programs.vim = {
-    enable = true;
-  };
+  # programs.vim = {
+  #   enable = true;
+  # };
 }

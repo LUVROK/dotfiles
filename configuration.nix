@@ -54,7 +54,6 @@
     syntaxHighlighting.enable = true;
     ohMyZsh = {
       enable = true;
-      # theme = "robbyrussell";
       plugins = [
         "git"
         "npm"
@@ -272,7 +271,7 @@
     telegram-desktop
     obsidian
     mullvad-vpn
-    veracrypt
+    # veracrypt
     wasabiwallet
     syncthing
     spotify

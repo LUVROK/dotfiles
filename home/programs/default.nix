@@ -5,7 +5,7 @@
     ./neofetch.nix
     ./ranger
     # ./nnn
-    ./vim/vim.nix
+    # ./vim/vim.nix
     ./neovim
     ./rofi/rofi.nix
   ];

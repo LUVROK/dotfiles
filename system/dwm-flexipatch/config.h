@@ -497,6 +497,7 @@ static const Rule rules[] = {
 	RULE(.class = "firefox", .isfloating = 0)
 	RULE(.class = "obsidian", .isfloating = 0)
 	RULE(.class = "kitty", .isfloating = 0)
+	// RULE(.class = "kitty", .isfloating = 1, .floatpos = "50% 50% 85% 90%")
 	RULE(.class = "Spotify", .isfloating = 1, .floatpos = "50% 50% 95% 95%")
 	RULE(.class = "Psi+", .tags = 2, .isfloating = 1, .floatpos = "50% 50% 45% 65%")
 	RULE(.class = "qBittorrent", .tags = 1 << 8, .isfloating = 1, .floatpos = "50% 50% 90% 85%")

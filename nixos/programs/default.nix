@@ -5,5 +5,6 @@
     ./st/st.nix
     ./steam.nix
     ./amnezia-vpn.nix
+    ./overlays
   ];
 }

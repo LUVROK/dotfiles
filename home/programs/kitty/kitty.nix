@@ -46,5 +46,6 @@
     "ctrl+c" = "copy_or_interrupt";
     "ctrl+shift+c" = "copy_to_clipboard";
     "ctrl+v" = "paste_from_clipboard";
+    "ctrl+q" = "exit";
   };
 }

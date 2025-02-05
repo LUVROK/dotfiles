@@ -2,7 +2,7 @@
 
 {
   environment.variables = {
-    EDITOR = "VIM";
+    # EDITOR = "VIM";
     TERMINAL = "kitty";
     BROWSER = "firefox";
 
