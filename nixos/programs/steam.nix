@@ -1,9 +1,6 @@
-{ pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
 {
-  imports = [
-    # ./overlays/steam-nvidia.nix
-  ];
-
   programs.steam.enable = true;
+  programs.gamemode.enable = true;
 }

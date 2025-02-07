@@ -14,6 +14,10 @@
 
     kernelModules = [ 
       "kvm-intel"
+      "nvidia"
+      "nvidia_modeset"
+      "nvidia_uvm"
+      "nvidia_drm"
     ];
 
     kernelPackages = pkgs.linuxPackages_latest;
@@ -39,7 +43,6 @@
     libva-utils
     intel-gpu-tools
     nvtopPackages.full
-    vulkan-tools
     
     mesa
     mesa.drivers
@@ -50,6 +53,18 @@
     libinput-gestures
 
     nvidia-vaapi-driver
+    vulkan-tools
+    vulkan-headers
+    vulkan-loader
+    vulkan-validation-layers
+    vulkan-caps-viewer
+    cudatoolkit
+
+    intel-compute-runtime
+    intel-media-driver
+    vaapiVdpau
+    libvdpau-va-gl
+    vaapiIntel
   ];
 
   nixpkgs.config.packageOverrides = pkgs: {
@@ -67,6 +82,7 @@
         vaapiVdpau
         libvdpau-va-gl
         vaapiIntel
+        nvidia-vaapi-driver
       ]; 
     };
 
@@ -78,11 +94,12 @@
       };
       
       open = false;
-      nvidiaSettings = true;
+      nvidiaSettings = false;
       package = config.boot.kernelPackages.nvidiaPackages.production;
 
       prime = {
-        sync.enable = true;
+        # sync.enable = true;
+        offload.enable = true;
         intelBusId = "PCI:0:2:0";
         nvidiaBusId = "PCI:1:0:0";
       };

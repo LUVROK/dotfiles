@@ -6,7 +6,7 @@
 }:
 
 {
-  programs.amnezia-vpn.enable = true;
+  programs.amnezia-vpn.enable = false;
 
   environment.systemPackages = [ pkgs.amnezia-vpn ];
   services.dbus.packages = [ pkgs.amnezia-vpn ];

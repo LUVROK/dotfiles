@@ -1,5 +1,15 @@
 { config, lib, pkgs, ... }:
 
+
+let
+  nvidia-offload = pkgs.writeShellScriptBin "nvidia-offload" ''
+    export __NV_PRIME_RENDER_OFFLOAD=1
+    export __NV_PRIME_RENDER_OFFLOAD_PROVIDER=NVIDIA-G0
+    export __GLX_VENDOR_LIBRARY_NAME=nvidia
+    export __VK_LAYER_NV_optimus=NVIDIA_only
+    exec -a "$0" "$@"
+  '';
+in
 {
   imports = [
     <home-manager/nixos>
@@ -32,6 +42,7 @@
   };
 
   services = {
+    mozillavpn.enable = true;
     mullvad-vpn.enable = true;
     dbus.enable = true;
     displayManager.defaultSession = "none+dwm";
@@ -264,13 +275,14 @@
     vscodium
     element-desktop
     firefox
-    chromium    
+    chromium   
     mpv
     discord
     qbittorrent
     telegram-desktop
     obsidian
     mullvad-vpn
+    nvidia-offload
     # veracrypt
     wasabiwallet
     syncthing
