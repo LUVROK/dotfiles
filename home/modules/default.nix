@@ -3,5 +3,6 @@
 {
   imports = [
     ./cursor.nix
+    # ./autorandr
   ];
 }

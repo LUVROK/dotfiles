@@ -8,5 +8,6 @@
     ./dwmblocks.nix
     ./redshift.nix
     ./greenclip.nix
+    ./second-monitor.nix
   ];
 }

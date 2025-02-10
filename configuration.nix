@@ -252,6 +252,7 @@ in
     xcolor
     tmux
     evtest
+    arandr
 
     # Multimedia
     ffmpeg

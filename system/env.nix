@@ -2,7 +2,6 @@
 
 {
   environment.variables = {
-    # EDITOR = "VIM";
     TERMINAL = "kitty";
     BROWSER = "firefox";
 
@@ -13,18 +12,11 @@
     QT_SCALE_FACTOR = "1";
     QT_SCREEN_SCALE_FACTORS = "2;2";
 
-    PASSWORD_STORE_DIR="$HOME/HOME/wizzard/hogsmeade";
+    PASSWORD_STORE_DIR="$HOME/HOME/.pass-store-mount";
     GNUPGHOME="$HOME/.gnupg";
 
     TERM="xterm-256color";
     TOR_SOCKS_PORT = "9050";
-
-    LIBVA_DRIVER_NAME = "nvidia";
-    MOZ_X11_EGL="1";
-    MOZ_DISABLE_RDD_SANDBOX = "1";
-    # __GLX_VENDOR_LIBRARY_NAME = "nvidia";
-    # WLR_NO_HARDWARE_CURSORS = "1";
-    # NVD_BACKEND = "direct";
   };
 
   xdg.mime = {
@@ -56,6 +48,48 @@
     }
   '';
 
+  # environment.etc."X11/xorg.conf.d/10-nvidia.conf".text = ''
+  #   Section "ServerLayout"
+  #     Identifier "layout"
+  #     Screen "nvidia" 0 0
+  #   EndSection
+
+  #   Section "Module"
+  #       Load "modesetting"
+  #       Load "glx"
+  #   EndSection
+
+  #   Section "Device"
+  #     Identifier "nvidia"
+  #     Driver "nvidia"
+  #     BusID "PCI:1:0:0"
+  #     Option "AllowEmptyInitialConfiguration"
+  #   EndSection
+
+  #   Section "Device"
+  #     Identifier "intel"
+  #     Driver "modesetting"
+  #     Option "AccelMethod" "sna"
+  #   EndSection
+
+  #   Section "Screen"
+  #     Identifier     "nvidia"
+  #     Device         "nvidia"
+  #     DefaultDepth    24
+  #     Option         "AllowEmptyInitialConfiguration"
+  #     SubSection     "Display"
+  #       Depth       24
+  #       Modes      "nvidia-auto-select"
+  #     EndSubSection
+  #   EndSection
+
+  #   Section "Screen"
+  #     Identifier "intel"
+  #     Device "intel"
+  #   EndSection
+  # '';
+
+
   environment.etc."X11/xorg.conf.d/10-nvidia.conf".text = ''
     Section "ServerLayout"
       Identifier "layout"
@@ -67,7 +101,7 @@
       Identifier "nvidia"
       Driver "nvidia"
       BusID "PCI:1:0:0"
-      Option "PrimaryGPU" "true"
+      Option "PrimaryGPU" "false"
     EndSection
 
     Section "Screen"
@@ -87,6 +121,25 @@
       Device "intel"
     EndSection
   '';
+
+  # environment.etc."X11/xorg.conf.d/10-intel.conf".text = ''
+  #   Section "Device"
+  #     Identifier  "IntelGPU"
+  #     Driver      "modesetting"
+  #     BusID       "PCI:0:2:0"
+  #     Option "TearFree" "true"
+  #   EndSection
+  # '';
+
+  # environment.etc."X11/xorg.conf.d/20-nvidia-offload.conf".text = ''
+  #   Section "Device"
+  #     Identifier "NvidiaGPU"
+  #     Driver "nvidia"
+  #     BusID "PCI:1:0:0"
+  #     Option "AllowEmptyInitialConfiguration"
+  #     Option "PrimaryGPU" "false"
+  #   EndSection
+  # '';
 
   environment.etc."X11/xorg.conf.d/50-touchpad.conf".text = ''
     Section "InputClass"
@@ -109,18 +162,19 @@
 
     Section "Monitor"
       Identifier "HDMI-1-0"
-      Option "PreferredMode" "1920x1080"
+      Option "PreferredMode" "2560x1440"
       Option "Position" "3456 0"
-      Option "Scale" "2x2"
+      Option "Rate" "120.00"
     EndSection
 
     Section "Screen"
       Identifier "Screen1"
       Monitor "HDMI-1-0"
+      Device "modesetting"
       SubSection "Display"
         Depth 24
-        Modes "1920x1080"
-        Virtual 5376 2160
+        Modes "2560x1440"
+        Virtual 7296 2160
       EndSubSection
     EndSection
   '';

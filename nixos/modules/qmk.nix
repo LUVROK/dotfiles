@@ -7,6 +7,8 @@
     qmk
     vial
     via
+
+    ddcutil
   ];
 
   services.udev.extraRules = ''

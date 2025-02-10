@@ -72,7 +72,6 @@
   };
 
   hardware = {
-    # openrazer.enable = true;
     graphics = {
       enable = true;
       enable32Bit = true;
@@ -89,16 +88,15 @@
     nvidia={
       modesetting.enable = true;
       powerManagement = {
-        enable = false;
+        enable = true;
         finegrained = false;
       };
       
       open = false;
-      nvidiaSettings = false;
+      nvidiaSettings = true;
       package = config.boot.kernelPackages.nvidiaPackages.production;
 
       prime = {
-        # sync.enable = true;
         offload.enable = true;
         intelBusId = "PCI:0:2:0";
         nvidiaBusId = "PCI:1:0:0";
