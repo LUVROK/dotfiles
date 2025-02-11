@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, inputs, ... }:
 
 
 let
@@ -130,6 +130,12 @@ in
   programs.udevil.enable = true;  
 
   programs.thunar.enable = true;
+
+  nixpkgs.overlays = [
+    (final: prev: {
+      nix-alien = inputs.nix-alien.packages.${prev.system}.default;
+    })
+  ];
 
   environment.systemPackages = with pkgs; [
     # icons
@@ -298,6 +304,12 @@ in
     # appimage
     # appimagekit
     # appimage-run
+
+    # NIX
+    nix-index
+    nix-alien
+    nix-du
+    deploy-rs
   ];
 
   system.stateVersion = "24.05";
