@@ -20,7 +20,5 @@
 
     # utils
     haskellPackages.greenclip
-
-    dwmblocks
   ];
 }

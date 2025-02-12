@@ -4,5 +4,6 @@
   imports = [
     ./veracryt.nix
     ./extraShell.nix
+    ./firefox.nix
   ];
 }

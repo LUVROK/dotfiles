@@ -6,7 +6,7 @@
     BROWSER = "firefox";
 
     XCURSOR_PATH = lib.mkForce "/home/dash/.icons";
-    UDEVIL_CONF_PATH=/etc/udevil/udevil.conf;
+    UDEVIL_CONF_PATH= "/etc/udevil/udevil.conf";
 
     QT_AUTO_SCREEN_SCALE_FACTOR = "1";
     QT_SCALE_FACTOR = "1";

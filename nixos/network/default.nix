@@ -12,7 +12,6 @@
   ];
 
   networking = {
-    hostName = "nixos";
     useNetworkd = lib.mkForce true; # DHCP analog
     useDHCP = lib.mkForce false;
     usePredictableInterfaceNames = lib.mkDefault true;

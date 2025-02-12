@@ -12,7 +12,6 @@ let
 in
 {
   imports = [
-    <home-manager/nixos>
     ./system/env.nix
     ./system/dwm.nix
     ./system/nvidia.nix
@@ -77,7 +76,7 @@ in
   
   networking = {
     useDHCP = lib.mkDefault true;
-    hostName = "nixos";
+    hostName = "dash";
     networkmanager.enable = true;
     networkmanager.wifi.backend = "iwd";
     # nftables.enable = true;
@@ -130,12 +129,6 @@ in
   programs.udevil.enable = true;  
 
   programs.thunar.enable = true;
-
-  nixpkgs.overlays = [
-    (final: prev: {
-      nix-alien = inputs.nix-alien.packages.${prev.system}.default;
-    })
-  ];
 
   environment.systemPackages = with pkgs; [
     # icons
@@ -281,7 +274,6 @@ in
     monero-gui
     vscodium
     element-desktop
-    firefox
     chromium   
     mpv
     discord
@@ -307,7 +299,6 @@ in
 
     # NIX
     nix-index
-    nix-alien
     nix-du
     deploy-rs
   ];
