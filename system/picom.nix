@@ -24,17 +24,11 @@
       blur-method = "none";
       glx-no-stencil = true;
       glx-no-rebind-pixmap = true;
-      # xrender-sync-fence = true;
       use-damage = true;
 
-      # Exclude HDMI-1-0 from picom's effects
-      # paint-exclude = [ "monitor = 'HDMI-1'" ];
       fade-exclude = [ 
-        # "monitor = 'HDMI-1-0'"
         "_NET_WM_STATE@:32a *= '_NET_WM_STATE_FULLSCREEN'"
       ];
-      # shadow-exclude = [ "monitor = 'HDMI-1'" ];
-      # animation-exclude = [ "monitor = 'HDMI-1'" ];
     };
   };
 }

@@ -1,6 +1,6 @@
 #!/bin/sh
 pushd ~/HOME/dotfiles
-sudo nixos-rebuild switch -I nixos-config=$HOME/HOME/dotfiles/configuration.nix &&
+sudo nixos-rebuild --flake $HOME/HOME/dotfiles#dash switch
 
 if [ $? -eq 0 ]; then
     notify-send "nixos-rebuild switch completed successfully"

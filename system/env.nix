@@ -48,48 +48,6 @@
     }
   '';
 
-  # environment.etc."X11/xorg.conf.d/10-nvidia.conf".text = ''
-  #   Section "ServerLayout"
-  #     Identifier "layout"
-  #     Screen "nvidia" 0 0
-  #   EndSection
-
-  #   Section "Module"
-  #       Load "modesetting"
-  #       Load "glx"
-  #   EndSection
-
-  #   Section "Device"
-  #     Identifier "nvidia"
-  #     Driver "nvidia"
-  #     BusID "PCI:1:0:0"
-  #     Option "AllowEmptyInitialConfiguration"
-  #   EndSection
-
-  #   Section "Device"
-  #     Identifier "intel"
-  #     Driver "modesetting"
-  #     Option "AccelMethod" "sna"
-  #   EndSection
-
-  #   Section "Screen"
-  #     Identifier     "nvidia"
-  #     Device         "nvidia"
-  #     DefaultDepth    24
-  #     Option         "AllowEmptyInitialConfiguration"
-  #     SubSection     "Display"
-  #       Depth       24
-  #       Modes      "nvidia-auto-select"
-  #     EndSubSection
-  #   EndSection
-
-  #   Section "Screen"
-  #     Identifier "intel"
-  #     Device "intel"
-  #   EndSection
-  # '';
-
-
   environment.etc."X11/xorg.conf.d/10-nvidia.conf".text = ''
     Section "ServerLayout"
       Identifier "layout"
@@ -121,25 +79,6 @@
       Device "intel"
     EndSection
   '';
-
-  # environment.etc."X11/xorg.conf.d/10-intel.conf".text = ''
-  #   Section "Device"
-  #     Identifier  "IntelGPU"
-  #     Driver      "modesetting"
-  #     BusID       "PCI:0:2:0"
-  #     Option "TearFree" "true"
-  #   EndSection
-  # '';
-
-  # environment.etc."X11/xorg.conf.d/20-nvidia-offload.conf".text = ''
-  #   Section "Device"
-  #     Identifier "NvidiaGPU"
-  #     Driver "nvidia"
-  #     BusID "PCI:1:0:0"
-  #     Option "AllowEmptyInitialConfiguration"
-  #     Option "PrimaryGPU" "false"
-  #   EndSection
-  # '';
 
   environment.etc."X11/xorg.conf.d/50-touchpad.conf".text = ''
     Section "InputClass"

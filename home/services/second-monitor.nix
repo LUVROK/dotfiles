@@ -10,8 +10,8 @@
 {  
   systemd.user.services.config-monitor = {
     Unit = {
-      After = [ "graphical-session.target" "default.target" ];
-      Wants = [ "graphical-session.target" "default.target" ];
+      After = [ "graphical-session.target" "xdg-desktop-portal.service" "default.target" ];
+      Wants = [ "graphical-session.target" "xdg-desktop-portal.service" "default.target" ];
     };
 
     Service = {

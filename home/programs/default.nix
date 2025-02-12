@@ -3,6 +3,7 @@
 {
   imports = [
     ./neofetch.nix
+    ./firefox
     ./ranger
     # ./nnn
     # ./vim/vim.nix

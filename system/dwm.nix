@@ -26,7 +26,6 @@
 
   environment.systemPackages = with pkgs; [
     dmenu
-    # dmenu-rs
     j4-dmenu-desktop
   ];
 }
