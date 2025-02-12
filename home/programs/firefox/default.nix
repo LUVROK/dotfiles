@@ -10,16 +10,9 @@ in
     profiles.main = {
       isDefault = true;
 
-      extensions = with pkgs.nur.repos.rycee.firefox-addons; [
-          aw-watcher-web
-          privacy-badger
-          search-by-image
-          ublock-origin
-          vimium
-          ff2mpv
-        ] ++ (with pkgs.firefox-addons; [
-          simple-translate
-        ]);
+      # extensions = with pkgs.firefox-addons; [
+      #   simple-translate
+      # ];
 
       settings = {
         "privacy.donottrackheader.enabled" = true;

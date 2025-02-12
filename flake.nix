@@ -6,7 +6,6 @@
     home-manager.url = github:nix-community/home-manager;
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     nur.url = "github:nix-community/NUR";
-    nur.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = { self, nixpkgs, home-manager, nur, ... }@inputs: let
@@ -29,15 +28,14 @@
       extraSpecialArgs = {inherit inputs;};
     };
 
-
-    devShell.${system} = let
-      overlays = [nur.overlays.default];
-      pkgs = import nixpkgs {inherit system overlays;};
-    in
-      pkgs.mkShell {
-        buildInputs = [
-          pkgs.nur.repos.rycee.mozilla-addons-to-nix
-        ];
-      };
+    # devShell.${system} = let
+    #   overlays = [nur.overlays.default];
+    #   pkgs = import nixpkgs {inherit system overlays;};
+    # in
+    #   pkgs.mkShell {
+    #     buildInputs = [
+    #       pkgs.nur.repos.rycee.mozilla-addons-to-nix
+    #     ];
+    #   };
   };
 }
