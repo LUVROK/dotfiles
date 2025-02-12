@@ -21,12 +21,16 @@
         ./configuration.nix
       ];
     };
-
-    homeConfigurations."dash" = home-manager.lib.homeManagerConfiguration {
-      inherit pkgs;
-      modules = ["${self}/./home/home.nix"];
-      extraSpecialArgs = {inherit inputs;};
-    };
+    
+    homeConfigurations = (
+      import ./home {
+        inherit system home-manager;
+        username = "dash";
+        pkgs = import nixpkgs {
+          inherit system;
+        };
+      }
+    );
 
     # devShell.${system} = let
     #   overlays = [nur.overlays.default];
