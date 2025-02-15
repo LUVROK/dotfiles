@@ -20,5 +20,7 @@
 
     # utils
     haskellPackages.greenclip
+
+    # mergedScripts
   ];
 }

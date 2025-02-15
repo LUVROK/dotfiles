@@ -1,12 +1,97 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 
 let
-    baseDir = ".mozilla/firefox/oepss4ch.default";
+    baseDir = "${config.home.homeDirectory}/.mozilla/firefox";
 in 
 {
+  home.file.".mozilla/firefox/mankind.main/chrome/ShyFox".source = ./ShyFox/chrome/ShyFox;
+  home.file.".mozilla/firefox/mankind.main/chrome/userChrome.css".source = ./ShyFox/chrome/userChrome.css;
+  home.file.".mozilla/firefox/mankind.main/chrome/userContent.css".source = ./ShyFox/chrome/userContent.css;
+  home.file.".mozilla/firefox/mankind.main/chrome/1130469.png".source = ./ShyFox/chrome/1130469.png;
+
   programs.firefox = {
     enable = true;
     package = pkgs.firefox;
+
+    profiles = {
+      "textfox2" = {
+        id = 3;
+        isDefault = false;
+        path = "4q9o09eg.textfox2";
+        # extensions = ff-extensions;
+      };
+      "lowdpi" = {
+        id = 2;
+        isDefault = false;
+        path = "czgen8cr.lowdpi";
+        # extensions = ff-extensions;
+      };
+      "textfox" = {
+        id = 1;
+        isDefault = false;
+        path = "g4fs32ww.textfox";
+        # extensions = ff-extensions;
+      };
+      "default" = {
+        id = 0;
+        isDefault = true;
+        path = "oepss4ch.default";
+        # extensions = ff-extensions;
+
+        # extensions = [];
+      };
+
+      "main" = {
+        id = 4;
+        isDefault = false;
+        path = "mankind.main";
+
+        bookmarks = import ./bookmarks.nix;
+
+        search.default = "DuckDuckGo";
+
+        # userChrome = import ./ShyFox/chrome/userChrome.nix;
+        # userContent = import ./ShyFox/chrome/userContent.nix;
+
+        settings = {
+          "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
+          "sidebar.revamp" = false;
+          "svg.context-properties.content.enabled" = true;
+          "layout.css.has-selector.enabled" = true;
+
+          "browser.urlbar.suggest.calculator" = true;
+          "browser.urlbar.unitConversion.enabled" = true;
+          "browser.urlbar.trimHttps" = true;
+          "browser.urlbar.trimURLs" = true;
+
+          "widget.gtk.rounded-bottom-corners.enabled" = false;
+          "widget.gtk.ignore-bogus-leave-notify" = 1;
+
+          "layers.gpu-process.enabled" = true;
+          "layers.mlgpu.enabled" = true;
+          "dom.webgpu.enabled" = true;
+          "gfx.webrender.all" = true;
+
+          "media.gpu-process-decoder" = true;
+          "media.ffmpeg.vaapi.enabled" = true;
+          "media.rdd-ffmpeg.enabled" = true;
+          "media.ffvpx.enabled" = false;
+          "media.navigator.mediadatadecoder_vpx_enabled" = true;
+          "media.rdd-vpx.enabled" = false;
+        };
+
+        # extensions = with nur.repos.rycee.firefox-addons; [
+        #   canvasblocker
+        #   decentraleyes
+        #   sidebery
+        #   privacy-badger
+        #   stylus
+        #   multi-account-containers
+        #   ublock-origin
+        # ];
+      };
+    };
+
     # profiles.main = {
     #   isDefault = true;
 

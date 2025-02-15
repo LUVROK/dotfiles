@@ -14,6 +14,28 @@
   home.homeDirectory = "/home/dash";
   home.stateVersion = "24.05";
 
+  # pkgs.stdenv.mkDerivation {
+  #   name = "windows";
+  #   nativeBuildInputs = [ pkgs.copyDesktopItems ];
+  #   installPhase = ''
+  #     mkdir -p $out/bin $out/share
+  #     cp ${bin}/bin/windows $out/bin/
+  #     copyDesktopItems
+  #   '';
+  #   phases = [ "installPhase" ];
+    
+  #   desktopItems = [
+  #     (pkgs.makeDesktopItem {
+  #       name = "windows";
+  #       desktopName = "Windows";
+  #       icon = "windows95";
+  #       exec = "windows";
+  #       type = "Application";
+  #       startupWMClass = "windows";
+  #     })
+  #   ];
+  # };
+
   home.file.".local/bin".source = pkgs.runCommand "merge-folders" {} ''
     mkdir -p $out/sh-dwmblocks
     mkdir -p $out/sh-rofi
