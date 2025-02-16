@@ -79,8 +79,35 @@ in
         # userChrome = import ./ShyFox/chrome/userChrome.nix;
         # userContent = import ./ShyFox/chrome/userContent.nix;
 
-        settings = default_settings // {
-          "layout.css.devPixelsPerPx" = 1;
+        # settings = default_settings // {
+        #   "layout.css.devPixelsPerPx" = 1;
+        # };
+
+        settings = {
+          "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
+          "sidebar.revamp" = false;
+          "svg.context-properties.content.enabled" = true;
+          "layout.css.has-selector.enabled" = true;
+
+          "browser.urlbar.suggest.calculator" = true;
+          "browser.urlbar.unitConversion.enabled" = true;
+          "browser.urlbar.trimHttps" = true;
+          "browser.urlbar.trimURLs" = true;
+
+          "widget.gtk.rounded-bottom-corners.enabled" = false;
+          "widget.gtk.ignore-bogus-leave-notify" = 1;
+
+          "layers.gpu-process.enabled" = true;
+          "layers.mlgpu.enabled" = true;
+          "dom.webgpu.enabled" = true;
+          "gfx.webrender.all" = true;
+
+          "media.gpu-process-decoder" = true;
+          "media.ffmpeg.vaapi.enabled" = true;
+          "media.rdd-ffmpeg.enabled" = true;
+          "media.ffvpx.enabled" = false;
+          "media.navigator.mediadatadecoder_vpx_enabled" = true;
+          "media.rdd-vpx.enabled" = false;
         };
 
         extensions = with pkgs.nur.repos.rycee.firefox-addons; [

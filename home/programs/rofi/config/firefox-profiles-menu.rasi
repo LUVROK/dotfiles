@@ -60,10 +60,9 @@ window {
     padding:          0px;
     x-offset:         -40px;
 
-    width: 8ch;
-
-    location: east;
-    anchor: east;
+    width: 24ch;
+    location:    center;
+    anchor:      center;
 }
 
 element-text selected {
