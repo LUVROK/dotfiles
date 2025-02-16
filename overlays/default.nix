@@ -8,5 +8,9 @@
 }: 
 
 {
-  nixpkgs.overlays = [ inputs.nur.overlays.default ];
+  imports = [ 
+    ./extraShell.nix
+  ];
+  
+  nixpkgs.overlays = [ inputs.nur.overlay ];
 }

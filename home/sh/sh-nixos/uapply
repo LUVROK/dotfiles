@@ -1,6 +1,7 @@
 #!/bin/sh
 # pushd ~/HOME/dotfiles
 home-manager switch -f $HOME/HOME/dotfiles/home/home.nix &&
+# home-manager switch --flake $HOME/HOME/dotfiles#dash &&
 
 if [ $? -eq 0 ]; then
     notify-send "home-manager switch completed successfully"

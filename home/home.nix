@@ -1,9 +1,5 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, inputs, ... }:
 
-let
-  user = "dash";  # Замените на ваш юзер
-  homeDir = "/home/${user}";
-in
 {
   programs.home-manager.enable = true;
 
@@ -18,46 +14,27 @@ in
   home.homeDirectory = "/home/dash";
   home.stateVersion = "24.05";
 
-  # pkgs.stdenv.mkDerivation {
-  #   name = "windows";
-  #   nativeBuildInputs = [ pkgs.copyDesktopItems ];
-  #   installPhase = ''
-  #     mkdir -p $out/bin $out/share
-  #     cp ${bin}/bin/windows $out/bin/
-  #     copyDesktopItems
-  #   '';
-  #   phases = [ "installPhase" ];
-    
-  #   desktopItems = [
-  #     (pkgs.makeDesktopItem {
-  #       name = "windows";
-  #       desktopName = "Windows";
-  #       icon = "windows95";
-  #       exec = "windows";
-  #       type = "Application";
-  #       startupWMClass = "windows";
-  #     })
-  #   ];
-  # };
+  home.file.".local/bin".source = pkgs.runCommand "merge-folders" {} ''
+    mkdir -p $out/sh-rofi
+    mkdir -p $out/sh-others
+    mkdir -p $out/sh-nixos
+    cp -r ${./sh/sh-rofi}/* $out/sh-rofi
+    cp -r ${./sh/sh-others}/* $out/sh-others
+    cp -r ${./sh/sh-nixos}/* $out/sh-nixos
 
-  # home.file.".local/bin".source = pkgs.runCommand "merge-folders" {} ''
-  #   mkdir -p $out/sh-dwmblocks
-  #   mkdir -p $out/sh-rofi
-  #   mkdir -p $out/sh-others
-  #   mkdir -p $out/sh-nixos
-  #   cp -r ${./programs/dwmblocks-async/result/bin}/* $out/sh-dwmblocks
-  #   cp -r ${./sh/sh-dwmblocks}/* $out/sh-dwmblocks
-  #   cp -r ${./sh/sh-rofi}/* $out/sh-rofi
-  #   cp -r ${./sh/sh-others}/* $out/sh-others
-  #   cp -r ${./sh/sh-nixos}/* $out/sh-nixos
-  #   mv $out/sh-dwmblocks/dwmblocks $out/sh-dwmblocks/dwm-dwmblocks
-  # '';
+    mkdir -p $out/sh-dwmblocks
+    cp -r ${./sh/sh-dwmblocks}/* $out/sh-dwmblocks
+  '';
 
-  # home.file.".local/media".source = pkgs.runCommand "merge-folders" {} ''
-  #   mkdir -p $out/media
-  #   cp -r ${./media}/* $out
-  # '';
-  
+  nixpkgs.overlays = [
+    inputs.nur.overlays.default
+  ];
+
+  home.file.".local/media".source = pkgs.runCommand "merge-folders" {} ''
+    mkdir -p $out/media
+    cp -r ${./media}/* $out
+  '';
+
   home.file.".gnupg/gpg-agent.conf" = {
     text = ''
       pinentry-program ${pkgs.pinentry}/bin/pinentry

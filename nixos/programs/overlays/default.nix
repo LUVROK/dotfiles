@@ -3,6 +3,5 @@
 {
   imports = [
     ./veracryt.nix
-    ./extraShell.nix
   ];
 }

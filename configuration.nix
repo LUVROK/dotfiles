@@ -17,6 +17,7 @@ in
     ./system/nvidia.nix
     ./system/hardware-configuration.nix
     ./nixos
+    ./overlays
   ];
 
   hardware.enableAllFirmware = true;
@@ -255,6 +256,8 @@ in
 
     # Multimedia
     ffmpeg
+    # jellyfin
+    # jellyfin-media-player
 
     # shell
     zsh
@@ -269,6 +272,7 @@ in
     profanity
     unetbootin
     ncdu
+    sqlite
 
     # apps
     monero-gui

@@ -11,12 +11,8 @@
   outputs = { self, nixpkgs, home-manager, nur, ... }@inputs: let
     system = "x86_64-linux";
     pkgs = nixpkgs.legacyPackages.${system};
-    mergedScripts = import ./home/merged-scripts.nix { inherit (pkgs) stdenv lib runCommand; };
   in {
-    packages.${system} = {
-      default = mergedScripts;
-    };
-    overlays = import ./overlays {inherit inputs;};
+    # overlays = import ./overlays {inherit inputs;};
 
     nixosConfigurations.dash = nixpkgs.lib.nixosSystem {
       inherit system;
@@ -29,7 +25,7 @@
     homeConfigurations."dash" = home-manager.lib.homeManagerConfiguration {
       inherit pkgs;
       modules = ["${self}/./home/home.nix"];
-      extraSpecialArgs = {inherit inputs;};
+      extraSpecialArgs = {inherit inputs nur;};
     };
     
     # homeConfigurations = (

@@ -11,11 +11,11 @@
       WantedBy = [ "default.target" ];
     };
     Service = {
-      ExecStart = "${config.home.homeDirectory}/.local/bin/sh-dwmblocks/dwm-dwmblocks";
+      ExecStart = "/home/dash/HOME/dotfiles/home/programs/dwmblocks-async/result/bin/dwmblocks";
       Restart = "always";
       RestartSec = 3;
       Environment = [
-        "PATH=/home/dash/.local/bin/sh-dwmblocks:${lib.makeBinPath [
+        "PATH=/home/dash/HOME/dotfiles/home/programs/dwmblocks-async/result/bin/:/home/dash/.local/bin/sh-dwmblocks/:${lib.makeBinPath [
           pkgs.bash
           pkgs.coreutils
           pkgs.gnugrep

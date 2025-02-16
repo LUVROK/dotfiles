@@ -16,5 +16,10 @@ pkgs.stdenv.mkDerivation {
 
   makeFlags = [ "PREFIX=$(out)" ];
 
+  # installPhase = ''
+  #   mkdir -p $out/bin
+  #   cp ./result/bin/dwmblocks $out/bin/dwmblocks
+  # '';
+
   meta.mainProgram = "dwmblocks";
 }
