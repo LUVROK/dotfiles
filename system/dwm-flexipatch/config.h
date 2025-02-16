@@ -902,7 +902,7 @@ void spawn_with_lang_switch(const Arg *arg) {
 }
 
 static const char *termcmd[]  = { "kitty", NULL };
-static const char *firefoxcmd[]  = { "firefox", NULL };
+static const char *firefoxcmd[]  = { "select-profile-firefox--rofi", NULL };
 static const char *codiumcmd[]  = { "codium", NULL };
 static const char *obsidiancmd[]  = { "obsidian", NULL };
 static const char *screenshotcmd[] = { "dwm-flameshot", NULL };

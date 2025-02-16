@@ -1,5 +1,7 @@
 # !/bin/sh
 
+DIR="$(dirname "$0")"
+USERJS_BASED="$DIR/data/user.js"
 PROFILES=$(awk -F= '/^\[Profile/ {profile=$0} /Name=/ {print $2}' ~/.mozilla/firefox/profiles.ini)
 COUNT_OF_PROFILES=$(awk -F= '/^\[Profile/ {count++} END {print count}' ~/.mozilla/firefox/profiles.ini)
 WINDOW_WIDTH=$(xdotool getactivewindow getwindowgeometry --shell | grep WIDTH | cut -d '=' -f2)
@@ -19,7 +21,46 @@ else
     DPI=0.8
 fi
 
+##############
 PROFILE_DIR=$(echo "$HOME/.mozilla/firefox/"*"$chosen")
+# Проверяем, существует ли директория профиля
+if [ ! -d "$PROFILE_DIR" ]; then
+    notify-send "Firefox Profile Error" "Profile directory '$PROFILE_DIR' not found!"
+    exit 1
+fi
+##############
+
+##############
+USER_JS="$PROFILE_DIR/user.js"
+
+echo "$USERJS_BASED"
+
+# If user.js does not exist, create it from USERJS_BASED
+if [ ! -f "$USER_JS" ]; then
+    if [ -f "$USERJS_BASED" ]; then
+        cp "$USERJS_BASED" "$USER_JS"
+    else
+        echo "Base user.js not found! Creating a new one..."
+        cat <<EOF > "$USER_JS"
+user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
+user_pref("sidebar.revamp", false);
+user_pref("svg.context-properties.content.enabled", true);
+user_pref("layout.css.has-selector.enabled", true);
+EOF
+    fi
+fi
+##############
+
+##############
+# Update or add layout.css.devPixelsPerPx setting
+if grep -q 'layout.css.devPixelsPerPx' "$USER_JS"; then
+    sed -i "s/user_pref(\"layout.css.devPixelsPerPx\".*/user_pref(\"layout.css.devPixelsPerPx\", \"$DPI\");/" "$USER_JS"
+else
+    echo "user_pref(\"layout.css.devPixelsPerPx\", \"$DPI\");" >> "$USER_JS"
+fi
+
+notify-send "Firefox Profile" "Updated $USER_JS with DPI=$DPI"
+##############
 
 echo "user_pref('layout.css.devPixelsPerPx', '$DPI');" >> "$PROFILE_DIR/user.js"
 

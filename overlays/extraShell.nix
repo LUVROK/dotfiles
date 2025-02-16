@@ -15,9 +15,9 @@
     (pkgs.writeShellScriptBin "virt-manager" ''
       mullvad-exclude ${pkgs.virt-manager}/bin/virt-manager "$@"
     '')
-    (pkgs.writeShellScriptBin "firefox" ''
-      select-profile-firefox--rofi "$@"
-    '')
+    # (pkgs.writeShellScriptBin "firefox" ''
+    #   /home/dash/.local/bin/sh-rofi/select-profile-firefox--rofi "$@"
+    # '')
 
     # package = pkgs.firefox.overrideAttrs (old: {
     #   desktopItem = old.desktopItem.override {
