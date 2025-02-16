@@ -22,7 +22,7 @@
         home-manager.nixosModules.home-manager
         {
           home-manager.useGlobalPkgs = false;
-          home-manager.useUserPackages = false;
+          home-manager.useUserPackages = true;
           home-manager.extraSpecialArgs = {inherit inputs;};
           home-manager.backupFileExtension = "hm-backup";
           home-manager.users.dash = import "${self}/./home/home.nix";

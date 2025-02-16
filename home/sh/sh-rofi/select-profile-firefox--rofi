@@ -33,7 +33,8 @@ fi
 ##############
 USER_JS="$PROFILE_DIR/user.js"
 
-echo "$USERJS_BASED"
+# notify-send "Value of USERJS_BASED:"
+# echo "Value of USERJS_BASED: '$USERJS_BASED'"
 
 # If user.js does not exist, create it from USERJS_BASED
 if [ ! -f "$USER_JS" ]; then
