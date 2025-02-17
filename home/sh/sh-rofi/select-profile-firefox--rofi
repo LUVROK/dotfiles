@@ -82,22 +82,24 @@ else
 fi
 ##############
 
-# ############## backup all user.js files
-# # Find all profiles and their user.js files
-# for PROFILE_DIR in "$HOME/.mozilla/firefox/"*; do
-#     if [[ -d "$PROFILE_DIR" && -f "$PROFILE_DIR/user.js" ]]; then
-#         PROFILE_NAME=$(basename "$PROFILE_DIR")
-        
-#         # Create a corresponding folder in the backup directory
-#         mkdir -p "$BACKUP_DIR/$PROFILE_NAME"
+############## backup all user.js files
+# Find all profiles and their user.js files
+BACKUP_DIR="$HOME/HOME/firefox-backups"
+mkdir -p "$BACKUP_DIR"
 
-#         # Copy user.js file to the backup directory
-#         cp "$PROFILE_DIR/user.js" "$BACKUP_DIR/$PROFILE_NAME/user.js"
+for p_dir in "$HOME/.mozilla/firefox/"*; do
+    if [ -d "$p_dir" ]; then
+        PROFILE_NAME=$(basename "$p_dir")
+        USER_JS="$p_dir/user.js"
         
-#         echo "Backed up: $PROFILE_NAME/user.js"
-#     fi
-# done
-# ##############
+        if [ -f "$USER_JS" ]; then
+            TIMESTAMP=$(date +%Y-%m-%d_%H-%M-%S)
+            cp "$USER_JS" "$BACKUP_DIR/user-$PROFILE_NAME-$TIMESTAMP.js"
+            echo "Сохранён бэкап: $BACKUP_DIR/user-$PROFILE_NAME-$TIMESTAMP.js"
+        fi
+    fi
+done
+##############
 
 # check if profile already running
 if pgrep -f "firefox.*-P $chosen" > /dev/null; then
