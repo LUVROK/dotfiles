@@ -3,6 +3,7 @@
 # variables
 DIR="$(dirname "$0")"
 USERJS_BASED="$DIR/data/user.js"
+LOGS="$DIR/data/logs.firefoxSwitcher"
 PROFILES=$(awk -F= '/^\[Profile/ {profile=$0} /Name=/ {print $2}' ~/.mozilla/firefox/profiles.ini)
 COUNT_OF_PROFILES=$(awk -F= '/^\[Profile/ {count++} END {print count}' ~/.mozilla/firefox/profiles.ini)
 WINDOW_WIDTH=$(xdotool getactivewindow getwindowgeometry --shell | grep WIDTH | cut -d '=' -f2)
@@ -16,7 +17,8 @@ ddir="$HOME/.config/rofi/config"
 # options="XMR\nLTC\nBTC\nETC\nZEC\nETH\nBCH\nXRPH\n1INCH"
 chosen="$(echo -e "$PROFILES" | $rofi_command -dmenu -selected-row $COUNT_OF_PROFILES)"
 
-notify-send $WINDOW_WIDTH
+chmod 644 "$LOGS"
+echo "$WINDOW_WIDTH" >> "$LOGS"
 
 if [ "$WINDOW_WIDTH" -gt 2560 ]; then
     DPI=1
