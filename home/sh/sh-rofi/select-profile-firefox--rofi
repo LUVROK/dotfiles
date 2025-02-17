@@ -1,5 +1,6 @@
 # !/bin/sh
 
+# variables
 DIR="$(dirname "$0")"
 USERJS_BASED="$DIR/data/user.js"
 PROFILES=$(awk -F= '/^\[Profile/ {profile=$0} /Name=/ {print $2}' ~/.mozilla/firefox/profiles.ini)
@@ -15,6 +16,8 @@ ddir="$HOME/.config/rofi/config"
 # options="XMR\nLTC\nBTC\nETC\nZEC\nETH\nBCH\nXRPH\n1INCH"
 chosen="$(echo -e "$PROFILES" | $rofi_command -dmenu -selected-row $COUNT_OF_PROFILES)"
 
+notify-send $WINDOW_WIDTH
+
 if [ "$WINDOW_WIDTH" -gt 2560 ]; then
     DPI=1
 else
@@ -25,7 +28,6 @@ fi
 PROFILE_DIR=$(echo "$HOME/.mozilla/firefox/"*"$chosen")
 # Проверяем, существует ли директория профиля
 if [ ! -d "$PROFILE_DIR" ]; then
-    notify-send "Firefox Profile Error" "Profile directory '$PROFILE_DIR' not found!"
     exit 1
 fi
 ##############
@@ -61,7 +63,22 @@ else
 fi
 ##############
 
-# echo "user_pref('layout.css.devPixelsPerPx', '$DPI');" >> "$PROFILE_DIR/user.js"
+# ############## backup all user.js files
+# # Find all profiles and their user.js files
+# for PROFILE_DIR in "$HOME/.mozilla/firefox/"*; do
+#     if [[ -d "$PROFILE_DIR" && -f "$PROFILE_DIR/user.js" ]]; then
+#         PROFILE_NAME=$(basename "$PROFILE_DIR")
+        
+#         # Create a corresponding folder in the backup directory
+#         mkdir -p "$BACKUP_DIR/$PROFILE_NAME"
+
+#         # Copy user.js file to the backup directory
+#         cp "$PROFILE_DIR/user.js" "$BACKUP_DIR/$PROFILE_NAME/user.js"
+        
+#         echo "Backed up: $PROFILE_NAME/user.js"
+#     fi
+# done
+# ##############
 
 # check if profile already running
 if pgrep -f "firefox.*-P $chosen" > /dev/null; then
