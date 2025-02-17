@@ -8,7 +8,7 @@ TARGET_LOGS_FILE="/tmp/logs_firefoxSwitcher.txt"
 
 PROFILES=$(awk -F= '/^\[Profile/ {profile=$0} /Name=/ {print $2}' ~/.mozilla/firefox/profiles.ini)
 COUNT_OF_PROFILES=$(awk -F= '/^\[Profile/ {count++} END {print count}' ~/.mozilla/firefox/profiles.ini)
-WINDOW_WIDTH=$(xdotool getactivewindow getwindowgeometry --shell | grep WIDTH | cut -d '=' -f2)
+WINDOW_WIDTH=$(xdotool getmouselocation --shell | grep "X=" | cut -d '=' -f2)
 
 rofi_command="rofi -theme $DIR/data/firefox-profiles-menu.rasi"
 
@@ -17,7 +17,7 @@ chosen="$(echo -e "$PROFILES" | $rofi_command -dmenu -selected-row $COUNT_OF_PRO
 
 echo "$WINDOW_WIDTH" >> "$TARGET_LOGS_FILE"
 
-if [ -z "$WINDOW_WIDTH" ] || [ "$WINDOW_WIDTH" -gt 2560 ]; then
+if [ -z "$WINDOW_WIDTH" ] || [ "$WINDOW_WIDTH" -le 3456 ]; then
     DPI=1
 else
     DPI=0.8
