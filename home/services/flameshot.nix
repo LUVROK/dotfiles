@@ -12,11 +12,11 @@
     Unit = {
       Description = "Flameshot screenshot tool";
       Requires = [ "tray.target" ];
-      After = [ "graphical-session-pre.target" "tray.target" ];
+      After = [ "default.target" "graphical-session-pre.target" "tray.target" ];
       PartOf = [ "graphical-session.target" ];
     };
 
-    Install = { WantedBy = [ "graphical-session.target" ]; };
+    Install = { WantedBy = [ "default.target" "graphical-session.target" ]; };
 
     Service = {
       ExecStart = "${pkgs.flameshot}/bin/flameshot";

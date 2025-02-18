@@ -1,5 +1,5 @@
 {
-  description = "My NixOS Config with Home Manager";
+  description = "NixOS + DWM Configuration (Flakes)";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
