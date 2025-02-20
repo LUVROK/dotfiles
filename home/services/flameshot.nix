@@ -12,7 +12,7 @@
     Unit = {
       Description = "Flameshot screenshot tool";
       Requires = [ "tray.target" ];
-      After = [ "default.target" "graphical-session-pre.target" "tray.target" ];
+      After = [ "default.target" "graphical-session-pre.target" "tray.target" "display-manager.service" ];
       PartOf = [ "graphical-session.target" ];
     };
 

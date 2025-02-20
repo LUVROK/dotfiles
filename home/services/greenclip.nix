@@ -4,7 +4,7 @@
   systemd.user.services.greenclip = {
     Unit = {
       Description = "Greenclip clipboard management daemon";
-      After = [ "graphical-session.target" ];
+      After = [ "graphical-session.target" "display-manager.service" ];
     };
 
     Service = {

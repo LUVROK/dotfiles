@@ -12,7 +12,12 @@
 
   home.username = "dash";
   home.homeDirectory = "/home/dash";
-  home.stateVersion = "24.05";
+  home.stateVersion = "24.11";
+
+  xresources.properties = {
+    "Xcursor.size" = 32;
+    "Xft.dpi" = 192;
+  };
 
   home.file.".local/bin".source = pkgs.runCommand "merge-folders" {} ''
     mkdir -p $out/sh-rofi
@@ -25,10 +30,6 @@
     mkdir -p $out/sh-dwmblocks
     cp -r ${./sh/sh-dwmblocks}/* $out/sh-dwmblocks
   '';
-
-  nixpkgs.overlays = [
-    inputs.nur.overlays.default
-  ];
 
   home.file.".local/media".source = pkgs.runCommand "merge-folders" {} ''
     mkdir -p $out/media

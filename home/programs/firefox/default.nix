@@ -1,4 +1,4 @@
-{ pkgs, config, ... }:
+{ pkgs, config, inputs, ... }:
 
 let
     baseDir = "${config.home.homeDirectory}/.mozilla/firefox";
@@ -56,15 +56,15 @@ in
         #   "layout.css.devPixelsPerPx" = 1;
         # };
 
-        extensions = with pkgs.nur.repos.rycee.firefox-addons; [
-          canvasblocker
-          decentraleyes
-          sidebery
-          privacy-badger
-          stylus
-          multi-account-containers
-          ublock-origin
-        ];
+        # extensions.packages = with pkgs.nur.repos.rycee.firefox-addons; [
+        #   canvasblocker
+        #   decentraleyes
+        #   sidebery
+        #   privacy-badger
+        #   stylus
+        #   multi-account-containers
+        #   ublock-origin
+        # ];
       };
     };
 

@@ -11,6 +11,4 @@
   imports = [ 
     ./extraShell.nix
   ];
-  
-  nixpkgs.overlays = [ inputs.nur.overlay ];
 }
