@@ -47,7 +47,7 @@ in
         isDefault = false;
         path = "mankind.main";
 
-        # search.default = "DuckDuckGo";
+        search.default = "DuckDuckGo";
 
         # userChrome = import ./ShyFox/chrome/userChrome.nix;
         # userContent = import ./ShyFox/chrome/userContent.nix;

@@ -251,6 +251,7 @@ in
     tmux
     evtest
     arandr
+    keepassxc
 
     # Multimedia
     ffmpeg
@@ -305,5 +306,5 @@ in
     deploy-rs
   ];
 
-  system.stateVersion = "24.05";
+  system.stateVersion = "24.11";
 }
