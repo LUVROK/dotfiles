@@ -1,5 +1,6 @@
 #!/bin/sh
 pushd ~/HOME/dotfiles
+sudo rm -rf $HOME/.mozilla/firefox/*/user.js &&
 sudo nixos-rebuild --flake $HOME/HOME/dotfiles#dash switch
 
 if [ $? -eq 0 ]; then

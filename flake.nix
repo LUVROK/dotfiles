@@ -30,17 +30,17 @@
           home-manager.useGlobalPkgs = false;
           home-manager.useUserPackages = true;
           home-manager.extraSpecialArgs = {inherit inputs;};
-          home-manager.backupFileExtension = "hm-backup";
+          home-manager.backupFileExtension = "backup";
           home-manager.users.dash = import "${self}/./home/home.nix";
         }
       ];
     };
 
-    # homeConfigurations."dash" = home-manager.lib.homeManagerConfiguration {
-    #   inherit pkgs;
-    #   modules = ["${self}/./home/home.nix"];
-    #   extraSpecialArgs = {inherit inputs nur;};
-    # };
+    homeConfigurations."dash" = home-manager.lib.homeManagerConfiguration {
+      inherit pkgs;
+      modules = ["${self}/./home/home.nix"];
+      extraSpecialArgs = {inherit inputs nur;};
+    };
     
     # homeConfigurations = (
     #   import ./home/home.nix {

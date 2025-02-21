@@ -12,14 +12,17 @@
     Unit = {
       Description = "Flameshot screenshot tool";
       Requires = [ "tray.target" ];
-      After = [ "default.target" "graphical-session-pre.target" "tray.target" "display-manager.service" ];
-      PartOf = [ "graphical-session.target" ];
+      After = [ "display-manager.service" "default.target" "graphical-session.target" "tray.target" ];
     };
 
     Install = { WantedBy = [ "default.target" "graphical-session.target" ]; };
 
     Service = {
       ExecStart = "${pkgs.flameshot}/bin/flameshot";
+      Environment = [
+        "DISPLAY=:0"
+        "XAUTHORITY=${config.home.homeDirectory}/.Xauthority"
+      ];
       Restart = "on-abort";
     };
   };
