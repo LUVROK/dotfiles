@@ -6,10 +6,9 @@ STATE_FILE="/tmp/last_coin.txt"
 SOURCE_FILE="$DIR/data/coins.json"
 
 check_file_coinst_exist() { 
-    if [ ! -f "$TARGET_FILE" ]; then
-        if [ -f "$SOURCE_FILE" ]; then
-            CONTENT=$(cat "$SOURCE_FILE")
-            echo $CONTENT > $TARGET_FILE
+    if [ ! -s "$TARGET_FILE" ] || [ -z "$(jq . "$TARGET_FILE" 2>/dev/null)" ]; then
+        if [ -f "$SOURCE_FILE" ] && jq . "$SOURCE_FILE" >/dev/null 2>&1; then
+            cat "$SOURCE_FILE" > "$TARGET_FILE"
         else
             exit 1
         fi
@@ -95,7 +94,8 @@ check_file_coinst_exist
 
 if [ -n "$BLOCK_BUTTON" ]; then
     case "$BLOCK_BUTTON" in
-        1) get_coin_price false;;
+        1) 
+            get_coin_price false;;
         2) 
             update_price
             get_coin_price true

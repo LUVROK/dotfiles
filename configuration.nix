@@ -277,6 +277,8 @@ in
     monero-gui
     vscodium
     element-desktop
+    jitsi-meet-electron
+    simplex-chat-desktop
     chromium   
     mpv
     discord
