@@ -161,10 +161,8 @@ in
     coreutils
     wget
     curl
-    gitAndTools.gitFull
     nix-prefetch-git
     nix-output-monitor
-    gh # github cli
     man
     unzip
     unrar
@@ -195,6 +193,9 @@ in
     comma
     nix-index
     woeusb
+
+    # gitAndTools.gitFull
+    # gh
 
     # Development tools
     nodejs
