@@ -398,10 +398,12 @@ const char *poscmd[] = {"wmctrl", "-r", "spterm", "-e", "0,100,200,-1,-1", NULL 
 
 const char *spcmd1[] = {"st", "-n", "spterm", "-g", "120x34", NULL };
 const char *spcmd2[] = {"st", "-n", "alsamixer", "-g", "48x24", "-e", "alsamixer", "-c", "1", NULL };
+// const char *spcmd3[] = {"kitty", "-n", "neofetch", NULL };
 static Sp scratchpads[] = {
    /* name          cmd  */
 	{"spterm",      spcmd1},
 	{"alsamixer",    spcmd2},
+	// {"kitty",    spcmd3},
 };
 #endif // SCRATCHPADS_PATCH
 
@@ -508,6 +510,7 @@ static const Rule rules[] = {
 	#elif SCRATCHPADS_PATCH
 	RULE(.instance = "spterm", .tags = SPTAG(0), .isfloating = 1)
 	RULE(.instance = "alsamixer", .tags = SPTAG(1), .isfloating = 1)
+	// RULE(.instance = "kitty", .tags = SPTAG(2), .isfloating = 1)
 	#endif // SCRATCHPADS_PATCH
 };
 
@@ -949,6 +952,7 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_w,          spawn,                  SHCMD("dwm-power_menu") },
 
 	{ MODKEY, 						XK_a, togglescratch, {.ui = 1 } },
+	{ MODKEY, 						XK_k, togglescratch, {.ui = 2 } },
 
 	/* XF86Keys */
     {0, XF86XK_AudioMute, spawn, {.v = mutevol}},

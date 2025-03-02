@@ -102,8 +102,8 @@ done
 ##############
 
 # check if profile already running
-if pgrep -f "firefox.*-P $chosen" > /dev/null; then
-    notify-send "Firefox Profile Warning" "Profile '$chosen' is already running!"
-else
-    firefox --no-remote -P "$chosen" 2>/dev/null
-fi
+# if pgrep -f "firefox.*-P $chosen" > /dev/null; then
+#     notify-send "Firefox Profile Warning" "Profile '$chosen' is already running!"
+# else
+firefox --no-remote -P "$chosen" 2>/dev/null
+# fi

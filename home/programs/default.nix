@@ -8,6 +8,7 @@
     # ./nnn
     # ./vim/vim.nix
     ./neovim
+    ./vim
     ./git.nix
     ./rofi/rofi.nix
   ];

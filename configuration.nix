@@ -125,7 +125,6 @@ in
   };
 
   security.polkit.enable = true;
-  programs.udevil.enable = true;  
 
   programs.thunar.enable = true;
 
@@ -157,7 +156,6 @@ in
     # Basic utilities
     bash
     lsof
-    sshfs
     coreutils
     wget
     curl
@@ -176,11 +174,9 @@ in
     inetutils
     brightnessctl
     usbutils
-    udevil
     bc
     powertop
     vnstat
-    exfat
     testdisk
     feh
     pciutils
@@ -193,10 +189,7 @@ in
     comma
     nix-index
     woeusb
-
-    # gitAndTools.gitFull
-    # gh
-
+    
     # Development tools
     nodejs
     nodePackages.bower
