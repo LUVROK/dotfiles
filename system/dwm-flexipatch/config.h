@@ -963,6 +963,7 @@ static const Key keys[] = {
 	{0, XK_Print, spawn, {.v = screenshotcmd } },
 
 	{ MODKEY|Mod1Mask, XK_f, togglefloating, {0} },
+	{ MODKEY|Mod1Mask, XK_c, spawn, SHCMD("dwm-center-window") },
 	{ MODKEY|Mod1Mask, XK_Left, spawn, SHCMD("sb-dwm-crypto_menu") },
 	
 	#if KEYMODES_PATCH
