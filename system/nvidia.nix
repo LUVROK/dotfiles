@@ -8,8 +8,13 @@
     };
 
     kernelParams = [
+      "splash"
+      "quiet"
       "nvidia-drm.modeset=1" 
       "i915.force_probe=9a49"
+      "usbcore.autosuspend=-1"
+      "acpi_enforce_resources=lax"
+      "acpi_rev_override=5" # If your BIOS artificially underestimates the ACPI to version less than 4.0, and the core is waiting for at least 4.0, if you see errors in dmesg about bios version
     ];
 
     kernelModules = [ 
@@ -75,7 +80,7 @@
     graphics = {
       enable = true;
       enable32Bit = true;
-      extraPackages = with pkgs;[ 
+      extraPackages = with pkgs; [ 
         intel-compute-runtime
         intel-media-driver
         vaapiVdpau

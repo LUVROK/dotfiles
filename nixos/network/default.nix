@@ -7,7 +7,7 @@
     # ./fast-tcp.nix
     # ./systemd.nix
     # ./openssh.nix
-    ./networkmanager.nix
+    ./network.nix
     ./wireless.nix
   ];
 

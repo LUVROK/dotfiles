@@ -2,8 +2,6 @@
 
 {
   imports = [
-    ./st
-    ./overlays
-    ./steam.nix
+    ./st.nix
   ];
 }

@@ -7,7 +7,6 @@
     qmk
     vial
     via
-
     ddcutil
   ];
 

@@ -16,8 +16,4 @@
       clear_password = true;
     };
   };
-
-  environment.systemPackages = with pkgs; [
-    cmatrix    
-  ];
 }
