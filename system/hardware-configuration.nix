@@ -19,9 +19,12 @@
     [ { device = "/dev/disk/by-uuid/69cd13c1-0608-4c52-8947-2a3ae000e4f3"; }
     ];
 
+  hardware.enableAllFirmware = true;
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = true;
+  
   services.blueman.enable = true;
+  services.thermald.enable = true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;

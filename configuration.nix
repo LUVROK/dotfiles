@@ -12,18 +12,14 @@ let
 in
 {
   imports = [
-    ./system/env.nix
-    ./system/dwm.nix
-    ./system/nvidia.nix
-    ./system/hardware-configuration.nix
+    ./system
     ./nixos
     ./overlays
   ];
 
-  hardware.enableAllFirmware = true;
-  programs.xwayland.enable = true;
+  nixpkgs.config.allowUnfree = true;
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-  services.thermald.enable = lib.mkDefault true;
   time.timeZone = "Europe/Moscow";
 
   i18n = {
@@ -42,46 +38,9 @@ in
   };
 
   services = {
-    mozillavpn.enable = true;
     mullvad-vpn.enable = true;
     dbus.enable = true;
     displayManager.defaultSession = "none+dwm";
-
-    xserver = {
-      xkb = {
-        variant = "";
-        options = "";
-        layout = "us,ru";
-      };
-
-      displayManager.gdm.enable = false;
-    };
-  };
-
-  programs.zsh = {
-    enable = true;
-    autosuggestions.enable = true;
-    zsh-autoenv.enable = true;
-    syntaxHighlighting.enable = true;
-    ohMyZsh = {
-      enable = true;
-      plugins = [
-        "git"
-        "npm"
-        "history"
-        "node"
-        "deno"
-      ];
-    };
-  };
-  
-  networking = {
-    useDHCP = lib.mkDefault true;
-    hostName = "dash";
-    networkmanager.enable = true;
-    networkmanager.wifi.backend = "iwd";
-    # nftables.enable = true;
-    # nameservers = [ "127.0.0.1" ];
   };
 
   users.groups.libvirt = {};
@@ -105,77 +64,49 @@ in
       "plugdev"
       "storage"
       "input"
-      # "lp" # printer
       "dialout" # for microcontrollers
-      # "openrazer"
     ];
-    shell = pkgs.zsh;
   };
 
-  users.users.root = {
-    shell = pkgs.zsh;
-  };
-
-  nixpkgs.config.allowUnfree = true;
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
-
-  programs.chromium = {
-    enable = true;
-    extraOpts = {};
-  };
+  users.users.root.shell = pkgs.zsh;
+  users.users.dash.shell = pkgs.zsh;
 
   security.polkit.enable = true;
-
   programs.thunar.enable = true;
 
   environment.systemPackages = with pkgs; [
-    # icons
-    adwaita-icon-theme
-    gtk-engine-murrine
-    gtk3
-    vimix-gtk-themes
-
-    # proxy
-    orjail
-    vopono
-    proxychains
-    firejail
-    openvpn
-    wireguard-tools
-
-    # dependebs
+    # --- dependebs ---
     glibc
     glib
     gcc
-    go
     cmake
-    qt5.qtbase
-    haskellPackages.xmobar
-    haskellPackages.pandoc
+    buildPackages.gnumake
 
-    # Basic utilities
+    # --- basic utilities ---
     bash
     lsof
     coreutils
     wget
     curl
     nix-prefetch-git
-    nix-output-monitor
+    nix-index
     man
     unzip
     unrar
-    p7zip # 7z
+    p7zip
+    zip 
+    htop
     (btop.override {cudaSupport = true;})
-    libinput
     killall
-    libreoffice
-    dig  
-    nmap  
-    inetutils
+    dig
+    nmap
+    inetutils # telnet, ftp, hostname, etc
     brightnessctl
     usbutils
     bc
     powertop
+    lshw
+    mesa-demos
     vnstat
     testdisk
     feh
@@ -184,122 +115,57 @@ in
     e2fsprogs
     acpi
     util-linux
-    calcurse
-    lock
-    comma
-    nix-index
+    calcurse # calendar in terminal
     woeusb
-    
-    # Development tools
-    nodejs
-    nodePackages.bower
-    nodePackages.gulp
-    yarn    
+    unetbootin
 
-    # Networking
+    # --- development tools ---
+    nodejs
+    yarn
+
+    # --- networking ---
     openssl
     iptables
     iwd
 
-    # System tools
-    gparted
-    kdiff3
-    lshw
-    mlocate
-    electron
-    mesa-demos
+    # --- system tools ---
     libnotify
-    wirelesstools
     jq
-    zip
-    arduino
-    blueman
-    gnome-disk-utility
-    mediawriter
-    gparted
 
-    # X11
-    xorg.xrandr
-    xorg.xinit
-    xorg.xsetroot
-    xorg.xcursorthemes
-    xorg.xev
-    xorg.xorgserver
-    xorg.xf86inputlibinput
-    # xorg.xf86videointel # not support anymore
-    xorg.xwininfo
-    xorg.libX11
-    xorg.libX11.dev
-    xorg.xmodmap
-    xorg.xdpyinfo
-    xorg.libXinerama
-    xdg-desktop-portal
-    xsettingsd
-    xclip
-    buildPackages.gnumake
-    xkb-switch
-    xwinwrap
-    wmctrl
-    xdotool
-    xcolor
-    tmux
-    evtest
-    arandr
-    keepassxc
-
-    # Multimedia
+    # --- multimedia ---
     ffmpeg
-    # jellyfin
-    # jellyfin-media-player
-
-    # shell
-    zsh
-    oh-my-zsh
-    zsh-powerlevel10k
-    zsh-autocomplete
-    zsh-syntax-highlighting
-    zsh-autosuggestions
     gpa
-    htop
-    trash-cli
-    profanity
-    unetbootin
+    # profanity # not use by now
     ncdu
-    sqlite
 
-    # apps
+    # --- apps ---
     monero-gui
     vscodium
-    element-desktop
-    jitsi-meet-electron
-    simplex-chat-desktop
-    chromium   
+    chromium
     mpv
-    discord
     qbittorrent
     telegram-desktop
     obsidian
     mullvad-vpn
-    nvidia-offload
-    # veracrypt
     wasabiwallet
     syncthing
     spotify
+    libreoffice
+    blueman
+
+    # --- talking ---
+    discord
+    element-desktop
+    simplex-chat-desktop
+    # jitsi-meet-electron # not use by now
     psi-plus
-    # bisq-desktop # not support anymore
-    prismlauncher
-    caffeine-ng
     irssi
-    myxer
 
-    # appimage
-    # appimagekit
-    # appimage-run
+    # --- games ---
+    prismlauncher
 
-    # NIX
-    nix-index
-    nix-du
-    deploy-rs
+    # --- bash ---
+    nvidia-offload
   ];
 
   system.stateVersion = "24.11";

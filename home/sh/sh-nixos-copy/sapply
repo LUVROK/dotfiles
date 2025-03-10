@@ -1,0 +1,26 @@
+#!/bin/sh
+
+# Получаем абсолютный путь к директории скрипта
+DIR="$(realpath "$(dirname "$0")")"
+
+# Папки копирования
+SOURCE_DIR="$DIR/../../"
+DEST_DIR="$HOME/.local/sh/"
+
+# Создаём SOURCE_DIR, если его нет
+mkdir -p "$DEST_DIR"
+mkdir -p "$SOURCE_DIR"
+
+# Проверяем, существует ли SOURCE_DIR (на случай, если его не удалось создать)
+if [ ! -d "$SOURCE_DIR" ]; then
+    echo "Ошибка: Не удалось создать исходную папку '$SOURCE_DIR'."
+    exit 1
+fi
+
+# Создаём DEST_DIR, если его нет
+mkdir -p "$DEST_DIR"
+
+# Копируем файлы
+cp -r "$SOURCE_DIR" "$DEST_DIR"
+
+echo "Копирование завершено: $SOURCE_DIR -> $DEST_DIR"

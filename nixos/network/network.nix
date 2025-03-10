@@ -2,19 +2,8 @@
 
 {
   networking = { 
-    # defaultGateway = { address = "192.168.0.92"; interface = "wlan0"; };
+    hostName = "dash";
 
-    # nameservers = [ "1.1.1.1" "8.8.8.8" ]; # DNS-servers
-
-    # interfaces.wlan0.ipv4.addresses = [
-    #   {
-    #     address = "192.168.0.92"; # static ip
-    #     prefixLength = 24;
-    #   }
-    # ];
-    # useDHCP = false;
-    # usePredictableInterfaceNames = true;
-    
     networkmanager = {
       enable = true;
       dns = "systemd-resolved";

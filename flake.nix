@@ -13,8 +13,6 @@
     system = "x86_64-linux";
     pkgs = nixpkgs.legacyPackages.${system};
   in {
-    # overlays = import ./overlays {inherit inputs;};
-
     nixosConfigurations.dash = nixpkgs.lib.nixosSystem {
       inherit system;
       specialArgs = { inherit inputs; };

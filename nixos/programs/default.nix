@@ -4,6 +4,7 @@
   imports = [
     ./st
     ./overlays
+    ./zsh
     ./steam.nix
   ];
 }
