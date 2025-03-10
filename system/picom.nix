@@ -3,10 +3,12 @@
 {
   services.picom = {
     enable = true;
-    backend = "glx";
+    backend = "egl"; # feels better than glx
     vSync = true;
 
     settings = {
+      dbus = true;
+
       fading = true;
       fade-in-step = 0.03;
       fade-out-step = 0.03;
@@ -22,8 +24,8 @@
       experimental-backends = false;
 
       blur-method = "none";
-      glx-no-stencil = true;
-      glx-no-rebind-pixmap = true;
+      # glx-no-stencil = true;
+      # glx-no-rebind-pixmap = true;
       use-damage = true;
 
       fade-exclude = [ 
