@@ -17,6 +17,8 @@
 
     TERM="xterm-256color";
     TOR_SOCKS_PORT = "9050";
+
+    MOZ_X11_EGL = "1";
   };
 
   xdg.mime = {

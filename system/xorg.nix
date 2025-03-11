@@ -9,6 +9,15 @@
     };
   };
 
+  services.xserver.deviceSection = ''
+    Option         "TripleBuffer" "on"
+  '';
+
+  services.xserver.screenSection = ''
+    Option         "metamodes" "nvidia-auto-select +0+0 {ForceCompositionPipeline=On, ForceFullCompositionPipeline=On}"
+    Option         "AllowIndirectGLXProtocol" "off"
+  '';
+
   environment.systemPackages = with pkgs; [    
     # --- core utilities ---
     xorg.xorgserver
