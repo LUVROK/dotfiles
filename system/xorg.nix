@@ -50,6 +50,7 @@
     xclip
     xcolor
     xwinwrap
+    xsel
 
     # --- xorg startup utilities ---
     xorg.xinit

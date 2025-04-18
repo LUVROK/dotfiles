@@ -511,6 +511,9 @@ static const Rule rules[] = {
 	RULE(.instance = "spterm", .tags = SPTAG(0), .isfloating = 1)
 	RULE(.instance = "alsamixer", .tags = SPTAG(1), .isfloating = 1)
 	// RULE(.instance = "kitty", .tags = SPTAG(2), .isfloating = 1)
+
+	RULE(.class = "firefox", .title = "Picture-in-Picture", .isfloating = 1, .floatpos = "90% 90% 32% 29%")
+	
 	#endif // SCRATCHPADS_PATCH
 };
 
@@ -950,9 +953,10 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_space,      spawn,          		SHCMD("pkill -RTMIN+1 dwmblocks") },
 
 	{ MODKEY,                       XK_w,          spawn,                  SHCMD("dwm-power_menu") },
+	{ MODKEY,                       XK_u,          spawn,                  SHCMD("/home/dash/HOME/programs/rofi-pass/rofi-pass") },
 
 	{ MODKEY, 						XK_a, togglescratch, {.ui = 1 } },
-	{ MODKEY, 						XK_k, togglescratch, {.ui = 2 } },
+	// { MODKEY, 						XK_k, togglescratch, {.ui = 2 } },
 
 	/* XF86Keys */
     {0, XF86XK_AudioMute, spawn, {.v = mutevol}},

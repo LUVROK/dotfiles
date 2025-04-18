@@ -13,16 +13,22 @@ in
     exfat
     ntfs3g
     hfsprogs
+    udiskie
   ];
 
   environment.etc."udevil/udevil.conf".text = ''
+    allowed_devices = /dev/sd*, /dev/nvme*
+    allowed_internal_devices = /dev/sd*, /dev/nvme*
+
+    allowed_media_dirs = /media
+
     allowed_users = *
     default_options = uid=dash,gid=dash,umask=0077
   '';
 
-  environment.variables = {
-    UDEVIL_CONF_PATH= "/etc/udevil/udevil.conf";
-  };
+  # environment.variables = {
+  #   UDEVIL_CONF_PATH= "/etc/udevil/udevil.conf";
+  # };
 
   environment.etc."udiskie.yml".source = yaml.generate "udiskie.yml" {
     program_options = {

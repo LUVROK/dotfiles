@@ -7,22 +7,32 @@
     home-manager.url = github:nix-community/home-manager;
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     nur.url = "github:nix-community/NUR";
+    nix-alien.url = "github:thiagokokada/nix-alien";
   };
 
-  outputs = { self, nixpkgs, home-manager, nur, ... }@inputs: let
+  outputs = { self, nixpkgs, nixpkgs-stable, home-manager, nix-alien, nur, ... }@inputs: let
     system = "x86_64-linux";
     pkgs = nixpkgs.legacyPackages.${system};
   in {
     nixosConfigurations.dash = nixpkgs.lib.nixosSystem {
-      inherit system;
-      specialArgs = { inherit inputs; };
+      specialArgs = {
+        pkgs-stable = import nixpkgs-stable {
+          inherit system;
+        };
+        inherit inputs system;
+      };
       modules = [ 
         ./configuration.nix
         home-manager.nixosModules.home-manager
         {
           home-manager.useGlobalPkgs = false;
           home-manager.useUserPackages = true;
-          home-manager.extraSpecialArgs = {inherit inputs;};
+          home-manager.extraSpecialArgs = {
+            pkgs-stable = import nixpkgs-stable {
+              inherit system;
+            };
+            inherit inputs system;
+          };
           home-manager.backupFileExtension = "backup";
           home-manager.users.dash = import "${self}/./home/home.nix";
         }
@@ -34,24 +44,17 @@
       modules = ["${self}/./home/home.nix"];
       extraSpecialArgs = {inherit inputs nur;};
     };
-    
-    # homeConfigurations = (
-    #   import ./home/home.nix {
-    #     inherit system home-manager;
-    #     username = "dash";
-    #     pkgs = import nixpkgs {
-    #       inherit system;
-    #     };
-    #   }
-    # );
+
+    devShells.x86_64-linux.default = pkgs.mkShell {
+      buildInputs = [ pkgs.firefox ];
+    };
 
     # devShell.${system} = let
-    #   overlays = [nur.overlays.default];
-    #   pkgs = import nixpkgs {inherit system overlays;};
+    #   pkgs = import nixpkgs-firefox {inherit system;};
     # in
     #   pkgs.mkShell {
     #     buildInputs = [
-    #       pkgs.nur.repos.rycee.mozilla-addons-to-nix
+    #       pkgs.firefox
     #     ];
     #   };
   };

@@ -44,6 +44,7 @@
       map a mark
       map A unmark
       map nf console mkdir%space
+      map uu shell unzip %f
     '';
 
     plugins = [

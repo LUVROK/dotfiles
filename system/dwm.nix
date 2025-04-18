@@ -15,8 +15,8 @@
     };
 
     displayManager.sessionCommands = ''
-      WALLPAPER=/home/dash/HOME/wizzard/wallpaper/winter
-      feh --geometry 3456x2160+0+0 --auto-zoom --randomize --bg-fill "$WALLPAPER"*
+      WALLPAPER=/home/dash/HOME/wizzard/wallpaper/game-of-thrones-kings-landing.png
+      feh --geometry 3456x2160+0+0 --auto-zoom --bg-fill "$WALLPAPER"*
       
       export PATH=/home/dash/.local/bin/sh-dwmblocks:/home/dash/.local/bin/sh-others:/home/dash/.local/bin/sh-rofi:/home/dash/.local/bin/sh-nixos:$PATH
       xset -dpms &

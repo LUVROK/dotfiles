@@ -19,6 +19,9 @@
     TOR_SOCKS_PORT = "9050";
 
     MOZ_X11_EGL = "1";
+
+    ROFI_PASS_CLIPBOARD_BACKEND = "xclip";
+    ROFI_PASS_BACKEND = "xdotool";
   };
 
   xdg.mime = {

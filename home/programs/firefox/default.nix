@@ -4,14 +4,15 @@ let
     baseDir = "${config.home.homeDirectory}/.mozilla/firefox";
 in 
 {  
-  home.file.".mozilla/firefox/mankind.main/chrome/ShyFox".source = ./ShyFox/chrome/ShyFox;
-  home.file.".mozilla/firefox/mankind.main/chrome/userChrome.css".source = ./ShyFox/chrome/userChrome.css;
-  home.file.".mozilla/firefox/mankind.main/chrome/userContent.css".source = ./ShyFox/chrome/userContent.css;
-  home.file.".mozilla/firefox/mankind.main/chrome/1130469.png".source = ./ShyFox/chrome/1130469.png;
+  # home.file.".mozilla/firefox/mankind.main/chrome/ShyFox".source = ./ShyFox/chrome/ShyFox;
+  # home.file.".mozilla/firefox/mankind.main/chrome/userChrome.css".source = ./ShyFox/chrome/userChrome.css;
+  # home.file.".mozilla/firefox/mankind.main/chrome/userContent.css".source = ./ShyFox/chrome/userContent.css;
+  # home.file.".mozilla/firefox/mankind.main/chrome/1130469.png".source = ./ShyFox/chrome/1130469.png;
 
   programs.firefox = {
     enable = true;
     package = pkgs.firefox;
+    nativeMessagingHosts = with pkgs; [ ff2mpv-rust ];
 
     profiles = {
       "textfox2" = {

@@ -81,6 +81,7 @@ in
     gcc
     cmake
     buildPackages.gnumake
+    gamescope
 
     # --- basic utilities ---
     bash
@@ -118,6 +119,8 @@ in
     calcurse # calendar in terminal
     woeusb
     unetbootin
+    pacman
+    nautilus
 
     # --- development tools ---
     nodejs
@@ -141,6 +144,7 @@ in
     # --- apps ---
     monero-gui
     vscodium
+    vscode
     chromium
     mpv
     qbittorrent
@@ -152,6 +156,10 @@ in
     spotify
     libreoffice
     blueman
+    todoist-electron
+    gimp
+    navidrome
+    zoom-us
 
     # --- talking ---
     discord
@@ -166,6 +174,9 @@ in
 
     # --- bash ---
     nvidia-offload
+
+    # --- video/audio editing ---
+    # losslesscut
   ];
 
   system.stateVersion = "24.11";

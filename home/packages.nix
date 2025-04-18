@@ -17,6 +17,7 @@
     pinentry
     gnupg
     pass
+    pwgen
 
     # utils
     haskellPackages.greenclip

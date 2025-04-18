@@ -7,8 +7,9 @@
       # --- icons ---
       adwaita-icon-theme
       gtk-engine-murrine
-      gtk3
       vimix-gtk-themes
+      material-icons
+      material-design-icons
 
       # --- fonts ---
       noto-fonts

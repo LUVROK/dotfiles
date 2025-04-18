@@ -5,6 +5,7 @@
 
   imports = [
     ./packages.nix
+    ./desktops.nix
     ./services
     ./programs
     ./modules
