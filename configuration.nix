@@ -151,6 +151,7 @@ in
     telegram-desktop
     obsidian
     mullvad-vpn
+    shadowsocks-libev
     wasabiwallet
     syncthing
     spotify

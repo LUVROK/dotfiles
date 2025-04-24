@@ -39,6 +39,13 @@
       ];
     };
 
+    nixosConfigurations.server = nixpkgs.lib.nixosSystem {
+      system = "x86_64-linux";
+      modules = [
+        ./server-minimal/hosts/server/configuration.nix
+      ];
+    };
+
     homeConfigurations."dash" = home-manager.lib.homeManagerConfiguration {
       inherit pkgs;
       modules = ["${self}/./home/home.nix"];

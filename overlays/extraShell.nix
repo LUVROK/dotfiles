@@ -10,7 +10,7 @@
       TERM=xterm ${pkgs.openssh}/bin/ssh "$@"
     '')
     (pkgs.writeShellScriptBin "steam" ''
-      env GDK_SCALE=1 mullvad-exclude __NV_PRIME_RENDER_OFFLOAD=1 __NV_PRIME_RENDER_OFFLOAD_PROVIDER=NVIDIA-G0 __VK_LAYER_NV_optimus=NVIDIA_only ${pkgs.steam}/bin/steam "$@"
+      mullvad-exclude __NV_PRIME_RENDER_OFFLOAD=1 __NV_PRIME_RENDER_OFFLOAD_PROVIDER=NVIDIA-G0 __VK_LAYER_NV_optimus=NVIDIA_only steam "$@"
     '') # TODO: good for games, but app interface like with telegram dont want use GPU instead CPU, work with intel cpu, even not intel gpu
     (pkgs.writeShellScriptBin "virt-manager" ''
       mullvad-exclude ${pkgs.virt-manager}/bin/virt-manager "$@"

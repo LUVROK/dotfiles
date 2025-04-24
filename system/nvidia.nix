@@ -15,6 +15,7 @@
       "usbcore.autosuspend=-1"
       "acpi_enforce_resources=lax"
       "acpi_rev_override=5" # If your BIOS artificially underestimates the ACPI to version less than 4.0, and the core is waiting for at least 4.0, if you see errors in dmesg about bios version
+      # "cgroup_enable=cpuset,cpu,cpuacct,blkio,devices,freezer,net_cls,perf_event,net_prio,hugetlb,pids"
     ];
 
     kernelModules = [ 
