@@ -4,8 +4,8 @@
   systemd.user.services.dwmblocks = {
     Unit = {
       Description = "Status feed generator for dwm";
-      After = [ "default.target" "pipewire.service" "wireplumber.service" ];
-      Wants = [ "default.target" "pipewire.service" "wireplumber.service" ];
+      After = [ "default.target" "pipewire.service" "wireplumber.service" "network-online.target" ];
+      Wants = [ "default.target" "pipewire.service" "wireplumber.service" "network-online.target" ];
     };
     Install = {
       WantedBy = [ "default.target" ];

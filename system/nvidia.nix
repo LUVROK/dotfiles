@@ -1,37 +1,6 @@
 { config, pkgs, lib, ... }:
 
 {
-  boot = {
-    loader = {
-      systemd-boot.enable = true;
-      efi.canTouchEfiVariables = true;
-    };
-
-    kernelParams = [
-      "splash"
-      "quiet"
-      "nvidia-drm.modeset=1" 
-      "i915.force_probe=9a49"
-      "usbcore.autosuspend=-1"
-      "acpi_enforce_resources=lax"
-      "acpi_rev_override=5" # If your BIOS artificially underestimates the ACPI to version less than 4.0, and the core is waiting for at least 4.0, if you see errors in dmesg about bios version
-      # "cgroup_enable=cpuset,cpu,cpuacct,blkio,devices,freezer,net_cls,perf_event,net_prio,hugetlb,pids"
-    ];
-
-    kernelModules = [ 
-      "kvm-intel"
-      "nvidia"
-      "nvidia_modeset"
-      "nvidia_uvm"
-      "nvidia_drm"
-    ];
-
-    kernelPackages = pkgs.linuxPackages_latest;
-    blacklistedKernelModules = [ "nouveau" ];
-
-    initrd.availableKernelModules = [ "xhci_pci" "thunderbolt" "nvme" "usb_storage" "xhci_hcd" "ehci_hcd" "sd_mod" "usbhid" ];
-  };
-
   services.xserver = {
     enable = true;
     desktopManager.gnome.enable = false;
@@ -73,10 +42,6 @@
     vaapiIntel
   ];
 
-  nixpkgs.config.packageOverrides = pkgs: {
-    intel-vaapi-driver = pkgs.intel-vaapi-driver.override { enableHybridCodec = true; };
-  };
-
   hardware = {
     graphics = {
       enable = true;
@@ -109,8 +74,5 @@
       };
     };
   };
-
-  nixpkgs.config.nvidia.acceptLicense = true;
-  time.hardwareClockInLocalTime = false;
 }
 

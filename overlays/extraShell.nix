@@ -9,9 +9,9 @@
     (pkgs.writeShellScriptBin "ssh" ''
       TERM=xterm ${pkgs.openssh}/bin/ssh "$@"
     '')
-    (pkgs.writeShellScriptBin "steam" ''
-      mullvad-exclude __NV_PRIME_RENDER_OFFLOAD=1 __NV_PRIME_RENDER_OFFLOAD_PROVIDER=NVIDIA-G0 __VK_LAYER_NV_optimus=NVIDIA_only steam "$@"
-    '') # TODO: good for games, but app interface like with telegram dont want use GPU instead CPU, work with intel cpu, even not intel gpu
+    # (pkgs.writeShellScriptBin "steam" ''
+    #   __NV_PRIME_RENDER_OFFLOAD=1 __NV_PRIME_RENDER_OFFLOAD_PROVIDER=NVIDIA-G0 __VK_LAYER_NV_optimus=NVIDIA_only steam "$@"
+    # '') # TODO: good for games, but app interface like with telegram dont want use GPU instead CPU, work with intel cpu, even not intel gpu
     (pkgs.writeShellScriptBin "virt-manager" ''
       mullvad-exclude ${pkgs.virt-manager}/bin/virt-manager "$@"
     '')
@@ -27,6 +27,9 @@
     (pkgs.writeShellScriptBin "chromium" ''
       mullvad-exclude ${pkgs.chromium}/bin/chromium "$@"
     '')
+    # (pkgs.writeShellScriptBin "element-desktop" ''
+    #   mullvad-exclude ${pkgs.chromium}/bin/element-desktop "$@"
+    # '')
     # (pkgs.writeShellScriptBin "firefox" ''
     #   /home/dash/.local/bin/sh-rofi/select-profile-firefox--rofi "$@"
     # '')

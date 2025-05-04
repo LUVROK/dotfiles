@@ -1,19 +1,16 @@
 { config, lib, pkgs, ... }:
 
-let
-  yaml = pkgs.formats.yaml { };
-in
 {
   programs.udevil.enable = true;
+  services.udisks2.enable = lib.mkForce false;
   services.fstrim.enable = true;
-  services.udisks2.enable = true;
 
   environment.systemPackages = with pkgs; [
     sshfs
     exfat
     ntfs3g
     hfsprogs
-    udiskie
+    udevil
   ];
 
   environment.etc."udevil/udevil.conf".text = ''
@@ -23,22 +20,9 @@ in
     allowed_media_dirs = /media
 
     allowed_users = *
-    default_options = uid=dash,gid=dash,umask=0077
+    allowed_groups = *
+    default_options = uid=1000,gid=100,umask=0077
   '';
 
-  # environment.variables = {
-  #   UDEVIL_CONF_PATH= "/etc/udevil/udevil.conf";
-  # };
-
-  environment.etc."udiskie.yml".source = yaml.generate "udiskie.yml" {
-    program_options = {
-      automount = true;
-      tray = false;
-      notify = false;
-    };
-  };
-
-  services.udev.extraRules = ''
-    ENV{ID_FS_USAGE}=="filesystem", ENV{UDISKS_FILESYSTEM_SHARED}="1"
-  '';
+  services.devmon.enable = true;
 }

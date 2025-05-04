@@ -8,7 +8,7 @@
     ./dwmblocks.nix
     ./redshift.nix
     ./greenclip.nix
-    ./udiskie.nix
+    # ./udiskie.nix 
     ./second-monitor.nix
   ];
 }

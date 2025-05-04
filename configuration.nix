@@ -17,7 +17,7 @@ in
     ./overlays
   ];
 
-  nixpkgs.config.allowUnfree = true;
+  # nixpkgs.config.allowUnfree = true;
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   time.timeZone = "Europe/Moscow";
@@ -41,7 +41,16 @@ in
     mullvad-vpn.enable = true;
     dbus.enable = true;
     displayManager.defaultSession = "none+dwm";
+    journald.extraConfig = ''
+      SystemMaxUse=100M
+      RuntimeMaxUse=50M
+      SystemMaxFileSize=50M
+      Storage=volatile
+    '';
   };
+  
+  console.earlySetup = true;
+  systemd.services.systemd-vconsole-setup.before = lib.mkForce ["display-manager.service"];
 
   users.groups.libvirt = {};
   users.groups.vboxsf = {};
@@ -120,6 +129,8 @@ in
     woeusb
     unetbootin
     pacman
+    efibootmgr
+    grub2
     nautilus
 
     # --- development tools ---

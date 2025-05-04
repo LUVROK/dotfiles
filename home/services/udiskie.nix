@@ -1,8 +1,13 @@
 { lib, config, pkgs, ... }:
 
+let
+  yaml = pkgs.formats.yaml { };
+in
 {  
   # services.gvfs.enable = true;
   # services.devmon.enable = true;
+
+  # services.udisks2.enable = true;
 
   systemd.user.services.udiskie = {
     Service = {
@@ -19,6 +24,15 @@
 
     Install = {
       WantedBy = [ "default.target" ];
+    };
+  };
+
+  xdg.configFile."udiskie/config.yml".source = yaml.generate "config.yml" {
+    program_options = {
+      automount = true;
+      udisks_version = 2;
+      tray = false;
+      notify = false;
     };
   };
 }

@@ -1,0 +1,9 @@
+#!/bin/sh
+
+# nix build .#nixosConfigurations.wolf.config.system.build.toplevel
+
+nix run github:nix-community/nixos-anywhere -- \
+    --flake $HOME/HOME/dotfiles#wolf \
+    --target-host root@82.153.138.66
+
+# nixos-anywhere --extra-files /some/ssh-key.pub --flake git+file:///home/dash/HOME/dotfiles#wolf root@IP_ADDRESS
