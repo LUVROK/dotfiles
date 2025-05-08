@@ -18,6 +18,7 @@
         # configurationLimit = 10;
         useOSProber = true;
         timeoutStyle = "menu";
+        splashImage = lib.mkForce null;
 
         # extraEntriesAfterNixOS = true;
         # extraEntries = ''
@@ -29,12 +30,14 @@
         #   }
         # '';
 
-        minegrub-theme = {
-          enable = true;
-          splash = "100% Flakes!";
-          background = "background_options/1.18 - [Caves And Cliffs 2].png";
-          boot-options-count = 2;
-        };
+        # minegrub-theme = {
+        #   enable = true;
+        #   splash = "100% Flakes!";
+        #   background = "background_options/1.18 - [Caves And Cliffs 2].png";
+        #   boot-options-count = 2;
+        # };
+
+        theme = ./grub-theme;
       };
 
       timeout = 3;

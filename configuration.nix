@@ -1,4 +1,4 @@
-{ config, lib, pkgs, inputs, ... }:
+{ config, lib, pkgs, pkgs-stable, inputs, ... }:
 
 
 let
@@ -17,7 +17,6 @@ in
     ./overlays
   ];
 
-  # nixpkgs.config.allowUnfree = true;
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   time.timeZone = "Europe/Moscow";
@@ -166,12 +165,16 @@ in
     wasabiwallet
     syncthing
     spotify
+    # cider
     libreoffice
     blueman
     todoist-electron
     gimp
     navidrome
-    zoom-us
+
+    # --- music ---
+    nicotine-plus
+    gtk3
 
     # --- talking ---
     discord

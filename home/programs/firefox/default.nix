@@ -1,4 +1,4 @@
-{ pkgs, config, inputs, ... }:
+{ pkgs, pkgs-firefox, config, inputs, ... }:
 
 let
     baseDir = "${config.home.homeDirectory}/.mozilla/firefox";
@@ -11,8 +11,8 @@ in
 
   programs.firefox = {
     enable = true;
-    package = pkgs.firefox;
-    nativeMessagingHosts = with pkgs; [ ff2mpv-rust ];
+    package = pkgs-firefox.firefox;
+    # nativeMessagingHosts = with pkgs-firefox; [ ff2mpv-rust ];
 
     profiles = {
       "textfox2" = {

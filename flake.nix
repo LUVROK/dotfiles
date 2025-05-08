@@ -14,9 +14,11 @@
 
     disko.url = "github:nix-community/disko";
     disko.inputs.nixpkgs.follows = "nixpkgs";
+
+    nixpkgs-firefox.url = "github:NixOS/nixpkgs/5593fccdd20bd2f47a60f55d799a99f36f90795d";
   };
 
-  outputs = { self, nixpkgs, nixpkgs-stable, home-manager, nix-alien, nur, disko, minecraft-plymouth-theme, ... }@inputs: let
+  outputs = { self, nixpkgs, nixpkgs-firefox, nixpkgs-stable, home-manager, nix-alien, nur, disko, minecraft-plymouth-theme, ... }@inputs: let
     system = "x86_64-linux";
     pkgs = import nixpkgs {
         inherit system;
@@ -26,6 +28,16 @@
             intel-vaapi-driver = prev.intel-vaapi-driver.override {
               enableHybridCodec = true;
             };
+          })
+
+          (self: super: {
+            firefox = super.firefox.overrideAttrs (_: {
+              version = "114.0.2";
+              src = super.fetchurl {
+                url = "https://archive.mozilla.org/pub/firefox/releases/114.0.2/source/firefox-114.0.2.source.tar.xz";
+                sha256 = "0v...ваш-хеш...";
+              };
+            });
           })
         ];
           config = {
@@ -67,6 +79,9 @@
           home-manager.useUserPackages = true;
           home-manager.extraSpecialArgs = {
             pkgs-stable = import nixpkgs-stable {
+              inherit system;
+            };
+            pkgs-firefox = import nixpkgs-firefox {
               inherit system;
             };
             inherit inputs system;
