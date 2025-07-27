@@ -106,6 +106,7 @@ if [ -n "$BLOCK_BUTTON" ]; then
             ;;
     esac
 else
+echo "LTC" > "$STATE_FILE"
 update_price
 get_coin_price true
 fi

@@ -14,6 +14,9 @@
       hide_borders = false;
       default_input = "login";
       clear_password = true;
+      text_in_center = true;
+      initial_info_text = "Greetings, cruel world!";
+      # tty = 1;
     };
   };
 }

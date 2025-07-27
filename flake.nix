@@ -15,10 +15,10 @@
     disko.url = "github:nix-community/disko";
     disko.inputs.nixpkgs.follows = "nixpkgs";
 
-    nixpkgs-firefox.url = "github:NixOS/nixpkgs/5593fccdd20bd2f47a60f55d799a99f36f90795d";
+    nixpkgs-pinned.url = "github:NixOS/nixpkgs/5593fccdd20bd2f47a60f55d799a99f36f90795d";
   };
 
-  outputs = { self, nixpkgs, nixpkgs-firefox, nixpkgs-stable, home-manager, nix-alien, nur, disko, minecraft-plymouth-theme, ... }@inputs: let
+  outputs = { self, nixpkgs, nixpkgs-pinned, nixpkgs-stable, home-manager, nix-alien, nur, disko, minecraft-plymouth-theme, ... }@inputs: let
     system = "x86_64-linux";
     pkgs = import nixpkgs {
         inherit system;
@@ -29,37 +29,24 @@
               enableHybridCodec = true;
             };
           })
-
-          (self: super: {
-            firefox = super.firefox.overrideAttrs (_: {
-              version = "114.0.2";
-              src = super.fetchurl {
-                url = "https://archive.mozilla.org/pub/firefox/releases/114.0.2/source/firefox-114.0.2.source.tar.xz";
-                sha256 = "0v...ваш-хеш...";
-              };
-            });
-          })
         ];
-          config = {
-            allowBroken = true;
-            allowUnfree = true;
-            allowInsecure = true;
-            permittedInsecurePackages = [
-              "dotnet-runtime-6.0.36"
-              "aspnetcore-runtime-6.0.36"
-              "aspnetcore-runtime-wrapped-6.0.36"
-              "dotnet-sdk-6.0.428"
-              "dotnet-sdk-wrapped-6.0.428"
-              "rider"
-              "dotnet-sdk-7.0.410"
-              "dotenv6"
-            ];
+        config = {
+          allowBroken = true;
+          allowUnfree = true;
+          allowInsecure = true;
+          permittedInsecurePackages = [
+            "dotnet-runtime-6.0.36"
+            "aspnetcore-runtime-6.0.36"
+            "aspnetcore-runtime-wrapped-6.0.36"
+            "dotnet-sdk-6.0.428"
+            "dotnet-sdk-wrapped-6.0.428"
+            "rider"
+            "dotnet-sdk-7.0.410"
+            "dotenv6"
+          ];
 
-            nvidia.acceptLicense = true;
-            # packageOverrides = pkgs: {
-            #   intel-vaapi-driver = pkgs.intel-vaapi-driver.override { enableHybridCodec = true; };
-            # };
-          };
+          nvidia.acceptLicense = true;
+        };
       };
   in {
     nixosConfigurations.dash = nixpkgs.lib.nixosSystem {
@@ -67,6 +54,19 @@
       specialArgs = {
         pkgs-stable = import nixpkgs-stable {
           inherit system;
+        };
+        pkgs-pinned = import nixpkgs-pinned {
+          inherit system;
+          config = {
+            allowUnfree = true;
+          };
+          # overlays = [
+          #   (final: prev: {
+          #     element-desktop = prev.element-desktop.override {
+          #       commandLineArgs = "--password-store=gnome-libsecret";
+          #     };
+          #   })
+          # ];
         };
         inherit inputs system;
       };
@@ -81,7 +81,7 @@
             pkgs-stable = import nixpkgs-stable {
               inherit system;
             };
-            pkgs-firefox = import nixpkgs-firefox {
+            pkgs-pinned = import nixpkgs-pinned {
               inherit system;
             };
             inherit inputs system;
@@ -100,27 +100,5 @@
         ./server-minimal/hosts/server/configuration.nix
       ];
     };
-
-    # homeConfigurations."dash" = home-manager.lib.homeManagerConfiguration {
-    #   inherit pkgs;
-    #   modules = ["${self}/./home/home.nix"];
-    #   extraSpecialArgs = {inherit inputs nur;};
-    # };
-
-    # devShells.x86_64-linux.default = pkgs.mkShell {
-    #   buildInputs = [ pkgs.firefox ];
-    # };
-
-    # packages.${system}.Script =
-    #     self.nixosConfigurations.wolf.config.system.build.toplevel;
-
-    # devShell.${system} = let
-    #   pkgs = import nixpkgs-firefox {inherit system;};
-    # in
-    #   pkgs.mkShell {
-    #     buildInputs = [
-    #       pkgs.firefox
-    #     ];
-    #   };
   };
 }

@@ -1,5 +1,8 @@
 { config, pkgs, lib, inputs, ... }:
 
+let
+  dwmblocksPkg = import ./programs/dwmblocks-async/default.nix { inherit pkgs; };
+in
 {
   programs.home-manager.enable = true;
 
@@ -30,6 +33,9 @@
 
     mkdir -p $out/sh-dwmblocks
     cp -r ${./sh/sh-dwmblocks}/* $out/sh-dwmblocks
+
+    mkdir -p $out/dwmblocks
+    cp -r ${dwmblocksPkg}/bin/dwmblocks $out/dwmblocks/
   '';
 
   home.file.".local/media".source = pkgs.runCommand "merge-folders" {} ''

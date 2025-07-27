@@ -39,17 +39,21 @@ in
   services = {
     mullvad-vpn.enable = true;
     dbus.enable = true;
+    dbus.implementation = "broker";
     displayManager.defaultSession = "none+dwm";
-    journald.extraConfig = ''
-      SystemMaxUse=100M
-      RuntimeMaxUse=50M
-      SystemMaxFileSize=50M
-      Storage=volatile
-    '';
+    # journald.extraConfig = ''
+    #   SystemMaxUse=100M
+    #   RuntimeMaxUse=50M
+    #   SystemMaxFileSize=50M
+    #   Storage=volatile
+    # '';
   };
   
-  console.earlySetup = true;
-  systemd.services.systemd-vconsole-setup.before = lib.mkForce ["display-manager.service"];
+  # console.earlySetup = true;
+  # systemd.services.console-getty.enable = true;
+  services.journald.console = "/dev/tty4";
+  # services.getty.enable = true;
+  # systemd.services.systemd-vconsole-setup.before = lib.mkForce ["display-manager.service"];
 
   users.groups.libvirt = {};
   users.groups.vboxsf = {};
@@ -67,11 +71,11 @@ in
       "libvirtd"
       "vboxusers" 
       "vboxsf" 
-      "video"  
       "audio"
       "plugdev"
       "storage"
       "input"
+      "video"
       "dialout" # for microcontrollers
     ];
   };
@@ -131,6 +135,7 @@ in
     efibootmgr
     grub2
     nautilus
+    parted
 
     # --- development tools ---
     nodejs
@@ -171,6 +176,7 @@ in
     todoist-electron
     gimp
     navidrome
+    # figma-linux # idk, bad work
 
     # --- music ---
     nicotine-plus
@@ -192,6 +198,18 @@ in
 
     # --- video/audio editing ---
     # losslesscut
+
+
+    # Adb sideload
+    android-tools
+
+    # Mount android phones
+    adbfs-rootless
+    jmtpfs
+    glib
+
+    # Work with usb devices
+    usbutils
   ];
 
   system.stateVersion = "24.11";

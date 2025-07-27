@@ -13,6 +13,10 @@
     udevil
   ];
 
+  services.udev.packages = with pkgs; [
+    android-udev-rules
+  ];
+
   environment.etc."udevil/udevil.conf".text = ''
     allowed_devices = /dev/sd*, /dev/nvme*
     allowed_internal_devices = /dev/sd*, /dev/nvme*

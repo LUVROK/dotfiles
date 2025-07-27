@@ -2,7 +2,7 @@
 
 {
   imports = [
-    ./lightdm.nix
+    # ./lightdm.nix
     ./ly.nix
   ];
 }

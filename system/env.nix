@@ -18,7 +18,7 @@
     TERM="xterm-256color";
     TOR_SOCKS_PORT = "9050";
 
-    MOZ_X11_EGL = "1";
+    # MOZ_X11_EGL = "1";
 
     ROFI_PASS_CLIPBOARD_BACKEND = "xclip";
     ROFI_PASS_BACKEND = "xdotool";
@@ -59,19 +59,19 @@
       Identifier "nvidia"
       Driver "nvidia"
       BusID "PCI:1:0:0"
-      Option "PrimaryGPU" "false"
+      Option "ProbeAllGpus" "True"
     EndSection
 
     Section "Screen"
       Identifier "nvidia"
       Device "nvidia"
+      Option "AllowEmptyInitialConfiguration" "True"
     EndSection
 
     Section "Device"
       Identifier "intel"
       Driver "modesetting"
       BusID "PCI:0:2:0"
-      Option "TearFree" "true"
     EndSection
 
     Section "Screen"
@@ -98,23 +98,24 @@
       Option "DPI" "192 x 192"
       Option "Primary" "true"
     EndSection
-
-    Section "Monitor"
-      Identifier "HDMI-1-0"
-      Option "PreferredMode" "2560x1440"
-      Option "Position" "3456 0"
-      Option "Rate" "120.00"
-    EndSection
-
-    Section "Screen"
-      Identifier "Screen1"
-      Monitor "HDMI-1-0"
-      Device "modesetting"
-      SubSection "Display"
-        Depth 24
-        Modes "2560x1440"
-        Virtual 7296 2160
-      EndSubSection
-    EndSection
   '';
+
+    # Section "Monitor"
+    #   Identifier "HDMI-1-0"
+    #   Option "PreferredMode" "2560x1440"
+    #   Option "Position" "3456 0"
+    #   Option "Rate" "120.00"
+    # EndSection
+
+    # Section "Screen"
+    #   Identifier "Screen1"
+    #   Monitor "HDMI-1-0"
+    #   Device "modesetting"
+    #   SubSection "Display"
+    #     Depth 24
+    #     Modes "2560x1440"
+    #     Virtual 7296 2160
+    #   EndSubSection
+    # EndSection
 }
+

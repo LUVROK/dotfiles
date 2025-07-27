@@ -47,6 +47,18 @@
       map uu shell unzip %f
 
       map v mark_files toggle=True 
+
+      # Sorting
+      map cr set sort_reverse!
+      map cz set sort=random
+      map cs chain set sort=size;      set sort_reverse=False
+      map cb chain set sort=basename;  set sort_reverse=False
+      map cn chain set sort=natural;   set sort_reverse=False
+      map cm chain set sort=mtime;     set sort_reverse=False
+      map cc chain set sort=ctime;     set sort_reverse=False
+      map ca chain set sort=atime;     set sort_reverse=False
+      map ct chain set sort=type;      set sort_reverse=False
+      map ce chain set sort=extension; set sort_reverse=False
     '';
 
     plugins = [

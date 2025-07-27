@@ -1,22 +1,75 @@
 { config, lib, pkgs, ... }:
 
 {
-  services.xserver = {
-    xkb = {
-      variant = "";
-      options = "";
-      layout = "us,ru";
+  services = {
+    gnome.gnome-keyring.enable = true;
+    desktopManager.gnome.enable = false;
+
+    logind = {
+      powerKey = "ignore";
+      powerKeyLongPress = "poweroff";
+
+      extraConfig = ''
+        [Login]
+        IdleAction=ignore
+        IdleActionSec=0
+      '';
+    };
+
+    xserver = {
+      enable = true;
+      dpi = 192;
+      upscaleDefaultCursor = true;
+      logFile = null;
+
+      xkb = {
+        variant = "";
+        options = "";
+        layout = "us,ru";
+      };
+
+      displayManager.sessionCommands = ''
+        WALLPAPER=/home/dash/HOME/wizzard/wallpaper/game-of-thrones-kings-landing.png
+        feh --geometry 3456x2160+0+0 --auto-zoom --bg-fill "$WALLPAPER"*
+        
+        export PATH=/home/dash/.local/bin/sh-dwmblocks:/home/dash/.local/bin/dwmblocks:/home/dash/.local/bin/sh-others:/home/dash/.local/bin/sh-rofi:/home/dash/.local/bin/sh-nixos:$PATH
+        xset -dpms &
+        devmon &
+        dwmblocks &
+        greenclip daemon & 
+      '';
+
+      serverFlagsSection = lib.mkDefault ''
+        Option "BlankTime" "0"
+        Option "StandbyTime" "0"
+        Option "SuspendTime" "0"
+        Option "OffTime" "0"
+      '';
+
+      # deviceSection = ''
+      #   Option         "TripleBuffer" "on"
+      # '';
+
+      # screenSection = ''
+      #   Option         "metamodes" "nvidia-auto-select +0+0 {ForceCompositionPipeline=On, ForceFullCompositionPipeline=On}"
+      #   Option         "AllowIndirectGLXProtocol" "off"
+      # '';
     };
   };
 
-  services.xserver.deviceSection = ''
-    Option         "TripleBuffer" "on"
-  '';
+    # Отключаем sleep
+  # environment.etc."systemd/logind.conf.d/99-ignore-sleep.conf".text = ''
+  #   [Login]
+  #   HandleLidSwitch=ignore
+  #   HandleSuspendKey=ignore
+  #   HandleHibernateKey=ignore
+  # '';
 
-  services.xserver.screenSection = ''
-    Option         "metamodes" "nvidia-auto-select +0+0 {ForceCompositionPipeline=On, ForceFullCompositionPipeline=On}"
-    Option         "AllowIndirectGLXProtocol" "off"
-  '';
+  # Включаем DEBUG для systemd-logind
+  # environment.etc."systemd/system/systemd-logind.service.d/override.conf".text = ''
+  #   [Service]
+  #   Environment=SYSTEMD_LOG_LEVEL=debug
+  # '';
 
   environment.systemPackages = with pkgs; [    
     # --- core utilities ---
@@ -25,9 +78,10 @@
     xorg.libX11.dev
 
     # --- xorg display & screen management ---
-    xorg.xrandr
+    xorg.libXrandr
     xorg.xdpyinfo
     xorg.libXinerama
+    xorg.libXrender
 
     # --- xorg input & keyboard tools ---
     xorg.xf86inputlibinput

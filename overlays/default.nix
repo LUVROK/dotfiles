@@ -10,7 +10,7 @@
 {
   imports = [ 
     ./extraShell.nix
-    ./nix-alien.nix
+    # ./nix-alien.nix
     # ./firefox.nix
   ];
 }

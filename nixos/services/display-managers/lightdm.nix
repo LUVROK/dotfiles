@@ -2,7 +2,8 @@
 
 {
   services.xserver.displayManager.lightdm = {
-    enable = false;
+    enable = true;
+    background = ./assets/akira.png;
 
     greeters.slick = {
       enable = false;

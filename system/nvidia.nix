@@ -1,47 +1,10 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, pkgs-pinned, ... }:
 
 {
   services.xserver = {
-    enable = true;
-    desktopManager.gnome.enable = false;
-
-    videoDrivers = [ 
-      "nvidia"
-      "modesetting" 
-    ];
-    
-    dpi = 192;
-    upscaleDefaultCursor = true;
+    videoDrivers = [ "modesetting" "nvidia" ];
   };
-
-  environment.systemPackages = with pkgs; [
-    libva-utils
-    intel-gpu-tools
-    nvtopPackages.full
-    
-    mesa
-    mesa.drivers
-    driversi686Linux.mesa
-    vulkan-helper
-
-    picom
-    libinput-gestures
-
-    nvidia-vaapi-driver
-    vulkan-tools
-    vulkan-headers
-    vulkan-loader
-    vulkan-validation-layers
-    vulkan-caps-viewer
-    cudatoolkit
-
-    intel-compute-runtime
-    intel-media-driver
-    vaapiVdpau
-    libvdpau-va-gl
-    vaapiIntel
-  ];
-
+  
   hardware = {
     graphics = {
       enable = true;
@@ -51,15 +14,13 @@
         intel-media-driver
         vaapiVdpau
         libvdpau-va-gl
-        vaapiIntel
-        nvidia-vaapi-driver
       ]; 
     };
 
     nvidia={
       modesetting.enable = true;
       powerManagement = {
-        enable = true;
+        enable = false;
         finegrained = false;
       };
       
@@ -73,6 +34,37 @@
         nvidiaBusId = "PCI:1:0:0";
       };
     };
+
+    enableRedistributableFirmware = true;
   };
+
+  environment.systemPackages = with pkgs; [
+    libva-utils
+    intel-gpu-tools
+    nvtopPackages.full
+    
+    mesa
+
+    libinput-gestures
+
+    nvidia-vaapi-driver
+    vulkan-tools
+    vulkan-helper
+    vulkan-headers
+    vulkan-loader
+    vulkan-validation-layers
+    vulkan-caps-viewer
+    vulkan-volk
+    
+    cudatoolkit
+
+    intel-compute-runtime
+    intel-media-driver
+    vaapiVdpau
+    libvdpau-va-gl
+    vaapiIntel
+
+    inxi
+  ];
 }
 

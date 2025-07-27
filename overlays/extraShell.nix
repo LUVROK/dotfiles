@@ -27,6 +27,24 @@
     (pkgs.writeShellScriptBin "chromium" ''
       mullvad-exclude ${pkgs.chromium}/bin/chromium "$@"
     '')
+
+    (pkgs.writeShellScriptBin "steam" ''
+      mullvad-exclude ${pkgs.steam}/bin/steam "$@"
+    '')
+
+    (pkgs.writeShellScriptBin "element-desktop" ''
+      ${pkgs.element-desktop}/bin/element-desktop --password-store=gnome-libsecret "$@"
+    '')
+
+
+    (pkgs.writeShellScriptBin "prismlauncher" ''
+      mullvad-exclude ${pkgs.prismlauncher}/bin/prismlauncher "$@"
+    '')
+
+    (pkgs.writeShellScriptBin "spotify" ''
+      get-active-scale ${pkgs.spotify}/bin/spotify "$@"
+    '')
+
     # (pkgs.writeShellScriptBin "element-desktop" ''
     #   mullvad-exclude ${pkgs.chromium}/bin/element-desktop "$@"
     # '')
