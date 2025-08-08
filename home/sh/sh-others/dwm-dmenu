@@ -1,3 +1,3 @@
 #!/bin/sh
 
-j4-dmenu-desktop --term kitty --no-generic -i --dmenu 'dmenu -i -sb "#d65d0e" -sf "#fbf1c7" -nb "#282828" -nf "#ebdbb2" -fn "JetBrainsMonoNL NFP:size=10"'
+j4-dmenu-desktop --term kitty --no-generic -i --dmenu 'dmenu -i -sb "#d65d0e" -sf "#fbf1c7" -nb "#282828" -nf "#ebdbb2" -fn "JetBrainsMonoNL NFP:size=14"'

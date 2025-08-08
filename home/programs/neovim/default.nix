@@ -17,7 +17,7 @@
   };
 
   xdg.configFile.nvim = {
-    source = ./nvchad;
+    source = ./nvim;
     recursive = true;
   };
 }

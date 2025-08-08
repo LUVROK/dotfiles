@@ -3,12 +3,8 @@
 {
   imports = [
     ./fonts.nix
-    # ./games.nix
-    # ./iphone.nix
     ./qmk.nix
-    ./touchpad.nix
     ./virtualisation.nix
     ./udevil.nix
-    # ./printer.nix
   ];
 }

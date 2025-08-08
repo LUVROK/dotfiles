@@ -12,6 +12,14 @@ return {
       require "configs.lspconfig"
     end,
   },
+  
+  {
+    'goolord/alpha-nvim',
+    lazy = false, 
+    config = function ()
+        require'alpha'.setup(require'alpha.themes.dashboard'.config)
+    end
+  },
 
   -- {
   -- 	"nvim-treesitter/nvim-treesitter",

@@ -1,15 +1,5 @@
 { config, lib, pkgs, pkgs-stable, inputs, ... }:
 
-
-let
-  nvidia-offload = pkgs.writeShellScriptBin "nvidia-offload" ''
-    export __NV_PRIME_RENDER_OFFLOAD=1
-    export __NV_PRIME_RENDER_OFFLOAD_PROVIDER=NVIDIA-G0
-    export __GLX_VENDOR_LIBRARY_NAME=nvidia
-    export __VK_LAYER_NV_optimus=NVIDIA_only
-    exec -a "$0" "$@"
-  '';
-in
 {
   imports = [
     ./system
@@ -40,27 +30,18 @@ in
     mullvad-vpn.enable = true;
     dbus.enable = true;
     dbus.implementation = "broker";
+    # dbus.packages =  [ pkgs.pass-secret-service ];
     displayManager.defaultSession = "none+dwm";
-    # journald.extraConfig = ''
-    #   SystemMaxUse=100M
-    #   RuntimeMaxUse=50M
-    #   SystemMaxFileSize=50M
-    #   Storage=volatile
-    # '';
   };
   
-  # console.earlySetup = true;
-  # systemd.services.console-getty.enable = true;
   services.journald.console = "/dev/tty4";
-  # services.getty.enable = true;
-  # systemd.services.systemd-vconsole-setup.before = lib.mkForce ["display-manager.service"];
 
   users.groups.libvirt = {};
   users.groups.vboxsf = {};
   users.groups.plugdev = {};
   users.groups.storage = {};
 
-  users.users.dash = {
+  users.users.barnard = {
     isNormalUser = true;
     extraGroups = [ 
       "networkmanager" 
@@ -81,7 +62,7 @@ in
   };
 
   users.users.root.shell = pkgs.zsh;
-  users.users.dash.shell = pkgs.zsh;
+  users.users.barnard.shell = pkgs.zsh;
 
   security.polkit.enable = true;
   programs.thunar.enable = true;
@@ -109,7 +90,7 @@ in
     p7zip
     zip 
     htop
-    (btop.override {cudaSupport = true;})
+    (btop.override {rocmSupport = true;})
     killall
     dig
     nmap
@@ -144,7 +125,9 @@ in
     # --- networking ---
     openssl
     iptables
-    iwd
+    networkmanager
+    # iwd
+    # iw
 
     # --- system tools ---
     libnotify
@@ -152,15 +135,9 @@ in
 
     # --- multimedia ---
     ffmpeg
-    gpa
-    # profanity # not use by now
-    ncdu
 
     # --- apps ---
-    monero-gui
     vscodium
-    vscode
-    chromium
     mpv
     qbittorrent
     telegram-desktop
@@ -170,35 +147,22 @@ in
     wasabiwallet
     syncthing
     spotify
-    # cider
     libreoffice
     blueman
-    todoist-electron
-    gimp
-    navidrome
-    # figma-linux # idk, bad work
-
+    chromium
+    
     # --- music ---
-    nicotine-plus
     gtk3
 
     # --- talking ---
-    discord
+    # discord
     element-desktop
-    simplex-chat-desktop
-    # jitsi-meet-electron # not use by now
+    element-call
     psi-plus
     irssi
 
     # --- games ---
     prismlauncher
-
-    # --- bash ---
-    nvidia-offload
-
-    # --- video/audio editing ---
-    # losslesscut
-
 
     # Adb sideload
     android-tools
@@ -210,6 +174,11 @@ in
 
     # Work with usb devices
     usbutils
+
+    openrgb-with-all-plugins
+
+    # live usb
+    woeusb
   ];
 
   system.stateVersion = "24.11";

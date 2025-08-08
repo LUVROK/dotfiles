@@ -6,7 +6,20 @@
 local M = {}
 
 M.base46 = {
-	theme = "onedark",
+	theme = "everforest",
+    transparency = true,
+	changed_themes = {
+		everforest = {
+			base_30 = {
+				grey_fg = "#000"
+			}
+		},
+		-- chocolate = {
+		--   base_30 = {
+		--     grey_fg = "#B0C4DE"
+		--   }
+		-- }
+	},
 
 	-- hl_override = {
 	-- 	Comment = { italic = true },
@@ -20,5 +33,12 @@ M.base46 = {
 --          lazyload = false
 --      }
 --}
+
+M.ui = {
+  statusline = {
+    theme = "default",
+    separator_style = "round"
+  }
+}
 
 return M

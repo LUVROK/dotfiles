@@ -1,28 +1,24 @@
 { config, pkgs, lib, inputs, ... }:
 
-let
-  dwmblocksPkg = import ./programs/dwmblocks-async/default.nix { inherit pkgs; };
-in
 {
   programs.home-manager.enable = true;
 
   imports = [
     ./packages.nix
-    ./desktops.nix
     ./services
     ./programs
     ./modules
   ];
 
-  home.username = "dash";
-  home.homeDirectory = "/home/dash";
+  home.username = "barnard";
+  home.homeDirectory = "/home/barnard";
   home.stateVersion = "24.11";
 
   xresources.properties = {
-    "Xcursor.size" = 32;
-    "Xft.dpi" = 192;
+    "Xcursor.size" = 24;
+    "Xft.dpi" = 112;
   };
-
+  
   home.file.".local/bin".source = pkgs.runCommand "merge-folders" {} ''
     mkdir -p $out/sh-rofi
     mkdir -p $out/sh-others
@@ -33,9 +29,6 @@ in
 
     mkdir -p $out/sh-dwmblocks
     cp -r ${./sh/sh-dwmblocks}/* $out/sh-dwmblocks
-
-    mkdir -p $out/dwmblocks
-    cp -r ${dwmblocksPkg}/bin/dwmblocks $out/dwmblocks/
   '';
 
   home.file.".local/media".source = pkgs.runCommand "merge-folders" {} ''

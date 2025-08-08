@@ -1,7 +1,6 @@
 { lib, config, ... }:
 
 {
-  hardware.wirelessRegulatoryDatabase = true;
   networking.wireless.iwd = {
     enable = true;
     settings = {
@@ -15,7 +14,7 @@
 
       Network = {
         EnableIPv6 = true;
-        # RoutePriorityOffset = 300; priority wifi over ethernet
+        RoutePriorityOffset = 300; # priority wifi over ethernet
       };
     };
   };

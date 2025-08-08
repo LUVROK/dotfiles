@@ -1,21 +1,30 @@
-{ config, lib, pkgs, modulesPath, ... }: 
+{ config, lib, pkgs, modulesPath, ... }:
 
 {
   imports =
-    [ (modulesPath + "/installer/scan/not-detected.nix") ];
+    [ (modulesPath + "/installer/scan/not-detected.nix")
+    ];
+
+  boot.initrd.availableKernelModules = [ "nvme" "ahci" "xhci_pci" "usb_storage" "usbhid" "sd_mod" ];
+  boot.initrd.kernelModules = [ ];
+  boot.kernelModules = [ "kvm-amd" ];
+  boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/f5eeeeaf-a26d-43a4-bc72-6e652a5018f4";
+    { device = "/dev/disk/by-uuid/ac6ba070-aca5-4c5d-9e74-5d195fa27dd7";
       fsType = "ext4";
     };
 
-  fileSystems."/boot/efi" = {
-    device = "/dev/disk/by-uuid/D972-763B";
-    fsType = "vfat";
-    options = [ "fmask=0022" "dmask=0022" ];
-  };
+  fileSystems."/boot" =
+    { device = "/dev/disk/by-uuid/62C4-9268";
+      fsType = "vfat";
+      options = [ "fmask=0077" "dmask=0077" ];
+    };
 
-  swapDevices = [{ device = "/dev/disk/by-uuid/69cd13c1-0608-4c52-8947-2a3ae000e4f3"; }];
+  swapDevices = [ ];
+
+  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
+  hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 
   hardware.enableAllFirmware = true;
   hardware.bluetooth.enable = true;
@@ -23,9 +32,6 @@
   
   services.blueman.enable = true;
   services.thermald.enable = true;
-
-  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-  hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 
   time.hardwareClockInLocalTime = false;
 }

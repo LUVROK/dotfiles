@@ -1,4 +1,4 @@
-static const char dmenufont[]            = "JetBrainsMonoNL NFP:size=10";
+static const char dmenufont[]            = "JetBrainsMonoNL NFP:size=14";
 
 static char c000000[]                    = "#000000"; // placeholder value
 

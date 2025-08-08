@@ -3,11 +3,11 @@
 {
   services.syncthing = {
     enable = true;
-    user = "dash";
+    user = "barnard";
     openDefaultPorts = true;
 
-    dataDir = "/home/dash/.config/syncthing";
-    configDir = "/home/dash/.config/syncthing";
+    dataDir = "/home/barnard/.config/syncthing";
+    configDir = "/home/barnard/.config/syncthing";
   };
 
   networking.firewall.allowedTCPPorts = [ 8384 22000 7777 ];

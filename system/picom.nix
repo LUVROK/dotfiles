@@ -7,13 +7,13 @@
     vSync = true;
 
     settings = {
-      dbus = false;
+      dbus = true;
 
-      fading = false;
+      fading = true;
       fade-in-step = 0.08;
       fade-out-step = 0.08;
 
-      animations = false;
+      animations = true;
       animation-stiffness = 120;
       animation-duration = 240;
 

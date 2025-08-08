@@ -1,5 +1,5 @@
 #!/bin/sh
-nix flake update &&
+sudo nix flake update &&
 
 if [ $? -eq 0 ]; then
     notify-send "nix-channel (system) update completed successfully"

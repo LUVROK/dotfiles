@@ -19,17 +19,18 @@
 // Define blocks for the status feed as X(icon, cmd, interval, signal).
 #define BLOCKS(X)             \
     X("", "sb-lang", 0, 1)      \
-    X("", "sb-crypto", 50, 2) \
     X("", "sb-memory", 10, 3) \
     X("", "sb-volume", 0, 4)    \
-    X("", "sb-battery", 10, 5)  \
-    X("", "sb-wifi-status", 5, 6)  \
+    X("", "sb-wifi-status", 60, 6)  \
     X("", "sb-date", 1, 7)     \
 
 
 #endif  // CONFIG_H
 
+//     X("", "sb-crypto", 50, 2) \
 
+    //     X("", "sb-crypto", 50, 2) \
+    //     X("", "sb-battery", 10, 5)  \
     // X("", "sb-mail", 600, 1)  \
     // X("", "sb-music", 0, 2)   \
     // X("", "sb-disk", 1800, 3) \

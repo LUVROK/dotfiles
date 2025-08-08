@@ -1,4 +1,7 @@
 { pkgs }:
+# let
+#   pkgs = import <nixpkgs> {};
+# in
 pkgs.stdenv.mkDerivation {
   pname = "dwmblocks";
   version = "4.20.24";

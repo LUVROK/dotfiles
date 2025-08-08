@@ -40,7 +40,7 @@ echo "$widthM" >> "$TARGET_LOGS_FILE"
 if [ -z "$widthM" ] || [ "$widthM" -gt 2560 ]; then
     DPI=1
 else
-    DPI=0.8
+    DPI=1
 fi
 
 ##############

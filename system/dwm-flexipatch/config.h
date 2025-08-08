@@ -178,11 +178,11 @@ static void (*bartabmonfns[])(Monitor *) = { NULL /* , customlayoutfn */ };
 #endif // MONOCLE_LAYOUT
 #endif // BAR_TABGROUPS_PATCH
 #if BAR_PANGO_PATCH
-static const char font[]                 = "JetBrainsMonoNL NFP 10";
+static const char font[]                 = "JetBrainsMonoNL NFP 14";
 #else
 static const char *fonts[]               = { 
-  "JetBrainsMonoNL NFP:size=10", 
-  "Font Awesome 6 Free Solid:size=11"
+  "JetBrainsMonoNL NFP:size=14", 
+  "Font Awesome 6 Free Solid:size=16"
 };
 #endif // BAR_PANGO_PATCH
 
@@ -911,7 +911,7 @@ static const char *termcmd[]  = { "kitty", NULL };
 static const char *firefoxcmd[]  = { "select-profile-firefox--rofi", NULL };
 static const char *codiumcmd[]  = { "codium", NULL };
 static const char *obsidiancmd[]  = { "obsidian", NULL };
-static const char *screenshotcmd[] = { "dwm-flameshot", NULL };
+static const char *screenshotcmd[] = { "flameshot", "gui", NULL };
 static const char *greenclipcmd[] = { "dwm-greenclip", NULL };
 static const char *roficmd[] = { "rofi", "-show", "drun", "-display-drun", "", NULL };
 

@@ -27,8 +27,8 @@ function _dismountvc() { sudo -v && veracrypt --dismount $1 & }
 function _mountvc-pn() { sudo -v && veracrypt --mount ~/HOME/private_containers/private_notes /media/veracrypt1 > /dev/null 2>&1 & }
 function _mountvc-ps() { sudo -v && veracrypt --mount ~/HOME/private_containers/pass-store ~/HOME/.pass-store-mount > /dev/null 2>&1 & }
 function _dismountvc-ps() { sudo -v && veracrypt --dismount ~/HOME/.pass-store-mount & }
-function _xrandr-hdmi-1-0() { xrandr --output HDMI-1-0 --scale 1x1 --mode 2560x1440 --rate 120.00 --right-of eDP-1 && feh --geometry 3456x2160+0+0 --auto-zoom --bg-fill /home/dash/HOME/wizzard/wallpaper/game-of-thrones-kings-landing.png > /dev/null 2>&1 & }
-function _xrandr-hdmi-1-0-output() { xrandr --output HDMI-1-0 --off & }
+# function _xrandr-hdmi-1-0() { xrandr --output HDMI-1-0 --scale 1x1 --mode 2560x1440 --rate 120.00 --right-of eDP-1 && feh --geometry 2560x1440+0+0 --auto-zoom --bg-fill /home/dash/HOME/wizzard/wallpaper/game-of-thrones-kings-landing.png > /dev/null 2>&1 & }
+# function _xrandr-hdmi-1-0-output() { xrandr --output HDMI-1-0 --off & }
 function _ps_aux_grep() { command ps aux | grep --color=auto "$1" }
 function virt_machine() { mullvad-exclude qemu-system-x86_64 -enable-kvm -m 8G -smp 4 -hda $1 -device qxl-vga }
 
@@ -39,8 +39,8 @@ alias vi='vim'
 alias grep='grep --color=auto'
 alias system-s='~/HOME/dotfiles/apply_system.sh'
 alias user-s='~/HOME/dotfiles/apply_users.sh'
-alias xrandr-hdmi-1-0='_xrandr-hdmi-1-0'
-alias xrandr-hdmi-1-0-output='_xrandr-hdmi-1-0-output'
+# alias xrandr-hdmi-1-0='_xrandr-hdmi-1-0'
+# alias xrandr-hdmi-1-0-output='_xrandr-hdmi-1-0-output'
 alias vpn-app='_vpn_app'
 alias ps='_ps_aux_grep'
 

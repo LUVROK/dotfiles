@@ -2,7 +2,7 @@
   imports = [
     ./env.nix
     ./dwm.nix
-    ./nvidia.nix
+    ./amd.nix
     ./bootloader.nix
     ./xorg.nix
     ./hardware-configuration.nix

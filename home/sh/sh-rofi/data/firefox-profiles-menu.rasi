@@ -50,7 +50,7 @@ inputbar {
     selected-urgent-foreground:  @urgent-foreground;
 
     text-color: 		         @gruvbox-text;
-    font:                        "Fira Code 18";
+    font:                        "Fira Code 12";
 }
 
 window {

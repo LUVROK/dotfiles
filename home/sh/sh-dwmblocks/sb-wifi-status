@@ -1,23 +1,56 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
-# get current connection status
-CONTROL_CHAR='\x02'
-CONSTATE=$(nmcli -fields CONNECTIVITY g)
-if [[ "$CONSTATE" =~ "none" || "$CONSTATE" =~ "limited" ]]; then
-	WIFISTATE=$(nmcli -fields WIFI g)
-	if [[ "$WIFISTATE" =~ "disabled" ]]; then
-		STATUS="󰤮"
-	else
-		STATUS="󰤫"
-	fi
-elif [[ "$CONSTATE" =~ "full" ]]; then
-	STATUS=$(
-		nmcli dev wifi list | awk '/\*/{if (NR!=1) {print $9, $10}}' |
-			awk '{print ($1 ~ /▂|▄|▆|█/ ? $1 : $2)}' |
-			sed "s/▂▄▆█/󰤨/g" |
-			sed "s/▂▄▆_/󰤥/g" |
-			sed "s/▂▄__/󰤢/g" |
-			sed "s/▂___/󰤟/g"
-	)
+INTERFACE="wlan0"
+WIFI_INFO="$(iwctl station "$INTERFACE" show)"
+SSID=$(echo "$WIFI_INFO" | grep 'Connected network' | awk '{print $3}')
+RAW_RSSI=$(echo "$WIFI_INFO" | grep 'RSSI' | grep -v 'Average' | awk '{print $2}')
+
+# check the internet
+check_internet() {
+  ping -c 1 -W 2 1.1.1.1 >/dev/null 2>&1
+}
+
+if check_internet; then INTERNET_OK="Online"; else INTERNET_OK="Offline"; fi
+
+# Log debug info
+# if [[ -z "$SSID" ]] || (( RSSI < -70 )) || [[ "$INTERNET_OK" != "Online" ]]; then
+#   {
+#     echo "------ $(date) -----"
+#     echo "Interface: $INTERFACE"
+#     echo "SSID: $SSID"
+#     echo "Raw RSSI: $RAW_RSSI"
+#     echo "Internet OK: $INTERNET_OK"
+#   } >> ~/.wifi_debug.log
+# fi
+
+# Validate RSSI
+if [[ "$RAW_RSSI" =~ ^-?[0-9]+$ ]]; then
+  RSSI=$RAW_RSSI
+else
+  {
+    echo "------ $(date) -----"
+    echo "磌 No Signal"
+    echo "RSSI is not valid: $RAW_RSSI"
+  } >> ~/.wifi_debug.log
+
+  ICON="󰤯"  # Нет сигнала
+  echo "$ICON"
+  exit 0
+
+  exit 0
 fi
-echo -e "${STATUS}"
+
+# Determine icon based on RSSI
+if (( RSSI >= -50 )); then
+  ICON="󰤨"  # Full bars
+elif (( RSSI >= -60 )); then
+  ICON="󰤥"  # 3 bars
+elif (( RSSI >= -70 )); then
+  ICON="󰤢"  # 2 bars
+elif (( RSSI >= -80 )); then
+  ICON="󰤟"   # 1 bar
+else
+  ICON="󰤯"  # No signal
+fi
+
+echo "$ICON"

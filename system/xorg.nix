@@ -3,7 +3,7 @@
 {
   services = {
     gnome.gnome-keyring.enable = true;
-    desktopManager.gnome.enable = false;
+    desktopManager.gnome.enable = true;
 
     logind = {
       powerKey = "ignore";
@@ -18,7 +18,7 @@
 
     xserver = {
       enable = true;
-      dpi = 192;
+      dpi = 112;
       upscaleDefaultCursor = true;
       logFile = null;
 
@@ -29,10 +29,10 @@
       };
 
       displayManager.sessionCommands = ''
-        WALLPAPER=/home/dash/HOME/wizzard/wallpaper/game-of-thrones-kings-landing.png
+        WALLPAPER=/home/barnard/HOME/wizzard/wallpaper/game-of-thrones-kings-landing.png
         feh --geometry 3456x2160+0+0 --auto-zoom --bg-fill "$WALLPAPER"*
         
-        export PATH=/home/dash/.local/bin/sh-dwmblocks:/home/dash/.local/bin/dwmblocks:/home/dash/.local/bin/sh-others:/home/dash/.local/bin/sh-rofi:/home/dash/.local/bin/sh-nixos:$PATH
+        export PATH=/home/barnard/.local/bin/sh-dwmblocks:/home/barnard/.local/bin/sh-others:/home/barnard/.local/bin/sh-rofi:/home/barnard/.local/bin/sh-nixos:$PATH
         xset -dpms &
         devmon &
         dwmblocks &
@@ -45,31 +45,8 @@
         Option "SuspendTime" "0"
         Option "OffTime" "0"
       '';
-
-      # deviceSection = ''
-      #   Option         "TripleBuffer" "on"
-      # '';
-
-      # screenSection = ''
-      #   Option         "metamodes" "nvidia-auto-select +0+0 {ForceCompositionPipeline=On, ForceFullCompositionPipeline=On}"
-      #   Option         "AllowIndirectGLXProtocol" "off"
-      # '';
     };
   };
-
-    # Отключаем sleep
-  # environment.etc."systemd/logind.conf.d/99-ignore-sleep.conf".text = ''
-  #   [Login]
-  #   HandleLidSwitch=ignore
-  #   HandleSuspendKey=ignore
-  #   HandleHibernateKey=ignore
-  # '';
-
-  # Включаем DEBUG для systemd-logind
-  # environment.etc."systemd/system/systemd-logind.service.d/override.conf".text = ''
-  #   [Service]
-  #   Environment=SYSTEMD_LOG_LEVEL=debug
-  # '';
 
   environment.systemPackages = with pkgs; [    
     # --- core utilities ---
