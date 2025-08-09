@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 DIR="$(dirname "$0")"
 TARGET_FILE="/tmp/coins.json"

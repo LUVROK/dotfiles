@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 notify() {
     notify-send --icon=office-calendar-symbolic \

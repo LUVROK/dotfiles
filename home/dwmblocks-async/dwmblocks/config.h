@@ -21,7 +21,7 @@
     X("", "sb-lang", 0, 1)      \
     X("", "sb-memory", 10, 3) \
     X("", "sb-volume", 0, 4)    \
-    X("", "sb-wifi-status", 60, 6)  \
+    X("", "sb-wifi-status", 20, 6)  \
     X("", "sb-date", 1, 7)     \
 
 

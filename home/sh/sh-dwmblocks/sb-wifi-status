@@ -13,15 +13,15 @@ check_internet() {
 if check_internet; then INTERNET_OK="Online"; else INTERNET_OK="Offline"; fi
 
 # Log debug info
-# if [[ -z "$SSID" ]] || (( RSSI < -70 )) || [[ "$INTERNET_OK" != "Online" ]]; then
-#   {
-#     echo "------ $(date) -----"
-#     echo "Interface: $INTERFACE"
-#     echo "SSID: $SSID"
-#     echo "Raw RSSI: $RAW_RSSI"
-#     echo "Internet OK: $INTERNET_OK"
-#   } >> ~/.wifi_debug.log
-# fi
+if [[ -z "$SSID" ]] || (( RSSI < -70 )) || [[ "$INTERNET_OK" != "Online" ]]; then
+  {
+    echo "------ $(date) -----"
+    echo "Interface: $INTERFACE"
+    echo "SSID: $SSID"
+    echo "Raw RSSI: $RAW_RSSI"
+    echo "Internet OK: $INTERNET_OK"
+  } >> ~/.wifi_debug.log
+fi
 
 # Validate RSSI
 if [[ "$RAW_RSSI" =~ ^-?[0-9]+$ ]]; then
@@ -33,7 +33,7 @@ else
     echo "RSSI is not valid: $RAW_RSSI"
   } >> ~/.wifi_debug.log
 
-  ICON="󰤯"  # Нет сигнала
+  ICON="󰤫"  # no signal 
   echo "$ICON"
   exit 0
 
@@ -50,7 +50,7 @@ elif (( RSSI >= -70 )); then
 elif (( RSSI >= -80 )); then
   ICON="󰤟"   # 1 bar
 else
-  ICON="󰤯"  # No signal
+  ICON="󰤫"  # No signal
 fi
 
 echo "$ICON"

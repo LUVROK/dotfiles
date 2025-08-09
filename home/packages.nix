@@ -18,6 +18,7 @@
     gnupg
     pass
     pwgen
+    pass-secret-service
 
     # utils
     haskellPackages.greenclip

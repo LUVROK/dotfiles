@@ -179,6 +179,9 @@
 
     # live usb
     woeusb
+
+    # testing system
+    vrrtest
   ];
 
   system.stateVersion = "24.11";
