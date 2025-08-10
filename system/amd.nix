@@ -3,6 +3,10 @@
 {
   services.xserver = {
     videoDrivers = [ "amdgpu" ];
+    deviceSection = ''
+      Option "TearFree" "true"
+      Option "DRI" "3"
+    '';
   };
   
   hardware.graphics = {
@@ -14,7 +18,6 @@
   hardware.enableRedistributableFirmware = true;
 
   environment.systemPackages = with pkgs; [
-    radeontop
     amdgpu_top
     lm_sensors
     dmidecode

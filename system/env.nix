@@ -23,7 +23,7 @@
     ROFI_PASS_CLIPBOARD_BACKEND = "xclip";
     ROFI_PASS_BACKEND = "xdotool";
 
-    LIBVA_DRIVER_NAME = "amdgpu";
+    LIBVA_DRIVER_NAME = "radeonsi";
   };
 
   xdg.mime = {
@@ -43,10 +43,17 @@
 
   environment.etc."X11/xorg.conf.d/60-monitor.conf".text = ''
     Section "Monitor"
-      Identifier "HDMI-3"
-      Option "PreferredMode" "2560x1440"
+      Identifier "HDMI-A-0"
+      Modeline "2560x1440R"  497.25  2560 2608 2640 2720  1440 1443 1448 1525 +hsync -vsync
+      Option "PreferredMode" "2560x1440R"
       Option "Position" "0 0"
       Option "Primary" "true"
+    EndSection
+    Section "Monitor"
+      Identifier "DisplayPort-1"
+      Modeline "2560x1440R"  497.25  2560 2608 2640 2720  1440 1443 1448 1525 +hsync -vsync
+      Option "PreferredMode" "2560x1440R"
+      Option "Position" "-2560 0"
     EndSection
   '';
 }

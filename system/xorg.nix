@@ -56,6 +56,7 @@
 
     # --- xorg display & screen management ---
     xorg.libXrandr
+    libxcvt
     xorg.xdpyinfo
     xorg.libXinerama
     xorg.libXrender
