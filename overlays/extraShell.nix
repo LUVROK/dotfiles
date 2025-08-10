@@ -22,10 +22,6 @@
       mullvad-exclude ${pkgs.steam}/bin/steam "$@"
     '')
 
-    (pkgs.writeShellScriptBin "element-desktop" ''
-      ${pkgs.element-desktop}/bin/element-desktop --password-store=gnome-libsecret "$@"
-    '')
-
     (pkgs.writeShellScriptBin "prismlauncher" ''
       mullvad-exclude ${pkgs.prismlauncher}/bin/prismlauncher "$@"
     '')

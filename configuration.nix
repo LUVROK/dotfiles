@@ -30,7 +30,6 @@
     mullvad-vpn.enable = true;
     dbus.enable = true;
     dbus.implementation = "broker";
-    # dbus.packages =  [ pkgs.pass-secret-service ];
     displayManager.defaultSession = "none+dwm";
   };
   

@@ -12,8 +12,8 @@
     # QT_SCALE_FACTOR = "1";
     # QT_SCREEN_SCALE_FACTORS = "2;2";
 
-    PASSWORD_STORE_DIR="$HOME/HOME/.pass-store-mount";
-    GNUPGHOME="$HOME/.gnupg";
+    PASSWORD_STORE_DIR="$HOME/.password-store";
+    # GNUPGHOME="$HOME/.gnupg";
 
     TERM="xterm-256color";
     TOR_SOCKS_PORT = "9050";

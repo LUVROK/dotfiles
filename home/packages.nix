@@ -19,6 +19,7 @@
     pass
     pwgen
     pass-secret-service
+    libsecret
 
     # utils
     haskellPackages.greenclip

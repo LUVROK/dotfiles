@@ -2,8 +2,8 @@
 
 {
   services = {
-    gnome.gnome-keyring.enable = true;
-    desktopManager.gnome.enable = true;
+    desktopManager.gnome.enable = false;
+    # gnome.gnome-keyring.enable = false;
 
     logind = {
       powerKey = "ignore";

@@ -7,5 +7,6 @@
     ./flameshot.nix
     ./redshift.nix
     ./monitor.nix
+    ./pass-secret-service.nix
   ];
 }
