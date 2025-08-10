@@ -36,7 +36,7 @@
         xset -dpms &
         devmon &
         dwmblocks &
-        greenclip daemon & 
+        greenclip daemon &
       '';
 
       serverFlagsSection = lib.mkDefault ''

@@ -10,18 +10,18 @@ check_internet() {
   ping -c 1 -W 2 1.1.1.1 >/dev/null 2>&1
 }
 
-if check_internet; then INTERNET_OK="Online"; else INTERNET_OK="Offline"; fi
+# if check_internet; then INTERNET_OK="Online"; else INTERNET_OK="Offline"; fi
 
-# Log debug info
-if [[ -z "$SSID" ]] || (( RSSI < -70 )) || [[ "$INTERNET_OK" != "Online" ]]; then
-  {
-    echo "------ $(date) -----"
-    echo "Interface: $INTERFACE"
-    echo "SSID: $SSID"
-    echo "Raw RSSI: $RAW_RSSI"
-    echo "Internet OK: $INTERNET_OK"
-  } >> ~/.wifi_debug.log
-fi
+# # Log debug info
+# if [[ -z "$SSID" ]] || (( RSSI < -70 )) || [[ "$INTERNET_OK" != "Online" ]]; then
+#   {
+#     echo "------ $(date) -----"
+#     echo "Interface: $INTERFACE"
+#     echo "SSID: $SSID"
+#     echo "Raw RSSI: $RAW_RSSI"
+#     echo "Internet OK: $INTERNET_OK"
+#   } >> ~/.wifi_debug.log
+# fi
 
 # Validate RSSI
 if [[ "$RAW_RSSI" =~ ^-?[0-9]+$ ]]; then
