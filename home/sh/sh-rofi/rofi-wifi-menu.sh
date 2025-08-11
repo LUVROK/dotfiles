@@ -68,13 +68,13 @@ elif [ "$LINE_COUNT" -gt 8 ] || [[ "$CON_STATE" =~ "disconnected" ]]; then
 fi
 
 ## Grab the user's chosen SSID entry.
-CHENTRY=$(echo -e "$MENU" | uniq -u | rofi -dmenu -p "WiFi SSID" -lines "$LINE_COUNT" -a "$HIGHLINE" -location "$POSITION" -yoffset "$Y_OFF" -xoffset "$X_OFF" -width -"$R_WIDTH" -theme "$HOME"/.config/rofi/config/network-menu.rasi)
+CHENTRY=$(echo -e "$MENU" | uniq -u | rofi -dmenu -p "WiFi SSID" -lines "$LINE_COUNT" -a "$HIGHLINE" -location "$POSITION" -yoffset "$Y_OFF" -xoffset "$X_OFF" -width -"$R_WIDTH" -theme "$HOME"/.config/rofi/network-menu.rasi)
 CHSSID=$(echo "$CHENTRY" | sed  's/\s\{2,\}/\|/g' | awk -F "|" '{print $1}')
 
 ## Support manual SSID entry.
 if [ "$CHENTRY" = "manually connect to a network" ] ; then
-	MSSID=$(echo "Enter your network's SSID." | rofi -dmenu -p "SSID" -lines 1 -theme "$HOME"/.config/rofi/config/network-menu.rasi)
-	WIFI_PASS=$(echo "Enter the network password." | rofi -dmenu -password -p "Password" -lines 1 -location "$POSITION" -yoffset "$Y_OFF" -xoffset "$X_OFF" -width -"$R_WIDTH" -theme "$HOME"/.config/rofi/config/network-menu.rasi)
+	MSSID=$(echo "Enter your network's SSID." | rofi -dmenu -p "SSID" -lines 1 -theme "$HOME"/.config/rofi/network-menu.rasi)
+	WIFI_PASS=$(echo "Enter the network password." | rofi -dmenu -password -p "Password" -lines 1 -location "$POSITION" -yoffset "$Y_OFF" -xoffset "$X_OFF" -width -"$R_WIDTH" -theme "$HOME"/.config/rofi/network-menu.rasi)
 	iwctl station $DEVICE disconnect
 	iwctl --passphrase $WIFI_PASS station $DEVICE connect $MSSID
 
@@ -84,7 +84,7 @@ elif [[ "$CHENTRY" =~ "disconnect from " ]]; then
 
 ## Support connecting to the chosen network.
 elif [ "$CHSSID" != "" ]; then
-	WIFI_PASS=$(echo "Enter the network password." | rofi -dmenu -password -p "Password" -lines 1 -location "$POSITION" -yoffset "$Y_OFF" -xoffset "$X_OFF" -width -"$R_WIDTH" -theme "$HOME"/.config/rofi/config/network-menu.rasi)
+	WIFI_PASS=$(echo "Enter the network password." | rofi -dmenu -password -p "Password" -lines 1 -location "$POSITION" -yoffset "$Y_OFF" -xoffset "$X_OFF" -width -"$R_WIDTH" -theme "$HOME"/.config/rofi/network-menu.rasi)
 	iwctl station $DEVICE disconnect
 	iwctl --passphrase $WIFI_PASS station $DEVICE connect $CHSSID
 fi

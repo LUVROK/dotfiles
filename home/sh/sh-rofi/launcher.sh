@@ -9,4 +9,4 @@ rofi \
 	-no-drun-show-actions \
 	-terminal kitty
 	-kb-cancel Escape \
-	-theme "$HOME"/.config/rofi/config/launcher.rasi
+	-theme "$HOME"/.config/rofi/launcher.rasi

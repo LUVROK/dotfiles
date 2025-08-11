@@ -1,12 +1,12 @@
 * {
-    BG:    #24273a;
-    BGA:   #181926;
-    FG:    #cad3f5;
-    FGA:   #ed8796;
-    BDR:   #1e2030;
-    SEL:   #cad3f5;
-    UGT:   #ed8796;
-    IMG:   #494d64;
-    OFF:   #eed49f;
-    ON:    #a6da95;
+    BG:    #292929; /* gruvbox-dark-bg0-hard */
+    BGA:   #282828; /* gruvbox-dark-bg0 */
+    FG:    #fbf1c7; /* gruvbox-text */
+    FGA:   #fb4934; /* gruvbox-dark-red-light */
+    BDR:   #d65d0e; /* gruvbox-border */
+    SEL:   #fbf1c7; /* gruvbox-text */
+    UGT:   #cc241d; /* gruvbox-dark-red-dark */
+    IMG:   #504945; /* gruvbox-dark-bg2 */
+    OFF:   #fabd2f; /* gruvbox-dark-yellow-light */
+    ON:    #d79921; /* gruvbox-dark-yellow-dark */
 }

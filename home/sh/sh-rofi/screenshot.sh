@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-rofi_command="rofi -theme $HOME/.config/rofi/config/screenshot.rasi"
+rofi_command="rofi -theme $HOME/.config/rofi/screenshot.rasi"
 
 time=`date +%Y-%m-%d-%I-%M-%S`
 geometry=`xrandr | head -n1 | cut -d',' -f2 | tr -d '[:blank:],current'`
@@ -11,7 +11,7 @@ icon1="$HOME/.config/dunst/icons/collections.svg"
 icon2="$HOME/.config/dunst/icons/timer.svg"
 
 # Buttons
-layout=`cat $HOME/.config/rofi/config/screenshot.rasi | grep BUTTON | cut -d'=' -f2 | tr -d '[:blank:],*/'`
+layout=`cat $HOME/.config/rofi/screenshot.rasi | grep BUTTON | cut -d'=' -f2 | tr -d '[:blank:],*/'`
 if [[ "$layout" == "TRUE" ]]; then
 	screen=""
 	area=""

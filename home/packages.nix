@@ -15,7 +15,6 @@
 
     # pass
     pinentry
-    gnupg
     pass
     pwgen
     pass-secret-service

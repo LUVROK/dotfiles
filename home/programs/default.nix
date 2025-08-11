@@ -8,6 +8,7 @@
     ./neovim
     ./vim
     ./git.nix
+    ./gpg
     ./rofi/rofi.nix
   ];
 

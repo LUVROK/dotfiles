@@ -36,16 +36,6 @@
     cp -r ${./media}/* $out
   '';
 
-  home.file.".gnupg/gpg-agent.conf" = {
-    text = ''
-      pinentry-program ${pkgs.pinentry}/bin/pinentry
-    '';
-    onChange = ''
-      echo "Reloading gpg-agent"
-      echo RELOADAGENT | gpg-connect-agent
-    '';
-  };
-
   home.file.".Xmodmap".text = ''
     keycode  37 = Control_L NoSymbol Control_L
     keycode  50 = Shift_L NoSymbol Shift_L
