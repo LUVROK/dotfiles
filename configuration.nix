@@ -30,6 +30,7 @@
     mullvad-vpn.enable = true;
     dbus.enable = true;
     dbus.implementation = "broker";
+    devmon.enable = true;
     displayManager.defaultSession = "none+dwm";
   };
   

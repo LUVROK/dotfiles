@@ -21,6 +21,13 @@
       options = [ "fmask=0077" "dmask=0077" ];
     };
 
+  fileSystems."/media/alice" = 
+    {
+      device = "/dev/disk/by-uuid/1e14c794-e271-4f4f-836c-3fc6636c834a";
+      fsType = "ext4";
+      options = [ "noatime" ];
+    };
+
   swapDevices = [ ];
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";

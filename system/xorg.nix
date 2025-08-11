@@ -3,7 +3,6 @@
 {
   services = {
     desktopManager.gnome.enable = false;
-    # gnome.gnome-keyring.enable = false;
 
     logind = {
       powerKey = "ignore";
@@ -34,7 +33,6 @@
         
         export PATH=/home/barnard/.local/bin/sh-dwmblocks:/home/barnard/.local/bin/sh-others:/home/barnard/.local/bin/sh-rofi:/home/barnard/.local/bin/sh-nixos:$PATH
         xset -dpms &
-        devmon &
         dwmblocks &
         greenclip daemon &
       '';

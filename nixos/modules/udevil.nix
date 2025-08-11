@@ -27,6 +27,4 @@
     allowed_groups = *
     default_options = uid=1000,gid=100,umask=0077
   '';
-
-  services.devmon.enable = true;
 }
