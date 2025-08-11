@@ -37,11 +37,12 @@
         greenclip daemon &
       '';
 
-      serverFlagsSection = lib.mkDefault ''
-        Option "BlankTime" "0"
-        Option "StandbyTime" "0"
-        Option "SuspendTime" "0"
-        Option "OffTime" "0"
+      serverFlagsSection = ''
+        Option "DPMS" "true"
+        Option "BlankTime"  "5"
+        Option "StandbyTime" "10"
+        Option "SuspendTime" "15"
+        Option "OffTime"     "20"
       '';
     };
   };
