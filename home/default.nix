@@ -23,17 +23,17 @@
     mkdir -p $out/sh-rofi
     mkdir -p $out/sh-others
     mkdir -p $out/sh-nixos
-    cp -r ${./sh/sh-rofi}/* $out/sh-rofi
-    cp -r ${./sh/sh-others}/* $out/sh-others
-    cp -r ${./sh/sh-nixos}/* $out/sh-nixos
+    cp -r ${./local/sh/sh-rofi}/* $out/sh-rofi
+    cp -r ${./local/sh/sh-others}/* $out/sh-others
+    cp -r ${./local/sh/sh-nixos}/* $out/sh-nixos
 
     mkdir -p $out/sh-dwmblocks
-    cp -r ${./sh/sh-dwmblocks}/* $out/sh-dwmblocks
+    cp -r ${./local/sh/sh-dwmblocks}/* $out/sh-dwmblocks
   '';
 
   home.file.".local/media".source = pkgs.runCommand "merge-folders" {} ''
     mkdir -p $out/media
-    cp -r ${./media}/* $out
+    cp -r ${./local/media}/* $out
   '';
 
   home.file.".Xmodmap".text = ''

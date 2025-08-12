@@ -42,7 +42,7 @@
             useGlobalPkgs = false;
             useUserPackages = true;
             backupFileExtension = "backup";
-            users.barnard = import "${self}/./home/home.nix";
+            users.barnard = import "${self}/./home";
             extraSpecialArgs = {
               pkgs-stable = import nixpkgs-stable {
                 inherit system;
@@ -62,16 +62,10 @@
       ];
     };
 
-    packages.${system}.dwmblocks = pkgs.callPackage ./home/dwmblocks-async/default.nix {};
+    packages.${system}.dwmblocks = pkgs.callPackage ./nixos/dwmblocks-async/default.nix {};
     
     devShells.${system}.default = pkgs.mkShell {
-      buildInputs = [
-        # pkgs.stdenv
-        # pkgs.xorg.libX11
-        # pkgs.xorg.libxcb
-        # pkgs.xorg.xcbutil
-        # pkgs.pkg-config
-      ];
+      buildInputs = [ ];
     };
   };
 }

@@ -31,6 +31,10 @@
       source = ./config/colors.rasi;
       target = "rofi/colors.rasi";
     };
+    firefox-rasi = {
+      source = ./config/firefox-profiles-menu.rasi;
+      target = "rofi/firefox-profiles-menu.rasi";
+    };
     font-rasi = {
       source = ./config/font.rasi;
       target = "rofi/font.rasi";

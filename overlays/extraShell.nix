@@ -25,9 +25,5 @@
     (pkgs.writeShellScriptBin "prismlauncher" ''
       mullvad-exclude ${pkgs.prismlauncher}/bin/prismlauncher "$@"
     '')
-
-    (pkgs.writeShellScriptBin "spotify" ''
-      get-active-scale ${pkgs.spotify}/bin/spotify "$@"
-    '')
   ];
 }
