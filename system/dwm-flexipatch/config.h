@@ -57,7 +57,7 @@ static const char localshare[]           = ".local/share";
 #if BAR_ANYBAR_PATCH
 static const int usealtbar               = 1;        /* 1 means use non-dwm status bar */
 static const char *altbarclass           = "Polybar"; /* Alternate bar class name */
-static const char *altbarcmd             = "/home/dash/bar.sh"; /* Alternate bar launch command */
+static const char *altbarcmd             = "/home/barnard/bar.sh"; /* Alternate bar launch command */
 #endif // BAR_ANYBAR_PATCH
 #if BAR_HOLDBAR_PATCH
 static const int showbar                 = 0;   /* 0 means no bar */
@@ -953,7 +953,7 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_space,      spawn,          		SHCMD("pkill -RTMIN+1 dwmblocks") },
 
 	{ MODKEY,                       XK_w,          spawn,                  SHCMD("dwm-power_menu") },
-	{ MODKEY,                       XK_u,          spawn,                  SHCMD("/home/dash/HOME/programs/rofi-pass/rofi-pass") },
+	{ MODKEY,                       XK_u,          spawn,                  SHCMD("/home/barnard/HOME/programs/rofi-pass/rofi-pass") },
 
 	{ MODKEY, 						XK_a, togglescratch, {.ui = 1 } },
 	// { MODKEY, 						XK_k, togglescratch, {.ui = 2 } },

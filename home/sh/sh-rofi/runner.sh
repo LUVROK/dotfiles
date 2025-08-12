@@ -1,6 +1,0 @@
-#!/bin/sh
-rofi \
-	-show run \
-	-scroll-method 0 \
-	-terminal kitty
-	-theme "$HOME"/.config/rofi/runner.rasi

@@ -67,6 +67,11 @@
   security.polkit.enable = true;
   programs.thunar.enable = true;
 
+  # alias user-repl='nix repl ~/dotfiles/hosts#homeConfigurations."$HOST-$USER"'
+  # # pkgs = pluto.config.home-manager.extraSpecialArgs.inputs.nixpkgs.legacyPackages.x86_64-linux
+  # alias host-repl='nix repl ~/dotfiles/hosts#nixosConfigurations."$NAME"'
+
+
   environment.systemPackages = with pkgs; [
     # --- dependebs ---
     glibc
@@ -155,7 +160,7 @@
     gtk3
 
     # --- talking ---
-    # discord
+    discord
     element-desktop
     element-call
     psi-plus

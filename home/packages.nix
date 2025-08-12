@@ -2,6 +2,7 @@
 
 {
   home.packages = with pkgs; [
+    # based
     direnv
     kitty
     fish

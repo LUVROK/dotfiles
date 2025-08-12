@@ -16,6 +16,7 @@
     };
 
     xserver = {
+      /* xrandrHeads */
       enable = true;
       dpi = 112;
       upscaleDefaultCursor = true;

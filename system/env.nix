@@ -13,7 +13,6 @@
     # QT_SCREEN_SCALE_FACTORS = "2;2";
 
     PASSWORD_STORE_DIR="$HOME/.password-store";
-    # GNUPGHOME="$HOME/.gnupg";
 
     TERM="xterm-256color";
     TOR_SOCKS_PORT = "9050";
@@ -38,6 +37,15 @@
       MatchIsKeyboard "on"
       Option "XkbLayout" "us,ru"
       Option "XkbOptions" "grp:win_space_toggle"
+    EndSection
+  '';
+
+  environment.etc."X11/xorg.conf.d/10-amdgpu.conf".text = ''
+    Section "Device"
+        Identifier "AMD"
+        Driver "amdgpu"
+        Option "TearFree" "on"
+        Option "Hotplug" "false"
     EndSection
   '';
 

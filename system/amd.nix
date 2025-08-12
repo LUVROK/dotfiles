@@ -6,6 +6,7 @@
     deviceSection = ''
       Option "TearFree" "true"
       Option "DRI" "3"
+      Option "Hotplug" "false"
     '';
   };
   
