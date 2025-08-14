@@ -53,7 +53,8 @@
       "vboxusers" 
       "vboxsf" 
       "audio"
-      "plugdev"
+      "openrazer" 
+      "plugdev" # ?
       "storage"
       "input"
       "video"
@@ -84,6 +85,7 @@
     curl
     nix-prefetch-git
     nix-index
+    home-manager
     man
     unzip
     unrar

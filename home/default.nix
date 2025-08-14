@@ -8,6 +8,7 @@
     ./services
     ./programs
     ./modules
+    ./hardware
   ];
 
   home.username = "barnard";

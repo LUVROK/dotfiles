@@ -23,6 +23,10 @@
       source = ./config/based.rasi;
       target = "rofi/based.rasi";
     };
+    pinentry-theme-rasi = {
+      source = ./config/pinentry-theme.rasi;
+      target = "rofi/pinentry-theme.rasi";
+    };
     keyring-rasi = {
       source = ./config/keyring.rasi;
       target = "rofi/keyring.rasi";
@@ -46,10 +50,6 @@
     crypto-rasi = {
       source = ./config/crypto-menu.rasi;
       target = "rofi/crypto-menu.rasi";
-    };
-    confirm-rasi = {
-      source = ./config/confirm.rasi;
-      target = "rofi/confirm.rasi";
     };
     greenclip-rasi = {
       source = ./greenclip/greenclip.rasi;
