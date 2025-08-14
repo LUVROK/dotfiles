@@ -13,6 +13,38 @@
       enable = true;
       package = pkgs.rofi-pass;
       stores = [ "$HOME/.password-store" ];
+      extraConfig = ''
+        _rofi () {
+          rofi -no-auto-select -i "$@"
+        }
+
+        _clip_in_primary() {
+          xclip
+        }
+
+        _clip_in_clipboard() {
+          xclip -selection clipboard
+        }
+
+        _clip_out_primary() {
+          xclip -o
+        }
+
+        _clip_out_clipboard() {
+          xclip --selection clipboard -o
+        }
+
+        clip=both
+        clip_clear=45
+        auto_enter='false'
+        notify='true'
+        default_do='copyPass'
+        clibpoard_backend=xclip
+        backend=xdotol
+        fix_layout=false
+
+        default_user=":filename"
+      '';
     };
     terminal = "${pkgs.kitty}/bin/kitty";
     theme = ./config/based.rasi;
@@ -22,6 +54,10 @@
     based-rasi = {
       source = ./config/based.rasi;
       target = "rofi/based.rasi";
+    };
+    rofi-pass-rasi = {
+      source = ./config/rofi-pass.rasi;
+      target = "rofi/rofi-pass.rasi";
     };
     pinentry-theme-rasi = {
       source = ./config/pinentry-theme.rasi;

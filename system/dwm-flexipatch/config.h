@@ -953,7 +953,7 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_space,      spawn,          		SHCMD("pkill -RTMIN+1 dwmblocks") },
 
 	{ MODKEY,                       XK_w,          spawn,                  SHCMD("dwm-power_menu") },
-	{ MODKEY,                       XK_u,          spawn,                  SHCMD("/home/barnard/HOME/programs/rofi-pass/rofi-pass") },
+	{ MODKEY,                       XK_u,          spawn,                  SHCMD("rofi-pass") },
 
 	{ MODKEY, 						XK_a, togglescratch, {.ui = 1 } },
 	// { MODKEY, 						XK_k, togglescratch, {.ui = 2 } },

@@ -64,7 +64,6 @@ window {
 }
 
 mainbox {
-    border:  0;
     border:           1;
 }
 

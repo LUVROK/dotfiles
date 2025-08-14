@@ -36,16 +36,26 @@
 }
 
 window {
-    border: 1;
     padding: 0;
 }
 
 mainbox {
+    border: 1;
     spacing: 5px;
 }
 
 message {
     padding: 0px 0px 0px 5px;
+}
+
+textbox {
+    highlight:  bold italic;
+    text-color: @FG;
+}
+
+listview {
+    border-color: @BDR;
+    scrollbar:    true;
 }
 
 inputbar {
@@ -59,4 +69,35 @@ prompt {
 
 entry {
     padding: 5px;
+}
+
+element {
+    border:  0;
+    padding: 0;
+}
+
+element-text selected {
+    background-color: @BDR;
+    text-color: @FG;
+    foreground: @FG;
+    border: 0;
+}
+
+element-text {
+    background-color: @BG;
+    text-color: @FG;
+    foreground: @FG;
+    padding: 6px 8px;
+}
+
+scrollbar {
+    width:        4px;
+    border:       0;
+    handle-color: @BDR;
+    handle-width: 4px;
+    padding:      0;
+}
+
+sidebar {
+    border-color: @separatorcolor;
 }
