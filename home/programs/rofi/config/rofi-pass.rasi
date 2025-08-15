@@ -1,148 +1,120 @@
-/* Copyright (C) 2020-2022 Aditya Shakya <adi1090x@gmail.com> */
-/* Everyone is permitted to copy and distribute copies of this file under GNU-GPL3 */
-
-configuration {
-    show-icons:                     true;
-    display-drun: 					":";
-    drun-display-format:            "{icon} {name}";
-    disable-history:                false;
-	click-to-exit: 					true;
-}
-
-@import "font.rasi"
 @import "colors.rasi"
+@import "font.rasi"
+
+* {
+    /* Theme colors */
+    background:                  @BG;
+    background-color:            @BG;
+    foreground:                  @FG;
+    border-color:                @BDR;
+    separatorcolor:              @BDR;
+    scrollbar-handle:            @BDR;
+
+    /* Normal colors */
+    normal-background:           @BG;
+    normal-foreground:           @FG;
+    alternate-normal-background: @BGA;
+    alternate-normal-foreground: @FGA;
+    selected-normal-background:  @BDR;
+    selected-normal-foreground:  @FG;
+
+    /* Active colors */
+    active-background:           @ON;
+    active-foreground:           @BG;
+    alternate-active-background: @ON;
+    alternate-active-foreground: @BG;
+    selected-active-background:  @OFF;
+    selected-active-foreground:  @BG;
+
+    /* Urgent colors */
+    urgent-background:           @UGT;
+    urgent-foreground:           @SEL;
+    alternate-urgent-background: @UGT;
+    alternate-urgent-foreground: @SEL;
+    selected-urgent-background:  @FGA;
+    selected-urgent-foreground:  @SEL;
+}
 
 window {
-    transparency:                   "real";
-    background-color:               @BG;
-    text-color:                     @FG;
-    border-radius:                  0px;
-    width:                          500px;
-    location:                       center;
-    anchor:                         center;
-    x-offset:                       0;
-    y-offset:                       0;
-}
-
-prompt {
-    enabled: 						true;
-	padding: 						4px 4px 6px 6px;
-	background-color: 				@BGA;
-	text-color: 					@FG;
-}
-
-textbox-prompt-colon {
-	expand: 						false;
-	str: 							"";
-    background-color:               @BGA;
-    text-color:                     @IMG;
-    padding:                        4px 10px 0px 10px;
-	font:							"Iosevka Nerd Font 10";
-}
-
-inputbar {
-	children: 						[ textbox-prompt-colon, entry ];
-    spacing:                       	0px;
-    background-color:               @BGA;
-    text-color:                     @FG;
-    expand:                         false;
-    border:                  		0px 0px 1px 0px;
-    border-radius:                  0px;
-    border-color:                  	@BDR;
-    margin:                         0px 0px 0px 0px;
-    padding:                        6px 0px 10px 0px;
-    position:                       center;
-}
-
-
-entry {
-    background-color:               @BGA;
-    text-color:                     @FG;
-    placeholder-color:              @FG;
-    expand:                         true;
-    horizontal-align:               0;
-    placeholder:                    "Search Passwords";
-    blink:                          true;
-    padding:                        4px 0px 0px 0px;
-}
-
-case-indicator {
-    background-color:               @BG;
-    text-color:                     @FG;
-    spacing:                        0;
-}
-
-
-listview {
-    background-color:               @BG;
-    columns:                        1;
-    lines:							7;
-    spacing:                        4px;
-    cycle:                          false;
-    dynamic:                        true;
-    layout:                         vertical;
+    padding: 0;
 }
 
 mainbox {
-    background-color:               @BG;
-    children:                       [ inputbar, listview ];
-    spacing:                       	6px;
-    padding:                        6px 6px 6px 6px;
+    border: 1;
+    spacing: 5px;
+    children:   [ inputbar, message, listview ];
+}
+
+message {
+    padding: 15px;
+}
+
+message textbox {
+    padding: 5px 10px;
+}
+
+textbox {
+    highlight:  bold italic;
+    text-color: @FG;
+}
+
+listview {
+    border-color: @BDR;
+    scrollbar:    true;
+}
+
+inputbar {
+    border: 0px 0px 1px 0px;
+    children:   [ prompt, textbox-prompt-sep, entry, case-indicator ];
+}
+
+prompt {
+    padding: 5px;
+    border: 0px 1px 0px 0px;
+}
+
+entry {
+    padding: 5px;
 }
 
 element {
-    background-color:               @BG;
-    text-color:                     @FG;
-    orientation:                    horizontal;
-    border-radius:                  4px;
-    padding:                        6px 6px 6px 6px;
+    border:  0;
+    padding: 0;
 }
 
-element-icon {
-    background-color: 				inherit;
-    text-color:       				inherit;
-    horizontal-align:               0.5;
-    vertical-align:                 0.5;
-    size:                           24px;
-    border:                         0px;
+element-text selected {
+    background-color: @BDR;
+    text-color: @FG;
+    foreground: @FG;
+    border: 0;
 }
 
 element-text {
-    background-color: 				inherit;
-    text-color:       				inherit;
-    expand:                         true;
-    horizontal-align:               0;
-    vertical-align:                 0.5;
-    margin:                         0px 0px 0px 2px;
+    background-color: @BG;
+    text-color: @FG;
+    foreground: @FG;
+    padding: 6px 8px;
 }
 
-element normal.urgent,
-element alternate.urgent {
-    background-color:               @UGT;
-    text-color:                     @FG;
-    border-radius:                  9px;
+scrollbar {
+    width:        4px;
+    border:       0;
+    handle-color: @BDR;
+    handle-width: 4px;
+    padding:      0;
 }
 
-element normal.active,
-element alternate.active {
-    background-color:               @BGA;
-    text-color:                     @FG;
+case-indicator,
+entry,
+prompt,
+button {
+    spacing:    0;
+    text-color: @FG;
 }
 
-element selected {
-    background-color:               @SEL;
-    text-color:                     @BG;
-    border:                  		0px;
-    border-radius:                  0px;
-    border-color:                  	@BDR;
-}
-
-element selected.urgent {
-    background-color:               @UGT;
-    text-color:                     @FG;
-}
-
-element selected.active {
-    background-color:               @BGA;
-    color:                          @FG;
+textbox-prompt-sep {
+    expand:     false;
+    str:        "";
+    text-color: @FG;
+    margin:     0 0.3em 0 0;
 }

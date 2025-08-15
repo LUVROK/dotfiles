@@ -3,7 +3,7 @@
 {
   services.gpg-agent = {
     enable = true;
-    defaultCacheTtl = 10;
+    defaultCacheTtl = 60;
     pinentry.package = pkgs.pinentry-rofi;
   };
 
