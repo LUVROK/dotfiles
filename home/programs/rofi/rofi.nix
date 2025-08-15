@@ -46,11 +46,6 @@
           ${pkgs.pwgen}/bin/pwgen -y "$@"
         }
 
-        _image_viewer () {
-          ${pkgs.feh}/bin/feh -
-        #    display
-        }
-
         _clip_in_primary() {
           xclip
         }
@@ -67,25 +62,19 @@
           xclip --selection clipboard -o
         }
 
-        # fields to be used
-
-        help_color="#4872FF"
-
+        default_autotype="user :tab pass"
+        delay=2
+        wait=0.2
+        type_delay=12
+        default_do='menu' # menu, copyPass, typeUser, typePass, copyUser, copyUrl, viewEntry, typeMenu, actionMenu, copyMenu, openUrl
+        auto_enter='true'
+        notify='false'
         clip=both
         clip_clear=45
-        notify='false'
-        default_do='copyPass'
-        clibpoard_backend=xclip
-        backend=xdotol
+        default_user="barnard"
+        default_user2=john_doe
+        password_length=12
         fix_layout=false
-
-        default_user=":filename"
-
-        # rofi-pass needs to close itself before it can type passwords. Set delay here.
-        wait=0.2
-
-        # open new password entries in editor
-        edit_new_pass="true"
 
         # Custom Keybindings
         autotype="Control+Return"
