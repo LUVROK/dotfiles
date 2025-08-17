@@ -58,7 +58,7 @@
       Option "Primary" "true"
     EndSection
     Section "Monitor"
-      Identifier "DisplayPort-1"
+      Identifier "DisplayPort-0"
       Modeline "2560x1440R"  497.25  2560 2608 2640 2720  1440 1443 1448 1525 +hsync -vsync
       Option "PreferredMode" "2560x1440R"
       Option "Position" "-2560 0"
