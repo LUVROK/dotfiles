@@ -950,7 +950,7 @@ static const Key keys[] = {
 	{ MODKEY|ShiftMask,				XK_f,          spawn,               {.v = firefoxcmd } },
 	{ MODKEY|ShiftMask,				XK_k,          spawn,               {.v = codiumcmd } },
 	{ MODKEY|ShiftMask,				XK_o,          spawn,               {.v = obsidiancmd } },
-	{ MODKEY,                       XK_space,      spawn,          		SHCMD("pkill -RTMIN+1 dwmblocks") },
+	{ MODKEY,                       XK_space,      spawn,          		SHCMD("+1 dwmblocks") },
 
 	{ MODKEY,                       XK_w,          spawn,                  SHCMD("dwm-power_menu") },
 	{ MODKEY,                       XK_u,          spawn,                  SHCMD("rofi-pass") },
