@@ -4,18 +4,11 @@
   programs.ranger = {
     enable = true;
 
-    package = pkgs.ranger.overrideAttrs (prev: {
-      preConfigure = prev.preConfigure + ''
-        sed -i -e '/#\s*application\/pdf/,/&& exit\s6/s/#//' ranger/data/scope.sh
-        sed -i -e '/#\s*video/,/exit 1/s/#//' ranger/data/scope.sh
-      '';
-    });
-
-    extraPackages = [
-      pkgs.ueberzugpp
-      pkgs.ffmpegthumbnailer
-      pkgs.poppler_utils
-      pkgs.jq
+    extraPackages = with pkgs; [
+      ueberzugpp
+      ffmpegthumbnailer
+      poppler_utils
+      jq
     ];
 
     settings = {

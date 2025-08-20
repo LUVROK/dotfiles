@@ -7,9 +7,15 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     home-manager.url = github:nix-community/home-manager;
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+
+    deploy-rs.url = "github:serokell/deploy-rs";
+    disko.url = "github:nix-community/disko";
+
+    deploy-rs.inputs.nixpkgs.follows = "nixpkgs";
+    disko.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, nixpkgs, nixpkgs-pinned, nixpkgs-stable, home-manager, ... }@inputs: let
+  outputs = { self, nixpkgs, nixpkgs-pinned, nixpkgs-stable, home-manager, deploy-rs, disko, ... }@inputs: let
     system = "x86_64-linux";
     pkgs = import nixpkgs {
       inherit system;
@@ -59,6 +65,15 @@
             self.packages.${system}.dwmblocks
           ];
         })
+      ];
+    };
+
+    nixosConfigurations.sirius = nixpkgs.lib.nixosSystem {
+      inherit pkgs;
+      modules = [
+        disko.nixosModules.disko
+        ./hosts/sirius/sirius.nix
+        ./hosts/sirius/disk-config.nix
       ];
     };
 

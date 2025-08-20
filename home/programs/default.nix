@@ -5,6 +5,7 @@
     ./neofetch.nix
     ./firefox
     ./ranger
+    ./nnn
     ./neovim
     ./vim
     ./git.nix

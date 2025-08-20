@@ -950,7 +950,7 @@ static const Key keys[] = {
 	{ MODKEY|ShiftMask,				XK_f,          spawn,               {.v = firefoxcmd } },
 	{ MODKEY|ShiftMask,				XK_k,          spawn,               {.v = codiumcmd } },
 	{ MODKEY|ShiftMask,				XK_o,          spawn,               {.v = obsidiancmd } },
-	{ MODKEY,                       XK_space,      spawn,          		SHCMD("+1 dwmblocks") },
+	{ MODKEY,                       XK_space,      spawn,          		SHCMD("pkill -RTMIN+1 dwmblocks") },
 
 	{ MODKEY,                       XK_w,          spawn,                  SHCMD("dwm-power_menu") },
 	{ MODKEY,                       XK_u,          spawn,                  SHCMD("rofi-pass") },
@@ -1077,8 +1077,8 @@ static const Key keys[] = {
 	#endif // INSETS_PATCH
 	{ MODKEY,                       XK_Return,     zoom,                   {0} },
 	#if VANITYGAPS_PATCH
-	{ MODKEY|Mod4Mask,              XK_u,          incrgaps,               {.i = +1 } },
-	{ MODKEY|Mod4Mask|ShiftMask,    XK_u,          incrgaps,               {.i = -1 } },
+	{ MODKEY|Mod4Mask,              XK_e,          incrgaps,               {.i = +1 } },
+	{ MODKEY|Mod4Mask|ShiftMask,    XK_e,          incrgaps,               {.i = -1 } },
 	{ MODKEY|Mod4Mask,              XK_i,          incrigaps,              {.i = +1 } },
 	{ MODKEY|Mod4Mask|ShiftMask,    XK_i,          incrigaps,              {.i = -1 } },
 	{ MODKEY|Mod4Mask,              XK_o,          incrogaps,              {.i = +1 } },
