@@ -1,54 +1,64 @@
-{ modulesPath, lib, ... }:
+{ modulesPath, lib, pkgs, ... }:
+
+# nix run --no-write-lock-file github:nix-community/nixos-anywhere -- --flake .#sirius root@45.137.99.130
+# sudo nixos-rebuild switch --flake .#sirius --target-host root@45.137.99.130 --use-remote-sudo
 
 {
   system.stateVersion = "24.11";
-  imports =
-    [ (modulesPath + "/profiles/qemu-guest.nix")
-    ];
-
-  systemd.network.enable = true;
-  systemd.network.networks."10-ethernet" = {
-    matchConfig.Type = "ether";
-    networkConfig.DHCP = "yes";           # v4+v6
-  };
+  imports = [ (modulesPath + "/profiles/qemu-guest.nix") ];
 
   boot.loader.grub = {
+    enable = true;
     efiSupport = true;
     efiInstallAsRemovable = true;
   };
-  
-  services.getty = {
-    autologinUser = "root";
-  };
+
+  time.timeZone = "Europe/Moscow";
+  i18n.defaultLocale = "en_GB.UTF-8";
+
+  services.getty.autologinUser = "root";
+
+  networking.hostName = "sirius";
+  networking.wireless.enable = false;
 
   services.openssh = {
     enable = true;
-    openFirewall = true;  
     settings = {
-      PermitRootLogin = "prohibit-password"; # root по ключу ОК
       PasswordAuthentication = false;
       KbdInteractiveAuthentication = false;
     };
   };
 
-  systemd.network.networks."10-ens18" = {
-    name = "ens18";
-    networkConfig = {
-      DHCP = "ipv4";
-      IPv6AcceptRA = true;
-    };
+  systemd.network.enable = true;
+  systemd.network.wait-online.anyInterface = true;
+  services.resolved.enable = true;
+  networking.useNetworkd = true;
+
+  networking.firewall = {
+    enable = true;
+    allowedTCPPorts = [ 22 443 ];
+    allowPing = true;
   };
 
-  networking = {
-      firewall = {
-      enable = true;
-      allowedTCPPorts = [ 22 ];
-    };
+  systemd.network.networks."10-ens18" = {
+    matchConfig.Name = "ens18";
+    address = [ "45.137.99.130/24" ];
+    routes = [ { routeConfig.Gateway = "45.137.99.1"; } ];
+    dns = [ "8.8.8.8" "1.1.1.1" ];
   };
 
   users.users.root.openssh.authorizedKeys.keys = [
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKfVMnRoTEwUBqxcm6tzRTiFGZVafQ6dHr95HDM//Wk+ pawel.2020.navtop@gmail.com"
   ];
+
+  users.users.dash = {
+    isNormalUser = true;
+    extraGroups = ["wheel"];
+    initialPassword = "nopassword";
+    openssh.authorizedKeys.keys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKfVMnRoTEwUBqxcm6tzRTiFGZVafQ6dHr95HDM//Wk+ pawel.2020.navtop@gmail.com"
+    ];
+  };
 
   environment.etc."nixos".source = ./.;
   system.activationScripts.copyConfig.text = ''
