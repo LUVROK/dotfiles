@@ -10,5 +10,6 @@
 
   home.packages = with pkgs; [
     gh # github cli
+    git-crypt
   ];
 }
