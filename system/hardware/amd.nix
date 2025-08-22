@@ -26,4 +26,17 @@
     libva-utils
     libva
   ];
+
+  environment.etc."X11/xorg.conf.d/10-amdgpu.conf".text = ''
+    Section "Device"
+        Identifier "AMD"
+        Driver "amdgpu"
+        Option "TearFree" "on"
+        Option "Hotplug" "false"
+    EndSection
+  '';
+
+  environment.variables = {
+    LIBVA_DRIVER_NAME = "radeonsi";
+  };
 }

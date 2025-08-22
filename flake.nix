@@ -41,7 +41,7 @@
         inherit inputs system;
       };
       modules = [ 
-        ./configuration.nix
+        ./hosts/barnard
         home-manager.nixosModules.home-manager
         {
           home-manager = {

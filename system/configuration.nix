@@ -2,9 +2,9 @@
 
 {
   imports = [
-    ./system
-    ./nixos
-    ./overlays
+    ./default.nix
+    ../nixos
+    ../overlays
   ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
