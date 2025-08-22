@@ -67,4 +67,5 @@ with config.programs.rofi.extraConfig;
   copy_pass="Control+t"
   show="Control+o"
   help="Control+h"
+  insert_pass="Alt+n"
 ''

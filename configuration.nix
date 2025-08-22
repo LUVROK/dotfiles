@@ -184,6 +184,9 @@
 
     # testing system
     vrrtest
+
+    xray
+    nekoray
   ];
 
   system.stateVersion = "24.11";

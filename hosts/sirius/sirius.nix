@@ -1,7 +1,7 @@
 { modulesPath, lib, pkgs, ... }:
 
 # nix run --no-write-lock-file github:nix-community/nixos-anywhere -- --flake .#sirius root@45.137.99.130
-# nixos-rebuild switch --flake .#sirius --target-host root@45.137.99.130 --use-remote-sudo
+# nixos-rebuild switch --flake .#sirius --target-host root@45.137.99.130 --sudo
 
 {
   system.stateVersion = "24.11";
@@ -73,5 +73,5 @@
     settingsFile = ./xray.json; 
   };
 
-  environment.systemPackages = with pkgs; [ vim htop curl wget git btop ];
+  environment.systemPackages = with pkgs; [ vim htop curl wget git btop xray ];
 }
