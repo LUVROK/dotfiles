@@ -1,8 +1,7 @@
-{ config, lib, pkgs, pkgs-stable, inputs, ... }:
+{ config, lib, pkgs, pkgs-stable, inputs, username, ... }:
 
 {
   imports = [
-    ./default.nix
     ../nixos
     ../overlays
   ];
@@ -41,7 +40,8 @@
   users.groups.plugdev = {};
   users.groups.storage = {};
 
-  users.users.barnard = {
+  users.users.${username} = {
+    shell = pkgs.zsh;
     isNormalUser = true;
     extraGroups = [ 
       "networkmanager" 
@@ -63,7 +63,6 @@
   };
 
   users.users.root.shell = pkgs.zsh;
-  users.users.barnard.shell = pkgs.zsh;
 
   security.polkit.enable = true;
   programs.thunar.enable = true;

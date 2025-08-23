@@ -54,7 +54,6 @@ with config.programs.rofi.extraConfig;
   clip=clipboard # primary is middle mouse i guess
   clip_clear=45
   edit_new_pass="true"
-  default_user="barnard"
   password_length=16
   fix_layout=true
 

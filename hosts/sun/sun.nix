@@ -2,8 +2,8 @@
 
 {
   imports = [
-    ../../system/configuration.nix
-    ../../system/hardware/amd.nix
+    ../system/configuration.nix
+    ../system/hardware/nvidia.nix
 
     ../../system/env.nix
     ../../system/dwm.nix

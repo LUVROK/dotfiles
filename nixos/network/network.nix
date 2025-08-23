@@ -1,8 +1,8 @@
-{ lib, config, pkgs, ... }:
+{ lib, config, pkgs, username, ... }:
 
 {
   networking = { 
-    hostName = "barnard";
+    hostName = "${username}";
 
     networkmanager = {
       enable = false;

@@ -1,13 +1,13 @@
-{ config, pkgs, ... }:
+{ config, pkgs, username, ... }:
 
 {
   services.syncthing = {
     enable = true;
-    user = "barnard";
+    user = "${username}";
     openDefaultPorts = true;
 
-    dataDir = "/home/barnard/.config/syncthing";
-    configDir = "/home/barnard/.config/syncthing";
+    dataDir = "/home/${username}/.config/syncthing";
+    configDir = "/home/${username}/.config/syncthing";
   };
 
   networking.firewall.allowedTCPPorts = [ 8384 22000 7777 ];

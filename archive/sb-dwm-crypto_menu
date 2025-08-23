@@ -5,7 +5,7 @@ TARGET_FILE="/tmp/coins.json"
 STATE_FILE="/tmp/last_coin.txt"
 SOURCE_FILE="$DIR/data/coins.json"
 
-rofi_command="rofi -theme /home/barnard/HOME/dotfiles/home/programs/rofi/crypto-menu.rasi"
+rofi_command="rofi -theme /home/$whoami/HOME/dotfiles/home/programs/rofi/crypto-menu.rasi"
 uptime=$(uptime | sed -e 's/up.*//g')
 
 XMR="XMR"

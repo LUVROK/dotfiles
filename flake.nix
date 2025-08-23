@@ -25,10 +25,29 @@
         allowInsecure = false;
       };
     };
+
+    users  = import ./profiles/users.nix;
+
+    mkHMUser = username: { ... }: {
+      home-manager = {
+        useGlobalPkgs = false;
+        useUserPackages = true;
+        backupFileExtension = "backup";
+        users.${username} = {
+          imports = [ "${self}/home" ];
+        };
+        extraSpecialArgs = {
+          inherit username inputs system;
+          pkgs-stable = import nixpkgs-stable { inherit system; };
+          pkgs-pinned = import nixpkgs-pinned { inherit system; };
+        };
+      };
+    };
   in {
     nixosConfigurations.barnard = nixpkgs.lib.nixosSystem {
       inherit pkgs;
       specialArgs = {
+        username = users.barnard.username;
         pkgs-stable = import nixpkgs-stable {
           inherit system;
         };
@@ -43,23 +62,33 @@
       modules = [ 
         ./hosts/barnard
         home-manager.nixosModules.home-manager
-        {
-          home-manager = {
-            useGlobalPkgs = false;
-            useUserPackages = true;
-            backupFileExtension = "backup";
-            users.barnard = import "${self}/./home";
-            extraSpecialArgs = {
-              pkgs-stable = import nixpkgs-stable {
-                inherit system;
-              };
-              pkgs-pinned = import nixpkgs-pinned {
-                inherit system;
-              };
-              inherit inputs system;
-            };
+        (mkHMUser users.barnard.username)
+        ({ config, pkgs, ... }: {
+          environment.systemPackages = [
+            self.packages.${system}.dwmblocks
+          ];
+        })
+      ];
+    };
+
+    nixosConfigurations.dash = nixpkgs.lib.nixosSystem {
+      inherit pkgs;
+      specialArgs = {
+        pkgs-stable = import nixpkgs-stable {
+          inherit system;
+        };
+        pkgs-pinned = import nixpkgs-pinned {
+          inherit system;
+          config = {
+            allowUnfree = true;
           };
-        }
+        };
+        inherit inputs system;
+      };
+      modules = [ 
+        ./hosts/sun
+        home-manager.nixosModules.home-manager
+        (mkHMUser "dash")
         ({ config, pkgs, ... }: {
           environment.systemPackages = [
             self.packages.${system}.dwmblocks

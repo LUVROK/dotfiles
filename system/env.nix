@@ -1,11 +1,11 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, username, ... }:
 
 {
   environment.variables = {
     TERMINAL = "kitty";
     BROWSER = "firefox";
 
-    # XCURSOR_PATH = lib.mkForce "/home/barnard/.icons";
+    # XCURSOR_PATH = lib.mkForce "/home/${username}/.icons";
     UDEVIL_CONF_PATH= "/etc/udevil/udevil.conf";
 
     # QT_AUTO_SCREEN_SCALE_FACTOR = "1";

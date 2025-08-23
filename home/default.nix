@@ -1,4 +1,4 @@
-{ config, pkgs, lib, inputs, ... }:
+{ config, pkgs, lib, inputs, username, ... }:
 
 {
   programs.home-manager.enable = true;
@@ -11,9 +11,9 @@
     ./hardware
   ];
 
-  home.username = "barnard";
-  home.homeDirectory = "/home/barnard";
   home.stateVersion = "24.11";
+  home.username = "${username}";
+  home.homeDirectory = "/home/${username}";
 
   xresources.properties = {
     "Xcursor.size" = 24;

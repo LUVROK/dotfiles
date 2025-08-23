@@ -1,9 +1,9 @@
-{ pkgs, ... }:
+{ pkgs, username, ... }:
 
 {
   hardware.openrazer = {
     enable = true;
-    users = [ "barnard" ];
+    users = [ "${username}" ];
     batteryNotifier = {
       enable = true;
       percentage = 10;
