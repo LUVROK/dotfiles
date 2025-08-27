@@ -1,6 +1,11 @@
 { config, pkgs, lib, ... }:
 
 {
+
+  environment.sessionVariables = {
+    XFT_DPI = "112";
+  };
+
   environment.etc."X11/xorg.conf.d/60-monitor.conf".text = ''
     Section "Monitor"
       Identifier "HDMI-A-0"

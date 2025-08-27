@@ -11,11 +11,10 @@
   };
 
   services.pulseaudio.enable = false;
-
   security.rtkit.enable = true;
+  
   environment.systemPackages = with pkgs; [
-    pulseaudio
     alsa-utils
-    pavucontrol
+    playerctl
   ];
 }

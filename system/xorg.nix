@@ -27,15 +27,18 @@
         layout = "us,ru";
       };
 
-      displayManager.sessionCommands = ''
-        WALLPAPER=/home/${username}/HOME/wizzard/wallpaper/game-of-thrones-kings-landing.png
-        feh --geometry 3456x2160+0+0 --auto-zoom --bg-fill "$WALLPAPER"*
-        
-        export PATH=/home/${username}/.local/bin/sh-dwmblocks:/home/${username}/.local/bin/sh-others:/home/${username}/.local/bin/sh-rofi:/home/${username}/.local/bin/sh-nixos:$PATH
-        xset -dpms &
-        dwmblocks &
-        greenclip daemon &
-      '';
+      displayManager = {
+        startx.enable = true;
+        sessionCommands = ''
+          WALLPAPER=/home/${username}/HOME/wizzard/wallpaper/game-of-thrones-kings-landing.png
+          feh --geometry 3456x2160+0+0 --auto-zoom --bg-fill "$WALLPAPER"*
+          
+          export PATH=/home/${username}/.local/bin/sh-dwmblocks:/home/${username}/.local/bin/sh-others:/home/${username}/.local/bin/sh-rofi:/home/${username}/.local/bin/sh-nixos:$PATH
+          xset -dpms &
+          dwmblocks &
+          greenclip daemon &
+        '';
+      };
 
       serverFlagsSection = ''
         Option "DPMS" "true"
@@ -44,6 +47,10 @@
         Option "SuspendTime" "15"
         Option "OffTime"     "20"
       '';
+
+      excludePackages = with pkgs; [
+        xterm
+      ];
     };
   };
 

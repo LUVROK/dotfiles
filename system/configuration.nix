@@ -6,8 +6,6 @@
     ../overlays
   ];
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
-
   time.timeZone = "Europe/Moscow";
 
   i18n = {
@@ -32,6 +30,19 @@
     devmon.enable = true;
     displayManager.defaultSession = "none+dwm";
   };
+
+  nix.settings = {
+    experimental-features = [ "nix-command" "flakes" ];
+    warn-dirty = false;
+  };
+
+  security.sudo.extraConfig = ''
+    Defaults lecture = never
+    Defaults timestamp_type=pid
+    Defaults timestamp_timeout=45
+  '';
+  
+  programs.nix-ld.enable = true;
   
   services.journald.console = "/dev/tty4";
 
@@ -118,6 +129,7 @@
     grub2
     nautilus
     parted
+    nvme-cli
 
     # --- development tools ---
     nodejs

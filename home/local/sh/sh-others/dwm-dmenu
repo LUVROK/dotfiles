@@ -1,3 +1,10 @@
 #!/bin/sh
 
-j4-dmenu-desktop --term kitty --no-generic -i --dmenu 'dmenu -i -sb "#d65d0e" -sf "#fbf1c7" -nb "#282828" -nf "#ebdbb2" -fn "JetBrainsMonoNL NFP:size=14"'
+if [ "$XFT_DPI" -gt 112 ]; then
+    font="JetBrainsMonoNL NFP:size=16"
+else
+    font="JetBrainsMonoNL NFP:size=12"
+fi
+
+j4-dmenu-desktop --term kitty --no-generic -i \
+  --dmenu "dmenu -i -sb '#d65d0e' -sf '#fbf1c7' -nb '#282828' -nf '#ebdbb2' -fn '$font'"

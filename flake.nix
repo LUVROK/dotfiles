@@ -66,6 +66,7 @@
         home-manager.nixosModules.home-manager
         (mkHMUser users.barnard.username)
         ({ config, pkgs, ... }: {
+          boot.kernelPackages = pkgs.linuxPackages_latest;
           environment.systemPackages = [
             self.packages.${system}.dwmblocks
           ];
@@ -93,6 +94,7 @@
         home-manager.nixosModules.home-manager
         (mkHMUser users.dash.username)   
         ({ config, pkgs, ... }: {
+          boot.kernelPackages = pkgs.linuxPackages_latest;
           environment.systemPackages = [
             self.packages.${system}.dwmblocks
           ];
