@@ -38,7 +38,7 @@
 
   security.sudo.extraConfig = ''
     Defaults lecture = never
-    Defaults timestamp_type=pid
+    Defaults timestamp_type=ppid
     Defaults timestamp_timeout=45
   '';
   

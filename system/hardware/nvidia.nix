@@ -19,7 +19,6 @@
     nvtopPackages.full
     
     mesa
-    mesa.drivers
     driversi686Linux.mesa
 
     libinput-gestures
