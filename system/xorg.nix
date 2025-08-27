@@ -5,20 +5,19 @@
     desktopManager.gnome.enable = false;
 
     logind = {
-      powerKey = "ignore";
-      powerKeyLongPress = "poweroff";
+      settings.Login.HandlePowerKey = "ignore";
+      settings.Login.HandlePowerKeyLongPress = "poweroff";
 
-      extraConfig = ''
-        [Login]
-        IdleAction=ignore
-        IdleActionSec=0
-      '';
+      # extraConfig = ''
+      #   [Login]
+      #   IdleAction=ignore
+      #   IdleActionSec=0
+      # '';
     };
 
     xserver = {
       /* xrandrHeads */
       enable = true;
-      dpi = 112;
       upscaleDefaultCursor = true;
       logFile = null;
 

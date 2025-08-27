@@ -8,6 +8,8 @@
     home-manager.url = github:nix-community/home-manager;
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
+
+
     deploy-rs.url = "github:serokell/deploy-rs";
     disko.url = "github:nix-community/disko";
 
@@ -74,6 +76,7 @@
     nixosConfigurations.dash = nixpkgs.lib.nixosSystem {
       inherit pkgs;
       specialArgs = {
+        username = users.dash.username;
         pkgs-stable = import nixpkgs-stable {
           inherit system;
         };
@@ -88,7 +91,7 @@
       modules = [ 
         ./hosts/sun
         home-manager.nixosModules.home-manager
-        (mkHMUser "dash")
+        (mkHMUser users.dash.username)   
         ({ config, pkgs, ... }: {
           environment.systemPackages = [
             self.packages.${system}.dwmblocks

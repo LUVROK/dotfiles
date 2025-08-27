@@ -2,6 +2,7 @@
 
 {
   services.xserver = {
+    dpi = 112;  
     videoDrivers = [ "amdgpu" ];
     deviceSection = ''
       Option "TearFree" "true"

@@ -15,10 +15,10 @@
   home.username = "${username}";
   home.homeDirectory = "/home/${username}";
 
-  xresources.properties = {
-    "Xcursor.size" = 24;
-    "Xft.dpi" = 112;
-  };
+  # xresources.properties = {
+  #   "Xcursor.size" = 24;
+  #   "Xft.dpi" = 112;
+  # };
   
   home.file.".local/bin".source = pkgs.runCommand "merge-folders" {} ''
     mkdir -p $out/sh-rofi

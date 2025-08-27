@@ -6,6 +6,7 @@
       systemd-boot.enable = true;
       efi = {
         canTouchEfiVariables = true;
+        efiSysMountPoint = "/boot";  # <- важно!
         # efiSysMountPoint = "/boot/efi";
       };
       

@@ -3,7 +3,6 @@
 {
   services.xserver = {
     enable = true;
-    desktopManager.gnome.enable = false;
 
     videoDrivers = [ 
       "nvidia"
