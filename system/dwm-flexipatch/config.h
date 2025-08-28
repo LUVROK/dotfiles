@@ -1,4 +1,4 @@
-#include "./themes/gruvbox.h"
+#include "./gruvbox.h"
 
 /* Helper macros for spawning commands */
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
@@ -177,14 +177,14 @@ static void (*bartabmonfns[])(Monitor *) = { monocle /* , customlayoutfn */ };
 static void (*bartabmonfns[])(Monitor *) = { NULL /* , customlayoutfn */ };
 #endif // MONOCLE_LAYOUT
 #endif // BAR_TABGROUPS_PATCH
-#if BAR_PANGO_PATCH
-static const char font[]                 = "JetBrainsMonoNL NFP 14";
-#else
-static const char *fonts[]               = { 
-  "JetBrainsMonoNL NFP:size=14", 
-  "Font Awesome 6 Free Solid:size=16"
-};
-#endif // BAR_PANGO_PATCH
+// #if BAR_PANGO_PATCH
+// static const char font[]                 = "JetBrainsMonoNL NFP 14";
+// #else
+// // static const char *fonts[]               = { 
+// //   "JetBrainsMonoNL NFP:size=14", 
+// //   "Font Awesome 6 Free Solid:size=16"
+// // };
+// #endif // BAR_PANGO_PATCH
 
 #if RENAMED_SCRATCHPADS_PATCH
 static char scratchselfgcolor[]          = "#FFF7D4";
@@ -637,13 +637,23 @@ static const BarRule barrules[] = {
 };
 
 /* layout(s) */
-static const float mfact     = 0.5; /* factor of master area size [0.05..0.95] */
+static const float mfact     = 0.55; /* factor of master area size [0.05..0.95] */
 static const int nmaster     = 1;    /* number of clients in master area */
 #if FLEXTILE_DELUXE_LAYOUT
 static const int nstack      = 0;    /* number of clients in primary stack area */
 #endif // FLEXTILE_DELUXE_LAYOUT
 static const int resizehints = 0;    /* 1 means respect size hints in tiled resizals */
 static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen window */
+static const int refreshrate = 120;  /* refresh rate (per second) for client move/resize */
+#if PLACEMOUSE_PATCH
+static const int refreshrate_placemouse = 60; /* refresh rate (per second) for placemouse */
+#endif // PLACEMOUSE_PATCH
+#if DRAGMFACT_PATCH
+static const int refreshrate_dragmfact = 40; /* refresh rate (per second) for dragmfact */
+#endif // DRAGMFACT_PATCH
+#if DRAGCFACT_PATCH
+static const int refreshrate_dragcfact = 60; /* refresh rate (per second) for dragcfact */
+#endif // DRAGCFACT_PATCH
 #if DECORATION_HINTS_PATCH
 static const int decorhints  = 1;    /* 1 means respect decoration hints */
 #endif // DECORATION_HINTS_PATCH
