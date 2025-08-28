@@ -5,25 +5,6 @@ WIFI_INFO="$(iwctl station "$INTERFACE" show)"
 SSID=$(echo "$WIFI_INFO" | grep 'Connected network' | awk '{print $3}')
 RAW_RSSI=$(echo "$WIFI_INFO" | grep 'RSSI' | grep -v 'Average' | awk '{print $2}')
 
-# check the internet
-check_internet() {
-  ping -c 1 -W 2 1.1.1.1 >/dev/null 2>&1
-}
-
-# if check_internet; then INTERNET_OK="Online"; else INTERNET_OK="Offline"; fi
-
-# # Log debug info
-# if [[ -z "$SSID" ]] || (( RSSI < -70 )) || [[ "$INTERNET_OK" != "Online" ]]; then
-#   {
-#     echo "------ $(date) -----"
-#     echo "Interface: $INTERFACE"
-#     echo "SSID: $SSID"
-#     echo "Raw RSSI: $RAW_RSSI"
-#     echo "Internet OK: $INTERNET_OK"
-#   } >> ~/.wifi_debug.log
-# fi
-
-# Validate RSSI
 if [[ "$RAW_RSSI" =~ ^-?[0-9]+$ ]]; then
   RSSI=$RAW_RSSI
 else
@@ -33,7 +14,7 @@ else
     echo "RSSI is not valid: $RAW_RSSI"
   } >> ~/.wifi_debug.log
 
-  ICON="󰤫"  # no signal 
+  ICON="󰤫"
   echo "$ICON"
   exit 0
 
