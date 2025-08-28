@@ -9,6 +9,7 @@
     ./programs
     ./modules
     ./hardware
+    ./dwmblocks
   ];
 
   home.stateVersion = "24.11";
@@ -28,9 +29,10 @@
     cp -r ${./local/sh/sh-others}/* $out/sh-others
     cp -r ${./local/sh/sh-nixos}/* $out/sh-nixos
 
-    mkdir -p $out/sh-dwmblocks
-    cp -r ${./local/sh/sh-dwmblocks}/* $out/sh-dwmblocks
   '';
+  
+  # mkdir -p $out/sh-dwmblocks
+  # cp -r ${./local/sh/sh-dwmblocks}/* $out/sh-dwmblocks
 
   home.file.".local/media".source = pkgs.runCommand "merge-folders" {} ''
     mkdir -p $out/media

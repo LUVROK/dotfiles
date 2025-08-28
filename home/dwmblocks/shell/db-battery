@@ -1,5 +1,4 @@
-#!/bin/sh
-# Display the current battery status.
+#!/usr/bin/env bash
 
 notify() {
     notify-send \
@@ -9,9 +8,8 @@ notify() {
         "Battery" "$1"
 }
 
-case "$BLOCK_BUTTON" in
+case "${BLOCK_BUTTON:-}" in
     1) notify "$(acpi -b | awk -F ': |, ' '{printf "%s\n%s\n", $2, $4}')" ;;
-    6) terminal -e "$EDITOR" "$0" ;;
 esac
 
 # Loop through all attached batteries.

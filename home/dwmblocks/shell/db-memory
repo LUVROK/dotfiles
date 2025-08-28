@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-case "$BLOCK_BUTTON" in
+case "${BLOCK_BUTTON:-}" in
     1) kitty -e btop ;;
     6) kitty -e "$EDITOR" "$0" ;;
 esac

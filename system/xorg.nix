@@ -33,9 +33,8 @@
           WALLPAPER=/home/${username}/HOME/wizzard/wallpaper/game-of-thrones-kings-landing.png
           feh --geometry 3456x2160+0+0 --auto-zoom --bg-fill "$WALLPAPER"*
           
-          export PATH=/home/${username}/.local/bin/sh-dwmblocks:/home/${username}/.local/bin/sh-others:/home/${username}/.local/bin/sh-rofi:/home/${username}/.local/bin/sh-nixos:$PATH
+          export PATH=/home/${username}/.local/bin/sh-others:/home/${username}/.local/bin/sh-rofi:/home/${username}/.local/bin/sh-nixos:$PATH
           xset -dpms &
-          dwmblocks &
           greenclip daemon &
         '';
       };

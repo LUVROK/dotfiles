@@ -1,75 +1,53 @@
 #!/bin/sh
 
-function get_volume {
-    amixer get Master | grep '%' | head -n 1 | cut -d '[' -f 2 | cut -d '%' -f 1
+SINK='@DEFAULT_AUDIO_SINK@'  # текущий дефолтный вывод
+STEP=0.02                    # 2% (1.00 = 100%)
+
+get_volume() {
+  # wpctl отдает 0.00–1.00; переводим в %
+  wpctl get-volume "$SINK" | awk '/Volume:/{print int($2*100+0.5)}'
 }
 
-function is_mute {
-    amixer get Master | grep '%' | grep -oE '[^ ]+$' | grep off > /dev/null
+is_mute() {
+  wpctl get-volume "$SINK" | grep -qiE 'Mute(d)?:\s*(yes|true|1)'
 }
 
-function send_notification {
-    volume=`get_volume`
-    # bar=$(seq -s "─" $(($volume / 2)) | sed 's/[0-9]//g')
-    # colored_bar="<span color='#00FF00'>$bar</span>"
-
-    notify-send "Volume: $volume%" \
-        -h string:x-dunst-stack-tag:volume \
-        -h int:value:"$volume" \
-        --hint=int:value:"$volume" \
-        --urgency=low
-
-    # dunstify -u normal -h string:x-dunst-stack-tag:volume -h int:value:"$volume" "<span color='$color'>Volume: $volume%</span>"
+send_notification() {
+  vol=$(get_volume)
+  notify-send "Volume: $vol%" \
+    -h string:x-dunst-stack-tag:volume \
+    -h int:value:"$vol" \
+    --hint=int:value:"$vol" \
+    --urgency=low
 }
 
-function send_notification1 {
-    volume=`get_volume`
-    # bar=$(seq -s "─" $(($volume / 2)) | sed 's/[0-9]//g')
-    # colored_bar="<span color='#00FF00'>$bar</span>"
-
-    notify-send "Volume: $volume%" \
-        -h string:x-dunst-stack-tag:volume \
-        -h int:value:"$volume" \
-        --hint=int:value:"$volume" \
-        --urgency=low
-
-    # dunstify -u normal -h string:x-dunst-stack-tag:volume -h int:value:"$volume" "<span color='$color'>Volume: $volume%</span>"
-}
-
-case $1 in
-    up)
-        # Получаем текущий уровень громкости
-        volume=$(get_volume)
-        if [ "$volume" -lt 100 ]; then
-            # Включаем звук (если он был выключен)
-            pactl set-sink-mute @DEFAULT_SINK@ 0
-            # Увеличиваем громкость (+2%)
-            pactl set-sink-volume @DEFAULT_SINK@ +2%
-            send_notification1
-
-            pkill -RTMIN+4 dwmblocks
-        fi
-        ;;
-    down)
-        # Включаем звук (если он был выключен)
-        pactl set-sink-mute @DEFAULT_SINK@ 0
-        # Уменьшаем громкость (-2%)
-        pactl set-sink-volume @DEFAULT_SINK@ -2%
-        send_notification
-
-        pkill -RTMIN+4 dwmblocks
-        ;;
-    mute)
-        # Переключаем режим mute
-        pactl set-sink-mute @DEFAULT_SINK@ toggle
-        if is_mute ; then
-            notify-send "Volume: Mute" \
-                --urgency=low
-
-            pkill -RTMIN+4 dwmblocks
-        else
-            send_notification
-            pkill -RTMIN+4 dwmblocks    
-        fi
-        ;;
+case "$1" in
+  up)
+    vol=$(get_volume)
+    if [ "$vol" -lt 100 ]; then
+      wpctl set-mute "$SINK" 0
+      wpctl set-volume "$SINK" ${STEP}+
+      send_notification
+      pkill -RTMIN+4 dwmblocks
+    fi
+    ;;
+  down)
+    wpctl set-mute "$SINK" 0
+    wpctl set-volume "$SINK" ${STEP}-
+    send_notification
+    pkill -RTMIN+4 dwmblocks
+    ;;
+  mute)
+    wpctl set-mute "$SINK" toggle
+    if is_mute; then
+      notify-send "Volume: Mute" -h string:x-dunst-stack-tag:volume --urgency=low
+    else
+      send_notification
+    fi
+    pkill -RTMIN+4 dwmblocks
+    ;;
+  *)
+    echo "Usage: $0 {up|down|mute}" >&2
+    exit 1
+    ;;
 esac

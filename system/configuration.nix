@@ -29,6 +29,7 @@
     dbus.implementation = "broker";
     devmon.enable = true;
     displayManager.defaultSession = "none+dwm";
+    blueman.enable = true;
   };
 
   nix.settings = {

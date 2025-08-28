@@ -29,6 +29,7 @@
     };
 
     users  = import ./profiles/users.nix;
+    dwmblocks = self.packages.${system}.dwmblocks;
 
     mkHMUser = username: { ... }: {
       home-manager = {
@@ -67,9 +68,6 @@
         (mkHMUser users.barnard.username)
         ({ config, pkgs, ... }: {
           boot.kernelPackages = pkgs.linuxPackages_latest;
-          environment.systemPackages = [
-            self.packages.${system}.dwmblocks
-          ];
         })
       ];
     };
@@ -92,12 +90,9 @@
       modules = [ 
         ./hosts/sun
         home-manager.nixosModules.home-manager
-        (mkHMUser users.dash.username)   
+        (mkHMUser users.dash.username)  
         ({ config, pkgs, ... }: {
           boot.kernelPackages = pkgs.linuxPackages_latest;
-          environment.systemPackages = [
-            self.packages.${system}.dwmblocks
-          ];
         })
       ];
     };
@@ -111,7 +106,7 @@
       ];
     };
 
-    packages.${system}.dwmblocks = pkgs.callPackage ./nixos/dwmblocks-async/default.nix {};
+    packages.${system}.dwmblocks = pkgs.callPackage ./home/dwmblocks/dwmblocks-async/default.nix {};
     
     devShells.${system}.default = pkgs.mkShell {
       buildInputs = [ ];

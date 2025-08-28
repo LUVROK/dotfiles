@@ -22,7 +22,7 @@ toggle_lang() {
     fi
 }
 
-case "$BLOCK_BUTTON" in
+case "${BLOCK_BUTTON:-}" in
     1) toggle_lang ;;
 esac
 

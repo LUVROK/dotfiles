@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 INTERFACE="wlan0"
 WIFI_INFO="$(iwctl station "$INTERFACE" show)"
