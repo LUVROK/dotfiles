@@ -1,8 +1,5 @@
 { config, lib, pkgs, inputs, nixosConfig, ... }:
 
-let 
-  isHidpi = nixosConfig.isHidpi;
-in
 {
   programs.rofi = {
     enable = true;
@@ -52,7 +49,7 @@ in
       target = "rofi/firefox-profiles-menu.rasi";
     };
     font-rasi = {
-      source = if isHidpi
+      source = if nixosConfig.isHidpi
         then ./config/font-hidpi.rasi
         else ./config/font-lowdpi.rasi;
       target = "rofi/font.rasi";

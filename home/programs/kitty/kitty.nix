@@ -1,10 +1,10 @@
-{ pkgs, ... }:
+{ pkgs, nixosConfig, ... }:
 
 {
   enable = true;
   settings = {    
     font_family = "JetBrainsMono";
-    font_size = "10.0";
+    font_size = if nixosConfig.isHidpi then "18.0" else "12.0";
 
     window_padding_width = 5;
     window_padding_height = 2.5;

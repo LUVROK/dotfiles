@@ -1,4 +1,4 @@
-{ lib, config, pkgs, ... }:
+{ lib, config, pkgs, nixosConfig, ... }:
 
 {
   imports = [
@@ -16,6 +16,6 @@
   home.file.".config/mpv".source = ./mpv;
 
   programs = {
-    kitty = (import ./kitty/kitty.nix { inherit pkgs; });
+    kitty = (import ./kitty/kitty.nix { inherit pkgs nixosConfig; });
   };
 }
