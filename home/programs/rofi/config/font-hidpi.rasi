@@ -1,0 +1,6 @@
+@import "colors.rasi"
+
+* {
+    font:  "Fira Code 14";
+    text-color: @FG;
+}

@@ -1,5 +1,8 @@
-{ config, lib, pkgs, inputs, ... }:
+{ config, lib, pkgs, inputs, nixosConfig, ... }:
 
+let 
+  isHidpi = nixosConfig.isHidpi;
+in
 {
   programs.rofi = {
     enable = true;
@@ -49,7 +52,9 @@
       target = "rofi/firefox-profiles-menu.rasi";
     };
     font-rasi = {
-      source = ./config/font.rasi;
+      source = if isHidpi
+        then ./config/font-hidpi.rasi
+        else ./config/font-lowdpi.rasi;
       target = "rofi/font.rasi";
     };
     powermenu-rasi = {
