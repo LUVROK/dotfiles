@@ -55,7 +55,6 @@ configuration {
 
 window {
     padding:          0;
-    width:            520px;
     anchor:           north east;
     location:         north east;
     y-offset:         35px;

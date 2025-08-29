@@ -1,6 +1,10 @@
 @import "colors.rasi"
 
 * {
-    font:  "Fira Code 14";
+    font:  "Fira Code 20";
     text-color: @FG;
+}
+
+window {
+    width:            820px;
 }
