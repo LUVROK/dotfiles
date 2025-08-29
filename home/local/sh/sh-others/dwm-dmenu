@@ -1,9 +1,9 @@
 #!/bin/sh
 
 if [ "$XFT_DPI" -gt 112 ]; then
-    font="JetBrainsMonoNL NFP:size=16"
-else
     font="JetBrainsMonoNL NFP:size=12"
+else
+    font="JetBrainsMonoNL NFP:size=16"
 fi
 
 j4-dmenu-desktop --term kitty --no-generic -i \
