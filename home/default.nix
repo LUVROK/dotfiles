@@ -1,4 +1,4 @@
-{ config, pkgs, lib, inputs, username, ... }:
+{ config, pkgs, lib, inputs, username, nixosConfig, ... }:
 
 {
   programs.home-manager.enable = true;
@@ -15,6 +15,16 @@
   home.stateVersion = "24.11";
   home.username = "${username}";
   home.homeDirectory = "/home/${username}";
+
+  gtk = {
+    enable = true;
+    theme.package = pkgs.gruvbox-dark-gtk;
+    theme.name = "gruvbox-dark";
+    font = {
+      name = "JetBrainsMonoNL NFP";
+      size = if nixosConfig.isHidpi then 12 else 18;
+    };
+  };
 
   # xresources.properties = {
   #   "Xcursor.size" = 24;
