@@ -8,6 +8,8 @@ let
     rev = dwm-flexipatch-rev;
     hash = "sha256-+6NrjxdbCnv9ZB0MvZ1+mWyxrEncQF14gijGPoWIhhY=";
   };
+  
+  isHidpi = config.isHidpi;
 in
 {
   imports = [
@@ -27,6 +29,7 @@ in
           cp ${./patches.h} patches.h
           touch gruvbox.h
           cp ${./gruvbox.h} gruvbox.h
+          cp ${if isHidpi then ./hidpi.h else ./lowdpi.h} dpi.h
         '';
       });
     })

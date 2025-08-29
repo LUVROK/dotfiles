@@ -8,8 +8,6 @@
     home-manager.url = github:nix-community/home-manager;
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
-
-
     deploy-rs.url = "github:serokell/deploy-rs";
     disko.url = "github:nix-community/disko";
 
@@ -88,6 +86,7 @@
         inherit inputs system;
       };
       modules = [ 
+        ./base.nix
         ./hosts/sun
         home-manager.nixosModules.home-manager
         (mkHMUser users.dash.username)  

@@ -71,4 +71,6 @@
       Option "Primary" "true"
     EndSection
   '';
+
+  isHidpi = true;
 }
