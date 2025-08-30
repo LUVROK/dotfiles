@@ -1,4 +1,5 @@
 @import "colors.rasi"
+@import "settings.rasi"
 @import "font.rasi"
 
 * {
@@ -40,7 +41,7 @@ window {
 }
 
 mainbox {
-    border: 1;
+    border: @BW;
     spacing: 5px;
     children:   [ inputbar, message, listview ];
 }
@@ -64,13 +65,13 @@ listview {
 }
 
 inputbar {
-    border: 0px 0px 1px 0px;
+    border: @B-B;
     children:   [ prompt, textbox-prompt-sep, entry, case-indicator ];
 }
 
 prompt {
     padding: 5px;
-    border: 0px 1px 0px 0px;
+    border: @B-R;
 }
 
 entry {
@@ -78,7 +79,7 @@ entry {
 }
 
 element {
-    border:  0;
+    border: @B-NONE;
     padding: 0;
 }
 
@@ -86,7 +87,7 @@ element-text selected {
     background-color: @BDR;
     text-color: @FG;
     foreground: @FG;
-    border: 0;
+    border: @B-NONE;
 }
 
 element-text {
@@ -97,10 +98,8 @@ element-text {
 }
 
 scrollbar {
-    width:        4px;
-    border:       0;
+    border: @B-NONE;
     handle-color: @BDR;
-    handle-width: 4px;
     padding:      0;
 }
 

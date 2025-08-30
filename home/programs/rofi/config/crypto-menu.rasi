@@ -56,9 +56,9 @@ inputbar {
 }
 
 window {
-    border:           2;
-    padding:          0px;
-    x-offset:         -40px;
+    border: @BW;
+    padding: 0px;
+    x-offset: -40px;
 
     width: 8ch;
 

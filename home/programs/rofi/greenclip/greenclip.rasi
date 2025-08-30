@@ -1,5 +1,7 @@
 @import "colors.rasi"
+@import "settings.rasi"
 @import "font.rasi"
+@import "greenclip-offset.rasi"
 
 configuration {
     display-clipboard: "search";
@@ -57,12 +59,10 @@ window {
     padding:          0;
     anchor:           north east;
     location:         north east;
-    y-offset:         35px;
-    x-offset:         -10px;
 }
 
 mainbox {
-    border:           1;
+    border: @BW;
 }
 
 inputbar {
@@ -83,13 +83,13 @@ textbox {
 }
 
 listview {
-    border:       1px 0px 0px 0px;
+    border: @B-L;
     border-color: @separatorcolor;
     scrollbar:    true;
 }
 
 element {
-    border:  0;
+    border: @B-NONE;
     padding: 0;
 }
 
@@ -97,7 +97,7 @@ element-text selected {
     background-color:               @gruvbox-border;
     text-color:                     @gruvbox-text;
     foreground:                  @gruvbox-text;
-    border:  0;
+    border: @B-NONE;
 }
 
 element-text {
@@ -108,10 +108,8 @@ element-text {
 }
 
 scrollbar {
-    width:        4px;
-    border:       0;
+    border: @B-NONE;
     handle-color: @scrollbar-handle;
-    handle-width: 4px;
     padding:      0;
 }
 

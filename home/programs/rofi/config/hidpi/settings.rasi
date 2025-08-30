@@ -1,0 +1,34 @@
+* {
+    BW: 2px; /* border width */
+
+    /* border width */
+    B-NONE: 0;
+    B-ALL:  2px;
+
+    B-T: 2px 0   0   0;
+    B-R: 0   2px 0   0;
+    B-B: 0   0   2px 0;
+    B-L: 0   0   0   2px;
+
+    B-X: 0   2px 0   2px;
+    B-Y: 2px 0   2px 0;
+
+    B-TR: 2px 2px 0   0;
+    B-RB: 0   2px 2px 0;
+    B-BL: 0   0   2px 2px;
+    B-LT: 2px 0   0   2px;
+
+    B-ALL-BUT-T: 0   2px 2px 2px;
+    B-ALL-BUT-R: 2px 0   2px 2px;
+    B-ALL-BUT-B: 2px 2px 0   2px;
+    B-ALL-BUT-L: 2px 2px 2px 0;
+}
+
+scrollbar {
+    width:        8px;
+    handle-width: 8px;
+}
+
+window {
+    width: 65ch;
+}

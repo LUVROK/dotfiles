@@ -1,4 +1,5 @@
 @import "colors.rasi"
+@import "settings.rasi"
 @import "font.rasi"
 
 inputbar {
@@ -21,7 +22,7 @@ inputbar {
     gruvbox-dark-yellow-dark:  #d79921;
     gruvbox-dark-yellow-light: #fabd2f;
     gruvbox-border:            #d65d0e;
-    gruvbox-border-focus:            #d64d0e;
+    gruvbox-border-focus:      #d64d0e;
 
     /* Theme colors */
     background:                  @gruvbox-dark-bg0-hard;
@@ -56,13 +57,14 @@ inputbar {
 }
 
 window {
-    border:           2;
-    padding:          0px;
-    x-offset:         -40px;
+    border: @BW;
+    padding: 0px;
+    x-offset: -40px;
 
     width: 24ch;
-    location:    center;
-    anchor:      center;
+
+    location: center;
+    anchor: center;
 }
 
 element-text selected {

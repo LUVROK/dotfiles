@@ -32,10 +32,6 @@
       source = ./config/rofi-pass.rasi;
       target = "rofi/rofi-pass.rasi";
     };
-    pinentry-theme-rasi = {
-      source = ./config/pinentry-theme.rasi;
-      target = "rofi/pinentry-theme.rasi";
-    };
     keyring-rasi = {
       source = ./config/keyring.rasi;
       target = "rofi/keyring.rasi";
@@ -50,9 +46,21 @@
     };
     font-rasi = {
       source = if nixosConfig.isHidpi
-        then ./config/font-hidpi.rasi
-        else ./config/font-lowdpi.rasi;
+        then ./config/hidpi/font-hidpi.rasi
+        else ./config/lowdpi/font-lowdpi.rasi;
       target = "rofi/font.rasi";
+    };
+    settings = {
+      source = if nixosConfig.isHidpi
+        then ./config/hidpi/settings.rasi
+        else ./config/lowdpi/settings.rasi;
+      target = "rofi/settings.rasi";
+    };
+    greenclip-offset = {
+      source = if nixosConfig.isHidpi
+        then ./config/hidpi/greenclip-offset-hidpi.rasi
+        else ./config/lowdpi/greenclip-offset-lowdpi.rasi;
+      target = "rofi/greenclip-offset.rasi";
     };
     powermenu-rasi = {
       source = ./config/power-menu.rasi;

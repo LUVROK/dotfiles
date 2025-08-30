@@ -4,7 +4,3 @@
     font:  "Fira Code 18";
     text-color: @FG;
 }
-
-window {
-    width:            820px;
-}

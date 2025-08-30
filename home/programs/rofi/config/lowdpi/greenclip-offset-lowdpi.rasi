@@ -1,0 +1,4 @@
+window {
+    y-offset:         35px;
+    x-offset:         -10px;
+}
