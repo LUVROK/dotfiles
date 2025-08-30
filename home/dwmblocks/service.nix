@@ -65,8 +65,9 @@ in
     };
 
     Service = {
+      ExecStartPre = "${pkgs.coreutils}/bin/sleep 1";
       ExecStart = "${dwmblocksPkg}/bin/dwmblocks";
-      Restart = "always";
+      Restart = "on-failure";
       RestartSec = "2s";
 
       Environment = [
