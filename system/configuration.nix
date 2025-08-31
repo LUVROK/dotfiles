@@ -199,6 +199,8 @@
 
     xray
     nekoray
+
+    librewolf
   ];
 
   system.stateVersion = "24.11";

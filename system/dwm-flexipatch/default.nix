@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, inputs, ... }:
 
 let
   dwm-flexipatch-rev = "10104fbc9ad3b7c68cfa38b7f387d83e82388ea6";

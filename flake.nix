@@ -13,9 +13,12 @@
 
     deploy-rs.inputs.nixpkgs.follows = "nixpkgs";
     disko.inputs.nixpkgs.follows = "nixpkgs";
+
+    nur.url = "github:nix-community/NUR";
+    nur.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, nixpkgs, nixpkgs-pinned, nixpkgs-stable, home-manager, deploy-rs, disko, ... }@inputs: let
+  outputs = { self, nixpkgs, nixpkgs-pinned, nixpkgs-stable, home-manager, deploy-rs, disko, nur, ... }@inputs: let
     system = "x86_64-linux";
     pkgs = import nixpkgs {
       inherit system;
