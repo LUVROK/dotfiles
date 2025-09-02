@@ -83,7 +83,7 @@ textbox {
 }
 
 listview {
-    border: @B-L;
+    border: @B-T;
     border-color: @separatorcolor;
     scrollbar:    true;
 }

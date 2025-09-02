@@ -1,6 +1,6 @@
 @import "colors.rasi"
 
 * {
-    font:  "Fira Code 18";
+    font:  "Fira Code 12";
     text-color: @FG;
 }
