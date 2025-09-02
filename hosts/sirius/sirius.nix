@@ -16,7 +16,7 @@
   time.timeZone = "Europe/Moscow";
   i18n.defaultLocale = "en_GB.UTF-8";
 
-  services.getty.autologinUser = "root";
+  # services.getty.autologinUser = "root";
 
   networking.hostName = "sirius";
   networking.wireless.enable = false;
@@ -70,8 +70,27 @@
 
   services.xray = {
     enable = true;
-    settingsFile = ./xray.json; 
+    settingsFile = ./xray.json;
   };
 
-  environment.systemPackages = with pkgs; [ vim htop curl wget git btop xray ];
+  systemd.services.xray = {
+    serviceConfig = {
+      RuntimeDirectory = "xray";
+      RuntimeDirectoryMode = "0750";
+      ReadWritePaths = [ "/run/xray" ];
+    };
+  };
+
+  environment.systemPackages = with pkgs; [ 
+    vim 
+    htop 
+    curl 
+    wget 
+    git 
+    btop 
+    xray 
+    vnstat
+  ];
+
+  services.vnstat.enable = true;
 }
