@@ -21,4 +21,6 @@
       Option "Position" "-2560 0"
     EndSection
   '';
+  
+  isHidpi = false;
 }

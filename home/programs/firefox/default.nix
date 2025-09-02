@@ -31,9 +31,14 @@ in
     package = pkgs.firefox;
 
     profiles = {
+      "default" = {
+        id = 3;
+        isDefault = true;
+        path = "oepss4ch.default";
+      };
       "life" = {
         id = 0;
-        isDefault = true;
+        isDefault = false;
 
         extensions.packages =  with pkgs.nur.repos.rycee.firefox-addons; settings.default_extension ++ [ ];
         settings = settings.settings // { };

@@ -64,6 +64,7 @@
         inherit inputs system;
       };
       modules = [ 
+        ./base.nix
         ./hosts/barnard
         home-manager.nixosModules.home-manager
         (mkHMUser users.barnard.username)
