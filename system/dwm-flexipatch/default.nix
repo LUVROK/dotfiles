@@ -33,6 +33,7 @@ in
         '';
       });
     })
+    inputs.nur.overlays.default
   ];
 
   services.xserver.windowManager.dwm = {

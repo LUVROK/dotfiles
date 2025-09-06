@@ -84,21 +84,21 @@ fi
 
 ############## backup all user.js files
 # Find all profiles and their user.js files
-BACKUP_DIR="$HOME/HOME/firefox-backups"
-mkdir -p "$BACKUP_DIR"
+# BACKUP_DIR="$HOME/HOME/firefox-backups"
+# mkdir -p "$BACKUP_DIR"
 
-for p_dir in "$HOME/.mozilla/firefox/"*; do
-    if [ -d "$p_dir" ]; then
-        PROFILE_NAME=$(basename "$p_dir")
-        USER_JS="$p_dir/user.js"
+# for p_dir in "$HOME/.mozilla/firefox/"*; do
+#     if [ -d "$p_dir" ]; then
+#         PROFILE_NAME=$(basename "$p_dir")
+#         USER_JS="$p_dir/user.js"
         
-        if [ -f "$USER_JS" ]; then
-            TIMESTAMP=$(date +%Y-%m-%d_%H-%M-%S)
-            cp "$USER_JS" "$BACKUP_DIR/user-$PROFILE_NAME-$TIMESTAMP.js"
-            echo "Сохранён бэкап: $BACKUP_DIR/user-$PROFILE_NAME-$TIMESTAMP.js"
-        fi
-    fi
-done
+#         if [ -f "$USER_JS" ]; then
+#             TIMESTAMP=$(date +%Y-%m-%d_%H-%M-%S)
+#             cp "$USER_JS" "$BACKUP_DIR/user-$PROFILE_NAME-$TIMESTAMP.js"
+#             echo "Сохранён бэкап: $BACKUP_DIR/user-$PROFILE_NAME-$TIMESTAMP.js"
+#         fi
+#     fi
+# done
 ##############
 
 # check if profile already running

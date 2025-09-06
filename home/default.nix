@@ -22,7 +22,7 @@
     theme.name = "gruvbox-dark";
     font = {
       name = "JetBrainsMonoNL NFP";
-      size = if nixosConfig.isHidpi then 12 else 18;
+      size = if nixosConfig.isHidpi then 12 else 16;
     };
   };
 

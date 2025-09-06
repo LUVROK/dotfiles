@@ -1,7 +1,6 @@
 { config, pkgs, lib, ... }:
 
 {
-
   environment.sessionVariables = {
     XFT_DPI = "112";
   };
