@@ -20,10 +20,10 @@
     enable = true;
     theme.package = pkgs.gruvbox-dark-gtk;
     theme.name = "gruvbox-dark";
-    font = {
-      name = "JetBrainsMonoNL NFP";
-      size = if nixosConfig.isHidpi then 12 else 16;
-    };
+    # font = {
+    #   name = "JetBrainsMonoNL NFP";
+    #   size = if nixosConfig.isHidpi then 12 else 16;
+    # };
   };
 
   # xresources.properties = {

@@ -95,9 +95,9 @@
     "trailhead.firstrun.didSeeAboutWelcome" = true;
 
     # === Fonts override ===
-    "browser.display.use_document_fonts" = 0;
-    "font.name.serif.x-western" = "JetBrainsMonoNL NFP";
-    "font.size.variable.x-western" = 12;
+    "browser.display.use_document_fonts" = 1;
+    # "font.name.serif.x-western" = "JetBrainsMonoNL NFP";
+    # "font.size.variable.x-western" = 12;
 
     # === Downloads / Fullscreen / Misc ===
     "browser.download.start_downloads_in_tmp_dir" = true;
