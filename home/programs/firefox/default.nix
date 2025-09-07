@@ -63,6 +63,7 @@ in
         (extension "canvasblocker" "CanvasBlocker@kkapsner.de")
         (extension "dont-track-me-google1" "dont-track-me-google@robwu.nl")
         (extension "gruvboxtheme" "{fd4fdeb0-5a65-4978-81c5-3488d4d56426}")
+        (extension "chameleon-ext" "{3579f63b-d8ee-424f-bbb6-6d0ce3285e6a}")
         # (extension "" "")
       ];
     };

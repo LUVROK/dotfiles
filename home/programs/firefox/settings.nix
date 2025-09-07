@@ -23,6 +23,7 @@
     "media.navigator.mediadatadecoder_vpx_enabled" = true;
     "media.rdd-ffmpeg.enabled" = true;
     "media.rdd-vpx.enabled" = false;
+    "media.gmp-widevinecdm.enabled" = true;
 
     # === Updates / warnings ===
     "app.update.auto" = false;
@@ -43,6 +44,19 @@
     "privacy.trackingprotection.enabled" = true;
     "privacy.trackingprotection.socialtracking.enabled" = true;
     "privacy.partition.network_state.ocsp_cache" = true;
+    "identity.fxaccounts.enabled" = false;
+    "browser.ml.chat.enabled" = false; 
+    "extensions.formautofill.addresses.enabled" = false; 
+    "extensions.formautofill.creditCards.enabled" = false;
+    "beacon.enabled" = false;
+    "device.sensors.enabled" = false;
+    "geo.enabled" = false;
+    "network.security.esni.enabled" = true;
+    "network.predictor.enabled" = false;
+    "browser.urlbar.speculativeConnect.enabled" = false;
+    "browser.urlbar.usepreloadedtopurls.enabled" = false;
+    "network.ftp.enable" = false;
+    "privacy.resistFingerprinting" = true;
 
     # === Telemetry OFF ===
     "browser.newtabpage.activity-stream.feeds.telemetry" = false;
@@ -59,12 +73,17 @@
     "toolkit.telemetry.unified" = false;
     "toolkit.telemetry.updatePing.enabled" = false;
     "datareporting.healthreport.uploadEnabled" = false;
+    "extensions.webcompat-reporter.enabled" = false;
+    "datareporting.policy.dataSubmissionEnabled" = false;
+    "browser.urlbar.eventTelemetry.enabled" = false;
 
     # === Experiments OFF ===
     "experiments.activeExperiment" = false;
     "experiments.enabled" = false;
     "experiments.supported" = false;
     "network.allow-experiments" = false;
+    "app.normandy.enabled" = false;
+    "app.shield.optoutstudies.enabled" = true;
 
     # === Pocket OFF ===
     "browser.newtabpage.activity-stream.section.highlights.includePocket" = false;
@@ -89,6 +108,15 @@
     "layout.css.prefers-color-scheme.content-override" = 0;
     "intl.accept_languages" = "ru-RU, ru, en-US, en";
     "intl.locale.requested" = "ru, en-US";
+    "browser.contentblocking.report.lockwise.enabled" = false;
+    "extensions.fxmonitor.firstAlertShown" = false;
+    "browser.uitour.enabled" = false;
+    "editor.resizing.enabled_by_default" = true;
+    "dom.push.enabled" = "false";
+    "dom.push.connection.enabled" = "false"; 
+    "dom.battery.enabled" = "false";
+    "dom.event.clipboardevents.enabled" = "false";
+    "dom.event.contextmenu.enabled" = "false";
 
     # === Clipboard / welcome ===
     "dom.events.asyncClipboard.clipboardItem" = true;
