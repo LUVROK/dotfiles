@@ -3,6 +3,8 @@
 {
   environment.sessionVariables = {
     XFT_DPI = "112";
+    XCURSOR_THEME = "Capitaine Cursors (Gruvbox)";
+    GTK_THEME = "gruvbox-dark";
   };
 
   environment.etc."X11/xorg.conf.d/60-monitor.conf".text = ''

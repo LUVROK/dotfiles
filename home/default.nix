@@ -20,10 +20,19 @@
     enable = true;
     theme.package = pkgs.gruvbox-dark-gtk;
     theme.name = "gruvbox-dark";
+    iconTheme = {
+      package = pkgs.gruvbox-dark-icons-gtk;
+      name = "gruvbox-dark";
+    };
     # font = {
     #   name = "JetBrainsMonoNL NFP";
     #   size = if nixosConfig.isHidpi then 12 else 16;
     # };
+  };
+
+  qt = {
+    enable = true;
+    platformTheme.name = "gtk";
   };
 
   # xresources.properties = {

@@ -40,7 +40,6 @@
   security.sudo.extraConfig = ''
     Defaults lecture = never
     Defaults timestamp_type=ppid
-    Defaults timestamp_timeout=45
   '';
   
   programs.nix-ld.enable = true;
@@ -199,6 +198,7 @@
 
     xray
     nekoray
+    v2rayn
 
     librewolf
   ];
