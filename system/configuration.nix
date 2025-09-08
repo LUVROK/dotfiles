@@ -39,7 +39,7 @@
 
   security.sudo.extraConfig = ''
     Defaults lecture = never
-    Defaults timestamp_type=ppid
+    Defaults timestamp_timeout=450
   '';
   
   programs.nix-ld.enable = true;
