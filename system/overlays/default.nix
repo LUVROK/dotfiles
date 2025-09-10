@@ -1,4 +1,4 @@
-{ config, lib, pkgs, inputs, ... }:
+{ config, lib, pkgs, inputs, ... }: 
 
 let
   dwm-flexipatch-rev = "10104fbc9ad3b7c68cfa38b7f387d83e82388ea6";
@@ -12,8 +12,8 @@ let
   isHidpi = config.isHidpi;
 in
 {
-  imports = [
-    ../picom.nix
+  imports = [ 
+    ./extraShell.nix
   ];
 
   nixpkgs.overlays = [
@@ -25,28 +25,19 @@ in
 
         # подмена конфигов до сборки
         postPatch = ''
-          cp ${./config.h} config.h
-          cp ${./patches.h} patches.h
+          cp ${./dwm-flexipatch/config.h} config.h
+          cp ${./dwm-flexipatch/patches.h} patches.h
           touch gruvbox.h
-          cp ${./gruvbox.h} gruvbox.h
-          cp ${if isHidpi then ./hidpi.h else ./lowdpi.h} dpi.h
+          cp ${./dwm-flexipatch/gruvbox.h} gruvbox.h
+          cp ${if isHidpi then ./dwm-flexipatch/hidpi.h else ./dwm-flexipatch/lowdpi.h} dpi.h
         '';
       });
     })
+    (final: prev: {
+      # https://github.com/null-dev/firefox-profile-switcher-connector/issues/10#issuecomment-1238034441
+      # don't work with my firefox configuration, that sad for now, i need figure it out that going on
+      firefox-profile-switcher-connector = final.callPackage ./firefox-profile-switcher-connector.nix {};
+    })
     inputs.nur.overlays.default
-  ];
-
-  services.xserver.windowManager.dwm = {
-    enable = true;
-    package = pkgs.dwm;
-    
-    # package = pkgs.dwm.overrideAttrs (oldAttrs: rec {
-    #   src = ./dwm-flexipatch;
-    # });
-  };
-
-  environment.systemPackages = with pkgs; [
-    dmenu
-    j4-dmenu-desktop
   ];
 }

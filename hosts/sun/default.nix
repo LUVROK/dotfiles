@@ -9,7 +9,7 @@
     ../../system/hardware/nvidia.nix
 
     ../../system/env.nix
-    ../../system/dwm-flexipatch
+    ../../system/dwm.nix
     ../../system/bootloader.nix
     ../../system/xorg.nix
   ];

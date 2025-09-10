@@ -3,7 +3,7 @@
 {
   imports = [
     ../nixos
-    ../overlays
+    ./overlays
   ];
 
   time.timeZone = "Europe/Moscow";

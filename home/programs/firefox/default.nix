@@ -44,7 +44,7 @@ in
     enable = true;
     package = pkgs.firefox;
 
-    nativeMessagingHosts = [ pkgs.vdhcoapp ];
+    nativeMessagingHosts = with pkgs; [ vdhcoapp firefox-profile-switcher-connector ff2mpv-rust ];
 
     policies = {
       DisableTelemetry = true;
@@ -74,6 +74,7 @@ in
         (extension "styl-us" "{7a7a4a92-a2a0-41d1-9fd7-1e92480d612d}")
         (extension "foxyproxy-standard" "foxyproxy@eric.h.jung")
         (extension "video-downloadhelper" "{b9db16a4-6edc-47ec-a1f4-b86292ed211d}")
+        (extension "profile-switcher" "profile-switcher-ff@nd.ax")
         # (extension "" "")
       ];
     };
