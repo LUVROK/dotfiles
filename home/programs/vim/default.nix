@@ -3,7 +3,7 @@
 {
   programs.vim = {
     enable = true;
-    defaultEditor = false;
+    # defaultEditor = false;
 
     plugins = with pkgs.vimPlugins; [ 
 

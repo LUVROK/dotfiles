@@ -117,6 +117,8 @@
     "dom.battery.enabled" = "false";
     "dom.event.clipboardevents.enabled" = "false";
     "dom.event.contextmenu.enabled" = "false";
+    "devtools.chrome.enabled" = false;
+    "devtools.debugger.remote-enabled" = false;
 
     # === Clipboard / welcome ===
     "dom.events.asyncClipboard.clipboardItem" = true;

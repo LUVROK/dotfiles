@@ -35,9 +35,16 @@ in
     source = "${shyfox}/chrome";
   };
 
+  home.file."${config.programs.firefox.configPath}/sapphire/chrome" = {
+    recursive = true;
+    source = "${shyfox}/chrome";
+  };
+
   programs.firefox = {
     enable = true;
     package = pkgs.firefox;
+
+    nativeMessagingHosts = [ pkgs.vdhcoapp ];
 
     policies = {
       DisableTelemetry = true;
@@ -66,6 +73,7 @@ in
         (extension "chameleon-ext" "{3579f63b-d8ee-424f-bbb6-6d0ce3285e6a}")
         (extension "styl-us" "{7a7a4a92-a2a0-41d1-9fd7-1e92480d612d}")
         (extension "foxyproxy-standard" "foxyproxy@eric.h.jung")
+        (extension "video-downloadhelper" "{b9db16a4-6edc-47ec-a1f4-b86292ed211d}")
         # (extension "" "")
       ];
     };
@@ -104,6 +112,22 @@ in
       };
       "test2" = {
         id = 3;
+        
+        # extensions.packages =  with pkgs.nur.repos.rycee.firefox-addons; settings.default_extension ++ [ ];
+        settings = settings.settings // { };
+
+        search = {
+          default = "ddg";
+          force = true;
+          engines = settings.engines // { };
+        };
+
+        extraConfig = pkgs.lib.readFile "${shyfox}/user.js";
+        # userChrome = pkgs.lib.readFile "${shyfox}/chrome/userChrome.css";
+        # userContent = pkgs.lib.readFile "${shyfox}/chrome/userContent.css";
+      };
+      "sapphire" = {
+        id = 4;
         
         # extensions.packages =  with pkgs.nur.repos.rycee.firefox-addons; settings.default_extension ++ [ ];
         settings = settings.settings // { };

@@ -1,17 +1,15 @@
 { pkgs, ... }:
 
 {
-  obs-studio = {
-    enable = true;
+  enable = true;
 
-    package = pkgs.obs-studio.override {
-      cudaSupport = true;
-    };
-
-    plugins = with pkgs.obs-studio-plugins; [
-      obs-pipewire-audio-capture
-      obs-vkcapture
-      obs-vaapi
-    ];
+  package = pkgs.obs-studio.override {
+    cudaSupport = true;
   };
+
+  plugins = with pkgs.obs-studio-plugins; [
+    obs-pipewire-audio-capture
+    obs-vkcapture
+    obs-vaapi
+  ];
 }
