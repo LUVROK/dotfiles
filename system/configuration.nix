@@ -93,6 +93,7 @@
     coreutils
     wget
     curl
+    nix-prefetch
     nix-prefetch-git
     nix-index
     home-manager
@@ -151,7 +152,6 @@
 
     # --- apps ---
     vscodium
-    mpv
     qbittorrent
     telegram-desktop
     obsidian

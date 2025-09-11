@@ -10,10 +10,11 @@
     ./vim
     ./git.nix
     ./gpg
+    ./mpv
     ./rofi/rofi.nix
   ];
 
-  home.file.".config/mpv".source = ./mpv;
+  # home.file.".config/mpv".source = ./mpv;
 
   programs = {
     kitty = (import ./kitty/kitty.nix { inherit pkgs nixosConfig; });

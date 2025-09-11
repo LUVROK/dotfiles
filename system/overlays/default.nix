@@ -38,6 +38,7 @@ in
       # don't work with my firefox configuration, that sad for now, i need figure it out that going on
       firefox-profile-switcher-connector = final.callPackage ./firefox-profile-switcher-connector.nix {};
     })
+    (import ./mpv-config.nix)
     inputs.nur.overlays.default
   ];
 }
