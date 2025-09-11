@@ -8,8 +8,8 @@ self: super: {
     src = super.fetchFromGitHub {
       owner = "LUVROK";
       repo  = "mpv-config";
-      rev   = "4a01da450ef170c86a379ac9b19d20ee6df8353b";
-      hash  = "sha256-cNsg2RpTT7252/z/8bZcY5RrRMG2v9QI6mqay9AHRU8=";
+      rev   = "c2a8fed053b01b81df02b2679dbadcf75a7822d4";
+      hash  = "sha256-jmeOUKAs3gcEuiXqo6FclTGOMrWMcEQdGZlXFpdJjHs=";
     };
     installPhase = ''
       set -euo pipefail
