@@ -38,6 +38,9 @@ in
       # don't work with my firefox configuration, that sad for now, i need figure it out that going on
       firefox-profile-switcher-connector = final.callPackage ./firefox-profile-switcher-connector.nix {};
     })
+    (final: prev: {
+      gravity-defied-cpp = final.callPackage ./gravity-defied-cpp.nix {};
+    })
     (import ./mpv-config.nix)
     inputs.nur.overlays.default
   ];

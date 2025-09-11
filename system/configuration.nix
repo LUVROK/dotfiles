@@ -201,6 +201,8 @@
     v2rayn
 
     librewolf
+
+    gravity-defied-cpp
   ];
 
   system.stateVersion = "24.11";
