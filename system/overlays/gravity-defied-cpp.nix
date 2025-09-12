@@ -37,11 +37,13 @@ stdenv.mkDerivation rec {
   nativeBuildInputs = [ cmake pkg-config ];
   buildInputs = [ SDL2 SDL2_image SDL2_ttf ];
 
+  # remove PKG_CONFIG_PATH override to let nixpkgs provide correct paths
   postPatch = ''
     substituteInPlace CMakeLists.txt \
       --replace "unset(ENV{PKG_CONFIG_PATH})" ""
   '';
 
+  # build optimized release binaries instead of debug
   cmakeFlags = [ "-DCMAKE_BUILD_TYPE=Release" ];
 
   installPhase = ''
