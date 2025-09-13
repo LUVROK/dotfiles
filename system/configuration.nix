@@ -79,6 +79,11 @@
   security.polkit.enable = true;
   programs.thunar.enable = true;
 
+  programs.nekoray = {
+    enable = true;
+    tunMode.enable = true;
+  };
+
   environment.systemPackages = with pkgs; [
     # --- dependebs ---
     glibc
@@ -169,7 +174,8 @@
     gtk3
 
     # --- talking ---
-    discord
+    discord    v2rayn
+
     element-desktop
     element-call
     psi-plus
@@ -198,7 +204,6 @@
     vrrtest
 
     xray
-    nekoray
     v2rayn
 
     librewolf
