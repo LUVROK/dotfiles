@@ -45,6 +45,7 @@
   programs.nix-ld.enable = true;
   
   services.journald.console = "/dev/tty4";
+  services.earlyoom.enable = true;
 
   users.groups.libvirt = {};
   users.groups.vboxsf = {};
