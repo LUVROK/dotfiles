@@ -10,6 +10,7 @@
     ./modules
     ./hardware
     ./dwmblocks
+    ./local/config
   ];
 
   home.stateVersion = "24.11";

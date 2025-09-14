@@ -169,13 +169,14 @@
     libreoffice
     blueman
     chromium
+    veracrypt
     
     # --- music ---
     gtk3
 
     # --- talking ---
-    discord    v2rayn
-
+    discord    
+    v2rayn
     element-desktop
     element-call
     psi-plus
@@ -204,11 +205,12 @@
     vrrtest
 
     xray
-    v2rayn
 
     librewolf
 
     gravity-defied-cpp
+
+    dualsensectl # CLI interface for controlling Sony Dualsense controllers
   ];
 
   system.stateVersion = "24.11";
