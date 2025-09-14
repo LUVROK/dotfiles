@@ -26,6 +26,7 @@
     libvdpau-va-gl 
     libva-utils
     libva
+    mangohud
   ];
 
   environment.etc."X11/xorg.conf.d/10-amdgpu.conf".text = ''
