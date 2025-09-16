@@ -4,10 +4,6 @@
   services.xserver = {
     dpi = 112;  
     videoDrivers = [ "amdgpu" ];
-    deviceSection = ''
-      Option "TearFree" "true"
-      Option "DRI" "3"
-    '';
   };
   
   hardware.graphics = {
@@ -33,7 +29,8 @@
     Section "Device"
         Identifier "AMD"
         Driver "amdgpu"
-        Option "TearFree" "on"
+        Option "TearFree" "true"
+        Option "DRI" "3"
         Option "Hotplug" "false"
     EndSection
   '';

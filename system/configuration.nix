@@ -24,7 +24,6 @@
   };
 
   services = {
-    mullvad-vpn.enable = true;
     dbus.enable = true;
     dbus.implementation = "broker";
     devmon.enable = true;
@@ -65,7 +64,7 @@
       "vboxusers" 
       "vboxsf" 
       "audio"
-      "openrazer" 
+      # "openrazer" # taint for kernel, need to be disable for raport
       "plugdev" # ?
       "storage"
       "input"
@@ -83,135 +82,6 @@
     enable = true;
     tunMode.enable = true;
   };
-
-  environment.systemPackages = with pkgs; [
-    # --- dependebs ---
-    glibc
-    glib
-    gcc
-    cmake
-    buildPackages.gnumake
-    gamescope
-
-    # --- basic utilities ---
-    bash
-    lsof
-    coreutils
-    wget
-    curl
-    nix-prefetch
-    nix-prefetch-git
-    nix-index
-    home-manager
-    man
-    unzip
-    unrar
-    p7zip
-    zip 
-    htop
-    (btop.override {rocmSupport = true;})
-    killall
-    dig
-    nmap
-    inetutils # telnet, ftp, hostname, etc
-    brightnessctl
-    usbutils
-    bc
-    powertop
-    lshw
-    mesa-demos
-    vnstat
-    testdisk
-    feh
-    pciutils
-    qpwgraph
-    e2fsprogs
-    acpi
-    util-linux
-    calcurse # calendar in terminal
-    woeusb
-    unetbootin
-    pacman
-    efibootmgr
-    grub2
-    nautilus
-    parted
-    nvme-cli
-
-    # --- development tools ---
-    nodejs
-    yarn
-
-    # --- networking ---
-    openssl
-    iptables
-    networkmanager
-    # iwd
-    # iw
-
-    # --- system tools ---
-    libnotify
-    jq
-
-    # --- multimedia ---
-    ffmpeg
-
-    # --- apps ---
-    vscodium
-    qbittorrent
-    telegram-desktop
-    obsidian
-    mullvad-vpn
-    shadowsocks-libev
-    wasabiwallet
-    syncthing
-    spotify
-    libreoffice
-    blueman
-    chromium
-    veracrypt
-    
-    # --- music ---
-    gtk3
-
-    # --- talking ---
-    discord    
-    v2rayn
-    element-desktop
-    element-call
-    psi-plus
-    irssi
-
-    # --- games ---
-    prismlauncher
-
-    # Adb sideload
-    android-tools
-
-    # Mount android phones
-    adbfs-rootless
-    jmtpfs
-    glib
-
-    # Work with usb devices
-    usbutils
-
-    openrgb-with-all-plugins
-
-    # live usb
-    woeusb
-
-    # testing system
-    vrrtest
-
-    xray
-
-    librewolf
-
-    gravity-defied-cpp
-
-    dualsensectl # CLI interface for controlling Sony Dualsense controllers
-  ];
 
   system.stateVersion = "24.11";
 }

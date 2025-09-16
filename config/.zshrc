@@ -21,14 +21,12 @@ export EDITOR='nvim' # Установка nano как стандартного �
 export LANG=en_US.UTF-8 # Установка локали
 
 # Функции
-function _vpn_app() { sudo -v && vopono exec --provider mullvad --server "$1" --protocol wireguard "$2" > /dev/null 2>&1 & }
 function _mountvc() { sudo -v && veracrypt --mount "$1" "$2" --password "$3" > /dev/null 2>&1 & }
 function _dismountvc() { sudo -v && veracrypt --dismount $1 & }
 function _mountvc-pn() { sudo -v && veracrypt --mount ~/HOME/private_containers/private_notes /media/veracrypt1 > /dev/null 2>&1 & }
 # function _xrandr-hdmi-1-0() { xrandr --output HDMI-1-0 --scale 1x1 --mode 2560x1440 --rate 120.00 --right-of eDP-1 && feh --geometry 2560x1440+0+0 --auto-zoom --bg-fill /home/dash/HOME/wizzard/wallpaper/game-of-thrones-kings-landing.png > /dev/null 2>&1 & }
 # function _xrandr-hdmi-1-0-output() { xrandr --output HDMI-1-0 --off & }
 function _ps_aux_grep() { command ps aux | grep --color=auto "$1" }
-function virt_machine() { mullvad-exclude qemu-system-x86_64 -enable-kvm -m 8G -smp 4 -hda $1 -device qxl-vga }
 
 # Алиасы для удобства
 alias ll='ls -lah'
@@ -40,7 +38,7 @@ alias user-s='~/HOME/dotfiles/apply_users.sh'
 # alias xrandr-hdmi-1-0='_xrandr-hdmi-1-0'
 # alias xrandr-hdmi-1-0-output='_xrandr-hdmi-1-0-output'
 alias vpn-app='_vpn_app'
-alias ps='_ps_aux_grep'
+alias psg='_ps_aux_grep'
 
 # Алиасы для крипто контейнеров
 alias mountvc='_mountvc'

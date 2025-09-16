@@ -6,6 +6,7 @@
     ./env.nix
 
     ../../system/configuration.nix
+    ../../system/packages.nix
     ../../system/hardware/nvidia.nix
 
     ../../system/env.nix
