@@ -11,7 +11,7 @@
   # Issue: kernel panic "BUG at mm/vmalloc.c:3167" reproduced 4–5 times (2025-09-15 → 2025-09-17).
   # Context: AMD + amdgpu with dual-monitor setup; may be related (see forum thread).
   # Mitigation: temporarily using motherboard display outputs to observe; consider pinning an older kernel (has other regressions). No good solution found yet.
-  # Ref: https://bbs.archlinux.org/viewtopic.php?id=301280
+  # Ref: https://bbs.archlinux.org/viewtopic.php?id=306587
 
   environment.etc."X11/xorg.conf.d/60-monitor.conf".text = ''
     Section "Monitor"
