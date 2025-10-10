@@ -27,7 +27,7 @@
     zip 
     htop
     iotop
-    (btop.override {rocmSupport = true;})
+    (btop.override { rocmSupport = true; })
     killall
     dig
     nmap
@@ -47,14 +47,10 @@
     acpi
     util-linux
     calcurse # calendar in terminal
-    woeusb
-    unetbootin
-    pacman
+    parted
     efibootmgr
     grub2
-    nautilus
-    parted
-    nvme-cli
+    pacman
 
     # --- development tools ---
     nodejs
@@ -64,6 +60,7 @@
     openssl
     iptables
     networkmanager
+    xray
     # iwd
     # iw
 
@@ -86,8 +83,10 @@
     libreoffice
     blueman
     chromium
+    librewolf
     veracrypt
-    
+    nautilus
+
     # --- music ---
     gtk3
 
@@ -100,32 +99,30 @@
 
     # --- games ---
     prismlauncher
-
-    # Adb sideload
-    android-tools
-
-    # Mount android phones
-    adbfs-rootless
-    jmtpfs
-    glib
-
-    # Work with usb devices
-    usbutils
-
-    openrgb-with-all-plugins
-
-    # live usb
-    woeusb
-
-    # testing system
-    vrrtest
-
-    xray
-
-    librewolf
-
     gravity-defied-cpp
 
+    # --- hardware ---
     dualsensectl # CLI interface for controlling Sony Dualsense controllers
+    openrgb-with-all-plugins
+
+    # --- android ---
+    android-tools
+    adbfs-rootless
+    jmtpfs
+
+    # --- live usb ---
+    woeusb
+    unetbootin
+
+    # --- testing system ---
+    vrrtest
+
+    # --- go ---
+    go
+    gopls
+    delve
+    golangci-lint
+    goimports-reviser
+    gotools
   ];
 }

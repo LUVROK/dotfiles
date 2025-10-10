@@ -16,7 +16,6 @@
     };
 
     xserver = {
-      /* xrandrHeads */
       enable = true;
       upscaleDefaultCursor = true;
       logFile = null;

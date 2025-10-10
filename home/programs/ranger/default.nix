@@ -40,13 +40,13 @@
       map r    reload_cwd
       # default_linemode devicons2
 
-      map V set visual_mode!
+      map v shell nvim %s
       map a mark
       map A unmark
       map nf console mkdir%space
       map uu shell unzip %f
 
-      map v mark_files toggle=True 
+      map V mark_files toggle=True 
 
       # Sorting
       map cr set sort_reverse!
