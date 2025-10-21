@@ -51,6 +51,7 @@
     efibootmgr
     grub2
     pacman
+    ripgrep
 
     # --- development tools ---
     nodejs
@@ -86,6 +87,7 @@
     librewolf
     veracrypt
     nautilus
+    monero-gui
 
     # --- music ---
     gtk3

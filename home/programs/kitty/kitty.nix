@@ -3,10 +3,10 @@
 {
   enable = true;
   settings = {    
-    font_family = "JetBrainsMono";
-    font_size = if nixosConfig.isHidpi then "18.0" else "12.0";
+    font_family = "JetBrainsMonoNL NFP";
+    font_size = if nixosConfig.isHidpi then "18.0" else "14.0";
 
-    window_padding_width = 5;
+    window_padding_width = 2.5;
     window_padding_height = 2.5;
 
     confirm_os_window_close = 0;

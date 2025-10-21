@@ -48,7 +48,6 @@
     cp -r ${./local/sh/sh-rofi}/* $out/sh-rofi
     cp -r ${./local/sh/sh-others}/* $out/sh-others
     cp -r ${./local/sh/sh-nixos}/* $out/sh-nixos
-
   '';
   
   # mkdir -p $out/sh-dwmblocks
