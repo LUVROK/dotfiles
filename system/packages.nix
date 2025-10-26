@@ -52,6 +52,7 @@
     grub2
     pacman
     ripgrep
+    fd
 
     # --- development tools ---
     nodejs
@@ -95,8 +96,8 @@
     # --- talking ---
     discord    
     element-desktop
+    session-desktop
     element-call
-    psi-plus
     irssi
 
     # --- games ---

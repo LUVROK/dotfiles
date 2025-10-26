@@ -49,6 +49,9 @@ map("n", "<C-y>", "<C-r>", { noremap = true, silent = true })
 map("i", "<C-z>", "<C-o>u", { noremap = true, silent = true })
 map("i", "<C-y>", "<C-o><C-r>", { noremap = true, silent = true })
 
+-- nothing to do
+map("v", "<C-z>", "<Nop>", { noremap = true, silent = true })
+
 -- Window navigation
 map('n', '<C-h>', '<C-w><C-h>', opts)
 map('n', '<C-l>', '<C-w><C-l>', opts)
@@ -56,8 +59,10 @@ map('n', '<C-j>', '<C-w><C-j>', opts)
 map('n', '<C-k>', '<C-w><C-k>', opts)
 
 -- Clipboard
-map({ "n", "x" }, "<C-c>", '"+y', opts)
-map({ "n", "x" }, "<C-x>", '"+d', opts)
+map("n", "<C-c>", '"+y', opts)
+map("n", "<C-x>", '"+d', opts)
+map("x", "<C-c>", '"+ygv', opts)
+map("x", "<C-x>", '"+dgv', opts)
 map({ "n", "x" }, "<C-v>", '"+p', opts)
 map("i", "<C-v>", "<C-r>+", opts)
 
@@ -70,6 +75,11 @@ map("n", "<A-Left>", ":bprevious<CR>", opts)
 -- Search and diagnostics
 map('n', '<Esc>', '<cmd>nohlsearch<CR>', opts)
 map('n', '<leader>q', vim.diagnostic.setloclist, opts)
+
+-- Delete words with CTRL-Backspace/Alt-Backspace in insert mode
+map("i", "<C-BS>", "<C-w>", { silent = true })
+map("i", "<C-h>",  "<C-w>", { silent = true })
+map("i", "<M-BS>", "<C-w>", { silent = true })
 
 map({ "n", "i", "v" }, "<C-s>", function()
   vim.cmd("silent w")
