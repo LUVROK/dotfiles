@@ -4,7 +4,6 @@
   imports = [
     ./neofetch.nix
     ./firefox
-    ./brave
     ./ranger
     ./nnn
     ./neovim
@@ -14,8 +13,6 @@
     ./mpv
     ./rofi/rofi.nix
   ];
-
-  # home.file.".config/mpv".source = ./mpv;
 
   programs = {
     kitty = (import ./kitty/kitty.nix { inherit pkgs nixosConfig; });
