@@ -4,13 +4,6 @@ let
   baseDir = "${config.home.homeDirectory}/.mozilla/firefox";
   settings = import ./settings.nix { inherit system pkgs; };
 
-  shyfox = pkgs.fetchFromGitHub {
-    owner = "Luvrok";
-    repo = "ShyFox-patch";
-    rev = "48cbbb8c0605343c68bbdc20d6ed4b9c6ef90260";
-    hash = "sha256-Ety1Ura6qBvHFGaTKcTzg6qGa/7dP+1RIRXdjIaO4o0=";
-  };
-
   extension = shortId: extension_id: {
     name = extension_id;
     value = {
@@ -19,25 +12,15 @@ let
       allowed_in_private_browsing = true;
     };
   };
-in 
+in
 {
-  # nixpkgs.overlays = [
-  #   inputs.nur.overlays.default
-  # ];
+  imports = [ inputs.textfox.homeManagerModules.default ];
 
-  home.file."${config.programs.firefox.configPath}/life/chrome" = {
-    recursive = true;
-    source = "${shyfox}/chrome";
-  };
+  home.file."${config.programs.firefox.configPath}/life/chrome/config.css".source = ./config.css;
 
-  home.file."${config.programs.firefox.configPath}/test2/chrome" = {
-    recursive = true;
-    source = "${shyfox}/chrome";
-  };
-
-  home.file."${config.programs.firefox.configPath}/sapphire/chrome" = {
-    recursive = true;
-    source = "${shyfox}/chrome";
+  textfox = {
+    enable = true;
+    profile = "life";
   };
 
   programs.firefox = {
@@ -90,11 +73,9 @@ in
         # (extension "canvasblocker" "CanvasBlocker@kkapsner.de")
         # (extension "dont-track-me-google1" "dont-track-me-google@robwu.nl")
         (extension "gruvboxtheme" "{fd4fdeb0-5a65-4978-81c5-3488d4d56426}")
-        # (extension "chameleon-ext" "{3579f63b-d8ee-424f-bbb6-6d0ce3285e6a}")
         (extension "styl-us" "{7a7a4a92-a2a0-41d1-9fd7-1e92480d612d}")
         (extension "foxyproxy-standard" "foxyproxy@eric.h.jung")
         (extension "video-downloadhelper" "{b9db16a4-6edc-47ec-a1f4-b86292ed211d}")
-        # (extension "profile-switcher" "profile-switcher-ff@nd.ax")
         # (extension "" "")
         (extension "immersive-translate" "{5efceaa7-f3a2-4e59-a54b-85319448e305}")
       ];
@@ -111,14 +92,9 @@ in
           force = true;
           engines = settings.engines // { };
         };
-
-        extraConfig = pkgs.lib.readFile "${shyfox}/user.js";
       };
       "work" = {
         id = 1;
-      };
-      "learn" = {
-        id = 2;
         settings = settings.settings // { };
 
         search = {
@@ -126,30 +102,6 @@ in
           force = true;
           engines = settings.engines // { };
         };
-      };
-      "test2" = {
-        id = 3;
-        settings = settings.settings // { };
-
-        search = {
-          default = "ddg";
-          force = true;
-          engines = settings.engines // { };
-        };
-
-        extraConfig = pkgs.lib.readFile "${shyfox}/user.js";
-      };
-      "sapphire" = {
-        id = 4;
-        settings = settings.settings // { };
-
-        search = {
-          default = "ddg";
-          force = true;
-          engines = settings.engines // { };
-        };
-
-        extraConfig = pkgs.lib.readFile "${shyfox}/user.js";
       };
     };
   };

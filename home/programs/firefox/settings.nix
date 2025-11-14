@@ -56,7 +56,7 @@
     "browser.urlbar.speculativeConnect.enabled" = false;
     "browser.urlbar.usepreloadedtopurls.enabled" = false;
     "network.ftp.enable" = false;
-    "privacy.resistFingerprinting" = true;
+    "privacy.resistFingerprinting" = false;
 
     # === Telemetry OFF ===
     "browser.newtabpage.activity-stream.feeds.telemetry" = false;
@@ -128,8 +128,6 @@
 
     # === Fonts override ===
     "browser.display.use_document_fonts" = 1;
-    # "font.name.serif.x-western" = "JetBrainsMonoNL NFP";
-    # "font.size.variable.x-western" = 12;
 
     # === Downloads / Fullscreen / Misc ===
     "browser.download.start_downloads_in_tmp_dir" = true;
@@ -184,13 +182,4 @@
     "ebay".metaData.hidden = true;
     "google".metaData.alias = "@g";
   };
-
-  default_extension = with pkgs.nur.repos.rycee.firefox-addons; [
-    # decentraleyes
-    ublock-origin
-    privacy-badger
-    sidebery
-    # userchrome-toggle-extended
-    translate-web-pages
-  ];
 }
