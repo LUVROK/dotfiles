@@ -42,7 +42,7 @@ in
 
   programs.firefox = {
     enable = true;
-    package = pkgs.firefox;
+    package = pkgs-pinned.firefox;
 
     nativeMessagingHosts = with pkgs; [ vdhcoapp firefox-profile-switcher-connector ff2mpv-rust ];
 
@@ -51,31 +51,52 @@ in
       DisablePocket = true;
       DisableFirefoxStudies = true;
 
+      DNSOverHTTPS = {
+        Enabled = true;
+        ProviderUrl = "dns.quad9.net";
+        Locked = true;
+        Fallback = true;
+      };
+
+      EnableTrackingProtection = {
+        Value = true;
+        Locked = true;
+        Cryptomining = true;
+        EmailTracking = true;
+        Fingerprinting = true;
+      };
+
+      NetworkPrediction = false;
+      OfferToSaveLogins = false;
+      PasswordManagerEnabled = false;
+      PostQuantumKeyAgreementEnabled = true;
+
       ExtensionSettings = {
 
       } //
       builtins.listToAttrs [
-        (extension "markdown-here" "markdown-here-webext@adam.pritchard")
+        # (extension "markdown-here" "markdown-here-webext@adam.pritchard")
         (extension "sidebery" "{3c078156-979c-498b-8990-85f7987dd929}")
         (extension "sponsorblock" "sponsorBlocker@ajay.app")
         (extension "ublock-origin" "uBlock0@raymondhill.net")
-        (extension "userchrome-toggle-extended" "userchrome-toggle-extended@n2ezr.ru")
-        (extension "decentraleyes" "jid1-BoFifL9Vbdl2zQ@jetpack")
+        # (extension "userchrome-toggle-extended" "userchrome-toggle-extended@n2ezr.ru")
+        # (extension "decentraleyes" "jid1-BoFifL9Vbdl2zQ@jetpack")
         (extension "privacy-badger17" "jid1-MnnxcxisBPnSXQ@jetpack")
-        (extension "traduzir-paginas-web" "{036a55b4-5e72-4d05-a06c-cba2dfcc134a}")
+        # (extension "traduzir-paginas-web" "{036a55b4-5e72-4d05-a06c-cba2dfcc134a}")
         (extension "remove-youtube-shorts" "{2766e9f7-7bf2-4c72-81b9-d119eb54c753}")
-        (extension "clearurls" "{74145f27-f039-47ce-a470-a662b129930a}")
+        # (extension "clearurls" "{74145f27-f039-47ce-a470-a662b129930a}")
         (extension "simple-translate" "simple-translate@sienori")
-        (extension "port-authority" "{6c00218c-707a-4977-84cf-36df1cef310f}")
-        (extension "canvasblocker" "CanvasBlocker@kkapsner.de")
-        (extension "dont-track-me-google1" "dont-track-me-google@robwu.nl")
+        # (extension "port-authority" "{6c00218c-707a-4977-84cf-36df1cef310f}")
+        # (extension "canvasblocker" "CanvasBlocker@kkapsner.de")
+        # (extension "dont-track-me-google1" "dont-track-me-google@robwu.nl")
         (extension "gruvboxtheme" "{fd4fdeb0-5a65-4978-81c5-3488d4d56426}")
-        (extension "chameleon-ext" "{3579f63b-d8ee-424f-bbb6-6d0ce3285e6a}")
+        # (extension "chameleon-ext" "{3579f63b-d8ee-424f-bbb6-6d0ce3285e6a}")
         (extension "styl-us" "{7a7a4a92-a2a0-41d1-9fd7-1e92480d612d}")
         (extension "foxyproxy-standard" "foxyproxy@eric.h.jung")
         (extension "video-downloadhelper" "{b9db16a4-6edc-47ec-a1f4-b86292ed211d}")
-        (extension "profile-switcher" "profile-switcher-ff@nd.ax")
+        # (extension "profile-switcher" "profile-switcher-ff@nd.ax")
         # (extension "" "")
+        (extension "immersive-translate" "{5efceaa7-f3a2-4e59-a54b-85319448e305}")
       ];
     };
 
@@ -83,8 +104,6 @@ in
       "life" = {
         id = 0;
         isDefault = true;
-
-        # extensions.packages =  with pkgs.nur.repos.rycee.firefox-addons; settings.default_extension ++ [ ];
         settings = settings.settings // { };
 
         search = {
@@ -94,15 +113,12 @@ in
         };
 
         extraConfig = pkgs.lib.readFile "${shyfox}/user.js";
-        # userChrome = pkgs.lib.readFile "${shyfox}/chrome/userChrome.css";
-        # userContent = pkgs.lib.readFile "${shyfox}/chrome/userContent.css";
       };
       "work" = {
         id = 1;
       };
       "learn" = {
         id = 2;
-
         settings = settings.settings // { };
 
         search = {
@@ -113,8 +129,6 @@ in
       };
       "test2" = {
         id = 3;
-        
-        # extensions.packages =  with pkgs.nur.repos.rycee.firefox-addons; settings.default_extension ++ [ ];
         settings = settings.settings // { };
 
         search = {
@@ -124,13 +138,9 @@ in
         };
 
         extraConfig = pkgs.lib.readFile "${shyfox}/user.js";
-        # userChrome = pkgs.lib.readFile "${shyfox}/chrome/userChrome.css";
-        # userContent = pkgs.lib.readFile "${shyfox}/chrome/userContent.css";
       };
       "sapphire" = {
         id = 4;
-        
-        # extensions.packages =  with pkgs.nur.repos.rycee.firefox-addons; settings.default_extension ++ [ ];
         settings = settings.settings // { };
 
         search = {
@@ -140,8 +150,6 @@ in
         };
 
         extraConfig = pkgs.lib.readFile "${shyfox}/user.js";
-        # userChrome = pkgs.lib.readFile "${shyfox}/chrome/userChrome.css";
-        # userContent = pkgs.lib.readFile "${shyfox}/chrome/userContent.css";
       };
     };
   };

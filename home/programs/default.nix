@@ -4,6 +4,7 @@
   imports = [
     ./neofetch.nix
     ./firefox
+    ./brave
     ./ranger
     ./nnn
     ./neovim

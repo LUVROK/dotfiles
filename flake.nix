@@ -2,10 +2,9 @@
   description = "NixOS + DWM Configuration (Flakes)";
 
   inputs = {
-    nixpkgs-stable.url = github:NixOS/nixpkgs/nixos-24.11;
     nixpkgs-pinned.url = "github:NixOS/nixpkgs/5593fccdd20bd2f47a60f55d799a99f36f90795d";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    home-manager.url = github:nix-community/home-manager;
+    home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     deploy-rs.url = "github:serokell/deploy-rs";
@@ -16,9 +15,13 @@
 
     nur.url = "github:nix-community/NUR";
     nur.inputs.nixpkgs.follows = "nixpkgs";
+
+    zapret-discord-youtube.url = "github:kartavkun/zapret-discord-youtube";
+
+    textfox.url = "github:adriankarlen/textfox";
   };
 
-  outputs = { self, nixpkgs, nixpkgs-pinned, nixpkgs-stable, home-manager, deploy-rs, disko, nur, ... }@inputs: let
+  outputs = { self, nixpkgs, nixpkgs-pinned, home-manager, deploy-rs, disko, nur, zapret-discord-youtube, ... }@inputs: let
     system = "x86_64-linux";
     pkgs = import nixpkgs {
       inherit system;
@@ -42,7 +45,6 @@
         };
         extraSpecialArgs = {
           inherit username inputs system;
-          pkgs-stable = import nixpkgs-stable { inherit system; };
           pkgs-pinned = import nixpkgs-pinned { inherit system; };
         };
       };
@@ -52,9 +54,6 @@
       inherit pkgs;
       specialArgs = {
         username = users.barnard.username;
-        pkgs-stable = import nixpkgs-stable {
-          inherit system;
-        };
         pkgs-pinned = import nixpkgs-pinned {
           inherit system;
           config = {
@@ -63,9 +62,18 @@
         };
         inherit inputs system;
       };
-      modules = [ 
+      modules = [
         ./base.nix
         ./hosts/barnard
+
+        zapret-discord-youtube.nixosModules.default
+        {
+          services.zapret-discord-youtube = {
+            enable = true;
+            config = "general(ALT2)";  # Или любой конфиг из папки configs (general, general(ALT), general (SIMPLE FAKE) и т.д.)
+          };
+        }
+
         home-manager.nixosModules.home-manager
         (mkHMUser users.barnard.username)
         ({ config, pkgs, ... }: {
@@ -78,9 +86,6 @@
       inherit pkgs;
       specialArgs = {
         username = users.dash.username;
-        pkgs-stable = import nixpkgs-stable {
-          inherit system;
-        };
         pkgs-pinned = import nixpkgs-pinned {
           inherit system;
           config = {
@@ -92,6 +97,15 @@
       modules = [ 
         ./base.nix
         ./hosts/sun
+
+        zapret-discord-youtube.nixosModules.default
+        {
+          services.zapret-discord-youtube = {
+            enable = true;
+            config = "general(ALT2)";  # Или любой конфиг из папки configs (general, general(ALT), general (SIMPLE FAKE) и т.д.)
+          };
+        }
+
         home-manager.nixosModules.home-manager
         (mkHMUser users.dash.username)  
         ({ config, pkgs, ... }: {
@@ -102,6 +116,9 @@
 
     nixosConfigurations.sirius = nixpkgs.lib.nixosSystem {
       inherit pkgs;
+      specialArgs = {
+         username = users.sirius.username;
+      };
       modules = [
         disko.nixosModules.disko
         ./hosts/sirius/sirius.nix
@@ -109,8 +126,20 @@
       ];
     };
 
+    nixosConfigurations.WR7 = nixpkgs.lib.nixosSystem {
+      inherit pkgs;
+      specialArgs = {
+         username = users.WR7.username;
+      };
+      modules = [
+        disko.nixosModules.disko
+        ./hosts/sirius/sirius.nix
+        ./hosts/WR7/disk-config.nix
+      ];
+    };
+
     packages.${system}.dwmblocks = pkgs.callPackage ./home/dwmblocks/dwmblocks-async/default.nix {};
-    
+
     devShells.${system}.default = pkgs.mkShell {
       buildInputs = [ ];
     };

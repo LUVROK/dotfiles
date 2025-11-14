@@ -1,4 +1,5 @@
-{ pkgs, ... }:
+{ pkgs, pkgs-stable, ... }:
+
 
 {
   environment.systemPackages = with pkgs; [
@@ -63,6 +64,7 @@
     iptables
     networkmanager
     xray
+    shadowsocks-rust
     # iwd
     # iw
 
@@ -78,7 +80,6 @@
     qbittorrent
     telegram-desktop
     obsidian
-    shadowsocks-libev
     wasabiwallet
     syncthing
     spotify
@@ -89,12 +90,13 @@
     veracrypt
     nautilus
     monero-gui
+    mullvad-vpn
 
     # --- music ---
     gtk3
 
     # --- talking ---
-    discord    
+    discord # some trouble in nixpkgs
     element-desktop
     session-desktop
     element-call
@@ -106,7 +108,7 @@
 
     # --- hardware ---
     dualsensectl # CLI interface for controlling Sony Dualsense controllers
-    openrgb-with-all-plugins
+    # openrgb-with-all-plugins
 
     # --- android ---
     android-tools

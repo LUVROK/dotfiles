@@ -103,6 +103,8 @@
     "browser.urlbar.suggest.quicksuggest.nonsponsored" = false;
     "browser.urlbar.suggest.quicksuggest.sponsored" = false;
     "browser.urlbar.suggest.searches" = false;
+    "browser.sessionstore.restore_on_demand" = true;
+    "browser.sessionstore.restore_pinned_tabs_on_demand" = false;
     "findbar.modalHighlight" = true;
     "browser.startup.page" = 3;
     "layout.css.prefers-color-scheme.content-override" = 0;
@@ -112,11 +114,11 @@
     "extensions.fxmonitor.firstAlertShown" = false;
     "browser.uitour.enabled" = false;
     "editor.resizing.enabled_by_default" = true;
-    "dom.push.enabled" = "false";
-    "dom.push.connection.enabled" = "false"; 
+    "dom.push.enabled" = false;
+    "dom.push.connection.enabled" = false; 
     "dom.battery.enabled" = "false";
-    "dom.event.clipboardevents.enabled" = "false";
-    "dom.event.contextmenu.enabled" = "false";
+    "dom.event.clipboardevents.enabled" = false;
+    "dom.event.contextmenu.enabled" = false;
     "devtools.chrome.enabled" = false;
     "devtools.debugger.remote-enabled" = false;
 
@@ -184,11 +186,11 @@
   };
 
   default_extension = with pkgs.nur.repos.rycee.firefox-addons; [
-    decentraleyes
+    # decentraleyes
     ublock-origin
     privacy-badger
     sidebery
-    userchrome-toggle-extended
+    # userchrome-toggle-extended
     translate-web-pages
   ];
 }

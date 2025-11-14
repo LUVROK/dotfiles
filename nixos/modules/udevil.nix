@@ -14,7 +14,7 @@
   ];
 
   services.udev.packages = with pkgs; [
-    android-udev-rules
+    # android-udev-rules
   ];
 
   environment.etc."udevil/udevil.conf".text = ''

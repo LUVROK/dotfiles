@@ -30,6 +30,16 @@ return {
   config = function()
     require("telescope").setup({
       defaults = {
+        vimgrep_arguments = {
+          "rg",
+          "--color=never",
+          "--no-heading",
+          "--with-filename",
+          "--line-number",
+          "--column",
+          "--smart-case",
+        },
+
         initial_mode = "insert",
         selection_caret = "",
         entry_prefix = " ",
