@@ -18,7 +18,7 @@
   time.timeZone = "Europe/Moscow";
   i18n.defaultLocale = "en_GB.UTF-8";
 
-  services.getty.autologinUser = "root";
+  # services.getty.autologinUser = "root";
 
   networking.hostName = "sirius";
   networking.wireless.enable = false;

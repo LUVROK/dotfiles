@@ -12,19 +12,8 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
     os.exit(1)
   end
 end
-vim.opt.rtp:prepend(lazypath)
 
-local opts = {
-    ui = {
-        border = 'single',
-        icons = {
-            lazy = '💤',
-        },
-    },
-    checker = {
-        enabled = true,
-    },
-}
+vim.opt.rtp:prepend(lazypath)
 
 require('vim-options')
 require('lazy').setup("plugins")

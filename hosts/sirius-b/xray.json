@@ -1,0 +1,100 @@
+{
+  "log": {
+    "loglevel": "info"
+  },
+  "inbounds": [
+    {
+      "listen": "0.0.0.0",
+      "port": 443,
+      "protocol": "vless",
+      "tag": "reality-in",
+      "settings": {
+        "clients": [
+          {
+            "id": "b6fca4d8-88ca-4fcf-b1bf-ed2c5823b196",
+            "email": "toliman",
+            "flow": "xtls-rprx-vision"
+          },
+          {
+            "id": "90be6df4-c3de-4f8f-845e-04516de92c98",
+            "email": "nina",
+            "flow": "xtls-rprx-vision"
+          },
+          {
+            "id": "b1071857-1816-49de-9387-1a182488619d",
+            "email": "mama",
+            "flow": "xtls-rprx-vision"
+          },
+          {
+            "id": "8209ed28-98c7-4bbd-a7f4-36bd261cb772",
+            "email": "papa",
+            "flow": "xtls-rprx-vision"
+          },
+          {
+            "id": "83445c6b-4752-4950-9353-23dd12f341f3",
+            "email": "babushka",
+            "flow": "xtls-rprx-vision"
+          },
+          {
+            "id": "4ddb5d0e-731b-4166-803f-0f93b6b622a5",
+            "email": "anton",
+            "flow": "xtls-rprx-vision"
+          }
+        ],
+        "decryption": "none"
+      },
+      "streamSettings": {
+        "network": "tcp",
+        "security": "reality",
+        "realitySettings": {
+          "show": false,
+          "dest": "wikipedia.org:443",
+          "xver": 0,
+          "serverNames": [
+            "wikipedia.org"
+          ],
+          "privateKey": "eDi66Oe1UPnvud6vpMA15B5mnwKYktGGxvouz_5-Lmo",
+          "minClientVer": "",
+          "maxClientVer": "",
+          "maxTimeDiff": 0,
+          "shortIds": [""]
+        }
+      },
+      "sniffing": {
+        "enabled": true,
+        "destOverride": [
+          "http",
+          "tls",
+          "quic"
+        ],
+        "routeOnly": true
+      }
+    }
+  ],
+  "outbounds": [
+    {
+      "protocol": "freedom",
+      "tag": "direct"
+    },
+    {
+      "protocol": "blackhole",
+      "tag": "block"
+    }
+  ],
+  "routing": {
+    "rules": [
+      {
+        "protocol": "bittorrent",
+        "outboundTag": "block"
+      }
+    ]
+  },
+  "dns": {
+    "servers": [
+      "9.9.9.9"
+    ],
+    "queryStrategy": "UseIPv4",
+    "disableFallback": false,
+    "tag": "dns-aux"
+  }
+}

@@ -11,6 +11,7 @@
     ./git.nix
     ./gpg
     ./mpv
+    ./keepassxc
     ./rofi/rofi.nix
   ];
 

@@ -94,7 +94,7 @@
         };
         inherit inputs system;
       };
-      modules = [ 
+      modules = [
         ./base.nix
         ./hosts/sun
 
@@ -114,7 +114,7 @@
       ];
     };
 
-    nixosConfigurations.sirius = nixpkgs.lib.nixosSystem {
+    nixosConfigurations."sirius" = nixpkgs.lib.nixosSystem {
       inherit pkgs;
       specialArgs = {
          username = users.sirius.username;
@@ -123,6 +123,18 @@
         disko.nixosModules.disko
         ./hosts/sirius/sirius.nix
         ./hosts/sirius/disk-config.nix
+      ];
+    };
+
+    nixosConfigurations."sirius-b" = nixpkgs.lib.nixosSystem {
+      inherit pkgs;
+      specialArgs = {
+         username = users.sirius.username;
+      };
+      modules = [
+        disko.nixosModules.disko
+        ./hosts/sirius-b/sirius.nix
+        ./hosts/sirius-b/disk-config.nix
       ];
     };
 

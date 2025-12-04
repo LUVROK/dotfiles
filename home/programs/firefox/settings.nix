@@ -104,7 +104,7 @@
     "browser.urlbar.suggest.quicksuggest.sponsored" = false;
     "browser.urlbar.suggest.searches" = false;
     "browser.sessionstore.restore_on_demand" = true;
-    "browser.sessionstore.restore_pinned_tabs_on_demand" = false;
+    "browser.sessionstore.restore_pinned_tabs_on_demand" = true;
     "findbar.modalHighlight" = true;
     "browser.startup.page" = 3;
     "layout.css.prefers-color-scheme.content-override" = 0;
@@ -147,6 +147,10 @@
             {
               name = "type";
               value = "packages";
+            }
+            {
+              name = "channel";
+              value = "unstable";
             }
             {
               name = "query";

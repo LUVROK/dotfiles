@@ -58,6 +58,7 @@
     # --- development tools ---
     nodejs
     yarn
+    python315
 
     # --- networking ---
     openssl
@@ -90,7 +91,6 @@
     veracrypt
     nautilus
     monero-gui
-    mullvad-vpn
 
     # --- music ---
     gtk3
