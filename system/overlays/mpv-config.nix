@@ -6,7 +6,7 @@ self: super: {
     pname = "mpv-config";
     version = "fork-pinned-11.09.2025";
     src = super.fetchFromGitHub {
-      owner = "LUVROK";
+      owner = "luvrok";
       repo  = "mpv-config";
       rev   = "c2a8fed053b01b81df02b2679dbadcf75a7822d4";
       hash  = "sha256-jmeOUKAs3gcEuiXqo6FclTGOMrWMcEQdGZlXFpdJjHs=";
