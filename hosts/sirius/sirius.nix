@@ -44,8 +44,8 @@
 
   systemd.network.networks."10-ens18" = {
     matchConfig.Name = "ens18";
-    address = [ "45.38.20.238/24" ];
-    routes = [ { routeConfig.Gateway = "45.38.20.1"; } ];
+    address = [ "45.137.99.130/24" ];
+    routes = [ { routeConfig.Gateway = "45.137.99.1"; } ];
     dns = [ "8.8.8.8" "1.1.1.1" ];
   };
 
