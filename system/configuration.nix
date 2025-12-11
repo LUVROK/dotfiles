@@ -78,7 +78,7 @@
   security.polkit.enable = true;
   programs.thunar.enable = true;
 
-  programs.nekoray = {
+  programs.throne = {
     enable = true;
     tunMode.enable = true;
   };

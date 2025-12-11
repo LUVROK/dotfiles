@@ -18,11 +18,12 @@
     tree-sitter
     dunst
     rnnoise-plugin
+    pavucontrol
     helvum
     ly
 
     # pass
-    pinentry
+    pinentry-curses
     pwgen
     pass-secret-service
     libsecret

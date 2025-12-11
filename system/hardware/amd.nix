@@ -5,12 +5,12 @@
     dpi = 112;  
     videoDrivers = [ "amdgpu" ];
   };
-  
+
   hardware.graphics = {
     enable = true;
     enable32Bit = true;
   };
-  
+
   hardware.enableRedistributableFirmware = true;
 
   environment.systemPackages = with pkgs; [
@@ -18,8 +18,8 @@
     lm_sensors
     dmidecode
     vulkan-tools
-    vaapiVdpau 
-    libvdpau-va-gl 
+    libva-vdpau-driver
+    libvdpau-va-gl
     libva-utils
     libva
     mangohud

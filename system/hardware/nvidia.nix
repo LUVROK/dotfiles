@@ -8,7 +8,7 @@
       "nvidia"
       "modesetting" 
     ];
-    
+
     dpi = 192;
     upscaleDefaultCursor = true;
   };
@@ -17,7 +17,7 @@
     libva-utils
     intel-gpu-tools
     nvtopPackages.full
-    
+
     mesa
     driversi686Linux.mesa
 
@@ -40,11 +40,11 @@
       extraPackages = with pkgs; [ 
         intel-compute-runtime
         intel-media-driver
-        vaapiVdpau
+        libva-vdpau-driver
         libvdpau-va-gl
         vaapiIntel
         nvidia-vaapi-driver
-      ]; 
+      ];
     };
 
     nvidia={
@@ -53,7 +53,7 @@
         enable = true;
         finegrained = false;
       };
-      
+
       open = false;
       nvidiaSettings = true;
       package = config.boot.kernelPackages.nvidiaPackages.production;
