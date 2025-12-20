@@ -1,4 +1,4 @@
-{ config, pkgs, lib, inputs, username, nixosConfig, ... }:
+{ config, pkgs, lib, inputs, username, ... }:
 
 {
   programs.home-manager.enable = true;
@@ -7,10 +7,7 @@
     ./packages.nix
     ./services
     ./programs
-    ./modules
-    ./hardware
     ./dwmblocks
-    ./local/config
   ];
 
   home.stateVersion = "24.11";
@@ -25,10 +22,6 @@
       package = pkgs.gruvbox-dark-icons-gtk;
       name = "gruvbox-dark";
     };
-    # font = {
-    #   name = "JetBrainsMonoNL NFP";
-    #   size = if nixosConfig.isHidpi then 12 else 16;
-    # };
   };
 
   qt = {
@@ -36,11 +29,6 @@
     platformTheme.name = "gtk";
   };
 
-  # xresources.properties = {
-  #   "Xcursor.size" = 24;
-  #   "Xft.dpi" = 112;
-  # };
-  
   home.file.".local/bin".source = pkgs.runCommand "merge-folders" {} ''
     mkdir -p $out/sh-rofi
     mkdir -p $out/sh-others
@@ -49,9 +37,6 @@
     cp -r ${./local/sh/sh-others}/* $out/sh-others
     cp -r ${./local/sh/sh-nixos}/* $out/sh-nixos
   '';
-  
-  # mkdir -p $out/sh-dwmblocks
-  # cp -r ${./local/sh/sh-dwmblocks}/* $out/sh-dwmblocks
 
   home.file.".local/media".source = pkgs.runCommand "merge-folders" {} ''
     mkdir -p $out/media

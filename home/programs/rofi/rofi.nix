@@ -1,4 +1,4 @@
-{ config, lib, pkgs, inputs, nixosConfig, ... }:
+{ config, lib, pkgs, inputs, ... }:
 
 {
   programs.rofi = {
@@ -45,21 +45,15 @@
       target = "rofi/firefox-profiles-menu.rasi";
     };
     font-rasi = {
-      source = if nixosConfig.isHidpi
-        then ./config/hidpi/font-hidpi.rasi
-        else ./config/lowdpi/font-lowdpi.rasi;
+      source = ./config/font.rasi;
       target = "rofi/font.rasi";
     };
     settings = {
-      source = if nixosConfig.isHidpi
-        then ./config/hidpi/settings.rasi
-        else ./config/lowdpi/settings.rasi;
+      source = ./config/settings.rasi;
       target = "rofi/settings.rasi";
     };
     greenclip-offset = {
-      source = if nixosConfig.isHidpi
-        then ./config/hidpi/greenclip-offset-hidpi.rasi
-        else ./config/lowdpi/greenclip-offset-lowdpi.rasi;
+      source = ./config/greenclip-offset.rasi;
       target = "rofi/greenclip-offset.rasi";
     };
     powermenu-rasi = {

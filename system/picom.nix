@@ -3,7 +3,7 @@
 {
   services.picom = {
     enable = true;
-    backend = "egl"; # glx also good
+    backend = "egl";
     vSync = true;
 
     settings = {
@@ -17,10 +17,6 @@
       animation-stiffness = 120;
       animation-duration = 240;
 
-      # unredir-if-possible = true;
-      # unredir-if-possible-delay = 5000;
-      # unredir-if-possible-exclude = [ "class_g = 'mpv'" "class_g = 'Firefox'" ];
-
       experimental-backends = true;
 
       fade-exclude = [ 
@@ -31,12 +27,6 @@
       no-fading-destroyed-argb = true;
 
       unredir-if-possible-exclude = [ "class_g = 'mpv'" "class_g = 'Firefox'" ];
-
-      # resize-damage = 1;
-      # glx-no-stencil = true;
-      # use-damage = true;
-      # glx-no-rebind-pixmap = true;
-      # glx-swap-method = 1;
 
       log-level = "warn";
       log-file = "~/.cache/picom-log.log";

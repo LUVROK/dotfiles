@@ -4,9 +4,9 @@
   services.xserver = {
     enable = true;
 
-    videoDrivers = [ 
+    videoDrivers = [
       "nvidia"
-      "modesetting" 
+      "modesetting"
     ];
 
     dpi = 192;

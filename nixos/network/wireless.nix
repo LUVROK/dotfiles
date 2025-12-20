@@ -8,13 +8,13 @@
       General = {
         AddressRandomization = "network";
         AddressRandomizationRange = "full";
-        EnableNetworkConfiguration = true;
+        EnableNetworkConfiguration = false;
         RoamRetryInterval = 10;
       };
 
       Network = {
-        EnableIPv6 = true;
-        RoutePriorityOffset = 300; # priority wifi over ethernet
+        EnableIPv6 = false;
+        RoutePriorityOffset = 300;
       };
     };
   };

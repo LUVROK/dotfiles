@@ -54,15 +54,15 @@
   users.users.${username} = {
     shell = pkgs.zsh;
     isNormalUser = true;
-    extraGroups = [ 
-      "networkmanager" 
-      "network" 
-      "wheel" 
-      "kvm" 
-      "libvirt" 
+    extraGroups = [
+      "networkmanager"
+      "network"
+      "wheel"
+      "kvm"
+      "libvirt"
       "libvirtd"
-      "vboxusers" 
-      "vboxsf" 
+      "vboxusers"
+      "vboxsf"
       "audio"
       # "openrazer" # taint for kernel, need to be disable for raport
       "plugdev" # ?

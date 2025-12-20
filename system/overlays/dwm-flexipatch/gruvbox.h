@@ -39,3 +39,9 @@ static char urgfgcolor[]                 = "#bbbbbb";
 static char urgbgcolor[]                 = "#222222";
 static char urgbordercolor[]             = "#ff0000";
 static char urgfloatcolor[]              = "#db8fd9";
+
+static const char dmenufont[]            = "JetBrainsMonoNL NFP:size=12";
+static const char *fonts[]               = {
+  "JetBrainsMonoNL NFP:size=12",
+  "Font Awesome 6 Free Solid:size=12"
+};

@@ -1,5 +1,5 @@
 {
-  description = "NixOS + DWM Configuration (Flakes)";
+  description = "Luvrok's nixos configuration";
 
   inputs = {
     nixpkgs-pinned.url = "github:NixOS/nixpkgs/5593fccdd20bd2f47a60f55d799a99f36f90795d";
@@ -17,7 +17,6 @@
     nur.inputs.nixpkgs.follows = "nixpkgs";
 
     zapret-discord-youtube.url = "github:kartavkun/zapret-discord-youtube";
-
     textfox.url = "github:adriankarlen/textfox";
   };
 
@@ -35,7 +34,7 @@
     users  = import ./profiles/users.nix;
     dwmblocks = self.packages.${system}.dwmblocks;
 
-    mkHMUser = username: { ... }: {
+    make_hm = username: { ... }: {
       home-manager = {
         useGlobalPkgs = true;
         useUserPackages = true;
@@ -63,19 +62,18 @@
         inherit inputs system;
       };
       modules = [
-        ./base.nix
         ./hosts/barnard
 
         zapret-discord-youtube.nixosModules.default
         {
           services.zapret-discord-youtube = {
-            enable = true;
-            config = "general(ALT2)";  # Или любой конфиг из папки configs (general, general(ALT), general (SIMPLE FAKE) и т.д.)
+            enable = false;
+            config = "general(ALT8)";
           };
         }
 
         home-manager.nixosModules.home-manager
-        (mkHMUser users.barnard.username)
+        (make_hm users.barnard.username)
         ({ config, pkgs, ... }: {
           boot.kernelPackages = pkgs.linuxPackages_latest;
         })
@@ -95,19 +93,18 @@
         inherit inputs system;
       };
       modules = [
-        ./base.nix
         ./hosts/sun
 
         zapret-discord-youtube.nixosModules.default
         {
           services.zapret-discord-youtube = {
             enable = true;
-            config = "general(ALT2)";  # Или любой конфиг из папки configs (general, general(ALT), general (SIMPLE FAKE) и т.д.)
+            config = "general(ALT2)";
           };
         }
 
         home-manager.nixosModules.home-manager
-        (mkHMUser users.dash.username)  
+        (make_hm users.dash.username)
         ({ config, pkgs, ... }: {
           boot.kernelPackages = pkgs.linuxPackages_latest;
         })
@@ -134,19 +131,7 @@
       modules = [
         disko.nixosModules.disko
         ./hosts/sirius-b/sirius.nix
-        ./hosts/sirius-b/disk-config.nix
-      ];
-    };
-
-    nixosConfigurations.WR7 = nixpkgs.lib.nixosSystem {
-      inherit pkgs;
-      specialArgs = {
-         username = users.WR7.username;
-      };
-      modules = [
-        disko.nixosModules.disko
-        ./hosts/sirius/sirius.nix
-        ./hosts/WR7/disk-config.nix
+        ./hosts/sirius/disk-config.nix
       ];
     };
 

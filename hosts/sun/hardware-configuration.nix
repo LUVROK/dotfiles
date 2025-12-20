@@ -20,8 +20,7 @@
   hardware.enableAllFirmware = true;
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = true;
-  # hardware.bluetooth.settings = { General = { ControllerMode = "bredr"; }; };
-  
+
   services.blueman.enable = true;
   services.thermald.enable = true;
 

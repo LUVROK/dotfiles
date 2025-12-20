@@ -25,9 +25,12 @@ in
 
   programs.firefox = {
     enable = true;
-    package = pkgs-pinned.firefox;
+    package = pkgs.firefox;
 
-    nativeMessagingHosts = with pkgs; [ vdhcoapp firefox-profile-switcher-connector ff2mpv-rust ];
+    nativeMessagingHosts = with pkgs; [
+      vdhcoapp
+      ff2mpv-rust
+    ];
 
     policies = {
       DisableTelemetry = true;

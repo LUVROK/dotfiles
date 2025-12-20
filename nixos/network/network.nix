@@ -1,35 +1,25 @@
 { lib, config, pkgs, username, ... }:
 
 {
-  networking = { 
+  networking = {
     hostName = "${username}";
 
     networkmanager = {
       enable = false;
-      # plugins = mkForce [];
-      # dns = "systemd-resolved";
-      # ethernet.macAddress = "random";
-      # unmanaged = [
-      #   "interface-name:br-*"
-      #   "interface-name:virbr*"
-      #   "interface-name:mullvad-vpn*"
-      #   "type:bridge"
-      # ];
-
-      # wifi = {
-      #   backend = "iwd";
-      #   macAddress = "random"; # random mac address on every boot
-      #   scanRandMacAddress = true; # random MAC during scanning
-      # };
     };
   };
 
   systemd.network.wait-online.enable = false;
-  systemd.services = {
-    NetworkManager-wait-online.enable = false;
-    systemd-networkd.stopIfChanged = false;
-    systemd-resolved.stopIfChanged = false;
+
+  services.resolved.enable = true;
+
+  systemd.network.networks."10-eth" = {
+    matchConfig.Name = "enp14s0";
+    networkConfig.DHCP = "ipv4";
   };
 
-  services.resolved.enable = true; # DNS Resolver
+  systemd.network.networks."20-wifi" = {
+    matchConfig.Name = "wlan0";
+    networkConfig.DHCP = "ipv4";
+  };
 }

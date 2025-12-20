@@ -54,6 +54,9 @@
     pacman
     ripgrep
     fd
+    ethtool
+    dnsmasq
+    tcpdump
 
     # --- development tools ---
     nodejs
@@ -64,7 +67,7 @@
     openssl
     iptables
     networkmanager
-    xray
+    # xray
     shadowsocks-rust
     # iwd
     # iw
@@ -104,7 +107,6 @@
 
     # --- games ---
     prismlauncher
-    gravity-defied-cpp
 
     # --- hardware ---
     dualsensectl # CLI interface for controlling Sony Dualsense controllers

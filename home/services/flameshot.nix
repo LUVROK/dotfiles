@@ -2,12 +2,12 @@
 
 {
   systemd.user.targets.tray = {
-		Unit = {
-			Description = "Home Manager System Tray";
-			Requires = [ "graphical-session-pre.target" ];
-		};
-	};
-  
+    Unit = {
+      Description = "Home Manager System Tray";
+      Requires = [ "graphical-session-pre.target" ];
+    };
+  };
+
   systemd.user.services.flameshot = {
     Unit = {
       Description = "Flameshot screenshot tool";

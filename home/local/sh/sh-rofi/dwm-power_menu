@@ -4,28 +4,28 @@ rofi_command="rofi -theme $HOME/.config/rofi/power-menu.rasi"
 uptime=$(uptime | sed -e 's/up.*//g')
 
 if [[ "$DIR" == "powermenus" ]]; then
-	shutdown=""
-	reboot=""
-	lock=""
-	suspend=""
-	logout=""
-	ddir="$HOME/.config/rofi"
+  shutdown=""
+  reboot=""
+  lock=""
+  suspend=""
+  logout=""
+  ddir="$HOME/.config/rofi"
 else
-	layout=$(cat $HOME/.config/rofi/power-menu.rasi | grep BUTTON | cut -d'=' -f2 | tr -d '[:blank:],*/')
-	if [[ "$layout" == "TRUE" ]]; then
-		shutdown="⏻"
-		reboot=""
-		lock=""
-		suspend="󰤄"
-		logout="󰗽"
-	else
-		shutdown="⏻"
-		reboot=""
-		lock=""
-		suspend="󰤄"
-		logout="󰗽"
-	fi
-	ddir="$HOME/.config/rofi"
+  layout=$(cat $HOME/.config/rofi/power-menu.rasi | grep BUTTON | cut -d'=' -f2 | tr -d '[:blank:],*/')
+  if [[ "$layout" == "TRUE" ]]; then
+    shutdown="⏻"
+    reboot=""
+    lock=""
+    suspend="󰤄"
+    logout="󰗽"
+  else
+    shutdown="⏻"
+    reboot=""
+    lock=""
+    suspend="󰤄"
+    logout="󰗽"
+  fi
+  ddir="$HOME/.config/rofi"
 fi
 
 options="$lock\n$suspend\n$logout\n$reboot\n$shutdown"
@@ -35,17 +35,17 @@ case $chosen in
     "$lock")
         xset dpms force off
         ;;
-	"$suspend")
-		pkill -x mpv
-		systemctl suspend
+  "$suspend")
+    pkill -x mpv
+    systemctl suspend
         ;;
     "$logout")
-		pkill dwm
+    pkill dwm
         ;;
     "$reboot")
-		systemctl reboot
+    systemctl reboot
         ;;
-	"$shutdown")
-		systemctl poweroff
+  "$shutdown")
+    systemctl poweroff
         ;;
 esac

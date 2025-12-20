@@ -1,10 +1,9 @@
 #!/bin/sh
 
-SINK='@DEFAULT_AUDIO_SINK@'  # текущий дефолтный вывод
-STEP=0.02                    # 2% (1.00 = 100%)
+SINK='@DEFAULT_AUDIO_SINK@'
+STEP=0.02
 
 get_volume() {
-  # wpctl отдает 0.00–1.00; переводим в %
   wpctl get-volume "$SINK" | awk '/Volume:/{print int($2*100+0.5)}'
 }
 

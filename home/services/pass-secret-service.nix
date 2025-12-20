@@ -1,10 +1,10 @@
 { lib, config, pkgs, ... }:
 
-{  
+{
   services = {
     pass-secret-service.enable = true;
   };
-  
+
   systemd.user.services.pass-secret-service = {
     Service = {
       Type = "dbus";

@@ -18,7 +18,7 @@
   time.timeZone = "Europe/Moscow";
   i18n.defaultLocale = "en_GB.UTF-8";
 
-  services.getty.autologinUser = "root";
+  # services.getty.autologinUser = "root";
 
   networking.hostName = "sirius";
   networking.wireless.enable = false;
@@ -50,7 +50,7 @@
   };
 
   users.users.root.openssh.authorizedKeys.keys = [
-    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKfVMnRoTEwUBqxcm6tzRTiFGZVafQ6dHr95HDM//Wk+ pawel.2020.navtop@gmail.com"
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKfVMnRoTEwUBqxcm6tzRTiFGZVafQ6dHr95HDM//Wk+ barnard"
   ];
 
   users.users.dash = {
@@ -58,7 +58,7 @@
     extraGroups = ["wheel"];
     initialPassword = "nopassword";
     openssh.authorizedKeys.keys = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKfVMnRoTEwUBqxcm6tzRTiFGZVafQ6dHr95HDM//Wk+ pawel.2020.navtop@gmail.com"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKfVMnRoTEwUBqxcm6tzRTiFGZVafQ6dHr95HDM//Wk+ barnard"
     ];
   };
 

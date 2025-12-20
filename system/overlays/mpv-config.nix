@@ -1,5 +1,5 @@
 let
-  my-mpv = ./mpv.conf;  # путь к твоему файлу
+  config = ./mpv.conf;
 in
 self: super: {
   mpv-config = super.stdenvNoCC.mkDerivation {
@@ -16,8 +16,8 @@ self: super: {
       mkdir -p "$out"
       cp -r "$src/portable_config/"* "$out/"
       rm -f "$out/mpv.conf"
-      
-      install -Dm644 ${my-mpv} "$out/mpv.conf"
+
+      install -Dm644 ${config} "$out/mpv.conf"
     '';
   };
 }

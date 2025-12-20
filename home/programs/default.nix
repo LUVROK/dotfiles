@@ -1,4 +1,4 @@
-{ lib, config, pkgs, nixosConfig, ... }:
+{ lib, config, pkgs, ... }:
 
 {
   imports = [
@@ -11,12 +11,11 @@
     ./git.nix
     ./gpg
     ./mpv
-    ./keepassxc
     ./rofi/rofi.nix
   ];
 
   programs = {
-    kitty = (import ./kitty/kitty.nix { inherit pkgs nixosConfig; });
+    kitty = (import ./kitty/kitty.nix { inherit pkgs; });
     obs-studio = (import ./obs-studio.nix { inherit pkgs; });
   };
 }

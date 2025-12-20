@@ -2,7 +2,6 @@
 
 {
   environment.sessionVariables = {
-    # XCURSOR_SIZE = "24";
     XFT_DPI = "192";
 
     QT_AUTO_SCREEN_SCALE_FACTOR = "1";
@@ -71,6 +70,4 @@
       Option "Primary" "true"
     EndSection
   '';
-
-  isHidpi = true;
 }
