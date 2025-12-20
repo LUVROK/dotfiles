@@ -1,1 +1,1 @@
-# NixOS + DWM (with Flakes)
+
