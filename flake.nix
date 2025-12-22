@@ -138,7 +138,15 @@
     packages.${system}.dwmblocks = pkgs.callPackage ./home/dwmblocks/dwmblocks-async/default.nix {};
 
     devShells.${system}.default = pkgs.mkShell {
-      buildInputs = [ ];
+      buildInputs = with pkgs; [
+        stdenv.cc
+        gnumake
+        xorg.libX11
+        xorg.libXinerama
+        xorg.libXft
+        freetype
+        fontconfig
+      ];
     };
   };
 }
