@@ -29,6 +29,7 @@
           export PATH=/home/${username}/.local/bin/sh-others:/home/${username}/.local/bin/sh-rofi:/home/${username}/.local/bin/sh-nixos:$PATH
           xset -dpms &
           greenclip daemon &
+          xrandr --output HDMI-1 --off &
         '';
       };
 
