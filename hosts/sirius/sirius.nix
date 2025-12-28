@@ -46,7 +46,7 @@
     matchConfig.Name = "ens18";
     address = [ "45.137.99.130/24" ];
     routes = [ { routeConfig.Gateway = "45.137.99.1"; } ];
-    dns = [ "8.8.8.8" "1.1.1.1" ];
+    dns = [ "9.9.9.9" ];
   };
 
   users.users.root.openssh.authorizedKeys.keys = [

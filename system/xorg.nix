@@ -23,13 +23,13 @@
       displayManager = {
         startx.enable = true;
         sessionCommands = ''
-          WALLPAPER=/home/${username}/HOME/wizzard/wallpaper/girl-1.png
-          feh --geometry 3456x2160+0+0 --auto-zoom --bg-fill "$WALLPAPER"*
+          WALLPAPER=/home/${username}/HOME/wizzard/wallpaper/elden-ring--1.jpg
+          feh --geometry 3456x2160+0+0 --auto-zoom --bg-fill "$WALLPAPER"
 
           export PATH=/home/${username}/.local/bin/sh-others:/home/${username}/.local/bin/sh-rofi:/home/${username}/.local/bin/sh-nixos:$PATH
           xset -dpms &
           greenclip daemon &
-          xrandr --output HDMI-1 --off &
+          xrandr --output HDMI-A-1 --off &
         '';
       };
 

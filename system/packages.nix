@@ -25,7 +25,7 @@
     unzip
     unrar
     p7zip
-    zip 
+    zip
     htop
     iotop
     (btop.override { rocmSupport = true; })
@@ -94,6 +94,7 @@
     veracrypt
     nautilus
     monero-gui
+    koreader
 
     # --- music ---
     gtk3
@@ -123,6 +124,8 @@
 
     # --- testing system ---
     vrrtest
+    stress-ng
+    lksctp-tools
 
     # --- go ---
     go

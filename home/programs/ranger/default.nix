@@ -40,7 +40,7 @@
       map nf console mkdir%space
       map uu shell unzip %f
 
-      map V mark_files toggle=True 
+      map V mark_files toggle=True
 
       # Sorting
       map cr set sort_reverse!

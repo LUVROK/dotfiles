@@ -14,6 +14,13 @@
   home.username = "${username}";
   home.homeDirectory = "/home/${username}";
 
+  xdg.mimeApps = {
+    enable = true;
+    defaultApplications = {
+      "application/pdf" = "koreader.desktop";
+    };
+  };
+
   gtk = {
     enable = true;
     theme.package = pkgs.gruvbox-dark-gtk;
