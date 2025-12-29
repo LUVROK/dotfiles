@@ -2,16 +2,14 @@
 
 {
   imports = [
+    ../../nixos
     ./hardware-configuration.nix
     ./env.nix
+    ../../nixos/hardware/nvidia.nix
+  ];
 
-    ../../system/configuration.nix
-    ../../system/packages.nix
-    ../../system/hardware/nvidia.nix
-
-    ../../system/env.nix
-    ../../system/dwm.nix
-    ../../system/bootloader.nix
-    ../../system/xorg.nix
+  config.videoDrivers = [
+    "nvidia"
+    "modesetting"
   ];
 }

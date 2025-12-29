@@ -1,18 +1,6 @@
 { config, pkgs, lib, ... }:
 
 {
-  services.xserver = {
-    enable = true;
-
-    videoDrivers = [
-      "nvidia"
-      "modesetting"
-    ];
-
-    dpi = 192;
-    upscaleDefaultCursor = true;
-  };
-
   environment.systemPackages = with pkgs; [
     libva-utils
     intel-gpu-tools

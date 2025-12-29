@@ -2,16 +2,11 @@
 
 {
   imports = [
+    ../../nixos
     ./hardware-configuration.nix
     ./env.nix
-
-    ../../system/configuration.nix
-    ../../system/packages.nix
-    ../../system/hardware/amd.nix
-
-    ../../system/env.nix
-    ../../system/dwm.nix
-    ../../system/bootloader.nix
-    ../../system/xorg.nix
+    ../../nixos/hardware/amd.nix
   ];
+
+  config.videoDrivers = [ "amdgpu" ];
 }

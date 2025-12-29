@@ -2,7 +2,6 @@
 
 {
   imports = [
-    ./st
     ./zsh
     ./steam.nix
   ];

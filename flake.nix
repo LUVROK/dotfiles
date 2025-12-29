@@ -31,7 +31,6 @@
       };
     };
 
-    users  = import ./profiles/users.nix;
     dwmblocks = self.packages.${system}.dwmblocks;
 
     make_hm = username: { ... }: {
@@ -52,7 +51,7 @@
     nixosConfigurations.barnard = nixpkgs.lib.nixosSystem {
       inherit pkgs;
       specialArgs = {
-        username = users.barnard.username;
+        username = "barnard";
         pkgs-pinned = import nixpkgs-pinned {
           inherit system;
           config = {
@@ -67,13 +66,13 @@
         zapret-discord-youtube.nixosModules.default
         {
           services.zapret-discord-youtube = {
-            enable = false;
-            config = "general(ALT8)";
+            enable = true;
+            config = "general(ALT)";
           };
         }
 
         home-manager.nixosModules.home-manager
-        (make_hm users.barnard.username)
+        (make_hm "barnard")
         ({ config, pkgs, ... }: {
           boot.kernelPackages = pkgs.linuxPackages_latest;
         })
@@ -83,7 +82,7 @@
     nixosConfigurations.dash = nixpkgs.lib.nixosSystem {
       inherit pkgs;
       specialArgs = {
-        username = users.dash.username;
+        username = "dash";
         pkgs-pinned = import nixpkgs-pinned {
           inherit system;
           config = {
@@ -104,7 +103,7 @@
         }
 
         home-manager.nixosModules.home-manager
-        (make_hm users.dash.username)
+        (make_hm "dash")
         ({ config, pkgs, ... }: {
           boot.kernelPackages = pkgs.linuxPackages_latest;
         })
@@ -114,7 +113,7 @@
     nixosConfigurations."sirius" = nixpkgs.lib.nixosSystem {
       inherit pkgs;
       specialArgs = {
-         username = users.sirius.username;
+         username = "sirius";
       };
       modules = [
         disko.nixosModules.disko
@@ -126,7 +125,7 @@
     nixosConfigurations."sirius-b" = nixpkgs.lib.nixosSystem {
       inherit pkgs;
       specialArgs = {
-         username = users.sirius.username;
+         username = "sirius";
       };
       modules = [
         disko.nixosModules.disko

@@ -1,11 +1,6 @@
 { config, pkgs, lib, pkgs-pinned, ... }:
 
 {
-  services.xserver = {
-    dpi = 112;
-    videoDrivers = [ "amdgpu" ];
-  };
-
   hardware.graphics = {
     enable = true;
     enable32Bit = true;

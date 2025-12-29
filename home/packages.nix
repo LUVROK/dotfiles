@@ -11,7 +11,6 @@
     tree-sitter
     dunst
     rnnoise-plugin
-    pavucontrol
     helvum
     ly
 

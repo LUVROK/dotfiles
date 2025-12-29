@@ -11,6 +11,21 @@
     buildPackages.gnumake
     gamescope
 
+    # --- xorg ---
+    libxcvt
+    xkb-switch
+    xdotool
+    xorg.xsetroot
+    xorg.xcursorthemes
+    xsettingsd
+    xclip
+    xcolor
+    xwinwrap
+    xorg.xinit
+    xdg-desktop-portal
+    dmenu
+    j4-dmenu-desktop
+
     # --- basic utilities ---
     bash
     lsof
@@ -126,6 +141,8 @@
     vrrtest
     stress-ng
     lksctp-tools
+    evtest
+    xorg.xev
 
     # --- go ---
     go
@@ -134,5 +151,8 @@
     golangci-lint
     goimports-reviser
     gotools
+
+    # --- temporary ---
+    pavucontrol
   ];
 }
