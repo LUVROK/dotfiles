@@ -8,7 +8,7 @@
       ''
       + builtins.readFile ./zshrc;
     envExtra = ''
-      x[[ -t 0 ]] && stty -echo -icanon time 0 min 0 2>/dev/null
+      stty -echo -icanon time 0 min 0 2>/dev/null
     '';
   };
 
