@@ -8,6 +8,7 @@
       ''
       + builtins.readFile ./zshrc;
     envExtra = ''
+      [[ -o interactive && -t 0 ]] || return
       stty -echo -icanon time 0 min 0 2>/dev/null
     '';
   };

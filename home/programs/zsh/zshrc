@@ -41,6 +41,7 @@ bindkey -M viins '^[[C' forward-char
 bindkey '^?' backward-delete-char
 bindkey '^H' backward-delete-char
 bindkey '^f' autosuggest-accept
+bindkey '^H' backward-kill-word
 
 # --- autocomplete ---
 zstyle ':autocomplete:*' completer _complete _approximate
