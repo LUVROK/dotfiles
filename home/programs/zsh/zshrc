@@ -1,0 +1,58 @@
+# good inspiration:
+# https://github.com/ElysiaOS/ElysiaOS/blob/a9a624691fad67c27e213036d9b883272ca707f2/.zshrc
+# https://github.com/BreadOnPenguins/dots/blob/master/.config/zsh/.zshrc
+# https://github.com/manning390/nix-config/blob/59cfc956c77c1612a610c83f549e6bfa3e7f95b7/home/core/zsh/default.nix (starship setup on NixOS, plus other cool ideas, not my thing but interesting)
+
+# completions
+: ${XDG_CACHE_HOME:=$HOME/.cache}
+fpath=("$XDG_CACHE_HOME/zsh/site-functions" $fpath)
+autoload -Uz compinit
+ZSH_COMPDUMP="$XDG_CACHE_HOME/zsh/zcompdump-$ZSH_VERSION"
+compinit -C -d "$ZSH_COMPDUMP"
+
+# history
+HISTFILE=~/.zsh_history
+HISTSIZE=1000
+SAVEHIST=1000
+
+# zsh-users/zsh-autosuggestions
+zinit ice turbo'2' lucid
+zinit light zsh-users/zsh-autosuggestions
+
+zinit ice turbo'1' lucid
+zinit light marlonrichert/zsh-autocomplete
+
+setopt autocd              # change directory just by typing its name
+setopt magicequalsubst     # enable filename expansion for arguments of the form ‘anything=expression’
+setopt nonomatch           # hide error message if there is no match for the pattern
+setopt notify              # report the status of background jobs immediately
+setopt numericglobsort     # sort filenames numerically when it makes sense
+setopt promptsubst         # enable command substitution in prompt
+setopt hist_save_no_dups
+setopt hist_ignore_dups
+setopt appendhistory
+setopt sharehistory
+bindkey '^p' history-beginning-search-backward
+bindkey '^n' history-beginning-search-forward
+bindkey -M viins '^[[1;5D' backward-word
+bindkey -M viins '^[[1;5C' forward-word
+bindkey -M viins '^[[D' backward-char
+bindkey -M viins '^[[C' forward-char
+bindkey '^?' backward-delete-char
+bindkey '^H' backward-delete-char
+bindkey '^f' autosuggest-accept
+
+# --- autocomplete ---
+zstyle ':autocomplete:*' completer _complete _approximate
+zstyle ':autocomplete:*' max-errors 2 numeric
+zstyle ':autocomplete:*' min-input 3
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' cache-path "$XDG_CACHE_HOME/zsh/zcompcache"
+
+function _ps_aux_grep() { command ps aux | grep --color=auto "$1" }
+
+alias ll='ls -lah'
+alias la='ls -A'
+alias psg='_ps_aux_grep'
+
+export PROMPT="%~ > "

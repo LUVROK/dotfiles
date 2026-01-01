@@ -12,6 +12,7 @@
     ./gpg
     ./mpv
     ./rofi/rofi.nix
+    ./zsh
   ];
 
   programs = {

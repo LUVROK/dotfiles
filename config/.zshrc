@@ -47,24 +47,6 @@ alias mountvc-pn='_mountvc-pn'
 alias mountvc-ps='_mountvc-ps'
 alias dismountvc-ps='_dismountvc-ps'
 
-# kvm 
-alias vmconnect="virsh --connect qemu:///system"
-alias vmlist="virsh --connect qemu:///system list --all"
-alias vmstop="virsh --connect qemu:///system shutdown "
-alias vmstart="virsh --connect qemu:///system start "
-alias vmautostart="virsh --connect qemu:///system autostart "
-alias vmnoautostart="virsh --connect qemu:///system autostart --disable "
-alias vmforcestop="virsh --connect qemu:///system destroy "
-alias vminfo="virsh --connect qemu:///system dominfo "
-alias vmrestart="virsh --connect qemu:///system reboot "
-alias vmdelete="virsh --connect qemu:///system undefine "
-alias vmvcpuinfo="virsh --connect qemu:///system vcpuinfo "
-alias vmnodeinfo="virsh --connect qemu:///system nodeinfo"
-alias vmsetmem="virsh --connect qemu:///system setmem "
-alias vmsetvcpus="virsh --connect qemu:///system setvcpus "
-alias vmnetlist="virsh --connect qemu:///system net-list"
-alias vmqemustart="qemu-system-x86_64 --enable-kvm -m 4512 -hda $HOME/HOME/wizzard/virt-machines/debian-12-generic-amd64.qcow2"
-
 # Проверка и поддержка interactivity
 if [ -n "$PS1" ]; then
     # Подключаемые скрипты, специфичные для интерактивного режима

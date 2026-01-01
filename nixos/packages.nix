@@ -34,7 +34,6 @@
     curl
     nix-prefetch
     nix-prefetch-git
-    nix-index
     home-manager
     man
     unzip
@@ -72,6 +71,7 @@
     ethtool
     dnsmasq
     tcpdump
+    procps
 
     # --- development tools ---
     nodejs

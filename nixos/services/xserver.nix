@@ -6,7 +6,7 @@
   logFile = null;
 
   videoDrivers = config.videoDrivers;
-  dpi = 192;
+  dpi = config.dpi;
 
   xkb = {
     variant = "";

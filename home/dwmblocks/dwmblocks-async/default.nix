@@ -7,8 +7,8 @@ pkgs.stdenv.mkDerivation {
   src = pkgs.fetchFromGitHub {
     owner = "UtkarshVerma";
     repo  = "dwmblocks-async";
-    rev   = "fe538a7a2fc52e991a553bd76719735141658844";
-    hash  = "sha256-rFzgCU2wv5w7dc1xVZwX6dCFOAqM1DVK/aoFh1mwDSs=";
+    rev   = "38cadc6427db51700b3add3c356da5d41b36f8e0";
+    hash  = "sha256-E3Jk+Cpcvo7/ePEdi09jInDB3JqLwN+ZHtutk3nmmhM=";
   };
 
   postPatch = ''

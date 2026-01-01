@@ -1,6 +1,10 @@
 { config, pkgs, lib, ... }:
 
 {
+  imports = [
+    ../../nixos/config/barnard.nix
+  ];
+
   environment.sessionVariables = {
     XFT_DPI = "112";
   };

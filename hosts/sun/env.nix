@@ -1,6 +1,10 @@
 { config, pkgs, lib, ... }:
 
 {
+  imports = [
+    ../../nixos/config/dash.nix
+  ];
+
   environment.sessionVariables = {
     XFT_DPI = "192";
 

@@ -70,7 +70,7 @@
     ];
   };
 
-  users.users.root.shell = pkgs.zsh;
+  users.users.root.shell = pkgs.bash;
 
   programs.thunar.enable = true;
 

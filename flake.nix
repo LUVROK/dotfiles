@@ -18,6 +18,10 @@
 
     zapret-discord-youtube.url = "github:kartavkun/zapret-discord-youtube";
     textfox.url = "github:adriankarlen/textfox";
+
+    # zsh plugin manager
+    zinit.url = "github:zdharma-continuum/zinit";
+    zinit.flake = false;
   };
 
   outputs = { self, nixpkgs, nixpkgs-pinned, home-manager, deploy-rs, disko, nur, zapret-discord-youtube, ... }@inputs: let
@@ -61,7 +65,10 @@
         inherit inputs system;
       };
       modules = [
-        ./hosts/barnard
+        ./nixos
+        ./nixos/hardware/amd.nix
+        ./hosts/barnard/hardware-configuration.nix
+        ./hosts/barnard/env.nix
 
         zapret-discord-youtube.nixosModules.default
         {
@@ -92,7 +99,10 @@
         inherit inputs system;
       };
       modules = [
-        ./hosts/sun
+        ./nixos
+        ./nixos/hardware/amd.nix
+        ./hosts/sun/hardware-configuration.nix
+        ./hosts/sun/env.nix
 
         zapret-discord-youtube.nixosModules.default
         {
