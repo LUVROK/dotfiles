@@ -11,7 +11,7 @@
       extraConfig = import ./rofi-pass.nix { inherit lib pkgs config; };
     };
     terminal = "${pkgs.kitty}/bin/kitty";
-    theme = ./config/based.rasi;
+    theme = lib.mkDefault ./config/based.rasi;
     extraConfig = {
       show-icons = false;
       # Remove some keys from the default bindings

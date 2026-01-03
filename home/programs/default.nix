@@ -9,6 +9,7 @@
     ./neovim
     ./vim
     ./git.nix
+    ./xresources.nix
     ./gpg
     ./mpv
     ./rofi/rofi.nix
@@ -18,5 +19,6 @@
   programs = {
     kitty = (import ./kitty/kitty.nix { inherit pkgs; });
     obs-studio = (import ./obs-studio.nix { inherit pkgs; });
+    pywal.enable = false;
   };
 }

@@ -19,11 +19,9 @@
 // Define blocks for the status feed as X(icon, cmd, interval, signal).
 #define BLOCKS(X)             \
     X("", "db-xkb", 0, 1)      \
-    X("", "db-battery", 10, 5)     \
     X("", "db-volume", 0, 4)    \
     X("", "db-memory", 10, 3) \
     X("", "db-wifi", 20, 6)  \
     X("", "db-date", 1, 7)     \
-
 
 #endif  // CONFIG_H

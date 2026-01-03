@@ -25,6 +25,7 @@
     xdg-desktop-portal
     dmenu
     j4-dmenu-desktop
+    st
 
     # --- basic utilities ---
     bash
