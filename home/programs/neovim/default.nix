@@ -6,7 +6,9 @@
     defaultEditor = true;
   };
 
-   home.file.".config/nvim" = {
+  programs.vim.enable = true;
+
+  home.file.".config/nvim" = {
     source = ./nvim;
     recursive = true;
   };

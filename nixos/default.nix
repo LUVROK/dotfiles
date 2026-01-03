@@ -6,7 +6,6 @@
     ./network
     ./services
     ./modules
-    ./programs
     ./security.nix
     ./options.nix
     ./boot.nix
@@ -42,6 +41,9 @@
   '';
 
   programs.nix-ld.enable = true;
+  programs.steam.enable = true;
+  programs.gamemode.enable = true;
+  programs.zsh.enable = true;
 
   users.groups.libvirt = {};
   users.groups.vboxsf = {};

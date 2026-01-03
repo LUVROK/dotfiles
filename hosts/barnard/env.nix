@@ -9,6 +9,11 @@
     XFT_DPI = "112";
   };
 
+  environment.extraInit = ''
+    #Turn off gui for ssh auth
+    unset -v SSH_ASKPASS
+  '';
+
   # Issue: kernel panic "BUG at mm/vmalloc.c:3167" reproduced 4–5 times (2025-09-15 → 2025-09-17).
   # Context: AMD + amdgpu with dual-monitor setup; may be related (see forum thread).
   # Mitigation: temporarily using motherboard display outputs to observe; consider pinning an older kernel (has other regressions). No good solution found yet.

@@ -2,18 +2,18 @@
 
 {
   imports = [
-    ./neofetch.nix
     ./firefox
     ./ranger
     ./nnn
     ./neovim
     ./vim
+    ./zsh
+    ./rofi
     ./git.nix
     ./xresources.nix
-    ./gpg
-    ./mpv
-    ./rofi/rofi.nix
-    ./zsh
+    ./gpg.nix
+    ./mpv.nix
+    ./neofetch.nix
   ];
 
   programs = {

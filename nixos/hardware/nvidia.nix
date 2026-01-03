@@ -19,6 +19,7 @@
     vaapiVdpau
     libvdpau-va-gl
     vaapiIntel
+    (btop.override { cudaSupport = true; })
   ];
 
   hardware = {

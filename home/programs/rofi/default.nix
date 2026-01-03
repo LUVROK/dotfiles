@@ -11,7 +11,7 @@
       extraConfig = import ./rofi-pass.nix { inherit lib pkgs config; };
     };
     terminal = "${pkgs.kitty}/bin/kitty";
-    theme = lib.mkDefault ./config/based.rasi;
+    theme = lib.mkDefault ./config/based.rasi; # pywal want to change these settings but its need espessialy for rofi pinentry (idk how force pinentry use this style in another way) TODO: figure it out). 1. maybe check default pywal rofi and if its just colors then do like ++ or smth and add my config or override default pywal config.
     extraConfig = {
       show-icons = false;
       # Remove some keys from the default bindings
@@ -59,10 +59,6 @@
     powermenu-rasi = {
       source = ./config/power-menu.rasi;
       target = "rofi/power-menu.rasi";
-    };
-    crypto-rasi = {
-      source = ./config/crypto-menu.rasi;
-      target = "rofi/crypto-menu.rasi";
     };
     greenclip-rasi = {
       source = ./greenclip/greenclip.rasi;

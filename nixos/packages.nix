@@ -33,9 +33,6 @@
     coreutils
     wget
     curl
-    nix-prefetch
-    nix-prefetch-git
-    home-manager
     man
     unzip
     unrar
@@ -43,7 +40,6 @@
     zip
     htop
     iotop
-    (btop.override { rocmSupport = true; })
     killall
     dig
     nmap
@@ -75,8 +71,6 @@
     procps
 
     # --- development tools ---
-    nodejs
-    yarn
     python315
 
     # --- networking ---
@@ -85,8 +79,6 @@
     networkmanager
     # xray
     shadowsocks-rust
-    # iwd
-    # iw
 
     # --- system tools ---
     libnotify
@@ -96,7 +88,6 @@
     ffmpeg
 
     # --- apps ---
-    vscodium
     qbittorrent
     telegram-desktop
     obsidian
@@ -104,22 +95,14 @@
     syncthing
     spotify
     libreoffice
-    blueman
-    chromium
     librewolf
     veracrypt
-    nautilus
     monero-gui
     koreader
 
-    # --- music ---
-    gtk3
-
     # --- talking ---
-    discord # some trouble in nixpkgs
+    discord
     element-desktop
-    session-desktop
-    element-call
     irssi
 
     # --- games ---

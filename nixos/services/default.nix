@@ -16,6 +16,7 @@
       HandlePowerKey = "ignore";
       HandlePowerKeyLongPress = "poweroff";
     };
+
     dbus = {
       enable = true;
       implementation = "broker";

@@ -18,6 +18,7 @@
     libva-utils
     libva
     mangohud
+    (btop.override { rocmSupport = true; })
   ];
 
   environment.etc."X11/xorg.conf.d/10-amdgpu.conf".text = ''
