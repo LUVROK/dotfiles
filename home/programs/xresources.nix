@@ -2,6 +2,8 @@
 
 {
   xresources.extraConfig = ''
+    *.font: xft:JetBrainsMonoNL NFP:size=14
+
     ! normal
     st.normbgcolor:      #000000
     st.normbordercolor:  #3c3836

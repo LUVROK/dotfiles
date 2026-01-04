@@ -2,6 +2,7 @@
 
 {
   imports = [
+    ./dwmblocks
     ./dunst.nix
     ./flameshot.nix
     ./redshift.nix

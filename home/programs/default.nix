@@ -6,7 +6,6 @@
     ./ranger
     ./nnn
     ./neovim
-    ./vim
     ./zsh
     ./rofi
     ./git.nix

@@ -73,7 +73,7 @@
         zapret-discord-youtube.nixosModules.default
         {
           services.zapret-discord-youtube = {
-            enable = false;
+            enable = true;
             config = "general(ALT)";
           };
         }
@@ -144,7 +144,7 @@
       ];
     };
 
-    packages.${system}.dwmblocks = pkgs.callPackage ./home/dwmblocks/dwmblocks-async/default.nix {};
+    packages.${system}.dwmblocks = pkgs.callPackage ./home/services/dwmblocks/dwmblocks-async {};
 
     devShells.${system}.default = pkgs.mkShell {
       buildInputs = with pkgs; [

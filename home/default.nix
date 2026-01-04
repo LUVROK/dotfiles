@@ -7,7 +7,6 @@
     ./packages.nix
     ./services
     ./programs
-    ./dwmblocks
   ];
 
   home.stateVersion = "24.11";
