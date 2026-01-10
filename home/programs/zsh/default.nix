@@ -8,10 +8,11 @@
       ''
       + builtins.readFile ./zshrc;
     # Prevents keyboard input before the zsh prompt is fully initialized (for aesthetic)
-    envExtra = ''
-      [[ -o interactive && -t 0 ]] || return
-      stty -echo -icanon time 0 min 0 2>/dev/null
-    '';
+    # remove it, maybe its not so good, i will test without it and decide
+    # envExtra = ''
+    #   [[ -o interactive && -t 0 ]] || return
+    #   stty -echo -icanon time 0 min 0 2>/dev/null
+    # '';
   };
 
   home.file.p10k = {

@@ -155,7 +155,8 @@
         xorg.libXft
         freetype
         fontconfig
-      ];
+        pkg-config
+     ];
     };
   };
 }

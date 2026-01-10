@@ -9,6 +9,8 @@
     font_family = "JetBrainsMonoNL NFP";
     font_size = "14.0";
 
+    background_opacity = "0.95";
+
     window_padding_width = 2.5;
     window_padding_height = 2.5;
 

@@ -13,6 +13,7 @@
     ROFI_PASS_BACKEND = "xdotool";
   };
 
+  # xdg.mimeApps.enable = true;
   xdg.mime = {
     defaultApplications = {
       "inode/directory" = [ "thunar.desktop" ];

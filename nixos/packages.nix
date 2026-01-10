@@ -69,6 +69,7 @@
     dnsmasq
     tcpdump
     procps
+    file
 
     # --- development tools ---
     python315

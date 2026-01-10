@@ -13,6 +13,7 @@
     rnnoise-plugin
     helvum
     ly
+    zathura
 
     # pass
     pass
@@ -23,5 +24,10 @@
 
     # utils
     haskellPackages.greenclip
+
+    ueberzugpp
+    ffmpegthumbnailer
+    poppler-utils
+    jq
   ];
 }

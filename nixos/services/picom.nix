@@ -5,25 +5,54 @@
   backend = "egl";
   vSync = true;
 
+  activeOpacity = 1.0;
+  inactiveOpacity = 0.95;
+
+  opacityRules = [
+    "100:name *= 'Picture-in-Picture'"
+    "100:class_g = 'dmenu'"
+    "100:fullscreen"
+    "100:name ~= 'rofi'"
+    "100:class_g = 'firefox'"
+    "100:class_g = 'obsidian'"
+  ];
+
   settings = {
     dbus = true;
 
     fading = true;
-    fade-in-step = 0.08;
-    fade-out-step = 0.08;
+    fade-in-step = 0.03;
+    fade-out-step = 0.03;
+    fade-delta = 8;
 
-    animations = true;
-    animation-stiffness = 120;
-    animation-duration = 240;
+    blur = {
+      method = "dual_kawase";
+      size = 10;
+      strength = 3;
+    };
 
-    experimental-backends = true;
+    blur-background = true;
+    blur-background-frame = false;
+    blur-background-fixed = true;
+
+    use-damage = true;
+
+    # Exclude dwm statusbar from focus detection so it doesn't affect focused/unfocused rules, (prevents bar/dmenu from interfering with opacity/fade logic)
+    # https://wiki.archlinux.org/title/Picom#dwm_and_dmenu
+    focus-exclude = "x = 0 && y = 0 && override_redirect = true";
+
+    # looks better maybe
+    blur-background-exclude = [
+      "focused"
+      "name ~= 'dmenu'"
+      "name ~= 'rofi'"
+    ];
 
     fade-exclude = [
       "_NET_WM_STATE@:32a *= '_NET_WM_STATE_FULLSCREEN'"
+      "name ~= 'dmenu'"
+      "name ~= 'rofi'"
     ];
-
-    no-fading-openclose = false;
-    no-fading-destroyed-argb = true;
 
     unredir-if-possible-exclude = [ "class_g = 'mpv'" "class_g = 'Firefox'" ];
 

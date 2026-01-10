@@ -3,13 +3,7 @@
 {
   programs.ranger = {
     enable = true;
-
-    extraPackages = with pkgs; [
-      ueberzugpp
-      ffmpegthumbnailer
-      poppler-utils
-      jq
-    ];
+    package = pkgs.ranger;
 
     settings = {
       preview_images_method = "ueberzug";
@@ -17,8 +11,8 @@
       preview_images  = true;
       preview_files  = true;
       open_all_images  = true;
-      draw_borders  = false;
-      hidden_filter  = ''^lost\+found$|\.parts$'';
+      draw_borders  = true;
+      hidden_filter  = ''^\.|\.(bak|swp)$|^lost\+found$|^__pycache__$'';
       nested_ranger_warning  = true;
       colorscheme  = "solarized";
       autoupdate_cumulative_size = true;
@@ -62,14 +56,6 @@
           url = "https://github.com/maximtrp/ranger-archives";
           ref = "master";
           rev = "b4e136b24fdca7670e0c6105fb496e5df356ef25";
-        };
-      }
-      {
-        name = "ranger-devicons2";
-        src = builtins.fetchGit {
-          url = "https://github.com/cdump/ranger-devicons2";
-          ref = "master";
-          rev = "94bdcc19218681debb252475fd9d11cfd274d9b1";
         };
       }
     ];
